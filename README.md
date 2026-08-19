@@ -26,6 +26,7 @@ at a time — and deliberately ends at the bottom of the stack: a switch that is
 - **5 milestones** — IT basics · developer tools · AI fundamentals · data engineering core · CS & cloud.
   Each concept is broken into **Why / Then→Now / What & How / If you skip it**, with a real-world
   example and a hands-on challenge.
+- **How the big systems work** — Grab, Netflix, YouTube, a trading exchange, Taobao, Shopee and foodpanda.
 - **Where apps actually live** — a 6-rung hosting ladder from `localhost` to serverless.
 - **How the big systems work** — Grab, Netflix, YouTube and an exchange/trading system, each reduced
   to the one clever idea that makes it possible.
@@ -67,6 +68,8 @@ which is itself part of the point the guide is making.
 ## Notes
 
 - **Themes** — light, dark, or follow-the-system, from the switch in the top bar. Your choice is remembered.
+- Every section paints its own background scene — blueprint grid on the map, phosphor scanlines on the
+  terminal, a neural field on the AI milestone, falling bits on the last one.
 - The background is five fixed layers; its hue follows whichever milestone you're reading, and the
   light follows your cursor. All of it respects `prefers-reduced-motion`.
 - Contrast is audited across every text element in both themes: dark mode has no WCAG AA failures.

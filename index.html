@@ -20,6 +20,10 @@
   --m1-deep:#4338ca; --m2-deep:#0f766e; --m4-deep:#b45309; --m5-deep:#be123c;
   --ok-deep:#047857; --no-deep:#b91c1c; --info-deep:#0369a1;
   /* --- code plate: deliberately dark in BOTH themes --- */
+  /* --- pale washes used inside the architecture diagrams --- */
+  --tint-paper:#ffffff; --tint-neutral:#f8fafc;
+  --tint-ok:#ecfdf5; --tint-warn:#fff7ed; --tint-no:#fef2f2;
+  --tint-m1:#f5f3ff; --tint-m3:#faf5ff; --tint-m5:#fff1f2;
   --code-bg:#0f172a; --code-bar:#111c33; --code-fg:#e2e8f0;
   --shadow:0 1px 2px rgba(20,32,43,.05), 0 8px 24px rgba(20,32,43,.06);
   --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
@@ -339,7 +343,7 @@ footer h3{color:var(--ink)}
   </div>
 </div>
 
-<section id="start">
+<section id="start" data-scene="paper">
   <div class="wrap">
     <div class="philo">
       <h2><span class="en">First, the most important idea in this guide</span><span class="zh">先说这份指南里最重要的一件事</span></h2>
@@ -368,7 +372,7 @@ footer h3{color:var(--ink)}
   </div>
 </section>
 
-<section>
+<section id="howto" data-scene="paper">
   <div class="wrap">
     <div class="sechead"><h2><span class="en">How to use this guide</span><span class="zh">怎么用这份指南</span></h2></div>
     <p style="color:var(--muted); max-width:70ch" class="en">Every concept below is broken down the way people actually learn: <b>why does this exist</b>, <b>how was it done before and how is it done now</b>, <b>what it is and how you do it</b>, <b>what goes wrong if you skip it</b>, and <b>a real situation where it matters</b>. Click through the tabs on each concept — they're the heart of this guide.</p>
@@ -554,7 +558,7 @@ body.lang-zh .mtitle, body.lang-zh .msub{font-family:var(--cjk)}
 .mdl-blk.eg{background:color-mix(in srgb,var(--k) 6%,var(--paper)); border-radius:12px; padding:13px 16px}
 </style>
 
-<section id="map">
+<section id="map" data-scene="grid">
   <div class="wrap">
     <div class="sechead"><h2><span class="en">The whole map on one page — and where you sit on it</span><span class="zh">一页看完整张地图 —— 以及你站在哪</span></h2></div>
     <p style="color:var(--muted); max-width:72ch"><span class="en">Before any of the details, here is the entire landscape. Every job title in software is a person standing in one region of this picture. <b>Click any box</b> to find out what it is, <b>press Trace a request</b> to watch data move through it, and <b>pick a role</b> to see exactly which parts belong to them.</span><span class="zh">在进入任何细节之前，先看整片地形。软件行业里的每一个头衔，都只是站在这张图某个区域里的人。<b>点任意一个方块</b>看它到底是什么，<b>点"追踪一次请求"</b>看数据怎么流动，<b>选一个角色</b>看看哪些部分归他们管。</span></p>
@@ -701,7 +705,7 @@ body.lang-zh .mtitle, body.lang-zh .msub{font-family:var(--cjk)}
 .node.adv use{opacity:.62}
 </style>
 
-<section id="flow">
+<section id="flow" data-scene="flow">
   <div class="wrap">
     <div class="sechead"><h2><span class="en">Watch one click travel the whole map</span><span class="zh">看一次点击，走完整张地图</span></h2></div>
     <p style="color:var(--muted); max-width:72ch"><span class="en">The map above shows the shape. This shows the <b>movement</b>. Type a name, press save, and follow the exact same piece of data through every box — seeing both what a person sees and what is actually happening underneath. Do it three or four times: the mess that builds up in the database is the reason the last step exists.</span><span class="zh">上面那张地图给的是形状，这里给的是<b>运动</b>。输入一个名字、点保存，然后跟着同一条数据走过每一个方块 —— 同时看到"人看到的"和"底下真正发生的"。多做三四次：数据库里堆起来的那些脏东西，正是最后一步存在的理由。</span></p>
@@ -736,7 +740,7 @@ body.lang-zh .mtitle, body.lang-zh .msub{font-family:var(--cjk)}
   </div>
 </section>
 
-<section id="words">
+<section id="words" data-scene="paper">
   <div class="wrap">
     <div class="sechead"><h2><span class="en">The metaphor sheet — what all these alien words actually mean</span><span class="zh">词汇对照表 —— 那些"外星词"到底是什么意思</span></h2></div>
     <p style="color:var(--muted); max-width:70ch" class="en">Before anything else, here is the whole vocabulary in plain language. Every one of these words describes something you already understand from the physical world. They only sound alien because someone had to invent a name for a thing that had never existed before.</p>
@@ -981,7 +985,7 @@ body.lang-zh .mtitle, body.lang-zh .msub{font-family:var(--cjk)}
 .pill.must{background:color-mix(in srgb, var(--ok) 16%, var(--paper));color:var(--ok-deep)}.pill.good{background:color-mix(in srgb, var(--m4) 16%, var(--paper));color:var(--m4-deep)}.pill.later{background:var(--line);color:var(--ink-2)}
 </style>
 
-<section id="stack">
+<section id="stack" data-scene="strata">
   <div class="wrap">
     <div class="sechead"><h2><span class="en">The tech stack — who lives where on the map</span><span class="zh">技术栈 —— 谁住在地图的哪个位置</span></h2></div>
     <p style="color:var(--muted); max-width:72ch"><span class="en">You will see roadmap posters full of logos and feel like you have to learn all of them. You do not. Every one of these tools belongs to <b>one region of the map above</b>, and most of them are alternatives to each other — you need one from each row, not all of them.</span><span class="zh">你会看到那种贴满 logo 的路线图海报，然后觉得自己得全学。不用。这里每一个工具都属于<b>上面那张地图的某一个区域</b>，而且它们大多是彼此的替代品 —— 每一行挑一个就够了，不是全都要。</span></p>
@@ -1012,7 +1016,7 @@ body.lang-zh .mtitle, body.lang-zh .msub{font-family:var(--cjk)}
   </div>
 </div>
 
-<section id="cli">
+<section id="cli" data-scene="crt">
   <div class="wrap">
     <div class="sechead"><h2><span class="en">The terminal — how computers actually work</span><span class="zh">终端 —— 电脑其实是怎么运作的</span></h2></div>
     <p style="color:var(--muted); max-width:70ch"><span class="en">This is the single biggest gap between someone who uses a computer and someone who works on one. It is also much simpler than it looks.</span><span class="zh">这是"用电脑的人"和"在电脑上工作的人"之间最大的一道鸿沟。而它其实比看起来简单得多。</span></p>
@@ -1189,7 +1193,7 @@ sudo &lt;anything&gt;     <span class="cm"># do it as administrator / 以管理�
   </div>
 </section>
 
-<section>
+<section id="months" data-scene="strata">
   <div class="wrap">
     <div class="sechead"><h2><span class="en">The 12 months at a glance</span><span class="zh">12 个月总览</span></h2></div>
     <p style="color:var(--muted); margin-bottom:22px" class="en">Gradual pace — roughly 5–6 hours a week alongside real work. Months overlap in practice; that's fine.</p>
@@ -1266,7 +1270,7 @@ sudo &lt;anything&gt;     <span class="cm"># do it as administrator / 以管理�
 @keyframes a3pulse{0%,100%{fill:var(--paper)}50%{fill:#fde68a}}
 </style>
 
-<section id="m1" style="--c:var(--m1)">
+<section id="m1" style="--c:var(--m1)" data-scene="grid">
   <div class="wrap">
     <div class="ms">
       <div class="mshead">
@@ -1894,7 +1898,7 @@ resp = requests.<span class="fn">get</span>(
 .gnode.fresh{animation:gitpop .45s cubic-bezier(.2,.8,.3,1.2) both; transform-box:fill-box; transform-origin:center}
 </style>
 
-<section id="m2" style="--c:var(--m2)">
+<section id="m2" style="--c:var(--m2)" data-scene="hatch">
   <div class="wrap">
     <div class="ms">
       <div class="mshead">
@@ -2317,7 +2321,7 @@ threshold = 0.95        <span class="cm"># your version / 你的</span>
 .ing:has(input:checked){border-color:var(--c); background:color-mix(in srgb,var(--c) 7%,var(--paper))}
 </style>
 
-<section id="m3" style="--c:var(--m3)">
+<section id="m3" style="--c:var(--m3)" data-scene="neural">
   <div class="wrap">
     <div class="ms">
       <div class="mshead">
@@ -2804,7 +2808,7 @@ list any assumption you had to make."""</span>
 .dstat span{color:var(--muted); font-size:12px}
 </style>
 
-<section id="m4" style="--c:var(--m4)">
+<section id="m4" style="--c:var(--m4)" data-scene="flow">
   <div class="wrap">
     <div class="ms">
       <div class="mshead">
@@ -3287,7 +3291,7 @@ summary &lt;- samples |&gt;
 input[type=range]{width:100%; accent-color:var(--c)}
 </style>
 
-<section id="m5" style="--c:var(--m5)">
+<section id="m5" style="--c:var(--m5)" data-scene="circuit">
   <div class="wrap">
     <div class="ms">
       <div class="mshead">
@@ -3791,7 +3795,7 @@ input[type=range]{width:100%; accent-color:var(--c)}
 .srcnote{font-size:12px; color:var(--muted); margin:10px 0 0; font-style:italic}
 </style>
 
-<section id="scale">
+<section id="scale" data-scene="strata">
   <div class="wrap">
     <div class="sechead"><h2><span class="en">Where does an app actually live?</span><span class="zh">一个应用到底住在哪里？</span></h2></div>
     <p style="color:var(--muted); max-width:70ch"><span class="en">You have written code that runs on your laptop. But when a company says "the app is live," where is it? On whose machine? Who turns it on? This is the question nobody explains, and the answer is a ladder — every company is standing on one of these rungs right now.</span><span class="zh">你写过在自己笔记本上运行的代码。但当公司说"应用上线了"，它到底在哪？在谁的机器上？谁把它打开的？这个问题没人解释，而答案是一把梯子——此刻每一家公司都站在其中某一级上。</span></p>
@@ -3808,7 +3812,7 @@ input[type=range]{width:100%; accent-color:var(--c)}
     </div>
 
     <div class="sechead" style="margin-top:40px"><h2><span class="en">Now the fun part — how the big ones actually work</span><span class="zh">现在是有意思的部分 —— 那些大家伙到底怎么运转</span></h2></div>
-    <p style="color:var(--muted); max-width:70ch"><span class="en">Four systems you use or hear about constantly. Each one solved a problem nobody had solved before, and each solution is <b>one clever idea</b> plus a great deal of ordinary engineering. Look for the idea — the rest is detail.</span><span class="zh">四个你天天在用、或者天天听到的系统。每一个都解决了此前没人解决过的问题，而每一个解法都是<b>一个聪明的想法</b>加上大量平凡的工程工作。去找那个想法——剩下的都是细节。</span></p>
+    <p style="color:var(--muted); max-width:70ch"><span class="en">Seven systems you use, or hear about, constantly — including four you probably opened today. Each one solved a problem nobody had solved before, and each solution is <b>one clever idea</b> plus a great deal of ordinary engineering. Look for the idea — the rest is detail.</span><span class="zh">七个你天天在用、或者天天听到的系统 —— 其中四个你今天很可能已经打开过了。每一个都解决了此前没人解决过的问题，而每一个解法都是<b>一个聪明的想法</b>加上大量平凡的工程工作。去找那个想法——剩下的都是细节。</span></p>
 
     <div class="showtabs" id="showtabs"></div>
     <div class="showbox" id="showbox"></div>
@@ -3816,7 +3820,7 @@ input[type=range]{width:100%; accent-color:var(--c)}
   </div>
 </section>
 
-<section id="zero">
+<section id="zero" data-scene="bits">
   <div class="wrap">
     <div class="sechead"><h2><span class="en">Why is IT full of alien words? Because it all starts from 0 and 1.</span><span class="zh">为什么 IT 里全是外星词？因为一切都从 0 和 1 开始。</span></h2></div>
     <p class="essay" style="color:var(--muted)"><span class="en">Here is the thing that makes all of it make sense at once. At the very bottom of every computer, every phone, every server, every AI model in the world, there is exactly one physical fact: <b>a tiny switch that is either off or on.</b> Nothing else. No numbers, no letters, no pictures, no code — just a switch.</span>
@@ -3888,7 +3892,7 @@ input[type=range]{width:100%; accent-color:var(--c)}
   </div>
 </section>
 
-<section id="finish">
+<section id="finish" data-scene="neural">
   <div class="wrap">
     <div class="philo">
       <h2><span class="en">Month 12 and everything after</span><span class="zh">第 12 个月，以及之后的一切</span></h2>
@@ -3957,7 +3961,7 @@ input[type=range]{width:100%; accent-color:var(--c)}
 .mstat span{display:block; font-size:11.5px; font-weight:650; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-top:3px}
 </style>
 
-<section id="made" style="--c:var(--m3)">
+<section id="made" style="--c:var(--m3)" data-scene="neural">
   <div class="wrap">
     <div class="sechead">
       <h2><span class="en">How this page was built</span><span class="zh">这一页是怎么做出来的</span></h2>
@@ -4444,6 +4448,9 @@ code.inl{
     --ok:#34d399; --no:#f87171;
     --m1-deep:#a5b4fc; --m2-deep:#5eead4; --m4-deep:#fcd34d; --m5-deep:#fda4af;
     --ok-deep:#6ee7b7; --no-deep:#fca5a5; --info-deep:#7dd3fc;
+    --tint-paper:#1b2430; --tint-neutral:#19212b;
+    --tint-ok:#11291f; --tint-warn:#2a2113; --tint-no:#2b1719;
+    --tint-m1:#1b1b33; --tint-m3:#221a33; --tint-m5:#2c1720;
     --shadow:0 1px 2px rgba(0,0,0,.5), 0 10px 30px rgba(0,0,0,.45);
     --e1:0 1px 2px rgba(0,0,0,.45), 0 1px 3px rgba(0,0,0,.35);
     --e2:0 2px 4px rgba(0,0,0,.4), 0 10px 24px -6px rgba(0,0,0,.6);
@@ -4461,6 +4468,9 @@ code.inl{
   --ok:#34d399; --no:#f87171;
   --m1-deep:#a5b4fc; --m2-deep:#5eead4; --m4-deep:#fcd34d; --m5-deep:#fda4af;
   --ok-deep:#6ee7b7; --no-deep:#fca5a5; --info-deep:#7dd3fc;
+  --tint-paper:#1b2430; --tint-neutral:#19212b;
+  --tint-ok:#11291f; --tint-warn:#2a2113; --tint-no:#2b1719;
+  --tint-m1:#1b1b33; --tint-m3:#221a33; --tint-m5:#2c1720;
   --shadow:0 1px 2px rgba(0,0,0,.5), 0 10px 30px rgba(0,0,0,.45);
   --e1:0 1px 2px rgba(0,0,0,.45), 0 1px 3px rgba(0,0,0,.35);
   --e2:0 2px 4px rgba(0,0,0,.4), 0 10px 24px -6px rgba(0,0,0,.6);
@@ -4678,6 +4688,201 @@ body::before,body::after{display:none !important}
   :root:not([data-theme="light"])   :root:not([data-theme="light"]) .evo-col.now h5,
   :root:not([data-theme="light"]) .tldr b{ color:var(--c, var(--m1)) }
 }
+
+/* ============================================================================
+   SECTION SCENES — each section gets a texture drawn from its own topic, in its
+   own accent. Two layers per section (::before = texture, ::after = light), both
+   masked so they fade out before the section edge and never seam.
+   Animation only runs on the section you are actually looking at (.sc-live),
+   so at most two of these are ever painting.
+   ========================================================================= */
+section[data-scene]{position:relative; --sc:var(--c, var(--m1))}
+section[data-scene]::before,
+section[data-scene]::after{
+  content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
+  mask-image:linear-gradient(180deg, transparent, #000 14%, #000 86%, transparent);
+  -webkit-mask-image:linear-gradient(180deg, transparent, #000 14%, #000 86%, transparent);
+}
+section[data-scene]::after{opacity:0}          /* most scenes only use the texture */
+
+/* ---- blueprint grid · the map, the foundations ---- */
+[data-scene="grid"]::before{
+  opacity:.5;
+  background-image:
+    linear-gradient(color-mix(in srgb,var(--sc) 26%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb,var(--sc) 26%, transparent) 1px, transparent 1px),
+    linear-gradient(color-mix(in srgb,var(--sc) 11%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb,var(--sc) 11%, transparent) 1px, transparent 1px);
+  background-size:132px 132px, 132px 132px, 22px 22px, 22px 22px;
+}
+[data-scene="grid"].sc-live::before{animation:scGrid 34s linear infinite}
+@keyframes scGrid{to{background-position:132px 132px, 132px 132px, 22px 22px, 22px 22px}}
+
+/* ---- streams · a request in flight, a pipeline running ---- */
+[data-scene="flow"]::before{
+  opacity:.55;
+  background-image:repeating-linear-gradient(114deg,
+    transparent 0 44px,
+    color-mix(in srgb,var(--sc) 20%, transparent) 44px 46px,
+    transparent 46px 58px,
+    color-mix(in srgb,var(--sc) 9%, transparent) 58px 59px,
+    transparent 59px 132px);
+}
+[data-scene="flow"].sc-live::before{animation:scFlow 11s linear infinite}
+@keyframes scFlow{to{background-position:264px 0}}
+
+/* ---- phosphor CRT · the terminal ---- */
+[data-scene="crt"]{--sc:#22c55e}
+[data-scene="crt"]::before{
+  opacity:.42;
+  background-image:
+    repeating-linear-gradient(180deg,
+      color-mix(in srgb,var(--sc) 16%, transparent) 0 1px, transparent 1px 5px),
+    radial-gradient(130% 70% at 50% 0%, color-mix(in srgb,var(--sc) 14%, transparent), transparent 72%);
+  background-size:100% 5px, 100% 100%;
+}
+[data-scene="crt"].sc-live::before{animation:scScan 5.5s linear infinite}
+@keyframes scScan{to{background-position:0 5px, 0 0}}
+[data-scene="crt"]::after{
+  opacity:.28;
+  background:linear-gradient(180deg, transparent 0%, color-mix(in srgb,var(--sc) 22%, transparent) 50%, transparent 100%);
+  background-size:100% 220px; background-repeat:no-repeat;
+}
+[data-scene="crt"].sc-live::after{animation:scSweep 7s cubic-bezier(.5,0,.5,1) infinite}
+@keyframes scSweep{from{background-position:0 -220px} to{background-position:0 110%}}
+
+/* ---- neural · the futuristic one. nodes, links and a slow pulse ---- */
+[data-scene="neural"]::before{
+  opacity:.6;
+  background-image:
+    radial-gradient(2.4px 2.4px at 14% 18%, color-mix(in srgb,var(--sc) 85%, transparent), transparent 62%),
+    radial-gradient(1.8px 1.8px at 68% 11%, color-mix(in srgb,var(--sc) 70%, transparent), transparent 62%),
+    radial-gradient(2.6px 2.6px at 87% 44%, color-mix(in srgb,var(--sc) 80%, transparent), transparent 62%),
+    radial-gradient(1.6px 1.6px at 33% 57%, color-mix(in srgb,var(--sc) 65%, transparent), transparent 62%),
+    radial-gradient(2.2px 2.2px at 55% 82%, color-mix(in srgb,var(--sc) 75%, transparent), transparent 62%),
+    radial-gradient(1.7px 1.7px at 8% 74%, color-mix(in srgb,var(--sc) 60%, transparent), transparent 62%),
+    repeating-linear-gradient(58deg, transparent 0 92px,
+      color-mix(in srgb,var(--sc) 13%, transparent) 92px 93px, transparent 93px 186px),
+    repeating-linear-gradient(-44deg, transparent 0 116px,
+      color-mix(in srgb,var(--sc) 10%, transparent) 116px 117px, transparent 117px 232px);
+  background-size:520px 520px, 520px 520px, 520px 520px, 520px 520px, 520px 520px, 520px 520px, auto, auto;
+}
+[data-scene="neural"].sc-live::before{animation:scNeural 26s ease-in-out infinite alternate}
+@keyframes scNeural{to{background-position:30px -22px,-24px 18px,20px 26px,-18px -20px,26px 14px,-22px -16px, 120px 0, -140px 0}}
+[data-scene="neural"]::after{
+  opacity:.5;
+  background:radial-gradient(58% 42% at 78% 22%, color-mix(in srgb,var(--sc) 20%, transparent), transparent 68%);
+}
+[data-scene="neural"].sc-live::after{animation:scPulse 9s ease-in-out infinite alternate}
+@keyframes scPulse{from{opacity:.26} to{opacity:.62}}
+
+/* ---- circuit · hardware and the cloud underneath it ---- */
+[data-scene="circuit"]::before{
+  opacity:.5;
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 58px,
+      color-mix(in srgb,var(--sc) 16%, transparent) 58px 59px, transparent 59px 150px),
+    repeating-linear-gradient(90deg, transparent 0 74px,
+      color-mix(in srgb,var(--sc) 16%, transparent) 74px 75px, transparent 75px 190px),
+    radial-gradient(3px 3px at 74px 58px, color-mix(in srgb,var(--sc) 70%, transparent), transparent 60%),
+    radial-gradient(3px 3px at 0px 150px, color-mix(in srgb,var(--sc) 55%, transparent), transparent 60%);
+  background-size:auto, auto, 190px 150px, 190px 150px;
+}
+[data-scene="circuit"].sc-live::before{animation:scCircuit 30s linear infinite}
+@keyframes scCircuit{to{background-position:0 150px, 190px 0, 190px 150px, 190px 150px}}
+
+/* ---- bits · it all starts from 0 and 1 ---- */
+[data-scene="bits"]::before{
+  opacity:.5;
+  background-image:
+    repeating-linear-gradient(90deg, transparent 0 52px,
+      color-mix(in srgb,var(--sc) 8%, transparent) 52px 53px, transparent 53px 104px),
+    repeating-linear-gradient(180deg,
+      color-mix(in srgb,var(--sc) 30%, transparent) 0 12px, transparent 12px 34px);
+  background-size:auto, 104px 170px;
+}
+[data-scene="bits"].sc-live::before{animation:scRain 7s linear infinite}
+@keyframes scRain{to{background-position:0 0, 0 170px}}
+
+/* ---- ruled paper · the notebook itself ---- */
+[data-scene="paper"]::before{
+  opacity:.5;
+  background-image:
+    repeating-linear-gradient(180deg, transparent 0 33px,
+      color-mix(in srgb,var(--sc) 13%, transparent) 33px 34px),
+    linear-gradient(90deg, transparent 0 78px,
+      color-mix(in srgb,var(--m5) 20%, transparent) 78px 79px, transparent 79px);
+}
+
+/* ---- strata · layers, ladders, the months stacked up ---- */
+[data-scene="strata"]::before{
+  opacity:.5;
+  background-image:repeating-linear-gradient(180deg,
+    color-mix(in srgb,var(--sc) 9%, transparent) 0 44px,
+    transparent 44px 52px,
+    color-mix(in srgb,var(--sc) 4%, transparent) 52px 88px,
+    transparent 88px 104px);
+}
+[data-scene="strata"].sc-live::before{animation:scStrata 24s ease-in-out infinite alternate}
+@keyframes scStrata{to{background-position:0 26px}}
+
+/* ---- hatch · the workshop, tools on a bench ---- */
+[data-scene="hatch"]::before{
+  opacity:.5;
+  background-image:repeating-linear-gradient(45deg,
+    color-mix(in srgb,var(--sc) 11%, transparent) 0 2px,
+    transparent 2px 13px);
+}
+[data-scene="hatch"].sc-live::before{animation:scHatch 18s linear infinite}
+@keyframes scHatch{to{background-position:106px 0}}
+
+/* dark mode: these are glows on a dark plate, so they carry further */
+:root[data-theme="dark"] section[data-scene]::before{opacity:.68}
+:root[data-theme="dark"] [data-scene="crt"]::before{opacity:.5}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) section[data-scene]::before{opacity:.68}
+  :root:not([data-theme="light"]) [data-scene="crt"]::before{opacity:.5}
+}
+@media(prefers-reduced-motion:reduce){
+  section[data-scene]::before, section[data-scene]::after{animation:none !important}
+}
+
+/* sections that had no accent of their own get one, so no two neighbours
+   share a colour and the aurora keeps changing as you scroll */
+#start{--c:var(--m3)}
+#howto{--c:var(--m2)}
+#months{--c:var(--m4)}
+#words{--c:var(--m5)}
+#finish{--c:var(--m2)}
+
+/* ---- which regions of the map a real system actually uses ---- */
+.zonerow{display:flex; flex-wrap:wrap; gap:7px; align-items:center; margin:4px 0 16px}
+.zonerow .zl{font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--muted); width:100%; margin-bottom:2px}
+.zchip{font-size:12.5px; font-weight:650; padding:5px 11px; border-radius:999px; white-space:nowrap;
+  color:color-mix(in srgb, var(--zc) 74%, var(--ink));
+  background:color-mix(in srgb, var(--zc) 11%, var(--paper));
+  border:1px solid color-mix(in srgb, var(--zc) 30%, transparent);
+  transition:transform .2s var(--spring), box-shadow .2s var(--swift)}
+.zchip:hover{transform:translateY(-2px); box-shadow:0 5px 14px -6px color-mix(in srgb,var(--zc) 60%, transparent)}
+:root[data-theme="dark"] .zchip{color:color-mix(in srgb, var(--zc) 62%, var(--ink))}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .zchip{color:color-mix(in srgb, var(--zc) 62%, var(--ink))}
+}
+/* brand colours are for fills; text drawn in them needs deepening on paper */
+.showbox .tag2, .showbox .stat b, .showbox .idea .il{
+  color:color-mix(in srgb, var(--c) 72%, #000);
+}
+:root[data-theme="dark"] .showbox .tag2,
+:root[data-theme="dark"] .showbox .stat b,
+:root[data-theme="dark"] .showbox .idea .il{color:color-mix(in srgb, var(--c) 74%, #fff)}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .showbox .tag2,
+  :root:not([data-theme="light"]) .showbox .stat b,
+  :root:not([data-theme="light"]) .showbox .idea .il{color:color-mix(in srgb, var(--c) 74%, #fff)}
+}
+.showtabs{gap:9px}
+.showtab{flex:1 1 150px}
 </style>
 
 <script>
@@ -5895,13 +6100,14 @@ window.addEventListener('pointermove', function(e){
 (function(){
   var tabs = $('#showtabs'); if (!tabs) return;
   var box = $('#showbox');
-  var B = function(x,y,w,h,fill,stroke){ return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="10" fill="'+(fill||'#fff')+'" stroke="'+(stroke||'#cfd6dd')+'" stroke-width="1.5"/>' };
+  var B = function(x,y,w,h,fill,stroke){ return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="10" fill="'+(fill||'var(--tint-paper)')+'" stroke="'+(stroke||'var(--line)')+'" stroke-width="1.5"/>' };
   var T = function(x,y,t,cls,anchor){ return '<text x="'+x+'" y="'+y+'" class="'+(cls||'sv-lbl')+'" text-anchor="'+(anchor||'middle')+'">'+t+'</text>' };
   var L = function(x1,y1,x2,y2,dash){ return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="var(--line)" stroke-width="2"'+(dash?' stroke-dasharray="4 4"':'')+'/>' };
 
+  var MZ = {web:['#4f46e5','Browser / web page','浏览器 / 网页'],app:['#4f46e5','Mobile app','手机 App'],net:['#0369a1','The network — HTTP, DNS, TLS','网络 —— HTTP、DNS、TLS'],lb:['#0d9488','Load balancer','负载均衡'],api:['#0d9488','Backend API','后端 API'],cache:['#0d9488','Cache','缓存'],db:['#9333ea','Live (production) database','生产数据库'],ing:['#d97706','Ingestion / event stream','数据接入 / 事件流'],etl:['#d97706','Pipelines (ETL / ELT)','数据管道（ETL / ELT）'],wh:['#d97706','Warehouse — modelled tables','数据仓库 —— 建模好的表'],bi:['#e11d48','Dashboards, reports, ML models','看板、报表、机器学习模型'],linux:['#64748b','Linux / the operating system','Linux / 操作系统'],cont:['#64748b','Containers (Docker)','容器（Docker）'],cloud:['#64748b','Cloud (AWS, Azure, GCP)','云（AWS、Azure、GCP）'],netw:['#64748b','Networking','网络'],sec:['#64748b','Security','安全'],git:['#64748b','Git and CI/CD','Git 与持续交付']};
   var S = [
   {
-    key:'grab', en:'Grab', zh:'Grab', tEn:'the superapp', tZh:'超级 App', color:'#00b14f',
+    key:'grab', zones:['app','net','lb','api','cache','db','ing','etl','wh','bi','cloud','sec'], en:'Grab', zh:'Grab', tEn:'the superapp', tZh:'超级 App', color:'#00b14f',
     hEn:'Grab', hZh:'Grab', subEn:'Southeast Asia · rides, food, payments in one app', subZh:'东南亚 · 打车、外卖、支付合一',
     stats:[['54M', 'monthly transacting users (Q2 2026)', '月活交易用户（2026 Q2）'],
            ['8', 'countries, 900+ cities', '个国家，900+ 城市'],
@@ -5912,12 +6118,12 @@ window.addEventListener('pointermove', function(e){
       s += B(20,90,120,60) + T(80,116,'<tspan class="en">Rider app</tspan><tspan class="zh">乘客 App</tspan>','sv-ttl') + T(80,136,'<tspan class="en">phone</tspan><tspan class="zh">手机</tspan>','sv-sm');
       s += B(20,10,120,60) + T(80,36,'<tspan class="en">Driver app</tspan><tspan class="zh">司机 App</tspan>','sv-ttl') + T(80,56,'<tspan class="en">GPS every few sec</tspan><tspan class="zh">每几秒上报 GPS</tspan>','sv-sm');
       s += L(140,120,210,120) + L(140,40,210,90);
-      s += B(210,80,130,80,'#f0fdf4','#00b14f') + T(275,110,'<tspan class="en">API gateway</tspan><tspan class="zh">API 网关</tspan>','sv-ttl') + T(275,130,'<tspan class="en">auth · routing</tspan><tspan class="zh">鉴权 · 路由</tspan>','sv-sm') + T(275,146,'<tspan class="en">rate limits</tspan><tspan class="zh">限流</tspan>','sv-sm');
+      s += B(210,80,130,80,'var(--tint-ok)','#00b14f') + T(275,110,'<tspan class="en">API gateway</tspan><tspan class="zh">API 网关</tspan>','sv-ttl') + T(275,130,'<tspan class="en">auth · routing</tspan><tspan class="zh">鉴权 · 路由</tspan>','sv-sm') + T(275,146,'<tspan class="en">rate limits</tspan><tspan class="zh">限流</tspan>','sv-sm');
       s += L(340,120,400,120);
-      s += B(400,80,150,80,'#ecfdf5','#00b14f') + T(475,108,'<tspan class="en">Allocation engine</tspan><tspan class="zh">派单引擎</tspan>','sv-ttl') + T(475,128,'<tspan class="en">who is nearest?</tspan><tspan class="zh">谁最近？</tspan>','sv-sm') + T(475,144,'<tspan class="en">must answer in ms</tspan><tspan class="zh">必须毫秒级作答</tspan>','sv-sm');
+      s += B(400,80,150,80,'var(--tint-ok)','#00b14f') + T(475,108,'<tspan class="en">Allocation engine</tspan><tspan class="zh">派单引擎</tspan>','sv-ttl') + T(475,128,'<tspan class="en">who is nearest?</tspan><tspan class="zh">谁最近？</tspan>','sv-sm') + T(475,144,'<tspan class="en">must answer in ms</tspan><tspan class="zh">必须毫秒级作答</tspan>','sv-sm');
       s += B(400,10,150,55) + T(475,32,'<tspan class="en">Live driver map</tspan><tspan class="zh">实时司机地图</tspan>','sv-ttl') + T(475,52,'<tspan class="en">in memory, geo-indexed</tspan><tspan class="zh">内存中，地理索引</tspan>','sv-sm');
       s += L(475,65,475,80);
-      s += B(400,180,150,55,'#fff7ed','#d97706') + T(475,202,'<tspan class="en">Event stream (Kafka)</tspan><tspan class="zh">事件流（Kafka）</tspan>','sv-ttl') + T(475,222,'<tspan class="en">every tap, every ping</tspan><tspan class="zh">每一次点击与定位</tspan>','sv-sm');
+      s += B(400,180,150,55,'var(--tint-warn)','#d97706') + T(475,202,'<tspan class="en">Event stream (Kafka)</tspan><tspan class="zh">事件流（Kafka）</tspan>','sv-ttl') + T(475,222,'<tspan class="en">every tap, every ping</tspan><tspan class="zh">每一次点击与定位</tspan>','sv-sm');
       s += L(475,160,475,180,true);
       s += L(550,207,610,207,true);
       s += B(610,180,170,55) + T(695,202,'<tspan class="en">Data lake + ML</tspan><tspan class="zh">数据湖 + 机器学习</tspan>','sv-ttl') + T(695,222,'<tspan class="en">pricing · ETA · fraud</tspan><tspan class="zh">定价 · 预计到达 · 风控</tspan>','sv-sm');
@@ -5931,7 +6137,7 @@ window.addEventListener('pointermove', function(e){
     jobZh:'<b>数据工程师在这里做什么：</b>负责事件流以及它下游的一切。每一次点击、行程、取消、支付都变成一个事件；你要保证它们不重不漏地到达、以建模好的形状落进数仓、并且能被做定价和风控的团队信任。当有人问"为什么怡保下午六点触发了动态加价"，答案就出自你建的那些表。'
   },
   {
-    key:'netflix', en:'Netflix', zh:'Netflix', tEn:'streaming at planet scale', tZh:'行星级流媒体', color:'#e50914',
+    key:'netflix', zones:['web','app','net','lb','api','cache','db','ing','wh','bi','cloud','cont'], en:'Netflix', zh:'Netflix', tEn:'streaming at planet scale', tZh:'行星级流媒体', color:'#e50914',
     hEn:'Netflix', hZh:'Netflix', subEn:'Over 325 million paid memberships', subZh:'超过 3.25 亿付费会员',
     stats:[['325M+', 'paid memberships (Q4 2025)', '付费会员（2025 Q4）'],
            ['190+', 'countries', '个国家'],
@@ -5941,13 +6147,13 @@ window.addEventListener('pointermove', function(e){
       var s = '';
       s += B(20,95,120,60) + T(80,121,'<tspan class="en">Your TV</tspan><tspan class="zh">你的电视</tspan>','sv-ttl') + T(80,141,'<tspan class="en">or phone</tspan><tspan class="zh">或手机</tspan>','sv-sm');
       s += L(140,110,240,60) + L(140,140,240,190);
-      s += B(240,20,200,80,'#fff1f2','#e50914') + T(340,46,'<tspan class="en">Control plane (AWS)</tspan><tspan class="zh">控制层（AWS）</tspan>','sv-ttl') + T(340,66,'<tspan class="en">login · search · billing</tspan><tspan class="zh">登录 · 搜索 · 计费</tspan>','sv-sm') + T(340,84,'<tspan class="en">recommendations · UI</tspan><tspan class="zh">推荐 · 界面</tspan>','sv-sm');
-      s += B(240,160,200,80,'#ecfdf5','#059669') + T(340,186,'<tspan class="en">Open Connect box</tspan><tspan class="zh">Open Connect 机柜</tspan>','sv-ttl') + T(340,206,'<tspan class="en">sitting INSIDE your ISP</tspan><tspan class="zh">就装在你的宽带运营商机房里</tspan>','sv-sm') + T(340,224,'<tspan class="en">the video bytes live here</tspan><tspan class="zh">视频数据就在这</tspan>','sv-sm');
+      s += B(240,20,200,80,'var(--tint-m5)','#e50914') + T(340,46,'<tspan class="en">Control plane (AWS)</tspan><tspan class="zh">控制层（AWS）</tspan>','sv-ttl') + T(340,66,'<tspan class="en">login · search · billing</tspan><tspan class="zh">登录 · 搜索 · 计费</tspan>','sv-sm') + T(340,84,'<tspan class="en">recommendations · UI</tspan><tspan class="zh">推荐 · 界面</tspan>','sv-sm');
+      s += B(240,160,200,80,'var(--tint-ok)','#059669') + T(340,186,'<tspan class="en">Open Connect box</tspan><tspan class="zh">Open Connect 机柜</tspan>','sv-ttl') + T(340,206,'<tspan class="en">sitting INSIDE your ISP</tspan><tspan class="zh">就装在你的宽带运营商机房里</tspan>','sv-sm') + T(340,224,'<tspan class="en">the video bytes live here</tspan><tspan class="zh">视频数据就在这</tspan>','sv-sm');
       s += L(440,60,520,60) + L(440,200,520,200,true);
       s += B(520,25,130,70) + T(585,51,'<tspan class="en">Microservices</tspan><tspan class="zh">微服务</tspan>','sv-ttl') + T(585,71,'<tspan class="en">hundreds of them</tspan><tspan class="zh">数以百计</tspan>','sv-sm');
       s += B(520,165,130,70) + T(585,191,'<tspan class="en">Encoding farm</tspan><tspan class="zh">转码集群</tspan>','sv-ttl') + T(585,211,'<tspan class="en">1 film → many versions</tspan><tspan class="zh">1 部片 → 多个版本</tspan>','sv-sm');
       s += L(650,60,700,110) + L(650,200,700,150);
-      s += B(700,95,90,70,'#f8fafc') + T(745,121,'<tspan class="en">Chaos</tspan><tspan class="zh">混沌</tspan>','sv-ttl') + T(745,141,'<tspan class="en">testing</tspan><tspan class="zh">测试</tspan>','sv-sm');
+      s += B(700,95,90,70,'var(--tint-neutral)') + T(745,121,'<tspan class="en">Chaos</tspan><tspan class="zh">混沌</tspan>','sv-ttl') + T(745,141,'<tspan class="en">testing</tspan><tspan class="zh">测试</tspan>','sv-sm');
       return s;
     })(),
     ideaEn:'<span class="il">The one clever idea</span><p><b>Don\'t send the video across the internet at all. Put the video inside the internet provider\'s building, before anyone asks for it.</b></p><p>Netflix builds its own storage appliances and gives them, free, to internet providers around the world. During quiet hours each box quietly fills with the shows that people in <i>that specific region</i> are likely to watch tomorrow.</p><p>So when you press play, the video does not travel from Netflix. It travels a few kilometres from your own ISP\'s rack. That is why it starts in two seconds and does not stutter at 9pm when an entire country sits down to watch.</p><p><b>The general principle:</b> the fastest request is the one that never has to travel. You will meet the same idea, much smaller, every time you add a cache.</p>',
@@ -5956,7 +6162,7 @@ window.addEventListener('pointermove', function(e){
     jobZh:'<b>数据工程师在这里做什么：</b>你看到的推荐，是某条管道的下游产物。每一次播放、暂停、看了 90 秒就退出、重看，都变成一个事件，而必须有人把几十亿条这样的事件变成模型能学习的干净特征——并且证明数字是对的。从结构上看，Netflix 是一家顺便也给你送视频的数据公司。'
   },
   {
-    key:'youtube', en:'YouTube', zh:'YouTube', tEn:'anyone can upload anything', tZh:'任何人都能上传任何东西', color:'#ff0033',
+    key:'youtube', zones:['web','app','net','lb','api','cache','db','ing','etl','wh','cloud','linux'], en:'YouTube', zh:'YouTube', tEn:'anyone can upload anything', tZh:'任何人都能上传任何东西', color:'#ff0033',
     hEn:'YouTube', hZh:'YouTube', subEn:'The hardest version of the streaming problem', subZh:'流媒体问题里最难的那个版本',
     stats:[['2.5B+', 'logged-in users a month', '每月登录用户'],
            ['500+ hrs', 'uploaded every minute', '每分钟上传时长'],
@@ -5966,13 +6172,13 @@ window.addEventListener('pointermove', function(e){
       var s = '';
       s += B(20,95,110,60) + T(75,121,'<tspan class="en">Creator</tspan><tspan class="zh">创作者</tspan>','sv-ttl') + T(75,141,'<tspan class="en">uploads 4K</tspan><tspan class="zh">上传 4K</tspan>','sv-sm');
       s += L(130,125,190,125);
-      s += B(190,95,130,60,'#fff1f2','#ff0033') + T(255,121,'<tspan class="en">Ingest</tspan><tspan class="zh">接收</tspan>','sv-ttl') + T(255,141,'<tspan class="en">store raw, forever</tspan><tspan class="zh">原片永久保存</tspan>','sv-sm');
+      s += B(190,95,130,60,'var(--tint-m5)','#ff0033') + T(255,121,'<tspan class="en">Ingest</tspan><tspan class="zh">接收</tspan>','sv-ttl') + T(255,141,'<tspan class="en">store raw, forever</tspan><tspan class="zh">原片永久保存</tspan>','sv-sm');
       s += L(320,125,380,60) + L(320,125,380,125) + L(320,125,380,190);
-      s += B(380,35,150,50,'#fef2f2') + T(455,56,'<tspan class="en">Transcode → 144p</tspan><tspan class="zh">转码 → 144p</tspan>','sv-ttl') + T(455,74,'<tspan class="en">for a slow phone</tspan><tspan class="zh">给慢速手机</tspan>','sv-sm');
-      s += B(380,100,150,50,'#fef2f2') + T(455,121,'<tspan class="en">Transcode → 720p</tspan><tspan class="zh">转码 → 720p</tspan>','sv-ttl') + T(455,139,'<tspan class="en">for most people</tspan><tspan class="zh">给大多数人</tspan>','sv-sm');
-      s += B(380,165,150,50,'#fef2f2') + T(455,186,'<tspan class="en">Transcode → 4K</tspan><tspan class="zh">转码 → 4K</tspan>','sv-ttl') + T(455,204,'<tspan class="en">for the big TV</tspan><tspan class="zh">给大电视</tspan>','sv-sm');
+      s += B(380,35,150,50,'var(--tint-no)') + T(455,56,'<tspan class="en">Transcode → 144p</tspan><tspan class="zh">转码 → 144p</tspan>','sv-ttl') + T(455,74,'<tspan class="en">for a slow phone</tspan><tspan class="zh">给慢速手机</tspan>','sv-sm');
+      s += B(380,100,150,50,'var(--tint-no)') + T(455,121,'<tspan class="en">Transcode → 720p</tspan><tspan class="zh">转码 → 720p</tspan>','sv-ttl') + T(455,139,'<tspan class="en">for most people</tspan><tspan class="zh">给大多数人</tspan>','sv-sm');
+      s += B(380,165,150,50,'var(--tint-no)') + T(455,186,'<tspan class="en">Transcode → 4K</tspan><tspan class="zh">转码 → 4K</tspan>','sv-ttl') + T(455,204,'<tspan class="en">for the big TV</tspan><tspan class="zh">给大电视</tspan>','sv-sm');
       s += L(530,60,590,125) + L(530,125,590,125) + L(530,190,590,125);
-      s += B(590,95,90,60,'#ecfdf5','#059669') + T(635,121,'<tspan class="en">CDN edge</tspan><tspan class="zh">CDN 边缘</tspan>','sv-ttl') + T(635,141,'<tspan class="en">near you</tspan><tspan class="zh">离你很近</tspan>','sv-sm');
+      s += B(590,95,90,60,'var(--tint-ok)','#059669') + T(635,121,'<tspan class="en">CDN edge</tspan><tspan class="zh">CDN 边缘</tspan>','sv-ttl') + T(635,141,'<tspan class="en">near you</tspan><tspan class="zh">离你很近</tspan>','sv-sm');
       s += L(680,125,730,125);
       s += B(730,90,60,70) + T(760,116,'<tspan class="en">Player</tspan><tspan class="zh">播放器</tspan>','sv-ttl') + T(760,136,'<tspan class="en">picks</tspan><tspan class="zh">自选</tspan>','sv-sm');
       return s;
@@ -5983,7 +6189,7 @@ window.addEventListener('pointermove', function(e){
     jobZh:'<b>数据工程师在这里做什么：</b>观看时长、留存曲线、"有没有看完"、版权匹配，以及决定"推荐什么、给谁分成"的那些表。有意思的地方在于另一种量级：同一个事件每天到达几十亿次，意味着你在粒度和幂等性上做的每一个设计选择，代价都以数百万美元的存储成本计量。'
   },
   {
-    key:'trading', en:'Trading platform', zh:'交易平台', tEn:'where microseconds are money', tZh:'微秒即金钱', color:'#7c3aed',
+    key:'trading', zones:['app','net','lb','api','cache','db','ing','etl','wh','bi','sec','linux'], en:'Trading platform', zh:'交易平台', tEn:'where microseconds are money', tZh:'微秒即金钱', color:'#7c3aed',
     hEn:'An exchange / trading system', hZh:'交易所 / 交易系统', subEn:'The most extreme engineering in commercial software', subZh:'商业软件里最极致的工程',
     stats:[['µs', 'matching measured in microseconds', '撮合以微秒计'],
            ['1 µs', '= one millionth of a second', '= 百万分之一秒'],
@@ -5991,14 +6197,14 @@ window.addEventListener('pointermove', function(e){
            ['100%', 'must be auditable, years later', '必须多年后仍可审计']],
     svg: (function(){
       var s = '';
-      s += B(20,95,120,60,'#faf5ff','#7c3aed') + T(80,121,'<tspan class="en">Trading firm</tspan><tspan class="zh">交易公司</tspan>','sv-ttl') + T(80,141,'<tspan class="en">in the SAME building</tspan><tspan class="zh">在同一栋楼里</tspan>','sv-sm');
+      s += B(20,95,120,60,'var(--tint-m3)','#7c3aed') + T(80,121,'<tspan class="en">Trading firm</tspan><tspan class="zh">交易公司</tspan>','sv-ttl') + T(80,141,'<tspan class="en">in the SAME building</tspan><tspan class="zh">在同一栋楼里</tspan>','sv-sm');
       s += L(140,125,200,125);
       s += B(200,95,120,60) + T(260,121,'<tspan class="en">Gateway</tspan><tspan class="zh">接入网关</tspan>','sv-ttl') + T(260,141,'<tspan class="en">validate · stamp time</tspan><tspan class="zh">校验 · 打时间戳</tspan>','sv-sm');
       s += L(320,125,380,125);
-      s += B(380,85,170,80,'#f5f3ff','#7c3aed') + T(465,111,'<tspan class="en">Matching engine</tspan><tspan class="zh">撮合引擎</tspan>','sv-ttl') + T(465,131,'<tspan class="en">the order book, in RAM</tspan><tspan class="zh">订单簿，全在内存</tspan>','sv-sm') + T(465,149,'<tspan class="en">single-threaded, on purpose</tspan><tspan class="zh">故意做成单线程</tspan>','sv-sm');
+      s += B(380,85,170,80,'var(--tint-m1)','#7c3aed') + T(465,111,'<tspan class="en">Matching engine</tspan><tspan class="zh">撮合引擎</tspan>','sv-ttl') + T(465,131,'<tspan class="en">the order book, in RAM</tspan><tspan class="zh">订单簿，全在内存</tspan>','sv-sm') + T(465,149,'<tspan class="en">single-threaded, on purpose</tspan><tspan class="zh">故意做成单线程</tspan>','sv-sm');
       s += L(550,105,610,50) + L(550,145,610,200);
       s += B(610,20,170,60) + T(695,46,'<tspan class="en">Market data feed</tspan><tspan class="zh">行情推送</tspan>','sv-ttl') + T(695,66,'<tspan class="en">broadcast to everyone at once</tspan><tspan class="zh">同时广播给所有人</tspan>','sv-sm');
-      s += B(610,170,170,60,'#fff7ed','#d97706') + T(695,196,'<tspan class="en">Immutable audit log</tspan><tspan class="zh">不可篡改的审计日志</tspan>','sv-ttl') + T(695,216,'<tspan class="en">every event, in order, forever</tspan><tspan class="zh">每个事件，按序，永久</tspan>','sv-sm');
+      s += B(610,170,170,60,'var(--tint-warn)','#d97706') + T(695,196,'<tspan class="en">Immutable audit log</tspan><tspan class="zh">不可篡改的审计日志</tspan>','sv-ttl') + T(695,216,'<tspan class="en">every event, in order, forever</tspan><tspan class="zh">每个事件，按序，永久</tspan>','sv-sm');
       s += T(400,243,'<tspan class="en">no database in the hot path — a database would be 1000× too slow</tspan><tspan class="zh">关键路径上没有数据库 —— 数据库会慢一千倍</tspan>','sv-sm');
       return s;
     })(),
@@ -6006,7 +6212,106 @@ window.addEventListener('pointermove', function(e){
     ideaZh:'<span class="il">那个聪明的想法</span><p><b>放弃几乎所有便利，只为换时间。</b></p><p>这份指南里的其他一切，都是速度和便利之间的权衡。而交易系统每一次都直接选速度，代价看起来疯狂，直到你明白原因。</p><p>订单簿<b>完全放在内存里</b>——关键路径上放数据库会慢一千倍。撮合引擎常常是<b>刻意单线程的</b>，因为并行代码无法保证两笔订单严格按到达顺序被处理，而"公平"就是这门生意的产品本身。交易公司花钱把自己的服务器放进<b>交易所同一栋楼</b>，因为在这种速度下，一根更长的网线就是可测量的劣势。有些处理直接做在硬件里而不是软件里，因为连操作系统都慢到不配出现在这条路径上。</p><p>但与此同时：<b>每一个事件都会被写进不可篡改的日志</b>，按顺序，永久保存——因为监管可能在很多年后来问，某一微秒里究竟发生了什么。</p><p><b>为什么它属于你的路线图：</b>它是阶段五被推到极限的样子。内存胜过磁盘；网络距离就是真实时间；解释器太慢。你学过的每一条关于存储层级的原理，都以最纯粹的形态出现在这里——只是这群人拒绝接受任何默认值。</p>',
     jobEn:'<b>What a data engineer does here:</b> everything <i>beside</i> the hot path — and it is enormous. Capturing the full event stream without slowing the engine, rebuilding the exact state of the market at any past microsecond, feeding risk models, and producing regulatory reports that must reconcile to the last event. The trading engine is written by a handful of specialists; the data platform around it employs many more.',
     jobZh:'<b>数据工程师在这里做什么：</b>关键路径<i>旁边</i>的一切——而这部分极其庞大。在不拖慢引擎的前提下捕获完整事件流、还原过去任意一微秒的市场精确状态、给风险模型供数、并产出必须与最后一个事件都对得上的监管报表。撮合引擎由少数几个专家写，而围绕它的数据平台养活的人多得多。'
-  }];
+  },
+  {
+    key:'taobao', en:'Taobao', zh:'淘宝', tEn:'the one-day spike', tZh:'一年一天的尖峰', color:'#ff5000',
+    hEn:'Taobao / Tmall', hZh:'淘宝 / 天猫',
+    subEn:'China · a marketplace whose entire architecture is decided by one day a year',
+    subZh:'中国 · 一个由「一年中的某一天」决定了整套架构的市场',
+    zones:['app','net','lb','api','cache','db','ing','etl','wh','bi','cloud'],
+    stats:[['583k', 'peak orders created per second, 11.11', '双十一订单创建峰值（每秒）'],
+           ['900M+', 'annual active consumers in China', '中国年度活跃消费者'],
+           ['1', 'day that sizes the whole system', '决定整套系统规模的那一天'],
+           ['0', 'oversold items allowed, ever', '允许超卖的商品件数']],
+    svg: (function(){
+      var s = '';
+      s += B(20,10,125,58) + T(82,34,'<tspan class="en">The app</tspan><tspan class="zh">手机 App</tspan>','sv-ttl') + T(82,54,'<tspan class="en">browse · buy</tspan><tspan class="zh">逛 · 买</tspan>','sv-sm');
+      s += B(20,92,125,58) + T(82,116,'<tspan class="en">Live selling</tspan><tspan class="zh">直播带货</tspan>','sv-ttl') + T(82,136,'<tspan class="en">video + a buy button</tspan><tspan class="zh">视频 + 一个购买按钮</tspan>','sv-sm');
+      s += L(145,39,205,110) + L(145,121,205,121);
+      s += B(205,92,135,58,'var(--tint-warn)','#ff5000') + T(272,116,'<tspan class="en">CDN + gateway</tspan><tspan class="zh">CDN + 网关</tspan>','sv-ttl') + T(272,136,'<tspan class="en">most traffic never gets past here</tspan><tspan class="zh">大部分流量到这里就被挡住了</tspan>','sv-sm');
+      s += L(340,121,395,121);
+      s += B(395,10,155,58,'var(--tint-no)','#ff5000') + T(472,34,'<tspan class="en">Stock counter</tspan><tspan class="zh">库存计数器</tspan>','sv-ttl') + T(472,54,'<tspan class="en">in memory · one per item</tspan><tspan class="zh">在内存里 · 每件商品一个</tspan>','sv-sm');
+      s += B(395,92,155,58,'var(--tint-warn)','#ff5000') + T(472,116,'<tspan class="en">Order intake</tspan><tspan class="zh">下单入口</tspan>','sv-ttl') + T(472,136,'<tspan class="en">says yes in milliseconds</tspan><tspan class="zh">毫秒级答复「收到」</tspan>','sv-sm');
+      s += L(472,68,472,92);
+      s += B(395,182,155,56,'var(--tint-neutral)') + T(472,206,'<tspan class="en">Order queue</tspan><tspan class="zh">订单队列</tspan>','sv-ttl') + T(472,226,'<tspan class="en">the spike waits here</tspan><tspan class="zh">尖峰在这里排队</tspan>','sv-sm');
+      s += L(472,150,472,182);
+      s += L(550,121,605,121) + L(550,210,605,210,true);
+      s += B(605,92,175,58) + T(692,116,'<tspan class="en">Settlement + payment</tspan><tspan class="zh">结算与支付</tspan>','sv-ttl') + T(692,136,'<tspan class="en">slow, careful, exactly once</tspan><tspan class="zh">慢、谨慎、只做一次</tspan>','sv-sm');
+      s += B(605,182,175,56,'var(--tint-warn)','#d97706') + T(692,206,'<tspan class="en">Data platform</tspan><tspan class="zh">数据平台</tspan>','sv-ttl') + T(692,226,'<tspan class="en">recommendations · the 11.11 board</tspan><tspan class="zh">推荐 · 双十一大屏</tspan>','sv-sm');
+      return s;
+    })(),
+    ideaEn:'<span class="il">The one clever idea</span><p><b>Do not scale up for the spike. Accept it into a queue and settle it afterwards.</b></p><p>On 11 November the order rate goes up by orders of magnitude for a few minutes. Building payment, invoicing and warehouse systems that can all run at that rate would be absurdly expensive for a system that is idle the other 364 days.</p><p>So the only thing that must be fast is <b>saying yes</b>. Your tap appends one record to a log and returns. Everything slow behind it — charging the card, reserving stock in the warehouse, telling the seller — drains that queue at its own pace, seconds or minutes later.</p><p>The one thing that <i>cannot</i> wait is stock. If two people buy the last item, you have a real-world problem no refund fixes. So the count for each item lives <b>in memory as a single counter</b> that only one thing may touch at a time. It is the oldest trick in computing — a lock around a number — protecting the newest kind of business.</p>',
+    ideaZh:'<span class="il">那个聪明的想法</span><p><b>不要为尖峰扩容。把它收进队列，之后再慢慢结算。</b></p><p>11 月 11 日那几分钟，下单速率会高出好几个数量级。如果支付、开票、仓储全都要能跑到那个速率，对一个其余 364 天都闲着的系统来说，成本荒唐得不可接受。</p><p>所以唯一必须快的事情是<b>说「好」</b>。你那一下点击只是往日志里追加一条记录然后返回。后面所有慢的事情——扣款、在仓库里锁库存、通知卖家——按自己的节奏把队列排空，可能是几秒后，也可能是几分钟后。</p><p>唯一<i>不能</i>等的是库存。如果两个人买走了同一件「最后一件」，你就制造了一个退款也解决不了的现实问题。于是每件商品的数量是<b>内存里的一个计数器</b>，同一时刻只允许一个东西碰它。这是计算机里最老的把戏——给一个数字加锁——用来保护最新的生意。</p>',
+    jobEn:'<b>What a data engineer does here:</b> you own the log everything else drains from. Every view, add-to-cart, order, cancellation and refund is an event, and the same order appears in several of them minutes apart. Your job is to reassemble those into one truthful timeline per order — so that when the 11.11 dashboard says a number and finance says a different one, you can show exactly where the two definitions part company. The famous live counter on the wall is the easy part; making it agree with the ledger the next morning is the job.',
+    jobZh:'<b>数据工程师在这里做什么：</b>你负责那条所有人都从中排空的日志。每一次浏览、加购、下单、取消、退款都是一个事件，而同一张订单会隔着几分钟出现在其中好几个里。你的工作是把它们重新拼回每张订单一条可信的时间线——这样当双十一大屏说一个数、财务说另一个数时，你能准确指出两个口径是从哪里开始分家的。墙上那个著名的实时计数器是简单的部分；让它第二天早上和账本对得上，才是工作本身。'
+  },
+  {
+    key:'shopee', en:'Shopee', zh:'Shopee 虾皮', tEn:'one app, many countries', tZh:'一个 App，多个国家', color:'#ee4d2d',
+    hEn:'Shopee', hZh:'Shopee 虾皮',
+    subEn:'Southeast Asia, Taiwan and Brazil · a different currency, tax rule and address format in every single market',
+    subZh:'东南亚、台湾与巴西 · 每一个市场的货币、税制和地址格式都不一样',
+    zones:['web','app','net','lb','api','cache','db','ing','etl','wh','bi','cloud','sec'],
+    stats:[['10+', 'markets running on one platform', '个市场共用一套平台'],
+           ['3', 'sides: buyer, seller, courier', '三方：买家、卖家、快递'],
+           ['9.9', 'the date the year is planned around', '整年都围着它排期的日子'],
+           ['1', 'codebase behind all of it', '支撑这一切的一套代码']],
+    svg: (function(){
+      var s = '';
+      s += B(20,10,125,58) + T(82,34,'<tspan class="en">Buyer app</tspan><tspan class="zh">买家 App</tspan>','sv-ttl') + T(82,54,'<tspan class="en">11 languages</tspan><tspan class="zh">11 种语言</tspan>','sv-sm');
+      s += B(20,92,125,58) + T(82,116,'<tspan class="en">Seller centre</tspan><tspan class="zh">卖家中心</tspan>','sv-ttl') + T(82,136,'<tspan class="en">upload · price · stock</tspan><tspan class="zh">上架 · 定价 · 库存</tspan>','sv-sm');
+      s += B(20,182,125,56) + T(82,206,'<tspan class="en">Courier app</tspan><tspan class="zh">快递员 App</tspan>','sv-ttl') + T(82,226,'<tspan class="en">scan · deliver</tspan><tspan class="zh">扫码 · 派送</tspan>','sv-sm');
+      s += L(145,39,205,110) + L(145,121,205,121) + L(145,210,205,132);
+      s += B(205,92,135,58,'var(--tint-warn)','#ee4d2d') + T(272,112,'<tspan class="en">Market router</tspan><tspan class="zh">市场路由</tspan>','sv-ttl') + T(272,131,'<tspan class="en">which country are you in?</tspan><tspan class="zh">你在哪个国家？</tspan>','sv-sm') + T(272,145,'<tspan class="en">picks the rules, not the code</tspan><tspan class="zh">选的是规则，不是代码</tspan>','sv-sm');
+      s += L(340,121,395,121);
+      s += B(395,10,155,58,'var(--tint-neutral)') + T(472,30,'<tspan class="en">Market config</tspan><tspan class="zh">市场配置</tspan>','sv-ttl') + T(472,48,'<tspan class="en">currency · tax · address · payment</tspan><tspan class="zh">货币 · 税 · 地址 · 支付</tspan>','sv-sm') + T(472,62,'<tspan class="en">rows in a table, not branches in code</tspan><tspan class="zh">是表里的行，不是代码里的分支</tspan>','sv-sm');
+      s += B(395,92,155,58,'var(--tint-m5)','#ee4d2d') + T(472,116,'<tspan class="en">Catalogue + search</tspan><tspan class="zh">商品库 + 搜索</tspan>','sv-ttl') + T(472,136,'<tspan class="en">one engine, many rulebooks</tspan><tspan class="zh">一套引擎，多本规则手册</tspan>','sv-sm');
+      s += L(472,68,472,92,true);
+      s += B(395,182,155,56,'var(--tint-warn)','#ee4d2d') + T(472,206,'<tspan class="en">Flash-sale queue</tspan><tspan class="zh">大促排队</tspan>','sv-ttl') + T(472,226,'<tspan class="en">warmed up hours in advance</tspan><tspan class="zh">提前几小时预热</tspan>','sv-sm');
+      s += L(472,150,472,182);
+      s += L(550,121,605,121) + L(550,210,605,210,true);
+      s += B(605,92,175,58) + T(692,116,'<tspan class="en">Wallet + logistics</tspan><tspan class="zh">钱包 + 物流</tspan>','sv-ttl') + T(692,136,'<tspan class="en">ShopeePay · SPX tracking</tspan><tspan class="zh">ShopeePay · SPX 轨迹</tspan>','sv-sm');
+      s += B(605,182,175,56,'var(--tint-warn)','#d97706') + T(692,206,'<tspan class="en">Data platform</tspan><tspan class="zh">数据平台</tspan>','sv-ttl') + T(692,226,'<tspan class="en">every table has a market column</tspan><tspan class="zh">每张表都有一列「市场」</tspan>','sv-sm');
+      return s;
+    })(),
+    ideaEn:'<span class="il">The one clever idea</span><p><b>Everything that differs by country is data, not code.</b></p><p>The naive way to launch in a new market is to fork the app. Do that eight times and you have eight products, eight bug backlogs and eight teams who no longer agree on what an order is.</p><p>Instead the differences — currency, tax treatment, address format, which payment rails exist, what a phone number looks like, which promotions are legal — are pushed out of the code and into <b>configuration the platform reads at runtime</b>. The checkout logic does not know it is in Vietnam; it asks the market table what the rules are here and follows them.</p><p>Opening a country stops being an engineering project and becomes a data-entry problem with a launch date. That is why one codebase can serve markets that share almost nothing.</p>',
+    ideaZh:'<span class="il">那个聪明的想法</span><p><b>凡是各国不一样的东西，都做成数据，而不是代码。</b></p><p>进入新市场最天真的做法是把 App fork 一份。这么干八次，你就有了八个产品、八份 bug 待办，以及八个已经无法就「什么算一张订单」达成一致的团队。</p><p>正确的做法是把这些差异——货币、税务处理、地址格式、有哪些支付通道、手机号长什么样、哪些促销是合法的——从代码里挪出来，变成<b>平台在运行时读取的配置</b>。结算逻辑并不知道自己在越南；它去问市场配置表「这里的规则是什么」，然后照做。</p><p>开一个国家于是不再是一个工程项目，而是一件带上线日期的数据录入工作。这就是为什么一套代码能服务几乎毫无共同点的市场。</p>',
+    jobEn:'<b>What a data engineer does here:</b> the market column is in every table you will ever touch, and it is the one that ruins naive queries. "Total sales last month" is meaningless until you decide which currency, at which exchange rate, on which date, under which market\'s definition of a completed order. You own that reference data — currencies, rates, market rules, category mappings — and the modelled tables that make one number comparable across ten countries. Nobody thanks you for it until the day the board asks for a single regional figure.',
+    jobZh:'<b>数据工程师在这里做什么：</b>「市场」这一列会出现在你碰到的每一张表里，而它正是让天真的查询翻车的那一列。「上个月总销售额」在你决定用哪种货币、哪一天的汇率、以及按哪个市场对「已完成订单」的定义来算之前，都是没有意义的。你负责那些参考数据——货币、汇率、市场规则、类目映射——以及那些让一个数字能在十个国家之间可比的建模表。没人会为此谢你，直到董事会要一个统一的区域数字的那一天。'
+  },
+  {
+    key:'panda', en:'foodpanda', zh:'foodpanda', tEn:'three apps, one order', tZh:'三个 App，一张订单', color:'#d70f64',
+    hEn:'foodpanda', hZh:'foodpanda',
+    subEn:'Asia · a customer, a restaurant and a rider who must all agree on what is happening right now',
+    subZh:'亚洲 · 一位顾客、一家餐厅、一位骑手，必须对「此刻正在发生什么」达成一致',
+    zones:['app','net','lb','api','cache','db','ing','etl','wh','bi','cloud','netw'],
+    stats:[['3', 'apps sharing one order', '个 App 共享同一张订单'],
+           ['&lt;1s', 'to decide which rider gets it', '决定这单派给哪位骑手'],
+           ['~30 min', 'promised, tap to door', '从下单到送到的承诺时间'],
+           ['6+', 'states every order passes through', '每张订单要走过的状态数']],
+    svg: (function(){
+      var s = '';
+      s += B(20,10,125,58) + T(82,34,'<tspan class="en">Customer app</tspan><tspan class="zh">顾客 App</tspan>','sv-ttl') + T(82,54,'<tspan class="en">orders, then watches</tspan><tspan class="zh">下单，然后盯着看</tspan>','sv-sm');
+      s += B(20,92,125,58) + T(82,116,'<tspan class="en">Restaurant tablet</tspan><tspan class="zh">餐厅平板</tspan>','sv-ttl') + T(82,136,'<tspan class="en">accept · cook · ready</tspan><tspan class="zh">接单 · 出餐 · 备好</tspan>','sv-sm');
+      s += B(20,182,125,56) + T(82,206,'<tspan class="en">Rider app</tspan><tspan class="zh">骑手 App</tspan>','sv-ttl') + T(82,226,'<tspan class="en">GPS · in and out of lifts</tspan><tspan class="zh">GPS · 进出电梯</tspan>','sv-sm');
+      s += L(145,39,205,110) + L(145,121,205,121) + L(145,210,205,132);
+      s += B(205,92,135,58,'var(--tint-m5)','#d70f64') + T(272,116,'<tspan class="en">Gateway</tspan><tspan class="zh">网关</tspan>','sv-ttl') + T(272,136,'<tspan class="en">three clients, one door</tspan><tspan class="zh">三个客户端，一扇门</tspan>','sv-sm');
+      s += L(340,121,395,121);
+      s += B(395,10,155,58,'var(--tint-neutral)') + T(472,30,'<tspan class="en">Live rider map</tspan><tspan class="zh">实时骑手地图</tspan>','sv-ttl') + T(472,48,'<tspan class="en">in memory, geo-indexed</tspan><tspan class="zh">在内存里，地理索引</tspan>','sv-sm') + T(472,62,'<tspan class="en">who is free, and near?</tspan><tspan class="zh">谁有空，而且够近？</tspan>','sv-sm');
+      s += B(395,92,155,58,'var(--tint-no)','#d70f64') + T(472,112,'<tspan class="en">Order state machine</tspan><tspan class="zh">订单状态机</tspan>','sv-ttl') + T(472,131,'<tspan class="en">the single source of truth</tspan><tspan class="zh">唯一的事实来源</tspan>','sv-sm') + T(472,145,'<tspan class="en">placed → accepted → … → delivered</tspan><tspan class="zh">已下单 → 已接单 → … → 已送达</tspan>','sv-sm');
+      s += L(472,68,472,92,true);
+      s += B(395,182,155,56,'var(--tint-warn)') + T(472,206,'<tspan class="en">ETA model</tspan><tspan class="zh">送达时间模型</tspan>','sv-ttl') + T(472,226,'<tspan class="en">kitchen queue + traffic + weather</tspan><tspan class="zh">出餐排队 + 路况 + 天气</tspan>','sv-sm');
+      s += L(472,150,472,182,true);
+      s += L(550,121,605,121) + L(550,210,605,210,true);
+      s += B(605,92,175,58) + T(692,116,'<tspan class="en">Event stream</tspan><tspan class="zh">事件流</tspan>','sv-ttl') + T(692,136,'<tspan class="en">every state change, timestamped</tspan><tspan class="zh">每一次状态变化，带时间戳</tspan>','sv-sm');
+      s += B(605,182,175,56,'var(--tint-warn)','#d97706') + T(692,206,'<tspan class="en">Data platform</tspan><tspan class="zh">数据平台</tspan>','sv-ttl') + T(692,226,'<tspan class="en">why was this one 20 minutes late?</tspan><tspan class="zh">这一单为什么晚了 20 分钟？</tspan>','sv-sm');
+      return s;
+    })(),
+    ideaEn:'<span class="il">The one clever idea</span><p><b>The hard part is not the app. It is that one order is a long-lived agreement between three people who are not in the same room.</b></p><p>A ride ends in twenty minutes and involves two parties. A food order involves three, and any of them can drop out of contact at any moment: the rider goes into a lift, the restaurant tablet is on café wi-fi, the customer is on a train.</p><p>So the order\'s state does not live on any phone. It lives <b>on the server as a state machine</b> — placed, accepted, cooking, ready, picked up, delivered — and the apps are never allowed to <i>set</i> it. They can only <i>request</i> a transition, and are told what actually happened. Two riders tapping "picked up" at the same second is not a bug to be prevented at the screen; it is a race the server resolves, once, and reports back.</p><p>Every messy real-time product you will ever work on is this same shape: one authoritative state, many hopeful clients.</p>',
+    ideaZh:'<span class="il">那个聪明的想法</span><p><b>难的不是 App。难的是：一张订单，是三个不在同一个房间里的人之间、一段持续很久的约定。</b></p><p>一趟车程二十分钟就结束，只牵涉两方。一张外卖订单牵涉三方，而且任何一方都可能随时失联：骑手进了电梯，餐厅的平板连着咖啡店的 wi-fi，顾客在地铁上。</p><p>所以订单的状态不住在任何一部手机里。它住在<b>服务器上，作为一台状态机</b>——已下单、已接单、制作中、已备好、已取餐、已送达——而 App 永远不被允许去<i>设置</i>它。它们只能<i>请求</i>一次状态转移，然后被告知实际发生了什么。两个骑手在同一秒点了「已取餐」，这不是一个要在界面上拦住的 bug；这是一场竞争，由服务器裁决一次，然后通知回去。</p><p>你将来会遇到的每一个乱糟糟的实时产品，都是同一个形状：一份权威状态，一群满怀希望的客户端。</p>',
+    jobEn:'<b>What a data engineer does here:</b> the state machine is your raw material. Every transition is an event with a timestamp, and almost every question the business asks is really a question about the gaps between them. Late deliveries, kitchen bottlenecks, rider utilisation, which restaurants quietly accept orders they cannot cook — none of that is a column anywhere. You reconstruct it by lining up timelines and measuring the silences. The dashboard says "23 minutes average"; you are the person who can say which of the six steps ate the extra eight.',
+    jobZh:'<b>数据工程师在这里做什么：</b>状态机就是你的原材料。每一次状态转移都是一个带时间戳的事件，而业务提出的几乎每一个问题，本质上都是在问这些事件之间的空隙。送达超时、后厨瓶颈、骑手利用率、哪些餐厅悄悄接了自己做不出来的单——这些在任何地方都不是现成的一列。你要把时间线一条条对齐，去量那些沉默的间隔，才能把它们还原出来。看板说「平均 23 分钟」；而你是那个能说出「多出来的 8 分钟被六步里的哪一步吃掉了」的人。'
+  }
+];
 
   tabs.innerHTML = S.map(function(x,i){
     return '<button class="showtab' + (i===0?' on':'') + '" data-i="'+i+'"><b>' + bi(x.en, x.zh) + '</b>'
@@ -6025,7 +6330,8 @@ window.addEventListener('pointermove', function(e){
         }).join('') + '</div>'
       + '<div class="showbody">'
         + '<div class="archsvg"><svg viewBox="0 0 800 250">' + x.svg + '</svg></div>'
-        + '<div class="idea">' + bi(x.ideaEn, x.ideaZh) + '</div>'
+        + (x.zones ? '<div class="zonerow"><span class="zl">' + bi('Regions of the map this leans on', '这套系统用到地图上的哪些区域') + '</span>' + x.zones.map(function(k){ var z = MZ[k]; return z ? '<span class="zchip" style="--zc:' + z[0] + '">' + bi(z[1], z[2]) + '</span>' : '' }).join('') + '</div>' : '')
+      + '<div class="idea">' + bi(x.ideaEn, x.ideaZh) + '</div>'
         + '<div class="yourjob">' + bi(x.jobEn, x.jobZh) + '</div>'
       + '</div>';
   }
@@ -6902,33 +7208,38 @@ window.addEventListener('pointermove', function(e){
     }, {passive:true});
   }
 
-  /* ---- the hue follows whichever milestone you are actually reading ---- */
-  var zones = $$('section[style*="--c"]');
+  /* ---- the section you are reading drives both the hue and its own scene ---- */
+  var zones = $$('section[data-scene]');
   if (zones.length){
-    var PAIRS = [
-      ['--m1','--m2','--m3'], ['--m2','--m1','--m4'], ['--m3','--m5','--m1'],
-      ['--m4','--m2','--m5'], ['--m5','--m3','--m4']
-    ];
+    var PAIRS = [['--m2','--m3'], ['--m1','--m4'], ['--m5','--m1'],
+                 ['--m2','--m5'], ['--m3','--m4'], ['--m4','--m1']];
     var cur = -1, pending = false;
     function pick(){
       pending = false;
       var mid = innerHeight * 0.42, best = -1, bestD = Infinity;
       zones.forEach(function(s, i){
         var r = s.getBoundingClientRect();
-        if (r.bottom < 0 || r.top > innerHeight) return;
+        if (r.bottom < -200 || r.top > innerHeight + 200) return;
         var d = Math.abs((r.top + r.bottom) / 2 - mid);
-        /* a tall section that simply contains the line wins outright */
-        if (r.top <= mid && r.bottom >= mid) d = 0;
+        if (r.top <= mid && r.bottom >= mid) d = 0;   /* the one under the line wins */
         if (d < bestD){ bestD = d; best = i }
       });
       if (best === cur) return;
+      if (cur >= 0 && zones[cur]) zones[cur].classList.remove('sc-live');
       cur = best;
-      var p = best < 0 ? ['--m1','--m2','--m3'] : PAIRS[best % PAIRS.length];
-      fx.style.setProperty('--aur1', 'var(' + p[0] + ')');
-      fx.style.setProperty('--aur2', 'var(' + p[1] + ')');
-      fx.style.setProperty('--aur3', 'var(' + p[2] + ')');
+      if (best < 0) return;
+      var sec = zones[best];
+      sec.classList.add('sc-live');                   /* only this scene animates */
+      var own = getComputedStyle(sec).getPropertyValue('--c').trim();
+      var p = PAIRS[best % PAIRS.length];
+      fx.style.setProperty('--aur1', own || 'var(--m1)');
+      fx.style.setProperty('--aur2', 'var(' + p[0] + ')');
+      fx.style.setProperty('--aur3', 'var(' + p[1] + ')');
     }
     window.addEventListener('scroll', function(){
+      if (!pending){ pending = true; requestAnimationFrame(pick) }
+    }, {passive:true});
+    window.addEventListener('resize', function(){
       if (!pending){ pending = true; requestAnimationFrame(pick) }
     }, {passive:true});
     pick();
