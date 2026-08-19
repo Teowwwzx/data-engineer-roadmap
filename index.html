@@ -131,9 +131,10 @@ section{padding:44px 0}
 .lens-pane p:last-child{margin-bottom:0}
 .lens-pane .kicker{font-size:11.5px; font-weight:800; letter-spacing:.11em; text-transform:uppercase; color:var(--c); margin-bottom:8px}
 
-/* then vs now */
-.evo{display:grid; grid-template-columns:1fr 44px 1fr; gap:0; align-items:stretch; margin:6px 0 0}
-@media(max-width:700px){.evo{grid-template-columns:1fr; gap:12px}}
+/* then vs now — a shift you scrub, not two columns you read */
+.evo{margin:6px 0 0}
+.evo-stage{display:grid; grid-template-columns:1fr 44px 1fr; gap:0; align-items:stretch}
+@media(max-width:700px){.evo-stage{grid-template-columns:1fr; gap:12px}}
 .evo-col{border:1px solid var(--line); border-radius:12px; padding:16px 18px; background:#fbfbf9}
 .evo-col.then{border-style:dashed; opacity:.92}
 .evo-col.now{background:color-mix(in srgb,var(--c) 6%,#fff); border-color:var(--c)}
@@ -143,6 +144,53 @@ section{padding:44px 0}
 .evo-col li{margin-bottom:5px}
 .evo-arrow{display:grid; place-items:center; color:var(--c); font-size:20px; font-weight:700}
 @media(max-width:700px){.evo-arrow{height:20px}}
+
+/* ---- the rail: built by JS, so the block still reads fine without it ---- */
+.evo-rail{display:flex; align-items:center; gap:11px; margin:2px 0 15px}
+.evo-lbl{font:800 11px inherit; letter-spacing:.13em; text-transform:uppercase; white-space:nowrap;
+  transition:opacity .4s ease, color .4s ease}
+.evo-lbl.l-then{color:var(--muted); opacity:calc(1 - .45*var(--t))}
+.evo-lbl.l-now{color:var(--c); opacity:calc(.4 + .6*var(--t))}
+.evo-slot{position:relative; flex:1 1 auto; min-width:70px; line-height:0}
+.evo-track{display:block; width:100%; height:auto; overflow:visible}
+.evo-base{stroke:var(--line); stroke-width:3; stroke-linecap:round}
+.evo-fill{stroke:var(--c); stroke-width:3; stroke-linecap:round}
+.evo-tick{fill:var(--line); transition:fill .25s ease}
+.evo-tick.lit{fill:var(--c)}
+.evo-head{fill:#fff; stroke:var(--c); stroke-width:3; transition:stroke-width .15s ease}
+.evo-slot.focus .evo-head{stroke-width:4.5}
+.evo-ping{fill:none; stroke:var(--c); stroke-width:2; opacity:0; transform-box:fill-box; transform-origin:center}
+.evo[data-t="0"] .evo-ping{animation:evoping 2.1s ease-out infinite}
+@keyframes evoping{0%{transform:scale(1); opacity:.5} 70%,100%{transform:scale(2.7); opacity:0}}
+.evo-scrub{position:absolute; left:0; top:-10px; width:100%; height:calc(100% + 20px); margin:0;
+  opacity:0; cursor:ew-resize; -webkit-appearance:none; appearance:none; background:transparent}
+.evo-scrub::-webkit-slider-thumb{-webkit-appearance:none; width:26px; height:26px}
+.evo-replay{flex:0 0 auto}
+@media(max-width:700px){
+  .evo-lbl{font-size:10px; letter-spacing:.09em}
+  /* give the rail the whole first line; Replay drops below it */
+  .evo-rail{gap:8px; flex-wrap:wrap; row-gap:9px}
+  .evo-slot{flex:1 1 120px}
+  .evo-rail::after{content:''; flex-basis:100%; height:0; order:8}
+  .evo-replay{order:9; margin-left:auto}
+}
+
+/* ---- t-driven state (only once JS has taken over) ---- */
+.evo.live .evo-col{transition:opacity .45s ease, filter .45s ease, transform .45s ease}
+.evo.live .evo-col.then{opacity:calc(1 - .18*var(--t)); filter:grayscale(calc(var(--t)*90%));
+  transform:scale(calc(1 - .012*var(--t)))}
+.evo.live .evo-col.now{opacity:calc(.42 + .58*var(--t)); filter:grayscale(calc((1 - var(--t))*90%));
+  transform:scale(calc(.988 + .012*var(--t)))}
+.evo.live .evo-arrow{opacity:calc(.3 + .7*var(--t)); transform:translateX(calc(var(--t)*4px));
+  transition:opacity .45s ease, transform .45s ease}
+.evo.live .evo-col li{transition:opacity .34s ease, transform .34s ease}
+.evo.live .evo-col.now li{opacity:.18; transform:translateY(5px)}
+.evo.live .evo-col.now li.lit{opacity:1; transform:none}
+.evo.live .evo-col.then li.dim{opacity:.78}
+@media(prefers-reduced-motion:reduce){
+  .evo.live .evo-col, .evo.live .evo-col li, .evo.live .evo-arrow{transition:none}
+  .evo .evo-ping{animation:none !important}
+}
 
 /* if not */
 .ifnot{border-left:4px solid var(--no); background:#fff5f5; border-radius:0 12px 12px 0; padding:16px 20px; margin:6px 0 0}
@@ -5909,6 +5957,126 @@ window.addEventListener('pointermove', function(e){
   grid.addEventListener('click', function(e){
     var b = e.target.closest('.chip2'); if (b) open2(+b.dataset.c, +b.dataset.t);
   });
+})();
+
+
+/* ================= THEN → NOW · a shift you scrub ================= */
+(function(){
+  var blocks = $$('.evo');
+  if (!blocks.length) return;
+  var NS = 'http://www.w3.org/2000/svg';
+  var reduce = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)').matches : false;
+  var X0 = 8, X1 = 592, SPAN = X1 - X0;
+  function mk(n, a){ var e = document.createElementNS(NS, n); for (var q in a) e.setAttribute(q, a[q]); return e }
+
+  blocks.forEach(function(evo){
+    var then = evo.querySelector('.evo-col.then'), now = evo.querySelector('.evo-col.now');
+    if (!then || !now) return;
+
+    /* each <ul> is one language of the same list — index them separately so the
+       reveal stays in step when the reader flips EN / 中文 */
+    var nowL  = $$('ul', now ).map(function(u){ return $$('li', u) });
+    var thenL = $$('ul', then).map(function(u){ return $$('li', u) });
+    var N = 0; nowL.forEach(function(l){ if (l.length > N) N = l.length });
+    if (!N) return;
+
+    var stage = document.createElement('div');
+    stage.className = 'evo-stage';
+    while (evo.firstChild) stage.appendChild(evo.firstChild);
+
+    var rail = document.createElement('div');
+    rail.className = 'evo-rail';
+    rail.innerHTML = '<div class="evo-lbl l-then">' + bi('Then', '以前') + '</div>'
+                   + '<div class="evo-slot"></div>'
+                   + '<div class="evo-lbl l-now">' + bi('Now', '现在') + '</div>'
+                   + '<button type="button" class="replay evo-replay">↻ ' + bi('Replay', '重播') + '</button>';
+    var slot = $('.evo-slot', rail);
+
+    var svg = mk('svg', {'class':'evo-track', viewBox:'0 0 600 22', 'aria-hidden':'true'});
+    svg.appendChild(mk('line', {'class':'evo-base', x1:X0, y1:11, x2:X1, y2:11}));
+    var fill = mk('line', {'class':'evo-fill', x1:X0, y1:11, x2:X0, y2:11});
+    svg.appendChild(fill);
+    var ticks = [];
+    for (var k = 0; k < N; k++){
+      var tk = mk('circle', {'class':'evo-tick', cx:(X0 + SPAN*(k+1)/(N+1)).toFixed(1), cy:11, r:3.2});
+      svg.appendChild(tk); ticks.push(tk);
+    }
+    var ping = mk('circle', {'class':'evo-ping', cx:X0, cy:11, r:6});
+    var head = mk('circle', {'class':'evo-head', cx:X0, cy:11, r:6});
+    svg.appendChild(ping); svg.appendChild(head);
+    slot.appendChild(svg);
+
+    var scrub = document.createElement('input');
+    scrub.type = 'range'; scrub.min = '0'; scrub.max = '1000'; scrub.step = '1'; scrub.value = '0';
+    scrub.className = 'evo-scrub';
+    scrub.setAttribute('aria-label', 'Drag from then to now');
+    slot.appendChild(scrub);
+
+    evo.appendChild(rail);
+    evo.appendChild(stage);
+
+    var raf = null;
+    function render(t, sync){
+      t = t < 0 ? 0 : t > 1 ? 1 : t;
+      evo.style.setProperty('--t', t.toFixed(3));
+      if (t < .002) evo.setAttribute('data-t', '0'); else evo.removeAttribute('data-t');
+      var x = X0 + SPAN * t;
+      fill.setAttribute('x2', x.toFixed(1));
+      head.setAttribute('cx', x.toFixed(1));
+      ping.setAttribute('cx', x.toFixed(1));
+      for (var k = 0; k < N; k++){
+        var on = t >= (k + 1) / (N + 1);
+        ticks[k].classList.toggle('lit', on);
+        nowL.forEach(function(l){ if (l[k]) l[k].classList.toggle('lit', on) });
+        thenL.forEach(function(l){ if (l[k]) l[k].classList.toggle('dim', on) });
+      }
+      if (sync) scrub.value = Math.round(t * 1000);
+    }
+    function stop(){ if (raf){ cancelAnimationFrame(raf); raf = null } }
+    function sweep(){
+      stop();
+      if (reduce){ render(1, true); return }
+      render(0, true);
+      var t0 = null;
+      raf = requestAnimationFrame(function step(ts){
+        if (t0 === null) t0 = ts;
+        var p = Math.min(1, (ts - t0) / 2000);
+        render(p < .5 ? 4*p*p*p : 1 - Math.pow(-2*p + 2, 3)/2, true);
+        raf = p < 1 ? requestAnimationFrame(step) : null;
+      });
+    }
+
+    scrub.addEventListener('input', function(){ evo._done = 1; stop(); render(scrub.value/1000, false) });
+    scrub.addEventListener('focus', function(){ slot.classList.add('focus') });
+    scrub.addEventListener('blur',  function(){ slot.classList.remove('focus') });
+    $('.evo-replay', rail).addEventListener('click', function(){ stop(); render(0, true); setTimeout(sweep, 220) });
+
+    evo._set  = render;
+    evo._play = function(){ if (evo._done) return; evo._done = 1; sweep() };
+    evo.classList.add('live');
+    render(0, true);
+  });
+
+  /* the block usually sits in a lens pane that is display:none until its tab is
+     picked, so an observer alone is not enough — wake on tab clicks too */
+  function wake(){
+    blocks.forEach(function(evo){
+      if (!evo._play || evo._done || !evo.offsetWidth) return;
+      var r = evo.getBoundingClientRect();
+      if (r.top < innerHeight - 40 && r.bottom > 0) evo._play();
+    });
+  }
+  if ('IntersectionObserver' in window){
+    var eio = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if (e.isIntersecting && e.target._play) e.target._play() });
+    }, {threshold:.25});
+    blocks.forEach(function(b){ eio.observe(b) });
+    document.addEventListener('click', function(e){
+      if (e.target.closest && e.target.closest('.lens-tabs')) setTimeout(wake, 80);
+    });
+  } else {
+    blocks.forEach(function(evo){ if (evo._set){ evo._done = 1; evo._set(1, true) } });
+  }
 })();
 
 })();
