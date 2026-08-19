@@ -6,9 +6,21 @@
 <title>The Lab Notebook · 实验记录本 — A 12-Month Foundations Roadmap</title>
 <style>
 :root{
-  --bg:#f6f5f1; --paper:#ffffff; --ink:#15202b; --muted:#5c6b7a; --line:#e3e0d8;
+  color-scheme:light;
+  /* --- surfaces, light --- */
+  --bg:#f6f5f1; --paper:#ffffff; --surface-2:#fbfbf9; --surface-3:#f2f1ec; --surface-4:#eef2f7;
+  --line:#e3e0d8; --line-2:#cbd5e1;
+  /* --- text --- */
+  --ink:#15202b; --ink-2:#334155; --muted:#5c6b7a; --muted-2:#94a3b8;
+  --on-dark:#eef2f6; --on-dark-mute:#b6c2ce;
+  /* --- the five milestone accents --- */
   --m1:#4f46e5; --m2:#0d9488; --m3:#9333ea; --m4:#d97706; --m5:#e11d48;
   --ok:#059669; --no:#dc2626;
+  /* --- deep variants: accent text sitting on a pale tint of itself --- */
+  --m1-deep:#4338ca; --m2-deep:#0f766e; --m4-deep:#b45309; --m5-deep:#be123c;
+  --ok-deep:#047857; --no-deep:#b91c1c; --info-deep:#0369a1;
+  /* --- code plate: deliberately dark in BOTH themes --- */
+  --code-bg:#0f172a; --code-bar:#111c33; --code-fg:#e2e8f0;
   --shadow:0 1px 2px rgba(20,32,43,.05), 0 8px 24px rgba(20,32,43,.06);
   --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
   --cjk:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC","Source Han Sans SC",sans-serif;
@@ -44,12 +56,12 @@ a{color:var(--m1)}
 .navlinks::-webkit-scrollbar{display:none}
 .navlinks a{font-size:13px; font-weight:600; text-decoration:none; color:var(--muted);
   padding:6px 10px; border-radius:999px; white-space:nowrap; transition:.15s}
-.navlinks a:hover{background:#fff; color:var(--ink)}
-.navlinks a.on{background:var(--ink); color:#fff}
-.langsw{display:flex; flex:none; background:#eceae4; border-radius:999px; padding:3px; gap:2px}
+.navlinks a:hover{background:var(--paper); color:var(--ink)}
+.navlinks a.on{background:var(--ink); color:var(--paper)}
+.langsw{display:flex; flex:none; background:var(--surface-3); border-radius:999px; padding:3px; gap:2px}
 .langsw button{border:0; background:transparent; font:700 12.5px inherit; color:var(--muted);
   padding:5px 12px; border-radius:999px; cursor:pointer; transition:.15s; white-space:nowrap}
-.langsw button.on{background:#fff; color:var(--ink); box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.langsw button.on{background:var(--paper); color:var(--ink); box-shadow:0 1px 3px rgba(0,0,0,.1)}
 .pbar{height:3px; background:var(--line)}
 .pbar > i{display:block; height:100%; width:0%; background:linear-gradient(90deg,var(--m1),var(--m2),var(--m4)); transition:width .4s ease}
 
@@ -75,15 +87,15 @@ section{padding:44px 0}
 .sechead h2{font-size:clamp(24px,3.4vw,32px); font-weight:800; margin:0}
 
 /* ---------- philosophy ---------- */
-.philo{background:var(--ink); color:#eef2f6; border-radius:20px; padding:34px 32px; position:relative; overflow:hidden}
-.philo h2{color:#fff; font-size:26px}
-.philo p{color:#b6c2ce}
-.philo .quote{font-size:19px; color:#fff; font-weight:600; border-left:3px solid var(--m2); padding-left:16px; margin:20px 0}
+.philo{background:#15202b; color:var(--on-dark); border-radius:20px; padding:34px 32px; position:relative; overflow:hidden}
+.philo h2{color:var(--ink); font-size:26px}
+.philo p{color:var(--on-dark-mute)}
+.philo .quote{font-size:19px; color:var(--ink); font-weight:600; border-left:3px solid var(--m2); padding-left:16px; margin:20px 0}
 .titlestack{display:grid; grid-template-columns:1fr; gap:10px; margin-top:22px}
 .tsrow{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
-.chip{background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); color:#dbe4ec; font-size:12.5px; font-weight:600; padding:5px 12px; border-radius:8px}
-.chip.base{background:var(--m2); border-color:var(--m2); color:#fff}
-.tslabel{font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:#8899a8; font-weight:700; min-width:118px}
+.chip{background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); color:var(--on-dark); font-size:12.5px; font-weight:600; padding:5px 12px; border-radius:8px}
+.chip.base{background:var(--m2); border-color:var(--m2); color:var(--paper)}
+.tslabel{font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted-2); font-weight:700; min-width:118px}
 
 /* ---------- timeline ---------- */
 .tl{display:grid; gap:14px}
@@ -91,20 +103,20 @@ section{padding:44px 0}
   background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:16px 18px;
   text-decoration:none; color:inherit; transition:.18s; box-shadow:var(--shadow)}
 .tlrow:hover{transform:translateX(4px); border-color:var(--c)}
-.tlmonth{font-size:11px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:#fff; background:var(--c); border-radius:9px; display:flex; align-items:center; justify-content:center; text-align:center; padding:8px 6px; line-height:1.2}
+.tlmonth{font-size:11px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--paper); background:var(--c); border-radius:9px; display:flex; align-items:center; justify-content:center; text-align:center; padding:8px 6px; line-height:1.2}
 .tlbody h4{margin:0 0 3px; font-size:16.5px}
 .tlbody p{margin:0; font-size:14px; color:var(--muted)}
 
 /* ---------- milestone ---------- */
 .ms{margin-top:14px}
 .mshead{display:flex; align-items:flex-start; gap:16px; margin-bottom:6px}
-.msnum{flex:none; width:52px; height:52px; border-radius:15px; background:var(--c); color:#fff;
+.msnum{flex:none; width:52px; height:52px; border-radius:15px; background:var(--c); color:var(--paper);
   display:flex; align-items:center; justify-content:center; font-weight:800; font-size:21px;
   box-shadow:0 6px 18px color-mix(in srgb, var(--c) 35%, transparent)}
 .mshead h2{font-size:clamp(23px,3.2vw,30px); margin:0}
 .mshead .sub{font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--c)}
 
-.analogy{border-left:4px solid var(--c); background:color-mix(in srgb, var(--c) 6%, #fff);
+.analogy{border-left:4px solid var(--c); background:color-mix(in srgb, var(--c) 6%, var(--paper));
   border-radius:0 14px 14px 0; padding:18px 22px; margin:22px 0}
 .analogy b{color:var(--c)}
 .analogy .lab{font-size:11.5px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--c); display:block; margin-bottom:6px}
@@ -112,19 +124,19 @@ section{padding:44px 0}
 
 .topic{border-top:1px solid var(--line); padding-top:26px; margin-top:26px}
 .topic > h3{font-size:20px; display:flex; align-items:center; gap:10px}
-.topic > h3 .ic{width:28px;height:28px;border-radius:8px;background:color-mix(in srgb,var(--c) 14%,#fff);color:var(--c);display:grid;place-items:center;font-size:14px;flex:none}
+.topic > h3 .ic{width:28px;height:28px;border-radius:8px;background:color-mix(in srgb,var(--c) 14%,var(--paper));color:var(--c);display:grid;place-items:center;font-size:14px;flex:none}
 .two{display:grid; grid-template-columns:1fr 1fr; gap:18px}
 @media(max-width:760px){.two{grid-template-columns:1fr}}
 
 /* ---------- LENS component (why / then-now / what-how / if-not) ---------- */
-.lens{border:1px solid var(--line); border-radius:16px; background:#fff; margin:22px 0; overflow:hidden; box-shadow:var(--shadow)}
-.lens-tabs{display:flex; gap:4px; padding:10px 10px 0; background:color-mix(in srgb,var(--c) 5%,#fff); overflow-x:auto; scrollbar-width:none; border-bottom:1px solid var(--line)}
+.lens{border:1px solid var(--line); border-radius:16px; background:var(--paper); margin:22px 0; overflow:hidden; box-shadow:var(--shadow)}
+.lens-tabs{display:flex; gap:4px; padding:10px 10px 0; background:color-mix(in srgb,var(--c) 5%,var(--paper)); overflow-x:auto; scrollbar-width:none; border-bottom:1px solid var(--line)}
 .lens-tabs::-webkit-scrollbar{display:none}
 .lens-tabs button{border:0; background:transparent; cursor:pointer; white-space:nowrap;
   font:700 12.5px inherit; letter-spacing:.03em; color:var(--muted);
   padding:9px 14px; border-radius:9px 9px 0 0; transition:.15s; border-bottom:2.5px solid transparent; margin-bottom:-1px}
 .lens-tabs button:hover{color:var(--ink)}
-.lens-tabs button.on{color:var(--c); border-bottom-color:var(--c); background:#fff}
+.lens-tabs button.on{color:var(--c); border-bottom-color:var(--c); background:var(--paper)}
 .lens-pane{padding:22px 24px; display:none; animation:lensin .25s ease}
 .lens-pane.on{display:block}
 @keyframes lensin{from{opacity:0; transform:translateY(6px)}to{opacity:1; transform:none}}
@@ -135,9 +147,9 @@ section{padding:44px 0}
 .evo{margin:6px 0 0}
 .evo-stage{display:grid; grid-template-columns:1fr 44px 1fr; gap:0; align-items:stretch}
 @media(max-width:700px){.evo-stage{grid-template-columns:1fr; gap:12px}}
-.evo-col{border:1px solid var(--line); border-radius:12px; padding:16px 18px; background:#fbfbf9}
+.evo-col{border:1px solid var(--line); border-radius:12px; padding:16px 18px; background:var(--surface-2)}
 .evo-col.then{border-style:dashed; opacity:.92}
-.evo-col.now{background:color-mix(in srgb,var(--c) 6%,#fff); border-color:var(--c)}
+.evo-col.now{background:color-mix(in srgb,var(--c) 6%,var(--paper)); border-color:var(--c)}
 .evo-col h5{margin:0 0 8px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
 .evo-col.now h5{color:var(--c)}
 .evo-col ul{margin:0; padding-left:18px; font-size:14.5px}
@@ -157,7 +169,7 @@ section{padding:44px 0}
 .evo-fill{stroke:var(--c); stroke-width:3; stroke-linecap:round}
 .evo-tick{fill:var(--line); transition:fill .25s ease}
 .evo-tick.lit{fill:var(--c)}
-.evo-head{fill:#fff; stroke:var(--c); stroke-width:3; transition:stroke-width .15s ease}
+.evo-head{fill:var(--paper); stroke:var(--c); stroke-width:3; transition:stroke-width .15s ease}
 .evo-slot.focus .evo-head{stroke-width:4.5}
 .evo-ping{fill:none; stroke:var(--c); stroke-width:2; opacity:0; transform-box:fill-box; transform-origin:center}
 .evo[data-t="0"] .evo-ping{animation:evoping 2.1s ease-out infinite}
@@ -193,62 +205,62 @@ section{padding:44px 0}
 }
 
 /* if not */
-.ifnot{border-left:4px solid var(--no); background:#fff5f5; border-radius:0 12px 12px 0; padding:16px 20px; margin:6px 0 0}
+.ifnot{border-left:4px solid var(--no); background:color-mix(in srgb, var(--no) 6%, var(--paper)); border-radius:0 12px 12px 0; padding:16px 20px; margin:6px 0 0}
 .ifnot p:last-child{margin-bottom:0}
-.ifnot b{color:#b91c1c}
+.ifnot b{color:var(--no-deep)}
 
 /* real world example */
-.rw{border:1.5px solid var(--c); border-radius:14px; background:color-mix(in srgb,var(--c) 4%,#fff); padding:18px 22px; margin:20px 0}
+.rw{border:1.5px solid var(--c); border-radius:14px; background:color-mix(in srgb,var(--c) 4%,var(--paper)); padding:18px 22px; margin:20px 0}
 .rw .rwh{font-size:11.5px; font-weight:800; letter-spacing:.11em; text-transform:uppercase; color:var(--c); margin-bottom:8px; display:flex; align-items:center; gap:8px}
 .rw p:last-child{margin-bottom:0}
 .rw .scene{font-weight:650}
 
 /* ---------- animation stage ---------- */
-.stage{background:linear-gradient(180deg,#fbfbf9,#f2f1ec); border:1px solid var(--line);
+.stage{background:linear-gradient(180deg,var(--surface-2),var(--surface-3)); border:1px solid var(--line);
   border-radius:14px; padding:18px; margin:18px 0; position:relative}
 .stage .cap{display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:12px}
 .stage .cap span{font-size:12px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--muted)}
-.replay{border:1px solid var(--line); background:#fff; color:var(--ink); font:700 12px inherit;
+.replay{border:1px solid var(--line); background:var(--paper); color:var(--ink); font:700 12px inherit;
   padding:5px 12px; border-radius:999px; cursor:pointer; display:inline-flex; align-items:center; gap:6px; transition:.15s; white-space:nowrap}
-.replay:hover{background:var(--ink); color:#fff; border-color:var(--ink)}
+.replay:hover{background:var(--ink); color:var(--paper); border-color:var(--ink)}
 .stage svg{display:block; width:100%; height:auto}
 .stage .note{font-size:13px; color:var(--muted); margin:10px 0 0; text-align:center}
-.sv-box{fill:#fff; stroke:#cfd6dd; stroke-width:1.5}
-.sv-lbl{font:600 11px var(--mono); fill:#3d4b59}
-.sv-ttl{font:700 12.5px -apple-system,sans-serif; fill:#15202b}
-.sv-sm{font:600 10px -apple-system,sans-serif; fill:#7b8794}
-.sv-line{stroke:#cfd6dd; stroke-width:2; fill:none}
+.sv-box{fill:var(--paper); stroke:var(--line); stroke-width:1.5}
+.sv-lbl{font:600 11px var(--mono); fill:var(--ink-2)}
+.sv-ttl{font:700 12.5px -apple-system,sans-serif; fill:var(--ink)}
+.sv-sm{font:600 10px -apple-system,sans-serif; fill:var(--muted)}
+.sv-line{stroke:var(--line); stroke-width:2; fill:none}
 body.lang-zh .sv-lbl:not(.keepmono),body.lang-zh .sv-ttl,body.lang-zh .sv-sm{font-family:var(--cjk)}
 
 /* ---------- code ---------- */
 .codewrap{margin:16px 0; border:1px solid var(--line); border-radius:12px; overflow:hidden; background:#0f172a}
 .tabs{display:flex; gap:2px; background:#111c33; padding:6px 6px 0; overflow-x:auto; scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
-.tabs button{background:transparent; border:0; color:#8b9cb3; font:600 12.5px var(--mono);
+.tabs button{background:transparent; border:0; color:var(--muted-2); font:600 12.5px var(--mono);
   padding:8px 14px; border-radius:8px 8px 0 0; cursor:pointer; white-space:nowrap}
-.tabs button.on{background:#0f172a; color:#e2e8f0}
+.tabs button.on{background:#0f172a; color:var(--ink)}
 .pane{display:none}
 .pane.on{display:block}
-pre{margin:0; padding:16px 18px; overflow-x:auto; color:#e2e8f0; font:13px/1.62 var(--mono)}
-.cm{color:#64748b}.kw{color:#c084fc}.st{color:#86efac}.fn{color:#7dd3fc}.nu{color:#fbbf24}
-code.inl{background:#eceae4; padding:1.5px 6px; border-radius:5px; font:13px var(--mono); color:#334155}
+pre{margin:0; padding:16px 18px; overflow-x:auto; color:var(--ink); font:13px/1.62 var(--mono)}
+.cm{color:var(--muted)}.kw{color:#c084fc}.st{color:#86efac}.fn{color:#7dd3fc}.nu{color:#fbbf24}
+code.inl{background:var(--surface-3); padding:1.5px 6px; border-radius:5px; font:13px var(--mono); color:var(--ink-2)}
 
 /* ---------- quiz ---------- */
-.quiz{background:#fff; border:1px solid var(--line); border-radius:14px; padding:20px 22px; margin:22px 0; box-shadow:var(--shadow)}
+.quiz{background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:20px 22px; margin:22px 0; box-shadow:var(--shadow)}
 .quiz .qh{font-size:11.5px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--c,var(--m1)); margin-bottom:10px}
 .quiz .q{font-weight:650; margin-bottom:14px}
-.opt{display:block; width:100%; text-align:left; background:#fbfbf9; border:1.5px solid var(--line);
+.opt{display:block; width:100%; text-align:left; background:var(--surface-2); border:1.5px solid var(--line);
   border-radius:10px; padding:11px 15px; margin-bottom:8px; cursor:pointer; font-size:15px;
   font-family:inherit; color:var(--ink); transition:.15s}
 .opt:hover:not(:disabled){border-color:var(--ink)}
 .opt:disabled{cursor:default}
 .opt.right{border-color:var(--ok); background:rgba(5,150,105,.08)}
 .opt.wrong{border-color:var(--no); background:rgba(220,38,38,.07)}
-.fb{font-size:14.5px; margin-top:10px; padding:12px 14px; border-radius:10px; background:#f3f6f9; color:#31414f; display:none}
+.fb{font-size:14.5px; margin-top:10px; padding:12px 14px; border-radius:10px; background:var(--surface-4); color:var(--ink-2); display:none}
 .fb.show{display:block}
 
 /* ---------- checklist ---------- */
-.checks{background:#fff; border:1px dashed var(--c); border-radius:14px; padding:20px 22px; margin:24px 0}
+.checks{background:var(--paper); border:1px dashed var(--c); border-radius:14px; padding:20px 22px; margin:24px 0}
 .checks h4{margin:0 0 4px; font-size:16px; color:var(--c)}
 .checks .hint{font-size:13px; color:var(--muted); margin:0 0 14px}
 .chk{display:flex; gap:11px; align-items:flex-start; padding:7px 0; cursor:pointer; font-size:15px}
@@ -258,7 +270,7 @@ code.inl{background:#eceae4; padding:1.5px 6px; border-radius:5px; font:13px var
 /* ---------- misc ---------- */
 .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
 @media(max-width:760px){.grid3{grid-template-columns:1fr}}
-.mini{background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px 18px}
+.mini{background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:16px 18px}
 .mini h5{margin:0 0 5px; font-size:14.5px}
 .mini p{margin:0; font-size:13.5px; color:var(--muted)}
 .tbl{width:100%; border-collapse:collapse; font-size:14.5px; margin:14px 0}
@@ -266,17 +278,17 @@ code.inl{background:#eceae4; padding:1.5px 6px; border-radius:5px; font:13px var
 .tbl td{padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top}
 .tbl tr:last-child td{border-bottom:0}
 .tblwrap{overflow-x:auto}
-details.acc{border:1px solid var(--line); border-radius:12px; background:#fff; margin:12px 0; overflow:hidden}
+details.acc{border:1px solid var(--line); border-radius:12px; background:var(--paper); margin:12px 0; overflow:hidden}
 details.acc summary{cursor:pointer; padding:14px 18px; font-weight:650; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:10px}
 details.acc summary::-webkit-details-marker{display:none}
 details.acc summary:after{content:"+"; font-size:20px; color:var(--muted); font-weight:400}
 details.acc[open] summary:after{content:"–"}
 details.acc .body{padding:0 18px 18px; border-top:1px solid var(--line); padding-top:14px}
-.warn{background:#fffbeb; border:1px solid #fcd34d; border-radius:12px; padding:14px 18px; font-size:14.5px; margin:16px 0}
-.warn b{color:#b45309}
-footer{background:var(--ink); color:#94a3b8; padding:46px 0; margin-top:50px; font-size:14.5px}
-footer h3{color:#fff}
-.prog-ring{display:flex; align-items:center; gap:14px; background:#fff; border:1px solid var(--line); border-radius:14px; padding:14px 18px; box-shadow:var(--shadow)}
+.warn{background:color-mix(in srgb, var(--m4) 8%, var(--paper)); border:1px solid #fcd34d; border-radius:12px; padding:14px 18px; font-size:14.5px; margin:16px 0}
+.warn b{color:var(--m4-deep)}
+footer{background:#15202b; color:var(--muted-2); padding:46px 0; margin-top:50px; font-size:14.5px}
+footer h3{color:var(--ink)}
+.prog-ring{display:flex; align-items:center; gap:14px; background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:14px 18px; box-shadow:var(--shadow)}
 .prog-ring svg{width:52px;height:52px;flex:none}
 .prog-ring b{font-size:15px; display:block}
 .prog-ring small{color:var(--muted); font-size:13px}
@@ -334,8 +346,8 @@ footer h3{color:#fff}
       <p class="zh">你的岗位叫"数据工程师"，同事叫"软件工程师"，另一个人叫"AI 工程师"。这些只是组织架构图上的标签，每隔几年就会换一批说法。</p>
       <p class="quote en">The titles change. The foundations don't. Everyone is standing on the same bedrock — how a machine computes, how data is stored, how two computers talk, how work gets deployed and kept safe.</p>
       <p class="quote zh">头衔会变，地基不会。所有人踩的是同一块岩层——机器怎么计算、数据怎么存储、两台电脑怎么对话、代码怎么上线并保证安全。</p>
-      <p class="en">An AI can now write a SQL query, a React component, or a Python script faster than you can. What it cannot do is <b style="color:#fff">know whether the answer is right</b>. That judgment comes from understanding the layer underneath — and that's exactly what this roadmap builds. Learn the bedrock, and any title becomes reachable.</p>
-      <p class="zh">今天的 AI 写一条 SQL、一个 React 组件、一段 Python 脚本，都比你快。但它做不到的是<b style="color:#fff">判断这个答案对不对</b>。这份判断力来自你对底下那一层的理解——而这正是这条路线图要建立的东西。地基打好了，任何头衔都在射程之内。</p>
+      <p class="en">An AI can now write a SQL query, a React component, or a Python script faster than you can. What it cannot do is <b style="color:var(--ink)">know whether the answer is right</b>. That judgment comes from understanding the layer underneath — and that's exactly what this roadmap builds. Learn the bedrock, and any title becomes reachable.</p>
+      <p class="zh">今天的 AI 写一条 SQL、一个 React 组件、一段 Python 脚本，都比你快。但它做不到的是<b style="color:var(--ink)">判断这个答案对不对</b>。这份判断力来自你对底下那一层的理解——而这正是这条路线图要建立的东西。地基打好了，任何头衔都在射程之内。</p>
       <div class="titlestack">
         <div class="tsrow"><span class="tslabel"><span class="en">Job titles</span><span class="zh">岗位头衔</span></span>
           <span class="chip"><span class="en">Data Engineer</span><span class="zh">数据工程师</span></span>
@@ -382,16 +394,16 @@ footer h3{color:#fff}
 /* ===== metaphor sheet ===== */
 .figwrap{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:18px 0}
 @media(max-width:760px){.figwrap{grid-template-columns:1fr}}
-.figbox{background:linear-gradient(180deg,#fbfbf9,#f2f1ec); border:1px solid var(--line); border-radius:14px; padding:16px; position:relative}
+.figbox{background:linear-gradient(180deg,var(--surface-2),var(--surface-3)); border:1px solid var(--line); border-radius:14px; padding:16px; position:relative}
 .figbox > .plabel{margin-bottom:10px}
 .fig-body{height:280px; display:grid; place-items:center}
 .fig-body svg{height:270px; width:auto}
-.bone{stroke:#94a3b8; stroke-width:5; stroke-linecap:round; fill:none}
-.skull{stroke:#94a3b8; stroke-width:5; fill:#fff}
+.bone{stroke:var(--muted-2); stroke-width:5; stroke-linecap:round; fill:none}
+.skull{stroke:var(--muted-2); stroke-width:5; fill:var(--paper)}
 .cloth{opacity:0; transition:opacity .5s ease}
 .fig.css-on .cloth{opacity:1}
-.fig.css-on .bone{stroke:#cbd5e1; opacity:.28}
-.fig.css-on .skull{stroke:#cbd5e1; fill:#fde68a}
+.fig.css-on .bone{stroke:var(--line-2); opacity:.28}
+.fig.css-on .skull{stroke:var(--line-2); fill:#fde68a}
 .nerve{opacity:0; transition:opacity .5s ease}
 .fig.js-on .nerve{opacity:1}
 .fig.js-on .npulse{animation:npulse 1.8s ease-in-out infinite}
@@ -400,73 +412,73 @@ footer h3{color:#fff}
 .fig.js-on .arm-r{animation:wave 2.4s ease-in-out infinite}
 @keyframes wave{0%,100%{transform:rotate(0deg)}20%{transform:rotate(-118deg)}30%{transform:rotate(-100deg)}40%{transform:rotate(-125deg)}55%{transform:rotate(-105deg)}70%{transform:rotate(0deg)}}
 /* mock page */
-.mock{height:280px; overflow:hidden; background:#fff; border:1px solid var(--line); border-radius:10px; padding:16px;
-  font-family:Times,serif; color:#000; transition:all .45s ease}
-.fig.css-on .mock{font-family:-apple-system,var(--cjk),sans-serif; background:#fbfdff; padding:20px}
+.mock{height:280px; overflow:hidden; background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:16px;
+  font-family:Times,serif; color:var(--ink); transition:all .45s ease}
+.fig.css-on .mock{font-family:-apple-system,var(--cjk),sans-serif; background:var(--surface-2); padding:20px}
 .mock h4{font-size:18px; font-weight:400; margin:0 0 8px; transition:all .45s ease}
-.fig.css-on .mock h4{color:#0d9488; font-weight:800; font-size:20px; letter-spacing:-.02em}
+.fig.css-on .mock h4{color:var(--m2); font-weight:800; font-size:20px; letter-spacing:-.02em}
 .mock p{font-size:14px; margin:0 0 10px}
-.fig.css-on .mock p{color:#64748b}
-.mock .mrow{border-bottom:1px solid #ddd; padding:4px 0; font-size:13.5px; display:flex; gap:10px; transition:all .45s ease}
-.fig.css-on .mock .mrow{border:0; background:#f1f5f9; border-radius:8px; padding:8px 12px; margin-bottom:6px}
+.fig.css-on .mock p{color:var(--muted)}
+.mock .mrow{border-bottom:1px solid var(--line); padding:4px 0; font-size:13.5px; display:flex; gap:10px; transition:all .45s ease}
+.fig.css-on .mock .mrow{border:0; background:var(--surface-4); border-radius:8px; padding:8px 12px; margin-bottom:6px}
 .mock .tag{font-weight:700}
-.fig.css-on .mock .ok{color:#059669}
-.fig.css-on .mock .bad{color:#dc2626}
+.fig.css-on .mock .ok{color:var(--ok)}
+.fig.css-on .mock .bad{color:var(--no)}
 .mock button{font:inherit; font-size:13px; margin-top:6px; transition:all .45s ease}
-.fig.css-on .mock button{background:#0d9488; color:#fff; border:0; padding:8px 16px; border-radius:8px; cursor:pointer; font-weight:650}
-.mock .mcount{font-size:13px; color:#94a3b8}
+.fig.css-on .mock button{background:var(--m2); color:var(--paper); border:0; padding:8px 16px; border-radius:8px; cursor:pointer; font-weight:650}
+.mock .mcount{font-size:13px; color:var(--muted-2)}
 .fig:not(.js-on) .mock button{pointer-events:none; opacity:.75}
 .switches{display:flex; gap:10px; flex-wrap:wrap; margin:14px 0 0}
 .sw{display:flex; align-items:center; gap:9px; border:1.5px solid var(--line); border-radius:999px; padding:7px 15px 7px 11px;
-  cursor:pointer; font:650 13px inherit; background:#fff; transition:.18s; user-select:none}
-.sw i{width:34px; height:19px; border-radius:999px; background:#cbd5e1; position:relative; transition:.22s; flex:none}
-.sw i:after{content:""; position:absolute; top:2.5px; left:2.5px; width:14px; height:14px; border-radius:50%; background:#fff; transition:.22s}
+  cursor:pointer; font:650 13px inherit; background:var(--paper); transition:.18s; user-select:none}
+.sw i{width:34px; height:19px; border-radius:999px; background:var(--line-2); position:relative; transition:.22s; flex:none}
+.sw i:after{content:""; position:absolute; top:2.5px; left:2.5px; width:14px; height:14px; border-radius:50%; background:var(--paper); transition:.22s}
 .sw.on{border-color:var(--k); color:var(--k)}
 .sw.on i{background:var(--k)}
 .sw.on i:after{transform:translateX(15px)}
 .sw.locked{opacity:.85; cursor:not-allowed}
 .wordgrid{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:18px}
 @media(max-width:760px){.wordgrid{grid-template-columns:1fr}}
-.word{background:#fff; border:1px solid var(--line); border-radius:13px; padding:15px 17px; transition:.18s}
+.word{background:var(--paper); border:1px solid var(--line); border-radius:13px; padding:15px 17px; transition:.18s}
 .word:hover{border-color:var(--m2); transform:translateY(-2px); box-shadow:var(--shadow)}
 .word h5{margin:0 0 2px; font-size:15.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
 .word .meta{font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--m2);
   background:rgba(13,148,136,.1); padding:3px 8px; border-radius:6px}
 .word .met{font-size:14.5px; margin:6px 0 4px; color:var(--ink)}
 .word .tech{font-size:13px; color:var(--muted); margin:0}
-.devtip{background:#0f172a; color:#cbd5e1; border-radius:14px; padding:22px 24px; margin:22px 0; font-size:15px}
-.devtip h4{color:#fff; margin:0 0 8px; font-size:17px}
-.devtip kbd{background:#1e293b; border:1px solid #334155; border-bottom-width:2px; border-radius:6px; padding:2px 8px;
-  font:12.5px var(--mono); color:#e2e8f0}
+.devtip{background:#0f172a; color:var(--ink-2); border-radius:14px; padding:22px 24px; margin:22px 0; font-size:15px}
+.devtip h4{color:var(--ink); margin:0 0 8px; font-size:17px}
+.devtip kbd{background:#1e293b; border:1px solid var(--ink-2); border-bottom-width:2px; border-radius:6px; padding:2px 8px;
+  font:12.5px var(--mono); color:var(--ink)}
 .devtip p{margin:0 0 10px}
 .devtip p:last-child{margin:0}
 </style>
 
 <style>
 /* ===== challenge cards ===== */
-.chal{border:2px solid var(--c); border-radius:18px; margin:28px 0; overflow:hidden; background:#fff;
+.chal{border:2px solid var(--c); border-radius:18px; margin:28px 0; overflow:hidden; background:var(--paper);
   box-shadow:0 12px 34px color-mix(in srgb,var(--c) 14%,transparent); position:relative}
 .chal:before{content:""; position:absolute; inset:0 0 auto 0; height:4px;
-  background:linear-gradient(90deg,var(--c),color-mix(in srgb,var(--c) 30%,#fff),var(--c)); background-size:200% 100%;
+  background:linear-gradient(90deg,var(--c),color-mix(in srgb,var(--c) 30%,var(--paper)),var(--c)); background-size:200% 100%;
   animation:chalshine 3.5s linear infinite}
 @keyframes chalshine{to{background-position:200% 0}}
 .chal-head{padding:20px 24px 6px; display:flex; align-items:center; gap:12px; flex-wrap:wrap}
-.chal-badge{font-size:10.5px; font-weight:800; letter-spacing:.13em; text-transform:uppercase; color:#fff;
+.chal-badge{font-size:10.5px; font-weight:800; letter-spacing:.13em; text-transform:uppercase; color:var(--paper);
   background:var(--c); padding:5px 12px; border-radius:999px}
 .chal-head h4{margin:0; font-size:18px; flex:1 1 260px}
 .diff{font-size:13px; color:var(--c); font-weight:800; letter-spacing:.14em}
 .chal-body{padding:0 24px 22px}
 .chal-body .brief{font-size:15.5px}
 .chal-body .brief b{color:var(--c)}
-.win{background:color-mix(in srgb,var(--c) 7%,#fff); border-left:4px solid var(--c); border-radius:0 10px 10px 0;
+.win{background:color-mix(in srgb,var(--c) 7%,var(--paper)); border-left:4px solid var(--c); border-radius:0 10px 10px 0;
   padding:13px 18px; margin:14px 0; font-size:14.5px}
 .win .wl{font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--c); display:block; margin-bottom:4px}
 .stakes{font-size:13.5px; color:var(--muted); font-style:italic; margin:10px 0 0}
 </style>
 
 <style>
-.tldr{background:linear-gradient(135deg, color-mix(in srgb,var(--c) 10%,#fff), color-mix(in srgb,var(--c) 3%,#fff));
-  border:1.5px solid color-mix(in srgb,var(--c) 30%,#fff); border-radius:16px; padding:18px 22px; margin:20px 0}
+.tldr{background:linear-gradient(135deg, color-mix(in srgb,var(--c) 10%,var(--paper)), color-mix(in srgb,var(--c) 3%,var(--paper)));
+  border:1.5px solid color-mix(in srgb,var(--c) 30%,var(--paper)); border-radius:16px; padding:18px 22px; margin:20px 0}
 .tldr .tl2{font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--c); margin-bottom:8px}
 .tldr ul{margin:0; padding-left:20px}
 .tldr li{margin-bottom:5px; font-size:15.5px}
@@ -477,16 +489,16 @@ footer h3{color:#fff}
 
 <style>
 /* ===== the whole map (icon + clickable) ===== */
-#map{--c:#0f766e}
-.mapwrap{background:linear-gradient(180deg,#fbfbf9,#f2f1ec); border:1px solid var(--line); border-radius:16px; padding:16px; margin:18px 0}
+#map{--c:var(--m2-deep)}
+.mapwrap{background:linear-gradient(180deg,var(--surface-2),var(--surface-3)); border:1px solid var(--line); border-radius:16px; padding:16px; margin:18px 0}
 .mapwrap svg{width:100%; height:auto; display:block}
-.zonelab{font:800 10.5px -apple-system,sans-serif; fill:#94a3b8; letter-spacing:.12em}
+.zonelab{font:800 10.5px -apple-system,sans-serif; fill:var(--muted-2); letter-spacing:.12em}
 body.lang-zh .zonelab{font-family:var(--cjk); letter-spacing:.06em}
-.mbox{fill:#fff; stroke:#cbd5e1; stroke-width:1.6; transition:all .25s ease}
-.mtitle{font:700 12px -apple-system,sans-serif; fill:#15202b}
-.msub{font:600 9.5px -apple-system,sans-serif; fill:#7b8794}
+.mbox{fill:var(--paper); stroke:var(--line-2); stroke-width:1.6; transition:all .25s ease}
+.mtitle{font:700 12px -apple-system,sans-serif; fill:var(--ink)}
+.msub{font:600 9.5px -apple-system,sans-serif; fill:var(--muted)}
 body.lang-zh .mtitle, body.lang-zh .msub{font-family:var(--cjk)}
-.zoneback{fill:#fff; stroke:#e3e0d8; stroke-width:1.5; stroke-dasharray:6 5}
+.zoneback{fill:var(--paper); stroke:var(--line); stroke-width:1.5; stroke-dasharray:6 5}
 .node{cursor:pointer; transition:opacity .3s ease}
 .node .hit{fill:transparent}
 .node:hover .mbox{stroke-width:3; filter:drop-shadow(0 4px 10px rgba(20,32,43,.14))}
@@ -495,7 +507,7 @@ body.lang-zh .mtitle, body.lang-zh .msub{font-family:var(--cjk)}
 .node.dim{opacity:.14}
 .node.hot .mbox{stroke-width:3}
 .wires{transition:opacity .3s ease}
-.reqdot{fill:#4f46e5} .datadot{fill:#d97706}
+.reqdot{fill:var(--m1)} .datadot{fill:var(--m4)}
 .pathrun .reqdot{animation:reqmove 7s linear infinite}
 .pathrun .datadot{animation:datamove 7s linear infinite; animation-delay:2.2s}
 @keyframes reqmove{0%{offset-distance:0%;opacity:0}4%{opacity:1}46%{offset-distance:100%;opacity:1}54%{offset-distance:100%;opacity:1}96%{offset-distance:0%;opacity:1}100%{offset-distance:0%;opacity:0}}
@@ -503,42 +515,42 @@ body.lang-zh .mtitle, body.lang-zh .msub{font-family:var(--cjk)}
 .maphint{display:flex; align-items:center; gap:8px; font-size:13px; color:var(--muted); margin:12px 0 0}
 .maphint svg{width:16px;height:16px;flex:none}
 .roles{display:flex; gap:8px; flex-wrap:wrap; margin:18px 0 0}
-.role{border:1.5px solid var(--line); background:#fff; border-radius:999px; padding:8px 16px 8px 12px; cursor:pointer;
+.role{border:1.5px solid var(--line); background:var(--paper); border-radius:999px; padding:8px 16px 8px 12px; cursor:pointer;
   font:650 13.5px inherit; color:var(--ink); transition:.16s; display:flex; align-items:center; gap:9px}
 .role svg{width:17px;height:17px;color:var(--k);flex:none}
 .role:hover{border-color:var(--k); color:var(--k); transform:translateY(-1px)}
-.role.on{background:var(--k); border-color:var(--k); color:#fff}
-.role.on svg{color:#fff}
-.roledetail{background:#0f172a; color:#cbd5e1; border-radius:14px; padding:20px 24px; margin-top:14px; min-height:130px}
-.roledetail h4{margin:0 0 3px; font-size:18px; color:#fff; display:flex; align-items:center; gap:10px}
+.role.on{background:var(--k); border-color:var(--k); color:var(--paper)}
+.role.on svg{color:var(--paper)}
+.roledetail{background:#0f172a; color:var(--ink-2); border-radius:14px; padding:20px 24px; margin-top:14px; min-height:130px}
+.roledetail h4{margin:0 0 3px; font-size:18px; color:var(--ink); display:flex; align-items:center; gap:10px}
 .roledetail h4 svg{width:22px;height:22px}
 .roledetail .rl{font-size:11.5px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin-bottom:10px}
 .roledetail p{margin:0 0 8px; font-size:14.5px} .roledetail p:last-child{margin:0}
-.roledetail b{color:#fff} .roledetail .owns{color:#5eead4}
+.roledetail b{color:var(--ink)} .roledetail .owns{color:#5eead4}
 /* modal */
 .mdl{position:fixed; inset:0; z-index:200; display:none; align-items:center; justify-content:center; padding:20px}
 .mdl.open{display:flex}
 .mdl-back{position:absolute; inset:0; background:rgba(15,23,42,.55); backdrop-filter:blur(3px); animation:mfade .2s ease}
 @keyframes mfade{from{opacity:0}to{opacity:1}}
-.mdl-card{position:relative; background:#fff; border-radius:20px; max-width:560px; width:100%; max-height:86vh; overflow-y:auto;
+.mdl-card{position:relative; background:var(--paper); border-radius:20px; max-width:560px; width:100%; max-height:86vh; overflow-y:auto;
   box-shadow:0 30px 70px rgba(15,23,42,.35); animation:mpop .26s cubic-bezier(.2,.9,.3,1.1)}
 @keyframes mpop{from{opacity:0; transform:translateY(18px) scale(.97)}to{opacity:1; transform:none}}
 .mdl-top{padding:26px 28px 0; display:flex; align-items:flex-start; gap:14px}
-.mdl-ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;flex:none;background:color-mix(in srgb,var(--k) 12%,#fff);color:var(--k)}
+.mdl-ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;flex:none;background:color-mix(in srgb,var(--k) 12%,var(--paper));color:var(--k)}
 .mdl-ic svg{width:27px;height:27px}
 .mdl-top h3{margin:2px 0 2px; font-size:21px; line-height:1.25}
 .mdl-tag{font-size:11.5px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--k)}
 .mdl-x{position:absolute; top:14px; right:16px; width:34px;height:34px;border-radius:50%;border:1px solid var(--line);
-  background:#fff; cursor:pointer; font-size:19px; line-height:1; color:var(--muted); transition:.15s}
-.mdl-x:hover{background:var(--ink); color:#fff; border-color:var(--ink)}
+  background:var(--paper); cursor:pointer; font-size:19px; line-height:1; color:var(--muted); transition:.15s}
+.mdl-x:hover{background:var(--ink); color:var(--paper); border-color:var(--ink)}
 .mdl-body{padding:16px 28px 28px}
 .mdl-blk{margin-bottom:14px}
 .mdl-blk:last-child{margin-bottom:0}
 .mdl-blk .bl{font-size:11px; font-weight:800; letter-spacing:.09em; text-transform:uppercase; color:var(--k); margin-bottom:4px; display:flex; align-items:center; gap:6px}
 .mdl-blk p{margin:0; font-size:15px; line-height:1.62}
-.mdl-blk.warn2{background:#fff5f5; border-left:3px solid #dc2626; border-radius:0 10px 10px 0; padding:12px 15px}
-.mdl-blk.warn2 .bl{color:#b91c1c}
-.mdl-blk.eg{background:color-mix(in srgb,var(--k) 6%,#fff); border-radius:12px; padding:13px 16px}
+.mdl-blk.warn2{background:color-mix(in srgb, var(--no) 6%, var(--paper)); border-left:3px solid var(--no); border-radius:0 10px 10px 0; padding:12px 15px}
+.mdl-blk.warn2 .bl{color:var(--no-deep)}
+.mdl-blk.eg{background:color-mix(in srgb,var(--k) 6%,var(--paper)); border-radius:12px; padding:13px 16px}
 </style>
 
 <section id="map">
@@ -597,8 +609,8 @@ body.lang-zh .mtitle, body.lang-zh .msub{font-family:var(--cjk)}
     <path id="p-req"  d="M194,116 L232,116 L288,116 L392,113 L392,200 L472,233"/>
     <path id="p-data" d="M458,240 L560,240 L560,112 L646,112 L788,112 L788,180 L788,248 L788,316"/>
   </defs>
-<rect class="zoneback" x="14" y="56" width="196" height="290" rx="14"/><rect class="zoneback" x="220" y="56" width="80" height="290" rx="14"/><rect class="zoneback" x="310" y="56" width="310" height="290" rx="14"/><rect class="zoneback" x="630" y="56" width="316" height="290" rx="14"/><rect class="zoneback" x="14" y="366" width="932" height="96" rx="14"/><text class="zonelab" x="112" y="44" text-anchor="middle"><tspan class="en">YOUR DEVICE</tspan><tspan class="zh">你的设备</tspan></text><text class="zonelab" x="260" y="44" text-anchor="middle"><tspan class="en">NETWORK</tspan><tspan class="zh">网络</tspan></text><text class="zonelab" x="465" y="44" text-anchor="middle"><tspan class="en">THE SERVER SIDE</tspan><tspan class="zh">服务端</tspan></text><text class="zonelab" x="788" y="44" text-anchor="middle"><tspan class="en">THE DATA PLATFORM</tspan><tspan class="zh">数据平台</tspan></text><text class="zonelab" x="480" y="392" text-anchor="middle"><tspan class="en">INFRASTRUCTURE — everything above runs on this</tspan><tspan class="zh">基础设施 —— 上面所有东西都跑在这上面</tspan></text><g class="wires"><line x1="194" y1="116" x2="232" y2="116" stroke="#cbd5e1" stroke-width="2"/><line x1="288" y1="116" x2="326" y2="113" stroke="#cbd5e1" stroke-width="2"/><line x1="392" y1="142" x2="392" y2="200" stroke="#cbd5e1" stroke-width="2"/><line x1="458" y1="233" x2="472" y2="233" stroke="#cbd5e1" stroke-width="2"/><line x1="458" y1="215" x2="472" y2="113" stroke="#cbd5e1" stroke-width="2"/><line x1="604" y1="233" x2="630" y2="233" stroke="#cbd5e1" stroke-width="2"/><line x1="788" y1="140" x2="788" y2="152" stroke="#cbd5e1" stroke-width="2"/><line x1="788" y1="208" x2="788" y2="220" stroke="#cbd5e1" stroke-width="2"/><line x1="788" y1="276" x2="788" y2="288" stroke="#cbd5e1" stroke-width="2"/><line x1="14" y1="362" x2="946" y2="362" stroke="#cbd5e1" stroke-width="2"/><line x1="590" y1="233" x2="646" y2="120" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/></g><g class="node" data-n="web" tabindex="0"><rect class="mbox" x="30" y="84" width="164" height="64" rx="10" style="stroke:#4f46e5"/><use href="#ic-browser" x="43" y="98" width="22" height="22" style="color:#4f46e5"/><text class="mtitle" x="74" y="110" text-anchor="start"><tspan class="en">Browser / web page</tspan><tspan class="zh">浏览器 / 网页</tspan></text><text class="msub" x="74" y="126" text-anchor="start"><tspan class="en">HTML · CSS · JavaScript</tspan><tspan class="zh">HTML · CSS · JavaScript</tspan></text><text class="msub" x="74" y="142" text-anchor="start"><tspan class="en">runs on THEIR computer</tspan><tspan class="zh">跑在他们自己的电脑上</tspan></text><rect class="hit" x="30" y="84" width="164" height="64" rx="10"/></g><g class="node" data-n="app" tabindex="0"><rect class="mbox" x="30" y="164" width="164" height="58" rx="10" style="stroke:#4f46e5"/><use href="#ic-phone" x="43" y="182" width="22" height="22" style="color:#4f46e5"/><text class="mtitle" x="74" y="189" text-anchor="start"><tspan class="en">Mobile app</tspan><tspan class="zh">手机 App</tspan></text><text class="msub" x="74" y="205" text-anchor="start"><tspan class="en">same job, another screen</tspan><tspan class="zh">同样的活，另一块屏</tspan></text><rect class="hit" x="30" y="164" width="164" height="58" rx="10"/></g><g class="node adv" data-n="lb" tabindex="0"><rect class="mbox" x="326" y="84" width="132" height="58" rx="10" style="stroke:#0d9488"/><use href="#ic-split" x="339" y="102" width="22" height="22" style="color:#0d9488"/><text class="mtitle" x="370" y="109" text-anchor="start"><tspan class="en">Load balancer</tspan><tspan class="zh">负载均衡</tspan></text><text class="msub" x="370" y="125" text-anchor="start"><tspan class="en">shares the queue</tspan><tspan class="zh">分摊请求</tspan></text><rect class="hit" x="326" y="84" width="132" height="58" rx="10"/></g><g class="node adv" data-n="cache" tabindex="0"><rect class="mbox" x="472" y="84" width="132" height="58" rx="10" style="stroke:#0d9488"/><use href="#ic-bolt" x="485" y="102" width="22" height="22" style="color:#0d9488"/><text class="mtitle" x="516" y="109" text-anchor="start"><tspan class="en">Cache</tspan><tspan class="zh">缓存</tspan></text><text class="msub" x="516" y="125" text-anchor="start"><tspan class="en">the fast answer</tspan><tspan class="zh">快速答案</tspan></text><rect class="hit" x="472" y="84" width="132" height="58" rx="10"/></g><g class="node" data-n="api" tabindex="0"><rect class="mbox" x="326" y="200" width="132" height="66" rx="10" style="stroke:#0d9488"/><use href="#ic-server" x="339" y="214" width="22" height="22" style="color:#0d9488"/><text class="mtitle" x="370" y="226" text-anchor="start"><tspan class="en">Backend API</tspan><tspan class="zh">后端 API</tspan></text><text class="msub" x="370" y="242" text-anchor="start"><tspan class="en">Python · the rules</tspan><tspan class="zh">Python · 规则</tspan></text><text class="msub" x="370" y="258" text-anchor="start"><tspan class="en">who may see what</tspan><tspan class="zh">谁能看什么</tspan></text><rect class="hit" x="326" y="200" width="132" height="66" rx="10"/></g><g class="node" data-n="db" tabindex="0"><rect class="mbox" x="472" y="200" width="132" height="66" rx="10" style="stroke:#9333ea"/><use href="#ic-db" x="485" y="214" width="22" height="22" style="color:#9333ea"/><text class="mtitle" x="516" y="226" text-anchor="start"><tspan class="en">Live database</tspan><tspan class="zh">生产数据库</tspan></text><text class="msub" x="516" y="242" text-anchor="start"><tspan class="en">what is true NOW</tspan><tspan class="zh">此刻的真相</tspan></text><text class="msub" x="516" y="258" text-anchor="start"><tspan class="en">built to write fast</tspan><tspan class="zh">为快速写入而生</tspan></text><rect class="hit" x="472" y="200" width="132" height="66" rx="10"/></g><g class="node" data-n="ing" tabindex="0"><rect class="mbox" x="646" y="84" width="284" height="56" rx="10" style="stroke:#d97706"/><use href="#ic-stream" x="659" y="101" width="22" height="22" style="color:#d97706"/><text class="mtitle" x="690" y="108" text-anchor="start"><tspan class="en">Ingestion / event stream</tspan><tspan class="zh">数据接入 / 事件流</tspan></text><text class="msub" x="690" y="124" text-anchor="start"><tspan class="en">copy it out without slowing production</tspan><tspan class="zh">在不拖慢生产的前提下抄出来</tspan></text><rect class="hit" x="646" y="84" width="284" height="56" rx="10"/></g><g class="node" data-n="etl" tabindex="0"><rect class="mbox" x="646" y="152" width="284" height="56" rx="10" style="stroke:#d97706"/><use href="#ic-funnel" x="659" y="169" width="22" height="22" style="color:#d97706"/><text class="mtitle" x="690" y="176" text-anchor="start"><tspan class="en">Pipelines (ETL)</tspan><tspan class="zh">数据管道（ETL）</tspan></text><text class="msub" x="690" y="192" text-anchor="start"><tspan class="en">clean · join · validate · every night</tspan><tspan class="zh">清洗 · 关联 · 校验 · 每晚一次</tspan></text><rect class="hit" x="646" y="152" width="284" height="56" rx="10"/></g><g class="node" data-n="wh" tabindex="0"><rect class="mbox" x="646" y="220" width="284" height="56" rx="10" style="stroke:#d97706"/><use href="#ic-warehouse" x="659" y="237" width="22" height="22" style="color:#d97706"/><text class="mtitle" x="690" y="244" text-anchor="start"><tspan class="en">Warehouse (modelled tables)</tspan><tspan class="zh">数据仓库（建模好的表）</tspan></text><text class="msub" x="690" y="260" text-anchor="start"><tspan class="en">what is true OVER TIME · read fast</tspan><tspan class="zh">历史上的真相 · 为快速读取而生</tspan></text><rect class="hit" x="646" y="220" width="284" height="56" rx="10"/></g><g class="node" data-n="bi" tabindex="0"><rect class="mbox" x="646" y="288" width="284" height="56" rx="10" style="stroke:#e11d48"/><use href="#ic-chart" x="659" y="305" width="22" height="22" style="color:#e11d48"/><text class="mtitle" x="690" y="312" text-anchor="start"><tspan class="en">Dashboards · reports · ML</tspan><tspan class="zh">看板 · 报表 · 机器学习</tspan></text><text class="msub" x="690" y="328" text-anchor="start"><tspan class="en">the decisions the business makes</tspan><tspan class="zh">公司真正据以做的决策</tspan></text><rect class="hit" x="646" y="288" width="284" height="56" rx="10"/></g><g class="node" data-n="net" tabindex="0"><rect class="mbox" x="232" y="84" width="56" height="182" rx="10" style="stroke:#0369a1;stroke-dasharray:5 4"/><use href="#ic-globe" x="249" y="96" width="22" height="22" style="color:#0369a1"/><text class="mtitle" x="260" y="160" text-anchor="middle" transform="rotate(-90 260 160)">HTTP</text><text class="msub" x="260" y="216" text-anchor="middle" transform="rotate(-90 260 216)">DNS · TLS</text><rect class="hit" x="232" y="84" width="56" height="182" rx="10"/></g><g class="node" data-n="linux" tabindex="0"><rect class="mbox" x="30" y="406" width="142" height="40" rx="9" style="stroke:#64748b"/><use href="#ic-term" x="42" y="416" width="20" height="20" style="color:#64748b"/><text class="mtitle" x="70" y="431" text-anchor="start"><tspan class="en">Linux / OS</tspan><tspan class="zh">Linux / 操作系统</tspan></text><rect class="hit" x="30" y="406" width="142" height="40" rx="9"/></g><g class="node" data-n="cont" tabindex="0"><rect class="mbox" x="178" y="406" width="142" height="40" rx="9" style="stroke:#64748b"/><use href="#ic-cube" x="190" y="416" width="20" height="20" style="color:#64748b"/><text class="mtitle" x="218" y="431" text-anchor="start"><tspan class="en">Containers</tspan><tspan class="zh">容器</tspan></text><rect class="hit" x="178" y="406" width="142" height="40" rx="9"/></g><g class="node" data-n="cloud" tabindex="0"><rect class="mbox" x="326" y="406" width="142" height="40" rx="9" style="stroke:#64748b"/><use href="#ic-cloud" x="338" y="416" width="20" height="20" style="color:#64748b"/><text class="mtitle" x="366" y="431" text-anchor="start"><tspan class="en">Cloud</tspan><tspan class="zh">云平台</tspan></text><rect class="hit" x="326" y="406" width="142" height="40" rx="9"/></g><g class="node" data-n="netw" tabindex="0"><rect class="mbox" x="474" y="406" width="142" height="40" rx="9" style="stroke:#64748b"/><use href="#ic-net" x="486" y="416" width="20" height="20" style="color:#64748b"/><text class="mtitle" x="514" y="431" text-anchor="start"><tspan class="en">Networking</tspan><tspan class="zh">网络</tspan></text><rect class="hit" x="474" y="406" width="142" height="40" rx="9"/></g><g class="node" data-n="sec" tabindex="0"><rect class="mbox" x="622" y="406" width="142" height="40" rx="9" style="stroke:#64748b"/><use href="#ic-lock" x="634" y="416" width="20" height="20" style="color:#64748b"/><text class="mtitle" x="662" y="431" text-anchor="start"><tspan class="en">Security</tspan><tspan class="zh">安全</tspan></text><rect class="hit" x="622" y="406" width="142" height="40" rx="9"/></g><g class="node" data-n="git" tabindex="0"><rect class="mbox" x="770" y="406" width="142" height="40" rx="9" style="stroke:#64748b"/><use href="#ic-git" x="782" y="416" width="20" height="20" style="color:#64748b"/><text class="mtitle" x="810" y="431" text-anchor="start"><tspan class="en">Git / CI-CD</tspan><tspan class="zh">Git / 持续交付</tspan></text><rect class="hit" x="770" y="406" width="142" height="40" rx="9"/></g><circle class="reqdot" r="7" style="offset-path:path('M194,116 L232,116 L288,116 L392,113 L392,200 L472,233');offset-rotate:0deg;opacity:0"/><circle class="datadot" r="7" style="offset-path:path('M458,240 L560,240 L560,112 L646,112 L788,112 L788,180 L788,248 L788,316');offset-rotate:0deg;opacity:0"/></svg>
-      <p class="note" style="margin-top:12px"><span class="en"><b>Two different journeys.</b> The <b style="color:#4f46e5">purple dot</b> is one user's request and answer — it must finish in milliseconds. The <b style="color:#d97706">amber dot</b> is that same data being copied out to be understood — it can take all night. Almost every argument in this industry is really about which of those two you are optimising for.</span><span class="zh"><b>两段不同的旅程。</b><b style="color:#4f46e5">紫色的点</b>是某一个用户的请求和回答 —— 必须在毫秒内跑完。<b style="color:#d97706">琥珀色的点</b>是同一批数据被复制出来去理解 —— 它可以跑一整夜。这个行业里几乎所有争论，本质都是在争"你到底在为哪一条优化"。</span></p>
+<rect class="zoneback" x="14" y="56" width="196" height="290" rx="14"/><rect class="zoneback" x="220" y="56" width="80" height="290" rx="14"/><rect class="zoneback" x="310" y="56" width="310" height="290" rx="14"/><rect class="zoneback" x="630" y="56" width="316" height="290" rx="14"/><rect class="zoneback" x="14" y="366" width="932" height="96" rx="14"/><text class="zonelab" x="112" y="44" text-anchor="middle"><tspan class="en">YOUR DEVICE</tspan><tspan class="zh">你的设备</tspan></text><text class="zonelab" x="260" y="44" text-anchor="middle"><tspan class="en">NETWORK</tspan><tspan class="zh">网络</tspan></text><text class="zonelab" x="465" y="44" text-anchor="middle"><tspan class="en">THE SERVER SIDE</tspan><tspan class="zh">服务端</tspan></text><text class="zonelab" x="788" y="44" text-anchor="middle"><tspan class="en">THE DATA PLATFORM</tspan><tspan class="zh">数据平台</tspan></text><text class="zonelab" x="480" y="392" text-anchor="middle"><tspan class="en">INFRASTRUCTURE — everything above runs on this</tspan><tspan class="zh">基础设施 —— 上面所有东西都跑在这上面</tspan></text><g class="wires"><line x1="194" y1="116" x2="232" y2="116" stroke="var(--line-2)" stroke-width="2"/><line x1="288" y1="116" x2="326" y2="113" stroke="var(--line-2)" stroke-width="2"/><line x1="392" y1="142" x2="392" y2="200" stroke="var(--line-2)" stroke-width="2"/><line x1="458" y1="233" x2="472" y2="233" stroke="var(--line-2)" stroke-width="2"/><line x1="458" y1="215" x2="472" y2="113" stroke="var(--line-2)" stroke-width="2"/><line x1="604" y1="233" x2="630" y2="233" stroke="var(--line-2)" stroke-width="2"/><line x1="788" y1="140" x2="788" y2="152" stroke="var(--line-2)" stroke-width="2"/><line x1="788" y1="208" x2="788" y2="220" stroke="var(--line-2)" stroke-width="2"/><line x1="788" y1="276" x2="788" y2="288" stroke="var(--line-2)" stroke-width="2"/><line x1="14" y1="362" x2="946" y2="362" stroke="var(--line-2)" stroke-width="2"/><line x1="590" y1="233" x2="646" y2="120" stroke="var(--line-2)" stroke-width="2" stroke-dasharray="4 4"/></g><g class="node" data-n="web" tabindex="0"><rect class="mbox" x="30" y="84" width="164" height="64" rx="10" style="stroke:var(--m1)"/><use href="#ic-browser" x="43" y="98" width="22" height="22" style="color:var(--m1)"/><text class="mtitle" x="74" y="110" text-anchor="start"><tspan class="en">Browser / web page</tspan><tspan class="zh">浏览器 / 网页</tspan></text><text class="msub" x="74" y="126" text-anchor="start"><tspan class="en">HTML · CSS · JavaScript</tspan><tspan class="zh">HTML · CSS · JavaScript</tspan></text><text class="msub" x="74" y="142" text-anchor="start"><tspan class="en">runs on THEIR computer</tspan><tspan class="zh">跑在他们自己的电脑上</tspan></text><rect class="hit" x="30" y="84" width="164" height="64" rx="10"/></g><g class="node" data-n="app" tabindex="0"><rect class="mbox" x="30" y="164" width="164" height="58" rx="10" style="stroke:var(--m1)"/><use href="#ic-phone" x="43" y="182" width="22" height="22" style="color:var(--m1)"/><text class="mtitle" x="74" y="189" text-anchor="start"><tspan class="en">Mobile app</tspan><tspan class="zh">手机 App</tspan></text><text class="msub" x="74" y="205" text-anchor="start"><tspan class="en">same job, another screen</tspan><tspan class="zh">同样的活，另一块屏</tspan></text><rect class="hit" x="30" y="164" width="164" height="58" rx="10"/></g><g class="node adv" data-n="lb" tabindex="0"><rect class="mbox" x="326" y="84" width="132" height="58" rx="10" style="stroke:var(--m2)"/><use href="#ic-split" x="339" y="102" width="22" height="22" style="color:var(--m2)"/><text class="mtitle" x="370" y="109" text-anchor="start"><tspan class="en">Load balancer</tspan><tspan class="zh">负载均衡</tspan></text><text class="msub" x="370" y="125" text-anchor="start"><tspan class="en">shares the queue</tspan><tspan class="zh">分摊请求</tspan></text><rect class="hit" x="326" y="84" width="132" height="58" rx="10"/></g><g class="node adv" data-n="cache" tabindex="0"><rect class="mbox" x="472" y="84" width="132" height="58" rx="10" style="stroke:var(--m2)"/><use href="#ic-bolt" x="485" y="102" width="22" height="22" style="color:var(--m2)"/><text class="mtitle" x="516" y="109" text-anchor="start"><tspan class="en">Cache</tspan><tspan class="zh">缓存</tspan></text><text class="msub" x="516" y="125" text-anchor="start"><tspan class="en">the fast answer</tspan><tspan class="zh">快速答案</tspan></text><rect class="hit" x="472" y="84" width="132" height="58" rx="10"/></g><g class="node" data-n="api" tabindex="0"><rect class="mbox" x="326" y="200" width="132" height="66" rx="10" style="stroke:var(--m2)"/><use href="#ic-server" x="339" y="214" width="22" height="22" style="color:var(--m2)"/><text class="mtitle" x="370" y="226" text-anchor="start"><tspan class="en">Backend API</tspan><tspan class="zh">后端 API</tspan></text><text class="msub" x="370" y="242" text-anchor="start"><tspan class="en">Python · the rules</tspan><tspan class="zh">Python · 规则</tspan></text><text class="msub" x="370" y="258" text-anchor="start"><tspan class="en">who may see what</tspan><tspan class="zh">谁能看什么</tspan></text><rect class="hit" x="326" y="200" width="132" height="66" rx="10"/></g><g class="node" data-n="db" tabindex="0"><rect class="mbox" x="472" y="200" width="132" height="66" rx="10" style="stroke:var(--m3)"/><use href="#ic-db" x="485" y="214" width="22" height="22" style="color:var(--m3)"/><text class="mtitle" x="516" y="226" text-anchor="start"><tspan class="en">Live database</tspan><tspan class="zh">生产数据库</tspan></text><text class="msub" x="516" y="242" text-anchor="start"><tspan class="en">what is true NOW</tspan><tspan class="zh">此刻的真相</tspan></text><text class="msub" x="516" y="258" text-anchor="start"><tspan class="en">built to write fast</tspan><tspan class="zh">为快速写入而生</tspan></text><rect class="hit" x="472" y="200" width="132" height="66" rx="10"/></g><g class="node" data-n="ing" tabindex="0"><rect class="mbox" x="646" y="84" width="284" height="56" rx="10" style="stroke:var(--m4)"/><use href="#ic-stream" x="659" y="101" width="22" height="22" style="color:var(--m4)"/><text class="mtitle" x="690" y="108" text-anchor="start"><tspan class="en">Ingestion / event stream</tspan><tspan class="zh">数据接入 / 事件流</tspan></text><text class="msub" x="690" y="124" text-anchor="start"><tspan class="en">copy it out without slowing production</tspan><tspan class="zh">在不拖慢生产的前提下抄出来</tspan></text><rect class="hit" x="646" y="84" width="284" height="56" rx="10"/></g><g class="node" data-n="etl" tabindex="0"><rect class="mbox" x="646" y="152" width="284" height="56" rx="10" style="stroke:var(--m4)"/><use href="#ic-funnel" x="659" y="169" width="22" height="22" style="color:var(--m4)"/><text class="mtitle" x="690" y="176" text-anchor="start"><tspan class="en">Pipelines (ETL)</tspan><tspan class="zh">数据管道（ETL）</tspan></text><text class="msub" x="690" y="192" text-anchor="start"><tspan class="en">clean · join · validate · every night</tspan><tspan class="zh">清洗 · 关联 · 校验 · 每晚一次</tspan></text><rect class="hit" x="646" y="152" width="284" height="56" rx="10"/></g><g class="node" data-n="wh" tabindex="0"><rect class="mbox" x="646" y="220" width="284" height="56" rx="10" style="stroke:var(--m4)"/><use href="#ic-warehouse" x="659" y="237" width="22" height="22" style="color:var(--m4)"/><text class="mtitle" x="690" y="244" text-anchor="start"><tspan class="en">Warehouse (modelled tables)</tspan><tspan class="zh">数据仓库（建模好的表）</tspan></text><text class="msub" x="690" y="260" text-anchor="start"><tspan class="en">what is true OVER TIME · read fast</tspan><tspan class="zh">历史上的真相 · 为快速读取而生</tspan></text><rect class="hit" x="646" y="220" width="284" height="56" rx="10"/></g><g class="node" data-n="bi" tabindex="0"><rect class="mbox" x="646" y="288" width="284" height="56" rx="10" style="stroke:var(--m5)"/><use href="#ic-chart" x="659" y="305" width="22" height="22" style="color:var(--m5)"/><text class="mtitle" x="690" y="312" text-anchor="start"><tspan class="en">Dashboards · reports · ML</tspan><tspan class="zh">看板 · 报表 · 机器学习</tspan></text><text class="msub" x="690" y="328" text-anchor="start"><tspan class="en">the decisions the business makes</tspan><tspan class="zh">公司真正据以做的决策</tspan></text><rect class="hit" x="646" y="288" width="284" height="56" rx="10"/></g><g class="node" data-n="net" tabindex="0"><rect class="mbox" x="232" y="84" width="56" height="182" rx="10" style="stroke:var(--info-deep);stroke-dasharray:5 4"/><use href="#ic-globe" x="249" y="96" width="22" height="22" style="color:var(--info-deep)"/><text class="mtitle" x="260" y="160" text-anchor="middle" transform="rotate(-90 260 160)">HTTP</text><text class="msub" x="260" y="216" text-anchor="middle" transform="rotate(-90 260 216)">DNS · TLS</text><rect class="hit" x="232" y="84" width="56" height="182" rx="10"/></g><g class="node" data-n="linux" tabindex="0"><rect class="mbox" x="30" y="406" width="142" height="40" rx="9" style="stroke:var(--muted)"/><use href="#ic-term" x="42" y="416" width="20" height="20" style="color:var(--muted)"/><text class="mtitle" x="70" y="431" text-anchor="start"><tspan class="en">Linux / OS</tspan><tspan class="zh">Linux / 操作系统</tspan></text><rect class="hit" x="30" y="406" width="142" height="40" rx="9"/></g><g class="node" data-n="cont" tabindex="0"><rect class="mbox" x="178" y="406" width="142" height="40" rx="9" style="stroke:var(--muted)"/><use href="#ic-cube" x="190" y="416" width="20" height="20" style="color:var(--muted)"/><text class="mtitle" x="218" y="431" text-anchor="start"><tspan class="en">Containers</tspan><tspan class="zh">容器</tspan></text><rect class="hit" x="178" y="406" width="142" height="40" rx="9"/></g><g class="node" data-n="cloud" tabindex="0"><rect class="mbox" x="326" y="406" width="142" height="40" rx="9" style="stroke:var(--muted)"/><use href="#ic-cloud" x="338" y="416" width="20" height="20" style="color:var(--muted)"/><text class="mtitle" x="366" y="431" text-anchor="start"><tspan class="en">Cloud</tspan><tspan class="zh">云平台</tspan></text><rect class="hit" x="326" y="406" width="142" height="40" rx="9"/></g><g class="node" data-n="netw" tabindex="0"><rect class="mbox" x="474" y="406" width="142" height="40" rx="9" style="stroke:var(--muted)"/><use href="#ic-net" x="486" y="416" width="20" height="20" style="color:var(--muted)"/><text class="mtitle" x="514" y="431" text-anchor="start"><tspan class="en">Networking</tspan><tspan class="zh">网络</tspan></text><rect class="hit" x="474" y="406" width="142" height="40" rx="9"/></g><g class="node" data-n="sec" tabindex="0"><rect class="mbox" x="622" y="406" width="142" height="40" rx="9" style="stroke:var(--muted)"/><use href="#ic-lock" x="634" y="416" width="20" height="20" style="color:var(--muted)"/><text class="mtitle" x="662" y="431" text-anchor="start"><tspan class="en">Security</tspan><tspan class="zh">安全</tspan></text><rect class="hit" x="622" y="406" width="142" height="40" rx="9"/></g><g class="node" data-n="git" tabindex="0"><rect class="mbox" x="770" y="406" width="142" height="40" rx="9" style="stroke:var(--muted)"/><use href="#ic-git" x="782" y="416" width="20" height="20" style="color:var(--muted)"/><text class="mtitle" x="810" y="431" text-anchor="start"><tspan class="en">Git / CI-CD</tspan><tspan class="zh">Git / 持续交付</tspan></text><rect class="hit" x="770" y="406" width="142" height="40" rx="9"/></g><circle class="reqdot" r="7" style="offset-path:path('M194,116 L232,116 L288,116 L392,113 L392,200 L472,233');offset-rotate:0deg;opacity:0"/><circle class="datadot" r="7" style="offset-path:path('M458,240 L560,240 L560,112 L646,112 L788,112 L788,180 L788,248 L788,316');offset-rotate:0deg;opacity:0"/></svg>
+      <p class="note" style="margin-top:12px"><span class="en"><b>Two different journeys.</b> The <b style="color:var(--m1)">purple dot</b> is one user's request and answer — it must finish in milliseconds. The <b style="color:var(--m4)">amber dot</b> is that same data being copied out to be understood — it can take all night. Almost every argument in this industry is really about which of those two you are optimising for.</span><span class="zh"><b>两段不同的旅程。</b><b style="color:var(--m1)">紫色的点</b>是某一个用户的请求和回答 —— 必须在毫秒内跑完。<b style="color:var(--m4)">琥珀色的点</b>是同一批数据被复制出来去理解 —— 它可以跑一整夜。这个行业里几乎所有争论，本质都是在争"你到底在为哪一条优化"。</span></p>
     </div>
 
     <div class="roles" id="roles"></div>
@@ -618,71 +630,71 @@ body.lang-zh .mtitle, body.lang-zh .msub{font-family:var(--cjk)}
 
 <style>
 /* ===== end-to-end demo ===== */
-#flow{--c:#4f46e5}
+#flow{--c:var(--m1)}
 .steps{display:grid; grid-template-columns:repeat(5,1fr); gap:6px; margin:0 0 16px}
 @media(max-width:760px){.steps{grid-template-columns:repeat(5,1fr); gap:3px}}
-.step{border:1.5px solid var(--line); background:#fff; border-radius:11px; padding:11px 8px; cursor:pointer;
+.step{border:1.5px solid var(--line); background:var(--paper); border-radius:11px; padding:11px 8px; cursor:pointer;
   text-align:center; transition:.2s; font:inherit; color:var(--muted); opacity:.55}
 .step svg{width:20px;height:20px;display:block;margin:0 auto 5px}
 .step b{display:block; font-size:11.5px; font-weight:700; line-height:1.3}
 .step small{font-size:10px; display:block; margin-top:2px}
 @media(max-width:600px){.step small{display:none} .step b{font-size:10px}}
-.step.done{opacity:1; color:var(--ink); border-color:#cbd5e1}
-.step.now{opacity:1; color:#fff; background:var(--sc); border-color:var(--sc); transform:translateY(-2px);
+.step.done{opacity:1; color:var(--ink); border-color:var(--line-2)}
+.step.now{opacity:1; color:var(--paper); background:var(--sc); border-color:var(--sc); transform:translateY(-2px);
   box-shadow:0 8px 20px color-mix(in srgb,var(--sc) 40%,transparent)}
 .flowgrid{display:grid; grid-template-columns:1fr 1fr; gap:14px}
 @media(max-width:820px){.flowgrid{grid-template-columns:1fr}}
-.fpane{border:1px solid var(--line); border-radius:13px; overflow:hidden; background:#fff; min-height:290px; display:flex; flex-direction:column}
+.fpane{border:1px solid var(--line); border-radius:13px; overflow:hidden; background:var(--paper); min-height:290px; display:flex; flex-direction:column}
 .fphead{padding:9px 14px; font:700 11px inherit; letter-spacing:.08em; text-transform:uppercase; color:var(--muted);
-  background:#f8fafc; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  background:var(--surface-2); border-bottom:1px solid var(--line); display:flex; align-items:center; gap:8px; flex-wrap:wrap}
 .fphead .ftabs{margin-left:auto; display:flex; gap:4px}
-.fphead .ftabs button{border:1px solid var(--line); background:#fff; border-radius:7px; font:700 10.5px var(--mono);
+.fphead .ftabs button{border:1px solid var(--line); background:var(--paper); border-radius:7px; font:700 10.5px var(--mono);
   padding:3px 8px; cursor:pointer; color:var(--muted); text-transform:none; letter-spacing:0}
-.fphead .ftabs button.on{background:var(--ink); color:#fff; border-color:var(--ink)}
+.fphead .ftabs button.on{background:var(--ink); color:var(--paper); border-color:var(--ink)}
 .fpbody{padding:16px; flex:1; overflow:auto}
 .fpbody.dark{background:#0f172a; padding:0}
 .fpbody.dark pre{padding:16px; font-size:12.5px}
 .hl{background:rgba(94,234,212,.16); display:block; margin:0 -16px; padding:0 16px; border-left:3px solid #5eead4}
 /* fake browser */
 .fbrowser{border:1px solid var(--line); border-radius:10px; overflow:hidden}
-.fbtop{background:#eef2f7; padding:7px 11px; display:flex; gap:6px; align-items:center}
+.fbtop{background:var(--surface-4); padding:7px 11px; display:flex; gap:6px; align-items:center}
 .fbtop i{width:9px;height:9px;border-radius:50%;display:block}
-.fburl{background:#fff; border-radius:6px; font:11px var(--mono); color:#64748b; padding:3px 9px; margin-left:6px; flex:1}
-.fbbody{padding:16px; background:#fff}
-.fbbody h5{margin:0 0 4px; font-size:16px; color:#0d9488}
+.fburl{background:var(--paper); border-radius:6px; font:11px var(--mono); color:var(--muted); padding:3px 9px; margin-left:6px; flex:1}
+.fbbody{padding:16px; background:var(--paper)}
+.fbbody h5{margin:0 0 4px; font-size:16px; color:var(--m2)}
 .fbbody p{margin:0 0 12px; font-size:13px; color:var(--muted)}
 .fbbody label{display:block; font-size:12px; font-weight:700; margin-bottom:5px}
 .fbbody input{width:100%; padding:9px 12px; border:1.5px solid var(--line); border-radius:8px; font:14px inherit; outline:none}
 .fbbody input:focus{border-color:var(--c)}
-.fbbody .fbtn{margin-top:10px; width:100%; padding:10px; border:0; border-radius:8px; background:#0d9488; color:#fff;
+.fbbody .fbtn{margin-top:10px; width:100%; padding:10px; border:0; border-radius:8px; background:var(--m2); color:var(--paper);
   font:700 14px inherit; cursor:pointer; transition:.15s}
-.fbbody .fbtn:hover{background:#0f766e}
+.fbbody .fbtn:hover{background:var(--m2-deep)}
 .fbbody .fbtn:disabled{opacity:.5; cursor:not-allowed}
 /* phone frame */
-.fphone{width:180px; margin:0 auto; border:8px solid #1e293b; border-radius:26px; overflow:hidden; background:#fff}
+.fphone{width:180px; margin:0 auto; border:8px solid #1e293b; border-radius:26px; overflow:hidden; background:var(--paper)}
 .fphone .fph{background:#1e293b; height:16px}
 .fphone .fpb{padding:12px; font-size:11px}
 /* envelope travel */
 .envwrap{position:relative; height:70px; margin:20px 0; display:flex; align-items:center; justify-content:space-between}
 .envnode{text-align:center; font-size:11px; color:var(--muted); font-weight:700}
 .envnode svg{width:28px;height:28px;display:block;margin:0 auto 4px; color:var(--c)}
-.envline{position:absolute; left:70px; right:70px; top:34px; height:2px; background:repeating-linear-gradient(90deg,#cbd5e1 0 6px,transparent 6px 12px)}
+.envline{position:absolute; left:70px; right:70px; top:34px; height:2px; background:repeating-linear-gradient(90deg,var(--line-2) 0 6px,transparent 6px 12px)}
 .env{position:absolute; top:22px; left:70px; width:26px; height:20px; border-radius:3px; background:var(--c);
-  display:grid; place-items:center; color:#fff; font-size:11px; animation:envgo 2.2s ease-in-out infinite}
+  display:grid; place-items:center; color:var(--paper); font-size:11px; animation:envgo 2.2s ease-in-out infinite}
 @keyframes envgo{0%{left:64px;opacity:0}10%{opacity:1}90%{opacity:1}100%{left:calc(100% - 90px);opacity:0}}
 /* db table */
 .dbt{width:100%; border-collapse:collapse; font:12px var(--mono)}
-.dbt th{background:#f1f5f9; font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; color:#64748b; padding:7px 9px; text-align:left; border-bottom:2px solid var(--line)}
-.dbt td{padding:7px 9px; border-bottom:1px solid #eef2f7}
+.dbt th{background:var(--surface-4); font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); padding:7px 9px; text-align:left; border-bottom:2px solid var(--line)}
+.dbt td{padding:7px 9px; border-bottom:1px solid var(--surface-4)}
 .dbt tr.fresh td{background:rgba(5,150,105,.13); animation:rowin .5s ease}
 @keyframes rowin{from{opacity:0; transform:translateY(-8px)}to{opacity:1; transform:none}}
-.dbt td.messy{color:#dc2626}
-.dbt td.fixed2{color:#059669}
+.dbt td.messy{color:var(--no)}
+.dbt td.fixed2{color:var(--ok)}
 .emptyhint{color:var(--muted); font-size:13.5px; text-align:center; padding:40px 10px}
-.fnote{background:color-mix(in srgb,var(--sc,#4f46e5) 8%,#fff); border-left:3px solid var(--sc,#4f46e5);
+.fnote{background:color-mix(in srgb,var(--sc,var(--m1)) 8%,var(--paper)); border-left:3px solid var(--sc,var(--m1));
   border-radius:0 10px 10px 0; padding:13px 16px; margin-top:14px; font-size:14.5px}
-.fnote b{color:var(--sc,#4f46e5)}
-.advtag{font:700 8px sans-serif; fill:#94a3b8; letter-spacing:.06em}
+.fnote b{color:var(--sc,var(--m1))}
+.advtag{font:700 8px sans-serif; fill:var(--muted-2); letter-spacing:.06em}
 .node.adv .mbox{stroke-dasharray:4 4; opacity:.62}
 .node.adv .mtitle, .node.adv .msub{opacity:.62}
 .node.adv use{opacity:.62}
@@ -693,7 +705,7 @@ body.lang-zh .mtitle, body.lang-zh .msub{font-family:var(--cjk)}
     <div class="sechead"><h2><span class="en">Watch one click travel the whole map</span><span class="zh">看一次点击，走完整张地图</span></h2></div>
     <p style="color:var(--muted); max-width:72ch"><span class="en">The map above shows the shape. This shows the <b>movement</b>. Type a name, press save, and follow the exact same piece of data through every box — seeing both what a person sees and what is actually happening underneath. Do it three or four times: the mess that builds up in the database is the reason the last step exists.</span><span class="zh">上面那张地图给的是形状，这里给的是<b>运动</b>。输入一个名字、点保存，然后跟着同一条数据走过每一个方块 —— 同时看到"人看到的"和"底下真正发生的"。多做三四次：数据库里堆起来的那些脏东西，正是最后一步存在的理由。</span></p>
 
-    <div class="play" style="--c:#4f46e5" data-play="flow">
+    <div class="play" style="--c:var(--m1)" data-play="flow">
       <div class="play-head">
         <span class="play-badge"><span class="en">▶ Playground</span><span class="zh">▶ 动手玩</span></span>
         <h4><span class="en">The full journey, one step at a time</span><span class="zh">完整旅程，一步一步走</span></h4>
@@ -744,13 +756,13 @@ body.lang-zh .mtitle, body.lang-zh .msub{font-family:var(--cjk)}
                 <svg viewBox="0 0 200 280" aria-label="A figure gaining clothes and a nervous system">
                   <!-- cloth (CSS) -->
                   <g class="cloth">
-                    <path d="M62 108 L100 96 L138 108 L132 178 L68 178 Z" fill="#0d9488"/>
-                    <path d="M68 178 L96 178 L94 250 L74 250 Z" fill="#334155"/>
-                    <path d="M104 178 L132 178 L126 250 L106 250 Z" fill="#334155"/>
-                    <path d="M62 108 L52 150 L64 154 L72 118 Z" fill="#0f766e"/>
+                    <path d="M62 108 L100 96 L138 108 L132 178 L68 178 Z" fill="var(--m2)"/>
+                    <path d="M68 178 L96 178 L94 250 L74 250 Z" fill="var(--ink-2)"/>
+                    <path d="M104 178 L132 178 L126 250 L106 250 Z" fill="var(--ink-2)"/>
+                    <path d="M62 108 L52 150 L64 154 L72 118 Z" fill="var(--m2-deep)"/>
                     <circle cx="100" cy="52" r="26" fill="#fde68a"/>
-                    <circle cx="91" cy="48" r="2.6" fill="#334155"/><circle cx="109" cy="48" r="2.6" fill="#334155"/>
-                    <path d="M92 60 Q100 66 108 60" stroke="#334155" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    <circle cx="91" cy="48" r="2.6" fill="var(--ink-2)"/><circle cx="109" cy="48" r="2.6" fill="var(--ink-2)"/>
+                    <path d="M92 60 Q100 66 108 60" stroke="var(--ink-2)" stroke-width="2" fill="none" stroke-linecap="round"/>
                   </g>
                   <!-- skeleton (HTML) -->
                   <circle class="skull" cx="100" cy="52" r="24"/>
@@ -758,7 +770,7 @@ body.lang-zh .mtitle, body.lang-zh .msub{font-family:var(--cjk)}
                   <path class="bone" d="M72 100 L128 100"/>
                   <path class="bone" d="M76 118 L124 118"/>
                   <path class="bone" d="M80 136 L120 136"/>
-                  <g class="arm-r"><path class="cloth" d="M138 108 L148 150 L136 154 L128 118 Z" fill="#0f766e"/><path class="bone" d="M120 118 L150 152 L146 186"/></g>
+                  <g class="arm-r"><path class="cloth" d="M138 108 L148 150 L136 154 L128 118 Z" fill="var(--m2-deep)"/><path class="bone" d="M120 118 L150 152 L146 186"/></g>
                   <path class="bone" d="M80 118 L50 152 L54 186"/>
                   <path class="bone" d="M100 175 L78 215 L80 254"/>
                   <path class="bone" d="M100 175 L122 215 L120 254"/>
@@ -792,9 +804,9 @@ body.lang-zh .mtitle, body.lang-zh .msub{font-family:var(--cjk)}
             </div>
           </div>
           <div class="switches">
-            <div class="sw on locked" style="--k:#4f46e5"><i></i>HTML — <span class="en">skeleton</span><span class="zh">骨架</span></div>
-            <div class="sw" id="sw-css" style="--k:#0d9488"><i></i>CSS — <span class="en">clothes &amp; skin</span><span class="zh">衣服与皮肤</span></div>
-            <div class="sw" id="sw-js" style="--k:#d97706"><i></i>JavaScript — <span class="en">nervous system</span><span class="zh">神经系统</span></div>
+            <div class="sw on locked" style="--k:var(--m1)"><i></i>HTML — <span class="en">skeleton</span><span class="zh">骨架</span></div>
+            <div class="sw" id="sw-css" style="--k:var(--m2)"><i></i>CSS — <span class="en">clothes &amp; skin</span><span class="zh">衣服与皮肤</span></div>
+            <div class="sw" id="sw-js" style="--k:var(--m4)"><i></i>JavaScript — <span class="en">nervous system</span><span class="zh">神经系统</span></div>
           </div>
           <p id="fig-note" style="font-size:14px; margin:14px 0 0; color:var(--muted)"></p>
         </div>
@@ -803,20 +815,20 @@ body.lang-zh .mtitle, body.lang-zh .msub{font-family:var(--cjk)}
 
     <div class="devtip">
       <h4><span class="en">⌨ Try this right now — on any website in the world</span><span class="zh">⌨ 现在就试试 —— 对世界上任何一个网站</span></h4>
-      <p class="en">Here is the thing nobody tells beginners: <b style="color:#fff">every website you have ever visited is just HTML, CSS and JavaScript</b>, sent to your computer as plain text. Google, your bank, this page. The server does not send a picture of a page — it sends the skeleton, the clothes and the nervous system, and <i>your browser assembles the body locally.</i></p>
+      <p class="en">Here is the thing nobody tells beginners: <b style="color:var(--ink)">every website you have ever visited is just HTML, CSS and JavaScript</b>, sent to your computer as plain text. Google, your bank, this page. The server does not send a picture of a page — it sends the skeleton, the clothes and the nervous system, and <i>your browser assembles the body locally.</i></p>
       <p class="en">Which means you already own a copy of every site you visit, and you can open it up. Press <kbd>F12</kbd> (or <kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd> on a Mac) on any page:</p>
-      <p class="en"><b style="color:#fff">Elements</b> — the skeleton. Hover a line and the matching part of the page lights up. Edit the text and it changes in front of you (only on your screen — refresh and it's back).<br>
-      <b style="color:#fff">Styles</b> — the clothes. Change a colour and watch it repaint instantly.<br>
-      <b style="color:#fff">Console</b> — the nervous system talking. Errors appear here. So do your own <code class="inl" style="background:#1e293b;color:#e2e8f0">console.log()</code> messages.<br>
-      <b style="color:#fff">Network</b> — every request the page makes, with its status code and the exact JSON that came back.</p>
-      <p class="en">This is not a beginner's toy. It is the same tool professionals use every day, and it is why a data engineer can prove in twenty seconds whether a wrong number came from the pipeline or from the page. <b style="color:#fff">Open it on a site you use daily and just look around for five minutes.</b> Nothing you do there can break anything.</p>
-      <p class="zh">有件事没人会告诉初学者：<b style="color:#fff">你访问过的每一个网站，本质上都只是 HTML、CSS 和 JavaScript</b>，以纯文本的形式发到你的电脑上。谷歌、你的银行、这个页面，都是。服务器发过来的不是一张页面的图片——它发来的是骨架、衣服和神经系统，<i>然后由你的浏览器在本地把这具身体组装出来。</i></p>
+      <p class="en"><b style="color:var(--ink)">Elements</b> — the skeleton. Hover a line and the matching part of the page lights up. Edit the text and it changes in front of you (only on your screen — refresh and it's back).<br>
+      <b style="color:var(--ink)">Styles</b> — the clothes. Change a colour and watch it repaint instantly.<br>
+      <b style="color:var(--ink)">Console</b> — the nervous system talking. Errors appear here. So do your own <code class="inl" style="background:#1e293b;color:var(--ink)">console.log()</code> messages.<br>
+      <b style="color:var(--ink)">Network</b> — every request the page makes, with its status code and the exact JSON that came back.</p>
+      <p class="en">This is not a beginner's toy. It is the same tool professionals use every day, and it is why a data engineer can prove in twenty seconds whether a wrong number came from the pipeline or from the page. <b style="color:var(--ink)">Open it on a site you use daily and just look around for five minutes.</b> Nothing you do there can break anything.</p>
+      <p class="zh">有件事没人会告诉初学者：<b style="color:var(--ink)">你访问过的每一个网站，本质上都只是 HTML、CSS 和 JavaScript</b>，以纯文本的形式发到你的电脑上。谷歌、你的银行、这个页面，都是。服务器发过来的不是一张页面的图片——它发来的是骨架、衣服和神经系统，<i>然后由你的浏览器在本地把这具身体组装出来。</i></p>
       <p class="zh">这意味着你手上其实已经有了每个网站的一份副本，而且你可以把它打开。在任意页面按 <kbd>F12</kbd>（Mac 上是 <kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd>）：</p>
-      <p class="zh"><b style="color:#fff">Elements（元素）</b>——骨架。鼠标划过某一行，页面上对应的部分就会高亮。你甚至能直接改文字，页面当场就变（只在你的屏幕上，刷新就还原）。<br>
-      <b style="color:#fff">Styles（样式）</b>——衣服。改一个颜色，立刻重新上色。<br>
-      <b style="color:#fff">Console（控制台）</b>——神经系统在说话。报错出现在这里，你自己写的 <code class="inl" style="background:#1e293b;color:#e2e8f0">console.log()</code> 也出现在这里。<br>
-      <b style="color:#fff">Network（网络）</b>——页面发出的每一次请求，带状态码和返回的原始 JSON。</p>
-      <p class="zh">这不是给初学者玩的玩具，它就是专业人员每天用的同一个工具——也正是数据工程师能在二十秒内证明"这个错数字来自管道还是来自页面"的原因。<b style="color:#fff">找一个你每天都用的网站打开它，随便看五分钟。</b>你在里面做的任何操作都弄不坏任何东西。</p>
+      <p class="zh"><b style="color:var(--ink)">Elements（元素）</b>——骨架。鼠标划过某一行，页面上对应的部分就会高亮。你甚至能直接改文字，页面当场就变（只在你的屏幕上，刷新就还原）。<br>
+      <b style="color:var(--ink)">Styles（样式）</b>——衣服。改一个颜色，立刻重新上色。<br>
+      <b style="color:var(--ink)">Console（控制台）</b>——神经系统在说话。报错出现在这里，你自己写的 <code class="inl" style="background:#1e293b;color:var(--ink)">console.log()</code> 也出现在这里。<br>
+      <b style="color:var(--ink)">Network（网络）</b>——页面发出的每一次请求，带状态码和返回的原始 JSON。</p>
+      <p class="zh">这不是给初学者玩的玩具，它就是专业人员每天用的同一个工具——也正是数据工程师能在二十秒内证明"这个错数字来自管道还是来自页面"的原因。<b style="color:var(--ink)">找一个你每天都用的网站打开它，随便看五分钟。</b>你在里面做的任何操作都弄不坏任何东西。</p>
     </div>
 
     <div class="sechead" style="margin-top:34px"><h2 style="font-size:22px"><span class="en">The rest of the vocabulary</span><span class="zh">剩下的那些词</span></h2></div>
@@ -910,62 +922,62 @@ body.lang-zh .mtitle, body.lang-zh .msub{font-family:var(--cjk)}
 
 <style>
 /* ===== terminal ===== */
-#cli{--c:#334155}
+#cli{--c:var(--ink-2)}
 .term{background:#0b1020; border:1px solid #1e293b; border-radius:14px; overflow:hidden; box-shadow:0 14px 40px rgba(15,23,42,.25)}
 .term-bar{background:#111a2e; padding:9px 14px; display:flex; align-items:center; gap:7px; border-bottom:1px solid #1e293b}
 .term-bar i{width:11px; height:11px; border-radius:50%; display:block}
-.term-bar .t{margin-left:10px; font:600 12px var(--mono); color:#64748b}
-.term-out{height:330px; overflow-y:auto; padding:14px 16px; font:13px/1.62 var(--mono); color:#cbd5e1; white-space:pre-wrap; word-break:break-word}
+.term-bar .t{margin-left:10px; font:600 12px var(--mono); color:var(--muted)}
+.term-out{height:330px; overflow-y:auto; padding:14px 16px; font:13px/1.62 var(--mono); color:var(--ink-2); white-space:pre-wrap; word-break:break-word}
 .term-out .cmd{color:#5eead4}
 .term-out .ps{color:#818cf8}
 .term-out .err{color:#fca5a5}
 .term-out .ok{color:#86efac}
-.term-out .dim{color:#64748b}
+.term-out .dim{color:var(--muted)}
 .term-in{display:flex; align-items:center; gap:8px; border-top:1px solid #1e293b; padding:10px 16px; background:#0b1020}
 .term-in span{font:13px var(--mono); color:#818cf8; white-space:nowrap}
-.term-in input{flex:1; background:transparent; border:0; outline:0; color:#e2e8f0; font:13px var(--mono); caret-color:#5eead4}
+.term-in input{flex:1; background:transparent; border:0; outline:0; color:var(--ink); font:13px var(--mono); caret-color:#5eead4}
 .cli-cols{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:18px 0}
 @media(max-width:800px){.cli-cols{grid-template-columns:1fr}}
-.gui-mock{background:#eef2f7; border:1px solid var(--line); border-radius:14px; overflow:hidden}
-.gui-bar{background:#dde5ee; padding:9px 14px; font:600 12px inherit; color:#475569; border-bottom:1px solid #cbd5e1; display:flex; gap:7px; align-items:center}
+.gui-mock{background:var(--surface-4); border:1px solid var(--line); border-radius:14px; overflow:hidden}
+.gui-bar{background:var(--line); padding:9px 14px; font:600 12px inherit; color:var(--ink-2); border-bottom:1px solid var(--line-2); display:flex; gap:7px; align-items:center}
 .gui-bar i{width:11px;height:11px;border-radius:50%;display:block}
-.gui-body{height:330px; overflow:auto; padding:12px; background:#fff}
+.gui-body{height:330px; overflow:auto; padding:12px; background:var(--paper)}
 .gfile{display:flex; align-items:center; gap:11px; padding:8px 10px; border-radius:8px; font-size:14px; cursor:default}
-.gfile:hover{background:#f1f5f9}
-.gfile .ic2{width:26px; height:32px; border-radius:3px; background:#e2e8f0; border:1px solid #cbd5e1; position:relative; flex:none}
+.gfile:hover{background:var(--surface-4)}
+.gfile .ic2{width:26px; height:32px; border-radius:3px; background:var(--line); border:1px solid var(--line-2); position:relative; flex:none}
 .gfile .ic2.dir{background:#fde68a; border-color:#f59e0b; height:26px; border-radius:3px 3px 3px 3px}
-.gfile small{margin-left:auto; color:#94a3b8; font-size:12px; font-family:var(--mono)}
+.gfile small{margin-left:auto; color:var(--muted-2); font-size:12px; font-family:var(--mono)}
 </style>
 
 <style>
 /* ===== tech stack atlas ===== */
-#stack{--c:#4338ca}
+#stack{--c:var(--m1-deep)}
 .catgrid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:20px}
 @media(max-width:860px){.catgrid{grid-template-columns:1fr}}
-.cat{border:1.5px solid var(--line); border-radius:16px; background:#fff; overflow:hidden; box-shadow:var(--shadow)}
+.cat{border:1.5px solid var(--line); border-radius:16px; background:var(--paper); overflow:hidden; box-shadow:var(--shadow)}
 .cathead{padding:13px 18px; display:flex; align-items:center; gap:11px; border-bottom:1px solid var(--line);
-  background:linear-gradient(90deg, color-mix(in srgb,var(--ck) 12%,#fff), color-mix(in srgb,var(--ck) 3%,#fff))}
+  background:linear-gradient(90deg, color-mix(in srgb,var(--ck) 12%,var(--paper)), color-mix(in srgb,var(--ck) 3%,var(--paper)))}
 .cathead svg{width:20px;height:20px;color:var(--ck);flex:none}
 .cathead b{font-size:15px}
 .cathead .where{margin-left:auto; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
-  color:var(--ck); background:color-mix(in srgb,var(--ck) 12%,#fff); padding:3px 9px; border-radius:6px; white-space:nowrap}
+  color:var(--ck); background:color-mix(in srgb,var(--ck) 12%,var(--paper)); padding:3px 9px; border-radius:6px; white-space:nowrap}
 .chips{display:flex; flex-wrap:wrap; gap:8px; padding:15px 18px}
-.chip2{display:flex; align-items:center; gap:8px; border:1.5px solid var(--line); background:#fbfbf9; border-radius:10px;
+.chip2{display:flex; align-items:center; gap:8px; border:1.5px solid var(--line); background:var(--surface-2); border-radius:10px;
   padding:6px 12px 6px 6px; cursor:pointer; font:650 13px inherit; color:var(--ink); transition:.15s}
 .chip2:hover{border-color:var(--tc); transform:translateY(-2px); box-shadow:0 6px 16px color-mix(in srgb,var(--tc) 22%,transparent)}
 .chip2 .lg{width:26px;height:26px;border-radius:7px;background:var(--tc);color:#fff;display:grid;place-items:center;
   font:800 10.5px var(--mono); flex:none; letter-spacing:-.3px}
 .chip2 .lvl{width:7px;height:7px;border-radius:50%;flex:none;margin-left:2px}
-.lvl.must{background:#059669}.lvl.good{background:#d97706}.lvl.later{background:#cbd5e1}
+.lvl.must{background:var(--ok)}.lvl.good{background:var(--m4)}.lvl.later{background:var(--line-2)}
 .legend{display:flex; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted); margin-top:16px; align-items:center}
 .legend span{display:flex; align-items:center; gap:6px}
 .legend i{width:8px;height:8px;border-radius:50%;display:block}
-.mdl-where{display:flex; align-items:center; gap:8px; font-size:13.5px; background:#f1f5f9; border-radius:10px;
+.mdl-where{display:flex; align-items:center; gap:8px; font-size:13.5px; background:var(--surface-4); border-radius:10px;
   padding:10px 14px; margin-bottom:14px; font-weight:650}
 .mdl-where i{width:10px;height:10px;border-radius:50%;display:block;flex:none}
 .pill{display:inline-block; font:800 10.5px inherit; letter-spacing:.08em; text-transform:uppercase;
   padding:4px 10px; border-radius:999px; margin-bottom:10px}
-.pill.must{background:#d1fae5;color:#065f46}.pill.good{background:#fef3c7;color:#92400e}.pill.later{background:#e2e8f0;color:#475569}
+.pill.must{background:color-mix(in srgb, var(--ok) 16%, var(--paper));color:var(--ok-deep)}.pill.good{background:color-mix(in srgb, var(--m4) 16%, var(--paper));color:var(--m4-deep)}.pill.later{background:var(--line);color:var(--ink-2)}
 </style>
 
 <section id="stack">
@@ -975,9 +987,9 @@ body.lang-zh .mtitle, body.lang-zh .msub{font-family:var(--cjk)}
     <p style="color:var(--muted); max-width:72ch"><span class="en"><b>Click any one</b> for what it is, where it sits, and whether you actually need it this year.</span><span class="zh"><b>点任意一个</b>，看它是什么、在哪一层、以及今年你到底需不需要它。</span></p>
 
     <div class="legend">
-      <span><i style="background:#059669"></i><span class="en">Must learn this year</span><span class="zh">今年必学</span></span>
-      <span><i style="background:#d97706"></i><span class="en">Good to recognise</span><span class="zh">认得就行</span></span>
-      <span><i style="background:#cbd5e1"></i><span class="en">Later — or never</span><span class="zh">以后再说 —— 或者永远不用</span></span>
+      <span><i style="background:var(--ok)"></i><span class="en">Must learn this year</span><span class="zh">今年必学</span></span>
+      <span><i style="background:var(--m4)"></i><span class="en">Good to recognise</span><span class="zh">认得就行</span></span>
+      <span><i style="background:var(--line-2)"></i><span class="en">Later — or never</span><span class="zh">以后再说 —— 或者永远不用</span></span>
     </div>
 
     <div class="catgrid" id="catgrid"></div>
@@ -1004,7 +1016,7 @@ body.lang-zh .mtitle, body.lang-zh .msub{font-family:var(--cjk)}
     <div class="sechead"><h2><span class="en">The terminal — how computers actually work</span><span class="zh">终端 —— 电脑其实是怎么运作的</span></h2></div>
     <p style="color:var(--muted); max-width:70ch"><span class="en">This is the single biggest gap between someone who uses a computer and someone who works on one. It is also much simpler than it looks.</span><span class="zh">这是"用电脑的人"和"在电脑上工作的人"之间最大的一道鸿沟。而它其实比看起来简单得多。</span></p>
 
-    <div class="analogy" style="--c:#334155">
+    <div class="analogy" style="--c:var(--ink-2)">
       <span class="lab"><span class="en">🧪 The instrument has a screen. It also has a keypad.</span><span class="zh">🧪 仪器有屏幕，也有键盘。</span></span>
       <p class="en">Think of a lab instrument with a nice touchscreen: tap <i>Run</i>, tap <i>Export</i>. Lovely for one sample. Now imagine the supervisor says: run all 400 samples overnight, with three different settings, and log every result.</p>
       <p class="en">You cannot tap that. But the same instrument has a command port where you can send it typed instructions — and <i>those</i> can be written down, repeated, scheduled and reviewed. <b>The touchscreen is the GUI. The command port is the CLI.</b> They drive the same machine.</p>
@@ -1012,7 +1024,7 @@ body.lang-zh .mtitle, body.lang-zh .msub{font-family:var(--cjk)}
       <p class="zh">这个你点不出来。但同一台仪器还有一个命令端口，可以给它发送打字指令——而<i>那些指令</i>是可以被写下来、重复、定时、审阅的。<b>触摸屏就是 GUI，命令端口就是 CLI。</b>它们驱动的是同一台机器。</p>
     </div>
 
-    <div class="lens" style="--c:#334155">
+    <div class="lens" style="--c:var(--ink-2)">
       <div class="lens-tabs">
         <button class="on"><span class="en">WHY</span><span class="zh">为什么</span></button>
         <button><span class="en">THEN → NOW</span><span class="zh">以前 → 现在</span></button>
@@ -1068,7 +1080,7 @@ body.lang-zh .mtitle, body.lang-zh .msub{font-family:var(--cjk)}
       </div>
     </div>
 
-    <div class="play" style="--c:#334155" data-play="term">
+    <div class="play" style="--c:var(--ink-2)" data-play="term">
       <div class="play-head">
         <span class="play-badge"><span class="en">▶ Playground</span><span class="zh">▶ 动手玩</span></span>
         <h4><span class="en">A real terminal, and the same folder as a window</span><span class="zh">一个真实的终端，以及同一个文件夹的窗口视图</span></h4>
@@ -1164,7 +1176,7 @@ sudo &lt;anything&gt;     <span class="cm"># do it as administrator / 以管理�
       </div>
     </details>
 
-    <div class="rw" style="--c:#334155">
+    <div class="rw" style="--c:var(--ink-2)">
       <div class="rwh"><span class="en">◈ Real-world example</span><span class="zh">◈ 真实场景</span></div>
       <p class="scene en">It's 9am. The nightly pipeline didn't produce a file, and three people are waiting on the report.</p>
       <p class="en">There is no screen to look at — the job runs on a Linux server in a data centre you will never visit. You <code class="inl">ssh</code> in. <code class="inl">tail -n 50 nightly.log</code> shows the run started and stopped after 40 seconds. <code class="inl">grep -i error nightly.log</code> gives you one line: <i>no space left on device</i>. <code class="inl">df -h</code> confirms it: the disk is 100% full. <code class="inl">du -sh *</code> shows an old log folder has quietly grown to 400 GB.</p>
@@ -1204,8 +1216,8 @@ sudo &lt;anything&gt;     <span class="cm"># do it as administrator / 以管理�
         <p class="zh">CPU、内存与内存管理；为什么 C 快而 Python 慢；以及 AWS/Azure、网络和安全是怎么拼在一起的。</p></div></a>
     </div>
     <div class="prog-ring" style="margin-top:20px">
-      <svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="15.9" fill="none" stroke="#e3e0d8" stroke-width="3.6"/>
-        <circle id="ring" cx="18" cy="18" r="15.9" fill="none" stroke="#0d9488" stroke-width="3.6" stroke-linecap="round"
+      <svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="15.9" fill="none" stroke="var(--line)" stroke-width="3.6"/>
+        <circle id="ring" cx="18" cy="18" r="15.9" fill="none" stroke="var(--m2)" stroke-width="3.6" stroke-linecap="round"
           stroke-dasharray="0 100" transform="rotate(-90 18 18)" style="transition:stroke-dasharray .4s ease"/></svg>
       <div><b id="progtxt"></b>
         <small class="en">Tick tasks as you complete them — progress shows here and in the bar at the top.</small>
@@ -1227,8 +1239,8 @@ sudo &lt;anything&gt;     <span class="cm"># do it as administrator / 以管理�
 .stage.run .a1-b1{animation:a1glow 7s ease-in-out infinite}
 .stage.run .a1-b2{animation:a1glow 7s ease-in-out infinite; animation-delay:-5.9s}
 .stage.run .a1-b3{animation:a1glow 7s ease-in-out infinite; animation-delay:-4.4s}
-@keyframes a1glow{0%,10%{stroke:#4f46e5; stroke-width:2.5; filter:drop-shadow(0 0 6px rgba(79,70,229,.4))}
-  22%,100%{stroke:#cfd6dd; stroke-width:1.5; filter:none}}
+@keyframes a1glow{0%,10%{stroke:var(--m1); stroke-width:2.5; filter:drop-shadow(0 0 6px rgba(79,70,229,.4))}
+  22%,100%{stroke:var(--line); stroke-width:1.5; filter:none}}
 .a1-cap{opacity:0}
 .stage.run .a1-cap{animation:a1cap 7s ease-in-out infinite}
 .stage.run .a1-c2{animation-delay:-5.9s}
@@ -1250,7 +1262,7 @@ sudo &lt;anything&gt;     <span class="cm"># do it as administrator / 以管理�
 .stage.run .a3-join{animation:a3join .8s ease 1.4s both}
 @keyframes a3join{from{opacity:0; transform:translateY(14px) scale(.96)}to{opacity:1; transform:none}}
 .stage.run .a3-key{animation:a3pulse 2.4s ease-in-out 1.2s infinite}
-@keyframes a3pulse{0%,100%{fill:#fff}50%{fill:#fde68a}}
+@keyframes a3pulse{0%,100%{fill:var(--paper)}50%{fill:#fde68a}}
 </style>
 
 <section id="m1" style="--c:var(--m1)">
@@ -1288,11 +1300,11 @@ sudo &lt;anything&gt;     <span class="cm"># do it as administrator / 以管理�
           <text class="sv-ttl" x="690" y="92" text-anchor="middle"><tspan class="en">DATABASE</tspan><tspan class="zh">数据库</tspan></text>
           <text class="sv-sm" x="690" y="112" text-anchor="middle"><tspan class="en">SQL · tables · rows</tspan><tspan class="zh">SQL · 表 · 行</tspan></text>
           <text class="sv-sm" x="690" y="130" text-anchor="middle"><tspan class="en">the sample freezer</tspan><tspan class="zh">样本冷冻柜</tspan></text>
-          <circle class="a1-dot" cx="208" cy="105" r="8" fill="#4f46e5"/>
-          <text class="sv-sm a1-cap a1-c1" x="400" y="30" text-anchor="middle" style="font-size:12px;fill:#4f46e5"><tspan class="en">1 · She clicks "Show my results"</tspan><tspan class="zh">1 · 她点了"查看我的结果"</tspan></text>
-          <text class="sv-sm a1-cap a1-c2" x="400" y="30" text-anchor="middle" style="font-size:12px;fill:#4f46e5"><tspan class="en">2 · Backend checks who she is, decides what she may see</tspan><tspan class="zh">2 · 后端确认她是谁，决定她能看什么</tspan></text>
-          <text class="sv-sm a1-cap a1-c3" x="400" y="30" text-anchor="middle" style="font-size:12px;fill:#4f46e5"><tspan class="en">3 · Database returns the matching rows</tspan><tspan class="zh">3 · 数据库返回匹配的数据行</tspan></text>
-          <text class="sv-sm a1-cap a1-c4" x="400" y="30" text-anchor="middle" style="font-size:12px;fill:#0d9488"><tspan class="en">4 · Backend formats them, frontend draws the table</tspan><tspan class="zh">4 · 后端整理格式，前端把表画出来</tspan></text>
+          <circle class="a1-dot" cx="208" cy="105" r="8" fill="var(--m1)"/>
+          <text class="sv-sm a1-cap a1-c1" x="400" y="30" text-anchor="middle" style="font-size:12px;fill:var(--m1)"><tspan class="en">1 · She clicks "Show my results"</tspan><tspan class="zh">1 · 她点了"查看我的结果"</tspan></text>
+          <text class="sv-sm a1-cap a1-c2" x="400" y="30" text-anchor="middle" style="font-size:12px;fill:var(--m1)"><tspan class="en">2 · Backend checks who she is, decides what she may see</tspan><tspan class="zh">2 · 后端确认她是谁，决定她能看什么</tspan></text>
+          <text class="sv-sm a1-cap a1-c3" x="400" y="30" text-anchor="middle" style="font-size:12px;fill:var(--m1)"><tspan class="en">3 · Database returns the matching rows</tspan><tspan class="zh">3 · 数据库返回匹配的数据行</tspan></text>
+          <text class="sv-sm a1-cap a1-c4" x="400" y="30" text-anchor="middle" style="font-size:12px;fill:var(--m2)"><tspan class="en">4 · Backend formats them, frontend draws the table</tspan><tspan class="zh">4 · 后端整理格式，前端把表画出来</tspan></text>
         </svg>
         <p class="note"><span class="en">Every app you will ever touch is this picture. Only the box sizes change.</span><span class="zh">你以后接触的每一个系统都是这张图。变的只是每个框的大小。</span></p>
       </div>
@@ -1377,29 +1389,29 @@ document.<span class="fn">getElementById</span>(<span class="st">"btn"</span>).<
 
 <style>
 /* ===== PLAYGROUND component (shared) ===== */
-.play{border:1.5px solid var(--c); border-radius:18px; background:#fff; margin:26px 0; overflow:hidden;
+.play{border:1.5px solid var(--c); border-radius:18px; background:var(--paper); margin:26px 0; overflow:hidden;
   box-shadow:0 10px 30px color-mix(in srgb,var(--c) 12%,transparent)}
 .play-head{display:flex; align-items:center; gap:12px; padding:16px 22px;
-  background:linear-gradient(90deg,color-mix(in srgb,var(--c) 12%,#fff),color-mix(in srgb,var(--c) 3%,#fff));
-  border-bottom:1px solid color-mix(in srgb,var(--c) 25%,#fff); flex-wrap:wrap}
-.play-badge{font-size:10.5px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:#fff;
+  background:linear-gradient(90deg,color-mix(in srgb,var(--c) 12%,var(--paper)),color-mix(in srgb,var(--c) 3%,var(--paper)));
+  border-bottom:1px solid color-mix(in srgb,var(--c) 25%,var(--paper)); flex-wrap:wrap}
+.play-badge{font-size:10.5px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--paper);
   background:var(--c); padding:4px 10px; border-radius:999px; flex:none}
 .play-head h4{margin:0; font-size:16px}
 .play-head .sub2{font-size:13px; color:var(--muted); width:100%; margin:0}
 .play-body{padding:20px 22px}
-.pbtn{border:1.5px solid var(--line); background:#fff; color:var(--ink); font:650 13px inherit;
+.pbtn{border:1.5px solid var(--line); background:var(--paper); color:var(--ink); font:650 13px inherit;
   padding:7px 14px; border-radius:9px; cursor:pointer; transition:.15s; white-space:nowrap}
 .pbtn:hover{border-color:var(--c); color:var(--c); transform:translateY(-1px)}
-.pbtn.active{background:var(--c); border-color:var(--c); color:#fff}
+.pbtn.active{background:var(--c); border-color:var(--c); color:var(--paper)}
 .pbtn:disabled{opacity:.4; cursor:not-allowed; transform:none}
 .pbtn.ghost{background:transparent; border-style:dashed}
 .prow{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:14px}
 .sandbox{display:grid; grid-template-columns:1fr 1fr; gap:14px}
 @media(max-width:760px){.sandbox{grid-template-columns:1fr}}
 .sandbox textarea{width:100%; height:230px; border:1px solid #1e293b; border-radius:10px; background:#0f172a;
-  color:#e2e8f0; font:12.5px/1.6 var(--mono); padding:14px; resize:vertical; outline:none}
+  color:var(--ink); font:12.5px/1.6 var(--mono); padding:14px; resize:vertical; outline:none}
 .sandbox textarea:focus{border-color:var(--c)}
-.sandbox iframe{width:100%; height:230px; border:1px solid var(--line); border-radius:10px; background:#fff}
+.sandbox iframe{width:100%; height:230px; border:1px solid var(--line); border-radius:10px; background:var(--paper)}
 .plabel{font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:6px; display:block}
 </style>
 
@@ -1615,14 +1627,14 @@ S-003 → FAIL   <span class="cm"># volume too low / 体积不够</span>
             <g class="a3-row a3-r1"><rect class="sv-box" x="470" y="32" width="310" height="30" rx="5"/><rect class="sv-box a3-key" x="470" y="32" width="70" height="30" rx="5"/><text class="sv-lbl keepmono" x="484" y="52">P-01</text><text class="sv-lbl keepmono" x="552" y="52">Glucose</text><text class="sv-lbl keepmono" x="680" y="52">5.4</text></g>
             <g class="a3-row a3-r2"><rect class="sv-box" x="470" y="66" width="310" height="30" rx="5"/><rect class="sv-box a3-key" x="470" y="66" width="70" height="30" rx="5"/><text class="sv-lbl keepmono" x="484" y="86">P-02</text><text class="sv-lbl keepmono" x="552" y="86">Glucose</text><text class="sv-lbl keepmono" x="680" y="86">6.9</text></g>
             <g class="a3-row a3-r3"><rect class="sv-box" x="470" y="100" width="310" height="30" rx="5"/><rect class="sv-box a3-key" x="470" y="100" width="70" height="30" rx="5"/><text class="sv-lbl keepmono" x="484" y="120">P-01</text><text class="sv-lbl keepmono" x="552" y="120">HbA1c</text><text class="sv-lbl keepmono" x="680" y="120">5.1</text></g>
-            <text class="sv-sm" x="400" y="165" text-anchor="middle" style="font-size:12px;fill:#d97706"><tspan class="en">the highlighted column is the shared key — JOIN matches on it</tspan><tspan class="zh">高亮那一列是共享的键 —— JOIN 就是按它匹配的</tspan></text>
+            <text class="sv-sm" x="400" y="165" text-anchor="middle" style="font-size:12px;fill:var(--m4)"><tspan class="en">the highlighted column is the shared key — JOIN matches on it</tspan><tspan class="zh">高亮那一列是共享的键 —— JOIN 就是按它匹配的</tspan></text>
             <g class="a3-join">
               <text class="sv-ttl" x="130" y="205"><tspan class="en">JOIN result — one temporary view, nothing duplicated on disk</tspan><tspan class="zh">JOIN 的结果 —— 一个临时视图，磁盘上没有任何重复</tspan></text>
-              <rect class="sv-box" x="130" y="215" width="540" height="30" rx="5" style="fill:#f0fdfa;stroke:#0d9488"/>
+              <rect class="sv-box" x="130" y="215" width="540" height="30" rx="5" style="fill:color-mix(in srgb, var(--m2) 8%, var(--paper));stroke:var(--m2)"/>
               <text class="sv-lbl keepmono" x="146" y="235">Aisha Rahman</text><text class="sv-lbl keepmono" x="300" y="235">Ipoh</text><text class="sv-lbl keepmono" x="430" y="235">Glucose</text><text class="sv-lbl keepmono" x="560" y="235">5.4</text>
-              <rect class="sv-box" x="130" y="249" width="540" height="30" rx="5" style="fill:#f0fdfa;stroke:#0d9488"/>
+              <rect class="sv-box" x="130" y="249" width="540" height="30" rx="5" style="fill:color-mix(in srgb, var(--m2) 8%, var(--paper));stroke:var(--m2)"/>
               <text class="sv-lbl keepmono" x="146" y="269">Aisha Rahman</text><text class="sv-lbl keepmono" x="300" y="269">Ipoh</text><text class="sv-lbl keepmono" x="430" y="269">HbA1c</text><text class="sv-lbl keepmono" x="560" y="269">5.1</text>
-              <rect class="sv-box" x="130" y="283" width="540" height="30" rx="5" style="fill:#f0fdfa;stroke:#0d9488"/>
+              <rect class="sv-box" x="130" y="283" width="540" height="30" rx="5" style="fill:color-mix(in srgb, var(--m2) 8%, var(--paper));stroke:var(--m2)"/>
               <text class="sv-lbl keepmono" x="146" y="303">Wei Ling</text><text class="sv-lbl keepmono" x="300" y="303">Penang</text><text class="sv-lbl keepmono" x="430" y="303">Glucose</text><text class="sv-lbl keepmono" x="560" y="303">6.9</text>
             </g>
           </svg>
@@ -1873,7 +1885,7 @@ resp = requests.<span class="fn">get</span>(
 .gitcanvas{background:#0f172a; border-radius:12px; padding:8px; overflow-x:auto}
 .gitcanvas svg{min-width:520px}
 .gitlog{background:#0f172a; border-radius:12px; padding:14px 16px; max-height:190px; overflow-y:auto;
-  font:12.5px/1.7 var(--mono); color:#94a3b8}
+  font:12.5px/1.7 var(--mono); color:var(--muted-2)}
 .gitlog b{color:#5eead4}
 .gitlog .warnl{color:#fca5a5}
 .gnode{transition:all .45s cubic-bezier(.2,.8,.3,1.2)}
@@ -1981,12 +1993,12 @@ samples.<span class="fn">map</span>(s =&gt; &lt;<span class="fn">SampleCard</spa
         <div class="stage" data-anim>
           <div class="cap"><span><span class="en">Animation · what a framework gives you for free</span><span class="zh">动画 · 框架白送给你的东西</span></span><button class="replay"><span class="en">↻ Replay</span><span class="zh">↻ 重播</span></button></div>
           <svg viewBox="0 0 800 250">
-            <g class="fw-brick fw-b1"><rect x="60" y="200" width="680" height="30" rx="6" style="fill:#e6f7f5;stroke:#0d9488;stroke-width:1.2"/><text class="sv-lbl" x="400" y="220" text-anchor="middle"><tspan class="en">HTTP server &amp; request parsing</tspan><tspan class="zh">HTTP 服务与请求解析</tspan></text></g>
-            <g class="fw-brick fw-b2"><rect x="60" y="166" width="680" height="30" rx="6" style="fill:#e6f7f5;stroke:#0d9488;stroke-width:1.2"/><text class="sv-lbl" x="400" y="186" text-anchor="middle"><tspan class="en">Routing — matching a URL to your function</tspan><tspan class="zh">路由 —— 把 URL 匹配到你的函数</tspan></text></g>
-            <g class="fw-brick fw-b3"><rect x="60" y="132" width="680" height="30" rx="6" style="fill:#e6f7f5;stroke:#0d9488;stroke-width:1.2"/><text class="sv-lbl" x="400" y="152" text-anchor="middle"><tspan class="en">Serialisation — Python objects ⇄ JSON</tspan><tspan class="zh">序列化 —— Python 对象 ⇄ JSON</tspan></text></g>
-            <g class="fw-brick fw-b4"><rect x="60" y="98" width="680" height="30" rx="6" style="fill:#e6f7f5;stroke:#0d9488;stroke-width:1.2"/><text class="sv-lbl" x="400" y="118" text-anchor="middle"><tspan class="en">Error handling &amp; sensible status codes</tspan><tspan class="zh">错误处理与合理的状态码</tspan></text></g>
-            <g class="fw-brick fw-b5"><rect x="60" y="64" width="680" height="30" rx="6" style="fill:#e6f7f5;stroke:#0d9488;stroke-width:1.2"/><text class="sv-lbl" x="400" y="84" text-anchor="middle"><tspan class="en">Security defaults — headers, escaping, sessions</tspan><tspan class="zh">安全默认值 —— 响应头、转义、会话</tspan></text></g>
-            <g class="fw-you"><rect x="210" y="18" width="380" height="34" rx="8" style="fill:#0f766e;stroke:#0f766e"/><text x="400" y="40" text-anchor="middle" style="font:700 13px -apple-system,sans-serif;fill:#fff"><tspan class="en">YOUR ACTUAL LOGIC — 20 lines</tspan><tspan class="zh">你真正的业务逻辑 —— 20 行</tspan></text></g>
+            <g class="fw-brick fw-b1"><rect x="60" y="200" width="680" height="30" rx="6" style="fill:color-mix(in srgb, var(--m2) 10%, var(--paper));stroke:var(--m2);stroke-width:1.2"/><text class="sv-lbl" x="400" y="220" text-anchor="middle"><tspan class="en">HTTP server &amp; request parsing</tspan><tspan class="zh">HTTP 服务与请求解析</tspan></text></g>
+            <g class="fw-brick fw-b2"><rect x="60" y="166" width="680" height="30" rx="6" style="fill:color-mix(in srgb, var(--m2) 10%, var(--paper));stroke:var(--m2);stroke-width:1.2"/><text class="sv-lbl" x="400" y="186" text-anchor="middle"><tspan class="en">Routing — matching a URL to your function</tspan><tspan class="zh">路由 —— 把 URL 匹配到你的函数</tspan></text></g>
+            <g class="fw-brick fw-b3"><rect x="60" y="132" width="680" height="30" rx="6" style="fill:color-mix(in srgb, var(--m2) 10%, var(--paper));stroke:var(--m2);stroke-width:1.2"/><text class="sv-lbl" x="400" y="152" text-anchor="middle"><tspan class="en">Serialisation — Python objects ⇄ JSON</tspan><tspan class="zh">序列化 —— Python 对象 ⇄ JSON</tspan></text></g>
+            <g class="fw-brick fw-b4"><rect x="60" y="98" width="680" height="30" rx="6" style="fill:color-mix(in srgb, var(--m2) 10%, var(--paper));stroke:var(--m2);stroke-width:1.2"/><text class="sv-lbl" x="400" y="118" text-anchor="middle"><tspan class="en">Error handling &amp; sensible status codes</tspan><tspan class="zh">错误处理与合理的状态码</tspan></text></g>
+            <g class="fw-brick fw-b5"><rect x="60" y="64" width="680" height="30" rx="6" style="fill:color-mix(in srgb, var(--m2) 10%, var(--paper));stroke:var(--m2);stroke-width:1.2"/><text class="sv-lbl" x="400" y="84" text-anchor="middle"><tspan class="en">Security defaults — headers, escaping, sessions</tspan><tspan class="zh">安全默认值 —— 响应头、转义、会话</tspan></text></g>
+            <g class="fw-you"><rect x="210" y="18" width="380" height="34" rx="8" style="fill:var(--m2-deep);stroke:var(--m2-deep)"/><text x="400" y="40" text-anchor="middle" style="font:700 13px -apple-system,sans-serif;fill:var(--paper)"><tspan class="en">YOUR ACTUAL LOGIC — 20 lines</tspan><tspan class="zh">你真正的业务逻辑 —— 20 行</tspan></text></g>
           </svg>
           <p class="note"><span class="en">The framework is the bottom five layers. Your job is the small green block — and knowing what's under it when it breaks.</span><span class="zh">下面五层是框架给的。你的工作是最上面那个小绿块——以及在它出问题时，知道底下是什么。</span></p>
         </div>
@@ -2291,17 +2303,17 @@ threshold = 0.95        <span class="cm"># your version / 你的</span>
   60%{transform:translate(380px,-60px)}72%{transform:translate(380px,-60px)}
   88%{transform:translate(0,0); opacity:1}100%{transform:translate(0,0); opacity:0}}
 /* prompt lab */
-.meter{height:12px; border-radius:999px; background:#eceae4; overflow:hidden; margin:8px 0}
-.meter i{display:block; height:100%; width:0; border-radius:999px; background:#dc2626; transition:width .45s cubic-bezier(.2,.8,.3,1), background-color .4s ease}
+.meter{height:12px; border-radius:999px; background:var(--surface-3); overflow:hidden; margin:8px 0}
+.meter i{display:block; height:100%; width:0; border-radius:999px; background:var(--no); transition:width .45s cubic-bezier(.2,.8,.3,1), background-color .4s ease}
 .scorehead{display:flex; justify-content:space-between; align-items:baseline; font-size:13px; font-weight:700}
 .ingr{display:grid; grid-template-columns:1fr 1fr; gap:8px}
 @media(max-width:700px){.ingr{grid-template-columns:1fr}}
-.ing{display:flex; gap:10px; align-items:flex-start; border:1.5px solid var(--line); border-radius:10px; padding:10px 13px; cursor:pointer; transition:.15s; background:#fbfbf9}
+.ing{display:flex; gap:10px; align-items:flex-start; border:1.5px solid var(--line); border-radius:10px; padding:10px 13px; cursor:pointer; transition:.15s; background:var(--surface-2)}
 .ing:hover{border-color:var(--c)}
 .ing input{margin-top:4px; accent-color:var(--c); width:16px; height:16px; flex:none}
 .ing b{font-size:14px; display:block}
 .ing small{font-size:12.5px; color:var(--muted); line-height:1.5}
-.ing:has(input:checked){border-color:var(--c); background:color-mix(in srgb,var(--c) 7%,#fff)}
+.ing:has(input:checked){border-color:var(--c); background:color-mix(in srgb,var(--c) 7%,var(--paper))}
 </style>
 
 <section id="m3" style="--c:var(--m3)">
@@ -2382,25 +2394,25 @@ threshold = 0.95        <span class="cm"># your version / 你的</span>
           <div class="cap"><span><span class="en">Animation · next-token prediction, one step at a time</span><span class="zh">动画 · 逐个 token 的预测过程</span></span><button class="replay"><span class="en">↻ Replay</span><span class="zh">↻ 重播</span></button></div>
           <svg viewBox="0 0 800 250">
             <text class="sv-sm" x="40" y="34" style="font-size:12px"><tspan class="en">Your prompt →</tspan><tspan class="zh">你的提示词 →</tspan></text>
-            <rect class="sv-box" x="40" y="46" width="300" height="34" rx="8" style="fill:#faf5ff;stroke:#9333ea"/>
+            <rect class="sv-box" x="40" y="46" width="300" height="34" rx="8" style="fill:color-mix(in srgb, var(--m3) 7%, var(--paper));stroke:var(--m3)"/>
             <text class="sv-lbl keepmono" x="56" y="68">The QC threshold for purity</text>
-            <g class="tok tk1"><rect x="352" y="46" width="52" height="34" rx="7" style="fill:#f3e8ff;stroke:#9333ea"/><text class="sv-lbl keepmono" x="378" y="68" text-anchor="middle">was</text></g>
-            <g class="tok tk2"><rect x="410" y="46" width="72" height="34" rx="7" style="fill:#f3e8ff;stroke:#9333ea"/><text class="sv-lbl keepmono" x="446" y="68" text-anchor="middle">raised</text></g>
-            <g class="tok tk3"><rect x="488" y="46" width="42" height="34" rx="7" style="fill:#f3e8ff;stroke:#9333ea"/><text class="sv-lbl keepmono" x="509" y="68" text-anchor="middle">to</text></g>
-            <g class="tok tk4"><rect x="536" y="46" width="60" height="34" rx="7" style="fill:#f3e8ff;stroke:#9333ea"/><text class="sv-lbl keepmono" x="566" y="68" text-anchor="middle">0.95</text></g>
-            <g class="tok tk5"><rect x="602" y="46" width="34" height="34" rx="7" style="fill:#f3e8ff;stroke:#9333ea"/><text class="sv-lbl keepmono" x="619" y="68" text-anchor="middle">in</text></g>
-            <g class="tok tk6"><rect x="642" y="46" width="62" height="34" rx="7" style="fill:#f3e8ff;stroke:#9333ea"/><text class="sv-lbl keepmono" x="673" y="68" text-anchor="middle">March</text></g>
+            <g class="tok tk1"><rect x="352" y="46" width="52" height="34" rx="7" style="fill:color-mix(in srgb, var(--m3) 12%, var(--paper));stroke:var(--m3)"/><text class="sv-lbl keepmono" x="378" y="68" text-anchor="middle">was</text></g>
+            <g class="tok tk2"><rect x="410" y="46" width="72" height="34" rx="7" style="fill:color-mix(in srgb, var(--m3) 12%, var(--paper));stroke:var(--m3)"/><text class="sv-lbl keepmono" x="446" y="68" text-anchor="middle">raised</text></g>
+            <g class="tok tk3"><rect x="488" y="46" width="42" height="34" rx="7" style="fill:color-mix(in srgb, var(--m3) 12%, var(--paper));stroke:var(--m3)"/><text class="sv-lbl keepmono" x="509" y="68" text-anchor="middle">to</text></g>
+            <g class="tok tk4"><rect x="536" y="46" width="60" height="34" rx="7" style="fill:color-mix(in srgb, var(--m3) 12%, var(--paper));stroke:var(--m3)"/><text class="sv-lbl keepmono" x="566" y="68" text-anchor="middle">0.95</text></g>
+            <g class="tok tk5"><rect x="602" y="46" width="34" height="34" rx="7" style="fill:color-mix(in srgb, var(--m3) 12%, var(--paper));stroke:var(--m3)"/><text class="sv-lbl keepmono" x="619" y="68" text-anchor="middle">in</text></g>
+            <g class="tok tk6"><rect x="642" y="46" width="62" height="34" rx="7" style="fill:color-mix(in srgb, var(--m3) 12%, var(--paper));stroke:var(--m3)"/><text class="sv-lbl keepmono" x="673" y="68" text-anchor="middle">March</text></g>
             <g class="probg"><text class="sv-sm" x="40" y="126" style="font-size:12px"><tspan class="en">At each step it is really choosing between candidates:</tspan><tspan class="zh">每一步，它其实是在候选词之间做选择：</tspan></text></g>
             <g class="probg"><text class="sv-lbl keepmono" x="40" y="158">"March"</text></g>
-            <rect class="pbarr pb1" x="130" y="145" width="380" height="16" rx="4" fill="#9333ea"/>
+            <rect class="pbarr pb1" x="130" y="145" width="380" height="16" rx="4" fill="var(--m3)"/>
             <g class="probg"><text class="sv-sm" x="524" y="158">62%</text></g>
             <g class="probg"><text class="sv-lbl keepmono" x="40" y="186">"April"</text></g>
             <rect class="pbarr pb2" x="130" y="173" width="150" height="16" rx="4" fill="#c084fc"/>
             <g class="probg"><text class="sv-sm" x="294" y="186">24%</text></g>
             <g class="probg"><text class="sv-lbl keepmono" x="40" y="214">"2019"</text></g>
-            <rect class="pbarr pb3" x="130" y="201" width="70" height="16" rx="4" fill="#ddd6fe"/>
+            <rect class="pbarr pb3" x="130" y="201" width="70" height="16" rx="4" fill="color-mix(in srgb, var(--m1) 20%, var(--paper))"/>
             <g class="probg"><text class="sv-sm" x="214" y="214">9%</text></g>
-            <g class="probg"><text class="sv-sm" x="40" y="240" style="fill:#b45309"><tspan class="en">It picked the most likely word — not the true one. It has no idea which is which.</tspan><tspan class="zh">它选的是最可能的词，不是真实的词。而且它分不清这两者。</tspan></text></g>
+            <g class="probg"><text class="sv-sm" x="40" y="240" style="fill:var(--m4-deep)"><tspan class="en">It picked the most likely word — not the true one. It has no idea which is which.</tspan><tspan class="zh">它选的是最可能的词，不是真实的词。而且它分不清这两者。</tspan></text></g>
           </svg>
         </div>
 
@@ -2659,9 +2671,9 @@ list any assumption you had to make."""</span>
         <div class="stage" data-anim>
           <div class="cap"><span><span class="en">Animation · how an agent reaches your real systems</span><span class="zh">动画 · Agent 怎么连到你真实的系统</span></span><button class="replay"><span class="en">↻ Replay</span><span class="zh">↻ 重播</span></button></div>
           <svg viewBox="0 0 800 230">
-            <g class="mcp-el mc1"><rect class="sv-box" x="30" y="88" width="160" height="70" rx="12" style="stroke:#9333ea"/>
+            <g class="mcp-el mc1"><rect class="sv-box" x="30" y="88" width="160" height="70" rx="12" style="stroke:var(--m3)"/>
               <text class="sv-ttl" x="110" y="116" text-anchor="middle"><tspan class="en">AI AGENT</tspan><tspan class="zh">AI AGENT</tspan></text><text class="sv-sm" x="110" y="136" text-anchor="middle"><tspan class="en">decides what to do</tspan><tspan class="zh">决定做什么</tspan></text></g>
-            <g class="mcp-el mc2"><rect class="sv-box" x="320" y="88" width="150" height="70" rx="12" style="stroke:#d97706;stroke-dasharray:5 4"/>
+            <g class="mcp-el mc2"><rect class="sv-box" x="320" y="88" width="150" height="70" rx="12" style="stroke:var(--m4);stroke-dasharray:5 4"/>
               <text class="sv-ttl" x="395" y="112" text-anchor="middle">MCP</text><text class="sv-sm" x="395" y="130" text-anchor="middle"><tspan class="en">the standard socket</tspan><tspan class="zh">标准插口</tspan></text><text class="sv-sm" x="395" y="146" text-anchor="middle"><tspan class="en">+ permissions</tspan><tspan class="zh">+ 权限控制</tspan></text></g>
             <g class="mcp-el mc3"><rect class="sv-box" x="600" y="18" width="170" height="52" rx="10"/><text class="sv-lbl" x="685" y="40" text-anchor="middle"><tspan class="en">Data warehouse</tspan><tspan class="zh">数据仓库</tspan></text><text class="sv-sm" x="685" y="58" text-anchor="middle"><tspan class="en">read-only SQL</tspan><tspan class="zh">只读 SQL</tspan></text></g>
             <g class="mcp-el mc4"><rect class="sv-box" x="600" y="88" width="170" height="52" rx="10"/><text class="sv-lbl" x="685" y="110" text-anchor="middle"><tspan class="en">Internal REST API</tspan><tspan class="zh">内部 REST API</tspan></text><text class="sv-sm" x="685" y="128" text-anchor="middle"><tspan class="en">sample service</tspan><tspan class="zh">样本服务</tspan></text></g>
@@ -2670,7 +2682,7 @@ list any assumption you had to make."""</span>
             <line class="sv-line" x1="470" y1="123" x2="600" y2="44"/>
             <line class="sv-line" x1="470" y1="123" x2="600" y2="114"/>
             <line class="sv-line" x1="470" y1="123" x2="600" y2="184"/>
-            <circle class="mcp-dot" cx="200" cy="123" r="7" fill="#d97706"/>
+            <circle class="mcp-dot" cx="200" cy="123" r="7" fill="var(--m4)"/>
           </svg>
           <p class="note"><span class="en">The dashed box is the important one: MCP is also where you decide what the agent is <b>allowed</b> to touch.</span><span class="zh">虚线那个框才是关键：MCP 也是你决定 Agent <b>被允许</b>碰什么的地方。</span></p>
         </div>
@@ -2780,8 +2792,8 @@ list any assumption you had to make."""</span>
 @keyframes gdraw2{to{stroke-dashoffset:0}}
 /* data cleaner */
 .dtbl{width:100%; border-collapse:collapse; font:12.5px var(--mono)}
-.dtbl th{background:#1e293b; color:#94a3b8; font-size:11px; text-align:left; padding:8px 10px; position:sticky; top:0}
-.dtbl td{padding:7px 10px; border-bottom:1px solid #1e293b; color:#e2e8f0; transition:all .4s ease}
+.dtbl th{background:#1e293b; color:var(--muted-2); font-size:11px; text-align:left; padding:8px 10px; position:sticky; top:0}
+.dtbl td{padding:7px 10px; border-bottom:1px solid #1e293b; color:var(--ink); transition:all .4s ease}
 .dtbl td.bad{color:#fca5a5; background:rgba(220,38,38,.12)}
 .dtbl td.fixed{color:#86efac; background:rgba(5,150,105,.14)}
 .dtbl tr.gone{opacity:.2; text-decoration:line-through}
@@ -3031,35 +3043,35 @@ summary &lt;- samples |&gt;
           <div class="cap"><span><span class="en">Animation · an ETL pipeline running</span><span class="zh">动画 · 一条 ETL 管道在跑</span></span><button class="replay"><span class="en">↻ Replay</span><span class="zh">↻ 重播</span></button></div>
           <svg viewBox="0 0 800 240">
             <g class="etl-stage etl-s1">
-              <rect class="sv-box" x="20" y="70" width="150" height="100" rx="12" style="stroke:#d97706"/>
-              <text class="sv-ttl" x="95" y="52" text-anchor="middle" style="fill:#d97706"><tspan class="en">EXTRACT</tspan><tspan class="zh">抽取</tspan></text>
+              <rect class="sv-box" x="20" y="70" width="150" height="100" rx="12" style="stroke:var(--m4)"/>
+              <text class="sv-ttl" x="95" y="52" text-anchor="middle" style="fill:var(--m4)"><tspan class="en">EXTRACT</tspan><tspan class="zh">抽取</tspan></text>
               <text class="sv-sm" x="95" y="100" text-anchor="middle"><tspan class="en">APIs · CSVs</tspan><tspan class="zh">API · CSV</tspan></text>
               <text class="sv-sm" x="95" y="118" text-anchor="middle"><tspan class="en">databases · logs</tspan><tspan class="zh">数据库 · 日志</tspan></text>
-              <text class="sv-sm" x="95" y="140" text-anchor="middle" style="fill:#dc2626"><tspan class="en">messy, inconsistent</tspan><tspan class="zh">脏、不一致</tspan></text>
+              <text class="sv-sm" x="95" y="140" text-anchor="middle" style="fill:var(--no)"><tspan class="en">messy, inconsistent</tspan><tspan class="zh">脏、不一致</tspan></text>
             </g>
             <g class="etl-stage etl-s2">
-              <rect class="sv-box" x="290" y="70" width="150" height="100" rx="12" style="stroke:#d97706"/>
-              <text class="sv-ttl" x="365" y="52" text-anchor="middle" style="fill:#d97706"><tspan class="en">TRANSFORM</tspan><tspan class="zh">转换</tspan></text>
+              <rect class="sv-box" x="290" y="70" width="150" height="100" rx="12" style="stroke:var(--m4)"/>
+              <text class="sv-ttl" x="365" y="52" text-anchor="middle" style="fill:var(--m4)"><tspan class="en">TRANSFORM</tspan><tspan class="zh">转换</tspan></text>
               <text class="sv-sm" x="365" y="100" text-anchor="middle"><tspan class="en">clean · dedupe</tspan><tspan class="zh">清洗 · 去重</tspan></text>
               <text class="sv-sm" x="365" y="118" text-anchor="middle"><tspan class="en">standardise · validate</tspan><tspan class="zh">标准化 · 校验</tspan></text>
               <text class="sv-sm" x="365" y="140" text-anchor="middle"><tspan class="en">join · derive</tspan><tspan class="zh">关联 · 派生</tspan></text>
             </g>
             <g class="etl-stage etl-s3">
-              <rect class="sv-box" x="560" y="70" width="150" height="100" rx="12" style="stroke:#d97706"/>
-              <text class="sv-ttl" x="635" y="52" text-anchor="middle" style="fill:#d97706"><tspan class="en">LOAD</tspan><tspan class="zh">加载</tspan></text>
+              <rect class="sv-box" x="560" y="70" width="150" height="100" rx="12" style="stroke:var(--m4)"/>
+              <text class="sv-ttl" x="635" y="52" text-anchor="middle" style="fill:var(--m4)"><tspan class="en">LOAD</tspan><tspan class="zh">加载</tspan></text>
               <text class="sv-sm" x="635" y="100" text-anchor="middle"><tspan class="en">warehouse</tspan><tspan class="zh">数据仓库</tspan></text>
               <text class="sv-sm" x="635" y="118" text-anchor="middle"><tspan class="en">modelled tables</tspan><tspan class="zh">建模好的表</tspan></text>
-              <text class="sv-sm" x="635" y="140" text-anchor="middle" style="fill:#059669"><tspan class="en">trusted, queryable</tspan><tspan class="zh">可信、可查</tspan></text>
+              <text class="sv-sm" x="635" y="140" text-anchor="middle" style="fill:var(--ok)"><tspan class="en">trusted, queryable</tspan><tspan class="zh">可信、可查</tspan></text>
             </g>
             <line class="sv-line" x1="170" y1="120" x2="290" y2="120" stroke-dasharray="4 4"/>
             <line class="sv-line" x1="440" y1="120" x2="560" y2="120" stroke-dasharray="4 4"/>
-            <circle class="drop d1" cx="180" cy="120" r="6" fill="#d97706"/>
-            <circle class="drop d2" cx="180" cy="120" r="6" fill="#d97706"/>
+            <circle class="drop d1" cx="180" cy="120" r="6" fill="var(--m4)"/>
+            <circle class="drop d2" cx="180" cy="120" r="6" fill="var(--m4)"/>
             <circle class="drop d3" cx="180" cy="120" r="6" fill="#f59e0b"/>
             <circle class="drop d4" cx="180" cy="120" r="6" fill="#f59e0b"/>
             <circle class="drop d5" cx="180" cy="120" r="6" fill="#fbbf24"/>
-            <text class="sv-lbl keepmono dirty" x="20" y="205" style="fill:#dc2626">"ipoh ", NULL, 0.98, "12/3/25"</text>
-            <text class="sv-lbl keepmono clean" x="780" y="205" text-anchor="end" style="fill:#059669">IPOH, 2025-03-12, 0.98, PASS</text>
+            <text class="sv-lbl keepmono dirty" x="20" y="205" style="fill:var(--no)">"ipoh ", NULL, 0.98, "12/3/25"</text>
+            <text class="sv-lbl keepmono clean" x="780" y="205" text-anchor="end" style="fill:var(--ok)">IPOH, 2025-03-12, 0.98, PASS</text>
             <text class="sv-sm" x="400" y="228" text-anchor="middle"><tspan class="en">same input in → same output out, every single run</tspan><tspan class="zh">同样的输入 → 同样的输出，每一次都是</tspan></text>
           </svg>
         </div>
@@ -3143,8 +3155,8 @@ summary &lt;- samples |&gt;
             <line class="st-line sv-line" x1="470" y1="150" x2="600" y2="150"/>
             <line class="st-line sv-line" x1="400" y1="180" x2="400" y2="230"/>
             <g class="st-el st-c">
-              <rect class="sv-box" x="330" y="120" width="140" height="60" rx="10" style="fill:#fff7ed;stroke:#d97706;stroke-width:2.5"/>
-              <text class="sv-ttl" x="400" y="144" text-anchor="middle" style="fill:#b45309">fact_test_result</text>
+              <rect class="sv-box" x="330" y="120" width="140" height="60" rx="10" style="fill:color-mix(in srgb, var(--m4) 9%, var(--paper));stroke:var(--m4);stroke-width:2.5"/>
+              <text class="sv-ttl" x="400" y="144" text-anchor="middle" style="fill:var(--m4-deep)">fact_test_result</text>
               <text class="sv-sm" x="400" y="164" text-anchor="middle"><tspan class="en">one row = one test run</tspan><tspan class="zh">一行 = 一次检测</tspan></text>
             </g>
             <g class="st-el st-d1"><rect class="sv-box" x="320" y="18" width="160" height="52" rx="10"/><text class="sv-lbl keepmono" x="400" y="40" text-anchor="middle">dim_patient</text><text class="sv-sm" x="400" y="58" text-anchor="middle"><tspan class="en">age band, city</tspan><tspan class="zh">年龄段、城市</tspan></text></g>
@@ -3261,15 +3273,15 @@ summary &lt;- samples |&gt;
 .lat{display:grid; gap:10px}
 .latrow{display:grid; grid-template-columns:150px 1fr 110px; gap:12px; align-items:center; font-size:13.5px}
 @media(max-width:700px){.latrow{grid-template-columns:110px 1fr 80px; font-size:12.5px}}
-.lattrack{height:22px; background:#eceae4; border-radius:6px; overflow:hidden; position:relative}
+.lattrack{height:22px; background:var(--surface-3); border-radius:6px; overflow:hidden; position:relative}
 .latfill{height:100%; width:0; border-radius:6px; background:var(--c); transition:width linear}
 .latrow b{font-family:var(--mono); font-size:12.5px; text-align:right}
 /* autoscale */
 .servers{display:flex; gap:8px; flex-wrap:wrap; min-height:64px; align-items:flex-end; margin:14px 0}
 .srv{width:44px; height:56px; border-radius:8px; border:1.5px solid var(--c);
-  background:color-mix(in srgb,var(--c) 10%,#fff); display:grid; place-items:center; font-size:10px;
+  background:color-mix(in srgb,var(--c) 10%,var(--paper)); display:grid; place-items:center; font-size:10px;
   font-weight:800; color:var(--c); animation:srvin .35s cubic-bezier(.2,.8,.3,1.2) both}
-.srv.hot{background:#fee2e2; border-color:#dc2626; color:#dc2626}
+.srv.hot{background:color-mix(in srgb, var(--no) 14%, var(--paper)); border-color:var(--no); color:var(--no)}
 @keyframes srvin{from{opacity:0; transform:translateY(14px) scale(.7)}to{opacity:1; transform:none}}
 input[type=range]{width:100%; accent-color:var(--c)}
 </style>
@@ -3348,18 +3360,18 @@ input[type=range]{width:100%; accent-color:var(--c)}
         <div class="stage" data-anim>
           <div class="cap"><span><span class="en">Animation · the memory hierarchy</span><span class="zh">动画 · 存储层级</span></span><button class="replay"><span class="en">↻ Replay</span><span class="zh">↻ 重播</span></button></div>
           <svg viewBox="0 0 800 260">
-            <g class="mem-el me1"><rect class="sv-box" x="250" y="20" width="300" height="52" rx="10" style="fill:#fff1f2;stroke:#e11d48;stroke-width:2.5"/>
-              <text class="sv-ttl" x="400" y="42" text-anchor="middle" style="fill:#be123c"><tspan class="en">CPU + cache</tspan><tspan class="zh">CPU + 缓存</tspan></text>
+            <g class="mem-el me1"><rect class="sv-box" x="250" y="20" width="300" height="52" rx="10" style="fill:color-mix(in srgb, var(--m5) 7%, var(--paper));stroke:var(--m5);stroke-width:2.5"/>
+              <text class="sv-ttl" x="400" y="42" text-anchor="middle" style="fill:var(--m5-deep)"><tspan class="en">CPU + cache</tspan><tspan class="zh">CPU + 缓存</tspan></text>
               <text class="sv-sm" x="400" y="60" text-anchor="middle"><tspan class="en">tiny · ~1 nanosecond · does all the thinking</tspan><tspan class="zh">极小 · 约 1 纳秒 · 所有计算都在这</tspan></text></g>
-            <g class="mem-el me2"><rect class="sv-box" x="180" y="84" width="440" height="52" rx="10" style="fill:#fef2f2;stroke:#fb7185;stroke-width:2"/>
+            <g class="mem-el me2"><rect class="sv-box" x="180" y="84" width="440" height="52" rx="10" style="fill:color-mix(in srgb, var(--no) 8%, var(--paper));stroke:#fb7185;stroke-width:2"/>
               <text class="sv-ttl" x="400" y="106" text-anchor="middle"><tspan class="en">RAM</tspan><tspan class="zh">内存 RAM</tspan></text>
               <text class="sv-sm" x="400" y="124" text-anchor="middle"><tspan class="en">GBs · ~100 ns (100× slower) · erased on power off</tspan><tspan class="zh">GB 级 · 约 100 纳秒（慢 100 倍）· 断电即失</tspan></text></g>
-            <g class="mem-el me3"><rect class="sv-box" x="110" y="148" width="580" height="52" rx="10" style="fill:#fafafa;stroke:#94a3b8;stroke-width:2"/>
+            <g class="mem-el me3"><rect class="sv-box" x="110" y="148" width="580" height="52" rx="10" style="fill:var(--surface-2);stroke:var(--muted-2);stroke-width:2"/>
               <text class="sv-ttl" x="400" y="170" text-anchor="middle"><tspan class="en">SSD / DISK</tspan><tspan class="zh">固态硬盘 / 磁盘</tspan></text>
               <text class="sv-sm" x="400" y="188" text-anchor="middle"><tspan class="en">TBs · ~100,000 ns (100,000× slower) · survives reboot</tspan><tspan class="zh">TB 级 · 约 10 万纳秒（慢 10 万倍）· 重启仍在</tspan></text></g>
-            <g class="mem-el me4"><rect class="sv-box" x="40" y="212" width="720" height="40" rx="10" style="fill:#f8fafc;stroke:#cbd5e1;stroke-dasharray:5 4"/>
+            <g class="mem-el me4"><rect class="sv-box" x="40" y="212" width="720" height="40" rx="10" style="fill:var(--surface-2);stroke:var(--line-2);stroke-dasharray:5 4"/>
               <text class="sv-sm" x="400" y="237" text-anchor="middle"><tspan class="en">NETWORK / object storage (S3, Blob) — effectively unlimited · milliseconds · another building entirely</tspan><tspan class="zh">网络 / 对象存储（S3、Blob）—— 容量几乎无限 · 毫秒级 · 完全是另一栋楼</tspan></text></g>
-            <circle class="memdot" cx="740" cy="174" r="7" fill="#e11d48"/>
+            <circle class="memdot" cx="740" cy="174" r="7" fill="var(--m5)"/>
           </svg>
           <p class="note"><span class="en">If a nanosecond were one second, reading from disk would take about <b>a day and a half</b>. That is why "just load it all into memory" is usually the fix.</span><span class="zh">如果一纳秒等于一秒，那么读一次磁盘大约要<b>一天半</b>。这就是为什么"干脆全加载进内存"通常就是解法。</span></p>
         </div>
@@ -3455,14 +3467,14 @@ input[type=range]{width:100%; accent-color:var(--c)}
           <svg viewBox="0 0 800 200">
             <line class="sv-line" x1="120" y1="60" x2="700" y2="60" stroke-dasharray="4 4"/>
             <line class="sv-line" x1="120" y1="140" x2="700" y2="140" stroke-dasharray="4 4"/>
-            <text class="sv-ttl" x="20" y="65" style="fill:#0d9488">C</text>
-            <text class="sv-ttl" x="20" y="145" style="fill:#4f46e5">Python</text>
-            <g class="compile-box"><rect x="120" y="26" width="112" height="26" rx="6" style="fill:#ccfbf1;stroke:#0d9488"/><text class="sv-sm" x="176" y="44" text-anchor="middle" style="fill:#0f766e"><tspan class="en">compiling…</tspan><tspan class="zh">编译中…</tspan></text></g>
-            <g class="race-c"><circle cx="128" cy="60" r="10" fill="#0d9488"/></g>
-            <g class="race-py"><circle cx="128" cy="140" r="10" fill="#4f46e5"/></g>
-            <g class="py-step"><text class="sv-sm" x="176" y="172" text-anchor="middle" style="fill:#4f46e5"><tspan class="en">translating line 1… line 2… line 3… every single pass</tspan><tspan class="zh">翻译第 1 行… 第 2 行… 第 3 行… 每一轮都翻一遍</tspan></text></g>
-            <line x1="700" y1="42" x2="700" y2="78" stroke="#94a3b8" stroke-width="3" stroke-dasharray="6 6"/>
-            <line x1="700" y1="122" x2="700" y2="158" stroke="#94a3b8" stroke-width="3" stroke-dasharray="6 6"/>
+            <text class="sv-ttl" x="20" y="65" style="fill:var(--m2)">C</text>
+            <text class="sv-ttl" x="20" y="145" style="fill:var(--m1)">Python</text>
+            <g class="compile-box"><rect x="120" y="26" width="112" height="26" rx="6" style="fill:color-mix(in srgb, var(--m2) 16%, var(--paper));stroke:var(--m2)"/><text class="sv-sm" x="176" y="44" text-anchor="middle" style="fill:var(--m2-deep)"><tspan class="en">compiling…</tspan><tspan class="zh">编译中…</tspan></text></g>
+            <g class="race-c"><circle cx="128" cy="60" r="10" fill="var(--m2)"/></g>
+            <g class="race-py"><circle cx="128" cy="140" r="10" fill="var(--m1)"/></g>
+            <g class="py-step"><text class="sv-sm" x="176" y="172" text-anchor="middle" style="fill:var(--m1)"><tspan class="en">translating line 1… line 2… line 3… every single pass</tspan><tspan class="zh">翻译第 1 行… 第 2 行… 第 3 行… 每一轮都翻一遍</tspan></text></g>
+            <line x1="700" y1="42" x2="700" y2="78" stroke="var(--muted-2)" stroke-width="3" stroke-dasharray="6 6"/>
+            <line x1="700" y1="122" x2="700" y2="158" stroke="var(--muted-2)" stroke-width="3" stroke-dasharray="6 6"/>
             <text class="sv-sm" x="716" y="64"><tspan class="en">done</tspan><tspan class="zh">完成</tspan></text>
             <text class="sv-sm" x="716" y="144"><tspan class="en">done</tspan><tspan class="zh">完成</tspan></text>
             <text class="sv-sm" x="400" y="16" text-anchor="middle"><tspan class="en">C pauses to translate once, then sprints. Python leaves immediately and jogs the whole way.</tspan><tspan class="zh">C 先停下来翻译一次，然后冲刺。Python 立刻出发，然后一路慢跑。</tspan></text>
@@ -3572,15 +3584,15 @@ input[type=range]{width:100%; accent-color:var(--c)}
           <div class="cap"><span><span class="en">Animation · the shape of a cloud system</span><span class="zh">动画 · 一个云系统的形状</span></span><button class="replay"><span class="en">↻ Replay</span><span class="zh">↻ 重播</span></button></div>
           <svg viewBox="0 0 800 280">
             <g class="cl-el cl1"><rect class="sv-box" x="20" y="110" width="110" height="52" rx="10"/><text class="sv-lbl" x="75" y="132" text-anchor="middle"><tspan class="en">Users</tspan><tspan class="zh">用户</tspan></text><text class="sv-sm" x="75" y="150" text-anchor="middle"><tspan class="en">the internet</tspan><tspan class="zh">互联网</tspan></text></g>
-            <g class="cl-el cl2"><g class="cl-shield"><rect class="sv-box" x="170" y="102" width="110" height="68" rx="10" style="stroke:#e11d48;stroke-dasharray:5 4"/></g>
-              <text class="sv-lbl" x="225" y="126" text-anchor="middle" style="fill:#be123c"><tspan class="en">Firewall</tspan><tspan class="zh">防火墙</tspan></text>
+            <g class="cl-el cl2"><g class="cl-shield"><rect class="sv-box" x="170" y="102" width="110" height="68" rx="10" style="stroke:var(--m5);stroke-dasharray:5 4"/></g>
+              <text class="sv-lbl" x="225" y="126" text-anchor="middle" style="fill:var(--m5-deep)"><tspan class="en">Firewall</tspan><tspan class="zh">防火墙</tspan></text>
               <text class="sv-sm" x="225" y="144" text-anchor="middle"><tspan class="en">+ identity</tspan><tspan class="zh">+ 身份认证</tspan></text>
               <text class="sv-sm" x="225" y="160" text-anchor="middle"><tspan class="en">who may enter?</tspan><tspan class="zh">谁可以进？</tspan></text></g>
             <g class="cl-el cl3"><rect class="sv-box" x="320" y="110" width="120" height="52" rx="10"/><text class="sv-lbl" x="380" y="132" text-anchor="middle"><tspan class="en">Load balancer</tspan><tspan class="zh">负载均衡</tspan></text><text class="sv-sm" x="380" y="150" text-anchor="middle"><tspan class="en">shares the queue</tspan><tspan class="zh">分摊请求</tspan></text></g>
             <g class="cl-el cl4"><rect class="sv-box" x="490" y="40" width="120" height="44" rx="9"/><text class="sv-lbl" x="550" y="67" text-anchor="middle"><tspan class="en">Server 1</tspan><tspan class="zh">服务器 1</tspan></text></g>
             <g class="cl-el cl4"><rect class="sv-box" x="490" y="94" width="120" height="44" rx="9"/><text class="sv-lbl" x="550" y="121" text-anchor="middle"><tspan class="en">Server 2</tspan><tspan class="zh">服务器 2</tspan></text></g>
-            <g class="cl-el cl5"><rect class="sv-box" x="490" y="148" width="120" height="44" rx="9" style="stroke:#059669;stroke-dasharray:5 4"/><text class="sv-lbl" x="550" y="175" text-anchor="middle" style="fill:#047857"><tspan class="en">Server 3 (new)</tspan><tspan class="zh">服务器 3（新增）</tspan></text></g>
-            <g class="cl-el cl5"><text class="sv-sm" x="550" y="210" text-anchor="middle" style="fill:#047857"><tspan class="en">auto-scaled: busy → add, quiet → remove</tspan><tspan class="zh">自动伸缩：忙了加，闲了减</tspan></text></g>
+            <g class="cl-el cl5"><rect class="sv-box" x="490" y="148" width="120" height="44" rx="9" style="stroke:var(--ok);stroke-dasharray:5 4"/><text class="sv-lbl" x="550" y="175" text-anchor="middle" style="fill:var(--ok-deep)"><tspan class="en">Server 3 (new)</tspan><tspan class="zh">服务器 3（新增）</tspan></text></g>
+            <g class="cl-el cl5"><text class="sv-sm" x="550" y="210" text-anchor="middle" style="fill:var(--ok-deep)"><tspan class="en">auto-scaled: busy → add, quiet → remove</tspan><tspan class="zh">自动伸缩：忙了加，闲了减</tspan></text></g>
             <g class="cl-el cl4"><rect class="sv-box" x="660" y="40" width="120" height="52" rx="10"/><text class="sv-lbl" x="720" y="62" text-anchor="middle"><tspan class="en">Database</tspan><tspan class="zh">数据库</tspan></text><text class="sv-sm" x="720" y="80" text-anchor="middle"><tspan class="en">private subnet</tspan><tspan class="zh">私有子网</tspan></text></g>
             <g class="cl-el cl4"><rect class="sv-box" x="660" y="104" width="120" height="52" rx="10"/><text class="sv-lbl" x="720" y="126" text-anchor="middle"><tspan class="en">Object store</tspan><tspan class="zh">对象存储</tspan></text><text class="sv-sm" x="720" y="144" text-anchor="middle">S3 / Blob</text></g>
             <line class="sv-line" x1="130" y1="136" x2="170" y2="136"/>
@@ -3590,7 +3602,7 @@ input[type=range]{width:100%; accent-color:var(--c)}
             <line class="sv-line" x1="440" y1="136" x2="490" y2="170"/>
             <line class="sv-line" x1="610" y1="62" x2="660" y2="66"/>
             <line class="sv-line" x1="610" y1="116" x2="660" y2="126"/>
-            <text class="sv-sm" x="782" y="180" text-anchor="end" style="fill:#be123c"><tspan class="en">↑ not reachable from the internet</tspan><tspan class="zh">↑ 互联网访问不到</tspan></text>
+            <text class="sv-sm" x="782" y="180" text-anchor="end" style="fill:var(--m5-deep)"><tspan class="en">↑ not reachable from the internet</tspan><tspan class="zh">↑ 互联网访问不到</tspan></text>
             <text class="sv-sm" x="400" y="268" text-anchor="middle"><tspan class="en">Every cloud diagram you'll ever see is a variation on this. AWS and Azure just use different product names.</tspan><tspan class="zh">你以后看到的每张云架构图都是这张的变体。AWS 和 Azure 只是产品名不同。</tspan></text>
           </svg>
         </div>
@@ -3694,86 +3706,86 @@ input[type=range]{width:100%; accent-color:var(--c)}
 
 <style>
 /* ===== zero & one ===== */
-#zero{--c:#0f766e}
+#zero{--c:var(--m2-deep)}
 .bitrow{display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin:8px 0 18px}
 .bit{width:62px; text-align:center}
-.bit .sw2{width:100%; height:64px; border-radius:12px; border:2px solid var(--line); background:#fff;
-  font:800 24px var(--mono); color:#94a3b8; cursor:pointer; transition:.2s; display:grid; place-items:center}
+.bit .sw2{width:100%; height:64px; border-radius:12px; border:2px solid var(--line); background:var(--paper);
+  font:800 24px var(--mono); color:var(--muted-2); cursor:pointer; transition:.2s; display:grid; place-items:center}
 .bit .sw2:hover{border-color:var(--c)}
-.bit .sw2.on{background:var(--c); border-color:var(--c); color:#fff; box-shadow:0 6px 18px color-mix(in srgb,var(--c) 35%,transparent)}
+.bit .sw2.on{background:var(--c); border-color:var(--c); color:var(--paper); box-shadow:0 6px 18px color-mix(in srgb,var(--c) 35%,transparent)}
 .bit small{display:block; font-size:10.5px; color:var(--muted); margin-top:5px; font-family:var(--mono)}
 .bitout{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:16px 0}
 @media(max-width:700px){.bitout{grid-template-columns:repeat(2,1fr)}}
 .bo{background:#0f172a; border-radius:12px; padding:14px 16px; text-align:center}
 .bo b{display:block; font:800 24px var(--mono); color:#5eead4; line-height:1.3; word-break:break-all}
-.bo span{font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:#64748b; font-weight:700}
+.bo span{font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); font-weight:700}
 .nameout{background:#0f172a; border-radius:12px; padding:14px 16px; margin-top:12px; overflow-x:auto}
 .nameout pre{padding:0; font-size:12.5px}
 /* tower */
 .tower{display:grid; gap:5px; margin:20px 0}
 .floor{display:grid; grid-template-columns:44px 1fr auto; gap:14px; align-items:center; cursor:pointer;
-  border:1.5px solid var(--line); border-radius:11px; padding:11px 16px; background:#fff; transition:.18s; text-align:left; font:inherit; color:inherit}
+  border:1.5px solid var(--line); border-radius:11px; padding:11px 16px; background:var(--paper); transition:.18s; text-align:left; font:inherit; color:inherit}
 .floor:hover{border-color:var(--c); transform:translateX(4px)}
-.floor.on{border-color:var(--c); background:color-mix(in srgb,var(--c) 8%,#fff); box-shadow:var(--shadow)}
-.floor .lv{font:800 12px var(--mono); color:var(--c); background:color-mix(in srgb,var(--c) 13%,#fff);
+.floor.on{border-color:var(--c); background:color-mix(in srgb,var(--c) 8%,var(--paper)); box-shadow:var(--shadow)}
+.floor .lv{font:800 12px var(--mono); color:var(--c); background:color-mix(in srgb,var(--c) 13%,var(--paper));
   border-radius:7px; padding:5px 0; text-align:center}
 .floor .nm{font-weight:700; font-size:15px}
 .floor .nm small{display:block; font-weight:400; font-size:13px; color:var(--muted); margin-top:1px}
 .floor .built{font-size:11px; color:var(--muted); font-family:var(--mono); white-space:nowrap}
-.towerdetail{background:#0f172a; color:#cbd5e1; border-radius:14px; padding:22px 24px; margin-top:14px; min-height:120px}
+.towerdetail{background:#0f172a; color:var(--ink-2); border-radius:14px; padding:22px 24px; margin-top:14px; min-height:120px}
 .towerdetail h4{color:#5eead4; margin:0 0 8px; font-size:17px}
 .towerdetail p{margin:0 0 10px; font-size:15px}
 .towerdetail p:last-child{margin:0}
-.towerdetail b{color:#fff}
+.towerdetail b{color:var(--ink)}
 .essay{max-width:72ch}
 .essay h3{font-size:22px; margin-top:32px}
 .bigq{font-size:clamp(21px,3vw,27px); font-weight:800; line-height:1.4; margin:26px 0; color:var(--ink)}
 .parallel{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:18px 0}
 @media(max-width:700px){.parallel{grid-template-columns:1fr}}
-.par{background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px 17px}
+.par{background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:14px 17px}
 .par h5{margin:0 0 6px; font-size:14px; color:var(--m2); letter-spacing:.03em}
 .par p{margin:0; font-size:14px; color:var(--muted)}
 </style>
 
 <style>
 /* ===== hosting ladder + architecture showcase ===== */
-#scale{--c:#0369a1}
+#scale{--c:var(--info-deep)}
 .ladder{display:grid; gap:6px; margin:18px 0}
 .rung{display:grid; grid-template-columns:38px 1fr auto; gap:14px; align-items:center; cursor:pointer;
-  border:1.5px solid var(--line); border-radius:11px; padding:12px 16px; background:#fff; transition:.18s; text-align:left; font:inherit; color:inherit}
+  border:1.5px solid var(--line); border-radius:11px; padding:12px 16px; background:var(--paper); transition:.18s; text-align:left; font:inherit; color:inherit}
 .rung:hover{border-color:var(--c); transform:translateX(4px)}
-.rung.on{border-color:var(--c); background:color-mix(in srgb,var(--c) 8%,#fff); box-shadow:var(--shadow)}
-.rung .n2{font:800 12px var(--mono); color:var(--c); background:color-mix(in srgb,var(--c) 13%,#fff); border-radius:7px; padding:5px 0; text-align:center}
+.rung.on{border-color:var(--c); background:color-mix(in srgb,var(--c) 8%,var(--paper)); box-shadow:var(--shadow)}
+.rung .n2{font:800 12px var(--mono); color:var(--c); background:color-mix(in srgb,var(--c) 13%,var(--paper)); border-radius:7px; padding:5px 0; text-align:center}
 .rung .nm{font-weight:700; font-size:15px}
 .rung .nm small{display:block; font-weight:400; font-size:13px; color:var(--muted); margin-top:1px}
 .rung .who{font-size:11px; color:var(--muted); font-family:var(--mono); white-space:nowrap}
-.rungdetail{background:#0f172a; color:#cbd5e1; border-radius:14px; padding:22px 24px; margin-top:14px; min-height:110px}
+.rungdetail{background:#0f172a; color:var(--ink-2); border-radius:14px; padding:22px 24px; margin-top:14px; min-height:110px}
 .rungdetail h4{color:#7dd3fc; margin:0 0 8px; font-size:17px}
 .rungdetail p{margin:0 0 9px; font-size:15px} .rungdetail p:last-child{margin:0}
-.rungdetail b{color:#fff}
+.rungdetail b{color:var(--ink)}
 /* showcase */
 .showtabs{display:flex; gap:8px; flex-wrap:wrap; margin:22px 0 0}
-.showtab{border:1.5px solid var(--line); background:#fff; border-radius:12px; padding:12px 18px; cursor:pointer; font:inherit; text-align:left; transition:.18s; flex:1 1 180px}
+.showtab{border:1.5px solid var(--line); background:var(--paper); border-radius:12px; padding:12px 18px; cursor:pointer; font:inherit; text-align:left; transition:.18s; flex:1 1 180px}
 .showtab:hover{border-color:var(--c)}
-.showtab.on{border-color:var(--c); background:var(--c); color:#fff; box-shadow:0 8px 22px color-mix(in srgb,var(--c) 30%,transparent)}
+.showtab.on{border-color:var(--c); background:var(--c); color:var(--paper); box-shadow:0 8px 22px color-mix(in srgb,var(--c) 30%,transparent)}
 .showtab b{display:block; font-size:16px}
 .showtab small{font-size:12.5px; opacity:.8}
-.showbox{border:1.5px solid var(--line); border-radius:18px; background:#fff; margin-top:14px; overflow:hidden; box-shadow:var(--shadow)}
+.showbox{border:1.5px solid var(--line); border-radius:18px; background:var(--paper); margin-top:14px; overflow:hidden; box-shadow:var(--shadow)}
 .showhead{padding:22px 24px 0}
 .showhead h3{margin:0 0 4px; font-size:22px}
 .showhead .tag2{font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--c)}
 .statrow{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; padding:18px 24px}
 @media(max-width:760px){.statrow{grid-template-columns:repeat(2,1fr)}}
-.stat{background:linear-gradient(180deg,#f8fafc,#eef2f7); border:1px solid var(--line); border-radius:12px; padding:13px 15px}
+.stat{background:linear-gradient(180deg,var(--surface-2),var(--surface-4)); border:1px solid var(--line); border-radius:12px; padding:13px 15px}
 .stat b{display:block; font:800 21px/1.2 inherit; color:var(--c)}
 .stat span{font-size:11.5px; color:var(--muted); font-weight:650; line-height:1.4; display:block; margin-top:3px}
 .showbody{padding:0 24px 24px}
-.archsvg{background:linear-gradient(180deg,#fbfbf9,#f2f1ec); border:1px solid var(--line); border-radius:12px; padding:14px; margin:6px 0 16px}
+.archsvg{background:linear-gradient(180deg,var(--surface-2),var(--surface-3)); border:1px solid var(--line); border-radius:12px; padding:14px; margin:6px 0 16px}
 .archsvg svg{width:100%; height:auto; display:block}
-.idea{border-left:4px solid var(--c); background:color-mix(in srgb,var(--c) 6%,#fff); border-radius:0 12px 12px 0; padding:16px 20px; margin:14px 0}
+.idea{border-left:4px solid var(--c); background:color-mix(in srgb,var(--c) 6%,var(--paper)); border-radius:0 12px 12px 0; padding:16px 20px; margin:14px 0}
 .idea .il{font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--c); display:block; margin-bottom:5px}
 .idea p:last-child{margin:0}
-.yourjob{background:#0f172a; color:#cbd5e1; border-radius:12px; padding:16px 20px; font-size:14.5px; margin-top:14px}
+.yourjob{background:#0f172a; color:var(--ink-2); border-radius:12px; padding:16px 20px; font-size:14.5px; margin-top:14px}
 .yourjob b{color:#7dd3fc}
 .srcnote{font-size:12px; color:var(--muted); margin:10px 0 0; font-style:italic}
 </style>
@@ -3786,7 +3798,7 @@ input[type=range]{width:100%; accent-color:var(--c)}
     <div class="ladder" id="ladder"></div>
     <div class="rungdetail" id="rungdetail"></div>
 
-    <div class="analogy" style="--c:#0369a1; margin-top:24px">
+    <div class="analogy" style="--c:var(--info-deep); margin-top:24px">
       <span class="lab"><span class="en">🧪 The honest summary</span><span class="zh">🧪 一句实话总结</span></span>
       <p class="en">Hosting is renting somebody to keep your computer switched on, plugged in, cooled, patched and reachable — forever, without you thinking about it. Every rung above is just a different answer to <b>how much of that you want to stop caring about, and how much you'll pay to stop caring.</b></p>
       <p class="en">A small company on rung 2 is not behind. A company on rung 5 that only needed rung 2 is <i>burning money and attention</i>. Choose the lowest rung that solves your actual problem — that judgement is worth more than knowing Kubernetes.</p>
@@ -3811,7 +3823,7 @@ input[type=range]{width:100%; accent-color:var(--c)}
     <p class="essay" style="color:var(--muted)"><span class="en">Everything above that — every single word in this guide — is a name somebody had to invent for a clever way of stacking those switches. That is the whole reason the vocabulary sounds alien: these things had never existed before, so there were no words for them.</span>
     <span class="zh">而在它之上的一切——这份指南里的每一个词——都是有人为"某种巧妙的开关堆叠方式"发明出来的名字。这就是这套词汇听起来像外星语的全部原因：这些东西以前从没存在过，所以世上原本没有对应的词。</span></p>
 
-    <div class="play" style="--c:#0f766e" data-play="bits">
+    <div class="play" style="--c:var(--m2-deep)" data-play="bits">
       <div class="play-head">
         <span class="play-badge"><span class="en">▶ Playground</span><span class="zh">▶ 动手玩</span></span>
         <h4><span class="en">Eight switches. That's a letter.</span><span class="zh">八个开关，就是一个字母。</span></h4>
@@ -3883,8 +3895,8 @@ input[type=range]{width:100%; accent-color:var(--c)}
       <p class="zh">到这时，你能读懂架构图、能写出经得起重跑的管道、能就数据模型跟人争论、能判断 AI 交给你的东西、能解释某个东西为什么慢。这已经不是"有潜力的新人"了，这是一个能干活的工程师。</p>
       <p class="quote en">The tools in this guide will be partly obsolete in five years. The foundations underneath them will not have moved an inch.</p>
       <p class="quote zh">这份指南里的工具，五年后有一部分会过时。而它们底下的地基，一寸都不会动。</p>
-      <p class="en">Frameworks will be replaced. Cloud services will be renamed. Whichever model is best today will not be best next year. But a CPU will still be faster than RAM, which will still be faster than disk. A JOIN will still work the way it works. HTTP will still return 404. Duplicated data will still drift apart. <b style="color:#fff">Everything you learned in this roadmap is the part that keeps paying.</b></p>
-      <p class="zh">框架会被替换，云服务会改名，今天最好的模型明年不会是最好的。但 CPU 依然比内存快，内存依然比磁盘快；JOIN 依然是那样工作；HTTP 依然会返回 404；重复的数据依然会互相分叉。<b style="color:#fff">这条路线图里学到的每一样，都是会持续回报的那部分。</b></p>
+      <p class="en">Frameworks will be replaced. Cloud services will be renamed. Whichever model is best today will not be best next year. But a CPU will still be faster than RAM, which will still be faster than disk. A JOIN will still work the way it works. HTTP will still return 404. Duplicated data will still drift apart. <b style="color:var(--ink)">Everything you learned in this roadmap is the part that keeps paying.</b></p>
+      <p class="zh">框架会被替换，云服务会改名，今天最好的模型明年不会是最好的。但 CPU 依然比内存快，内存依然比磁盘快；JOIN 依然是那样工作；HTTP 依然会返回 404；重复的数据依然会互相分叉。<b style="color:var(--ink)">这条路线图里学到的每一样，都是会持续回报的那部分。</b></p>
       <div class="titlestack">
         <div class="tsrow"><span class="tslabel"><span class="en">What's next</span><span class="zh">接下来</span></span>
           <span class="chip"><span class="en">Distributed compute (Spark)</span><span class="zh">分布式计算（Spark）</span></span>
@@ -3919,7 +3931,7 @@ input[type=range]{width:100%; accent-color:var(--c)}
     <p style="max-width:64ch" class="zh">感到迷茫不代表你选错了路。在这个行业里，这是所有人的常态，包括那些看起来什么都懂的人。区别只在于，他们已经学会了这是熬得过去的。</p>
     <p style="max-width:64ch" class="en">You already know how to be careful with a method you don't fully trust, how to check a result before you believe it, and how to write down what you did so someone else can repeat it. Those are the rare skills. The syntax is the easy part.</p>
     <p style="max-width:64ch" class="zh">你早就知道怎么谨慎对待一个还不完全信任的方法、怎么在相信一个结果之前先去核实、怎么把做过的事写下来让别人能复现。这些才是稀缺的能力。语法是最容易的那部分。</p>
-    <p style="color:#64748b; font-size:13px; margin-top:28px; margin-bottom:0"><span class="en">Progress and playground state are not saved between visits — work through a section in one sitting, or keep your own checklist alongside.</span><span class="zh">进度和练习状态不会跨次保存——建议一次做完一个章节，或者自己另外记一份清单。</span></p>
+    <p style="color:var(--muted); font-size:13px; margin-top:28px; margin-bottom:0"><span class="en">Progress and playground state are not saved between visits — work through a section in one sitting, or keep your own checklist alongside.</span><span class="zh">进度和练习状态不会跨次保存——建议一次做完一个章节，或者自己另外记一份清单。</span></p>
   </div>
 </footer>
 
@@ -3928,10 +3940,10 @@ input[type=range]{width:100%; accent-color:var(--c)}
 .reveal{opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1)}
 .reveal.in{opacity:1; transform:none}
 #totop{position:fixed; right:20px; bottom:20px; z-index:70; width:44px; height:44px; border-radius:50%;
-  border:1px solid var(--line); background:#fff; color:var(--ink); font-size:17px; cursor:pointer;
+  border:1px solid var(--line); background:var(--paper); color:var(--ink); font-size:17px; cursor:pointer;
   box-shadow:0 6px 20px rgba(20,32,43,.14); opacity:0; pointer-events:none; transition:.28s; display:grid; place-items:center}
 #totop.on{opacity:1; pointer-events:auto}
-#totop:hover{background:var(--ink); color:#fff; transform:translateY(-3px)}
+#totop:hover{background:var(--ink); color:var(--paper); transform:translateY(-3px)}
 .glow{position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.5;
   background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%), rgba(79,70,229,.07), transparent 70%);
   transition:background .2s}
@@ -4007,9 +4019,9 @@ body::after{
   content:""; position:absolute; left:50%; right:50%; bottom:2px; height:2px; border-radius:2px;
   background:var(--m1); transition:left .28s var(--spring), right .28s var(--spring);
 }
-.navlinks a:hover{background:color-mix(in srgb,#fff 70%, transparent)}
+.navlinks a:hover{background:color-mix(in srgb,var(--paper) 70%, transparent)}
 .navlinks a:hover::after{left:11px; right:11px}
-.navlinks a.on{background:var(--ink); color:#fff; box-shadow:0 6px 16px -8px rgba(20,32,43,.9)}
+.navlinks a.on{background:var(--ink); color:var(--paper); box-shadow:0 6px 16px -8px rgba(20,32,43,.9)}
 .navlinks a.on::after{left:50%; right:50%}
 .langsw{background:color-mix(in srgb,var(--ink) 7%, transparent); box-shadow:inset 0 1px 2px rgba(20,32,43,.06)}
 .langsw button.on{box-shadow:0 1px 2px rgba(20,32,43,.10), 0 2px 8px -2px rgba(20,32,43,.16)}
@@ -4068,7 +4080,7 @@ section{padding:64px 0}
 .mshead{align-items:center; gap:18px}
 .msnum{
   width:60px; height:60px; border-radius:19px; font-size:24px; letter-spacing:-.02em; position:relative;
-  background:linear-gradient(150deg, color-mix(in srgb,var(--c) 82%, #fff), var(--c) 55%, color-mix(in srgb,var(--c) 78%, var(--ink)));
+  background:linear-gradient(150deg, color-mix(in srgb,var(--c) 82%, var(--paper)), var(--c) 55%, color-mix(in srgb,var(--c) 78%, var(--ink)));
   box-shadow:0 10px 26px -8px color-mix(in srgb,var(--c) 62%, transparent),
              inset 0 1px 0 rgba(255,255,255,.45), inset 0 -1px 0 rgba(0,0,0,.12);
 }
@@ -4089,7 +4101,7 @@ section{padding:64px 0}
 .tlrow{border-radius:16px}
 .tlrow:hover{transform:translateX(6px) translateY(-1px); box-shadow:var(--e3); border-color:color-mix(in srgb,var(--c) 55%, var(--line))}
 .tlmonth{
-  background:linear-gradient(150deg, color-mix(in srgb,var(--c) 84%, #fff), var(--c));
+  background:linear-gradient(150deg, color-mix(in srgb,var(--c) 84%, var(--paper)), var(--c));
   box-shadow:0 6px 14px -6px color-mix(in srgb,var(--c) 65%, transparent), inset 0 1px 0 rgba(255,255,255,.35);
 }
 
@@ -4097,8 +4109,8 @@ section{padding:64px 0}
 .topic{border-top:1px solid var(--hair); padding-top:34px; margin-top:34px}
 .topic > h3{font-size:21.5px; letter-spacing:-.022em; gap:12px}
 .topic > h3 .ic{
-  width:32px; height:32px; border-radius:10px; font-size:14.5px; font-weight:800; color:#fff;
-  background:linear-gradient(150deg, color-mix(in srgb,var(--c) 78%, #fff), var(--c));
+  width:32px; height:32px; border-radius:10px; font-size:14.5px; font-weight:800; color:var(--paper);
+  background:linear-gradient(150deg, color-mix(in srgb,var(--c) 78%, var(--paper)), var(--c));
   border:0;
   box-shadow:0 4px 12px -4px color-mix(in srgb,var(--c) 70%, transparent), inset 0 1px 0 rgba(255,255,255,.35);
 }
@@ -4106,13 +4118,13 @@ section{padding:64px 0}
 /* ---------- analogy / ifnot: keep the coloured spine, soften the slab ---------- */
 .analogy{
   border-left-width:3px; border-radius:0 16px 16px 0; padding:20px 24px;
-  background:linear-gradient(100deg, color-mix(in srgb,var(--c) 8%, #fff), color-mix(in srgb,var(--c) 3%, #fff));
+  background:linear-gradient(100deg, color-mix(in srgb,var(--c) 8%, var(--paper)), color-mix(in srgb,var(--c) 3%, var(--paper)));
   box-shadow:var(--e1);
 }
 .analogy .lab{letter-spacing:.13em}
 .ifnot{
   border-left-width:3px; border-radius:0 16px 16px 0; padding:18px 22px;
-  background:linear-gradient(100deg, #fff5f5, #fffafa); box-shadow:var(--e1);
+  background:linear-gradient(100deg, color-mix(in srgb, var(--no) 6%, var(--paper)), color-mix(in srgb, var(--no) 4%, var(--paper))); box-shadow:var(--e1);
 }
 .rw{border-radius:16px; border-width:1px; box-shadow:var(--e2)}
 .rw .rwh{letter-spacing:.14em}
@@ -4121,7 +4133,7 @@ section{padding:64px 0}
 .lens{border-radius:18px}
 .lens-tabs{
   gap:2px; padding:8px; border-bottom:1px solid var(--hair);
-  background:linear-gradient(180deg, color-mix(in srgb,var(--c) 7%, #fff), color-mix(in srgb,var(--c) 3%, #fff));
+  background:linear-gradient(180deg, color-mix(in srgb,var(--c) 7%, var(--paper)), color-mix(in srgb,var(--c) 3%, var(--paper)));
 }
 .lens-tabs button{
   border-radius:10px; border-bottom:0; margin-bottom:0; padding:8px 14px; position:relative;
@@ -4129,12 +4141,12 @@ section{padding:64px 0}
 }
 .lens-tabs button::before{
   content:""; position:absolute; inset:0; border-radius:10px; z-index:-1;
-  background:#fff; box-shadow:0 1px 2px rgba(20,32,43,.10), 0 4px 12px -6px rgba(20,32,43,.25);
+  background:var(--paper); box-shadow:0 1px 2px rgba(20,32,43,.10), 0 4px 12px -6px rgba(20,32,43,.25);
   opacity:0; transform:scale(.94); transition:opacity .24s var(--swift), transform .3s var(--spring);
 }
 .lens-tabs button.on{color:var(--c)}
 .lens-tabs button.on::before{opacity:1; transform:none}
-.lens-tabs button:hover:not(.on){color:var(--ink); background:color-mix(in srgb,#fff 55%, transparent)}
+.lens-tabs button:hover:not(.on){color:var(--ink); background:color-mix(in srgb,var(--paper) 55%, transparent)}
 .lens-pane{padding:24px 26px; animation:lensin .34s var(--spring)}
 @keyframes lensin{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:none}}
 .lens-pane .kicker{letter-spacing:.14em}
@@ -4142,8 +4154,8 @@ section{padding:64px 0}
 /* ---------- stage ---------- */
 .stage{
   border-radius:18px; padding:20px;
-  background:linear-gradient(180deg,#fcfcfa,#f1f0ea);
-  box-shadow:var(--e2), inset 0 1px 0 #fff;
+  background:linear-gradient(180deg,var(--surface-2),var(--surface-3));
+  box-shadow:var(--e2), inset 0 1px 0 var(--paper);
 }
 .stage .cap span{letter-spacing:.1em}
 .replay{
@@ -4158,7 +4170,7 @@ section{padding:64px 0}
 .evo-fill{filter:drop-shadow(0 0 4px color-mix(in srgb,var(--c) 55%, transparent))}
 .evo-head{filter:drop-shadow(0 2px 4px color-mix(in srgb,var(--c) 45%, transparent))}
 .evo-col{border-radius:14px; box-shadow:var(--e1)}
-.evo-col.now{box-shadow:var(--e2), inset 0 1px 0 #fff}
+.evo-col.now{box-shadow:var(--e2), inset 0 1px 0 var(--paper)}
 
 /* ---------- reveal: spring in, slightly staggered ---------- */
 .reveal{transition:opacity .7s var(--swift), transform .8s var(--spring)}
@@ -4195,21 +4207,21 @@ section{padding:64px 0}
 }
 .play-head{
   padding:17px 24px;
-  background:linear-gradient(100deg, color-mix(in srgb,var(--c) 15%,#fff), color-mix(in srgb,var(--c) 4%,#fff) 70%);
+  background:linear-gradient(100deg, color-mix(in srgb,var(--c) 15%,var(--paper)), color-mix(in srgb,var(--c) 4%,var(--paper)) 70%);
   border-bottom:1px solid color-mix(in srgb,var(--c) 18%, transparent);
 }
 .play-head h4{letter-spacing:-.015em}
 .pbtn{
   border-width:1px; border-radius:10px; padding:7px 15px;
-  background:linear-gradient(180deg,#fff,#fbfbf9);
+  background:linear-gradient(180deg,var(--paper),var(--surface-2));
   box-shadow:0 1px 2px rgba(20,32,43,.05);
   transition:transform .2s var(--spring), border-color .2s var(--swift), color .2s var(--swift), box-shadow .2s var(--swift);
 }
 .pbtn:hover{transform:translateY(-2px); box-shadow:0 6px 14px -6px color-mix(in srgb,var(--c) 65%, transparent); border-color:color-mix(in srgb,var(--c) 55%, transparent)}
 .pbtn:active{transform:translateY(0) scale(.97)}
 .pbtn.on{
-  background:linear-gradient(150deg, color-mix(in srgb,var(--c) 88%, #fff), var(--c));
-  color:#fff; border-color:transparent;
+  background:linear-gradient(150deg, color-mix(in srgb,var(--c) 88%, var(--paper)), var(--c));
+  color:var(--paper); border-color:transparent;
   box-shadow:0 6px 16px -6px color-mix(in srgb,var(--c) 75%, transparent), inset 0 1px 0 rgba(255,255,255,.3);
 }
 .plabel{letter-spacing:.13em}
@@ -4221,7 +4233,7 @@ section{padding:64px 0}
 }
 .tabs{padding:8px 8px 0; background:#0b1428}
 .tabs button{border-radius:9px 9px 0 0; transition:background .2s var(--swift), color .2s var(--swift)}
-.tabs button:hover:not(.on){color:#cbd5e1; background:rgba(255,255,255,.05)}
+.tabs button:hover:not(.on){color:var(--ink-2); background:rgba(255,255,255,.05)}
 pre{padding:18px 20px}
 code.inl{
   background:color-mix(in srgb,var(--ink) 6%, transparent);
@@ -4234,7 +4246,7 @@ code.inl{
 .quiz .qh{letter-spacing:.14em}
 .opt{
   border-width:1px; border-radius:12px; padding:12px 16px;
-  background:linear-gradient(180deg,#fff,#fbfbf9);
+  background:linear-gradient(180deg,var(--paper),var(--surface-2));
   transition:transform .2s var(--spring), border-color .2s var(--swift), box-shadow .2s var(--swift), background .2s var(--swift);
 }
 .opt:hover:not(:disabled){
@@ -4249,7 +4261,7 @@ code.inl{
 .checks{
   border-radius:16px; border-style:dashed;      /* keep the notebook cue */
   border-color:color-mix(in srgb,var(--c) 34%, transparent);
-  background:linear-gradient(150deg, color-mix(in srgb,var(--c) 5%,#fff), #fff 60%);
+  background:linear-gradient(150deg, color-mix(in srgb,var(--c) 5%,var(--paper)), var(--paper) 60%);
   box-shadow:var(--e1);
 }
 .chk{border-radius:9px; padding:8px 10px; margin-left:-10px; transition:background .18s var(--swift)}
@@ -4263,7 +4275,7 @@ code.inl{
   background:
     radial-gradient(700px 380px at 8% -10%,  color-mix(in srgb,var(--m1) 42%, transparent), transparent 62%),
     radial-gradient(620px 420px at 96% 108%, color-mix(in srgb,var(--m2) 34%, transparent), transparent 60%),
-    linear-gradient(160deg, #1b2735, var(--ink) 55%, #0e1720);
+    linear-gradient(160deg, #1b2735, #15202b 55%, #0e1720);
   box-shadow:var(--e4), inset 0 1px 0 rgba(255,255,255,.08);
 }
 .philo::after{                                   /* faint grid, like notebook paper */
@@ -4291,6 +4303,255 @@ code.inl{
 }
 .totop:hover{transform:translateY(-3px); box-shadow:var(--e4)}
 
+
+/* ============================================================================
+   DARK THEME — same tokens, different values. Nothing else has to know.
+   `auto` follows the OS; the toggle stamps data-theme to force a side.
+   ========================================================================= */
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0b0f14; --paper:#141a22; --surface-2:#181f28; --surface-3:#1f2833; --surface-4:#1a2430;
+    --line:#28323d; --line-2:#3b4857;
+    --ink:#e9eff5; --ink-2:#c6d2de; --muted:#9aa8b8; --muted-2:#7d8b9b;
+    --m1:#818cf8; --m2:#2dd4bf; --m3:#c084fc; --m4:#fbbf24; --m5:#fb7185;
+    --ok:#34d399; --no:#f87171;
+    --m1-deep:#a5b4fc; --m2-deep:#5eead4; --m4-deep:#fcd34d; --m5-deep:#fda4af;
+    --ok-deep:#6ee7b7; --no-deep:#fca5a5; --info-deep:#7dd3fc;
+    --shadow:0 1px 2px rgba(0,0,0,.5), 0 10px 30px rgba(0,0,0,.45);
+    --e1:0 1px 2px rgba(0,0,0,.45), 0 1px 3px rgba(0,0,0,.35);
+    --e2:0 2px 4px rgba(0,0,0,.4), 0 10px 24px -6px rgba(0,0,0,.6);
+    --e3:0 4px 8px rgba(0,0,0,.4), 0 22px 48px -14px rgba(0,0,0,.72);
+    --e4:0 8px 16px rgba(0,0,0,.45), 0 40px 80px -24px rgba(0,0,0,.85);
+    --hair:color-mix(in srgb, var(--ink) 14%, transparent);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0b0f14; --paper:#141a22; --surface-2:#181f28; --surface-3:#1f2833; --surface-4:#1a2430;
+  --line:#28323d; --line-2:#3b4857;
+  --ink:#e9eff5; --ink-2:#c6d2de; --muted:#9aa8b8; --muted-2:#7d8b9b;
+  --m1:#818cf8; --m2:#2dd4bf; --m3:#c084fc; --m4:#fbbf24; --m5:#fb7185;
+  --ok:#34d399; --no:#f87171;
+  --m1-deep:#a5b4fc; --m2-deep:#5eead4; --m4-deep:#fcd34d; --m5-deep:#fda4af;
+  --ok-deep:#6ee7b7; --no-deep:#fca5a5; --info-deep:#7dd3fc;
+  --shadow:0 1px 2px rgba(0,0,0,.5), 0 10px 30px rgba(0,0,0,.45);
+  --e1:0 1px 2px rgba(0,0,0,.45), 0 1px 3px rgba(0,0,0,.35);
+  --e2:0 2px 4px rgba(0,0,0,.4), 0 10px 24px -6px rgba(0,0,0,.6);
+  --e3:0 4px 8px rgba(0,0,0,.4), 0 22px 48px -14px rgba(0,0,0,.72);
+  --e4:0 8px 16px rgba(0,0,0,.45), 0 40px 80px -24px rgba(0,0,0,.85);
+  --hair:color-mix(in srgb, var(--ink) 14%, transparent);
+}
+
+/* things that were drawn assuming a white page ------------------------- */
+/* the root paints the page colour; body stays transparent so the fixed
+   fx layers (negative z-index children of body) are not painted over */
+html{background:var(--bg)}
+body{background:transparent; color:var(--ink)}
+.dark .topbar, :root[data-theme="dark"] .topbar{background:color-mix(in srgb, var(--bg) 78%, transparent)}
+.navlinks a:hover{background:color-mix(in srgb, var(--ink) 8%, transparent)}
+.navlinks a.on{background:var(--ink); color:var(--bg)}
+.lens-tabs button::before{background:var(--paper)}
+.lens-tabs button:hover:not(.on){background:color-mix(in srgb,var(--ink) 6%, transparent)}
+.langsw button.on{background:var(--paper); color:var(--ink)}
+.stage{background:linear-gradient(180deg,var(--surface-2),var(--surface-3)); box-shadow:var(--e2), inset 0 1px 0 color-mix(in srgb,var(--ink) 6%, transparent)}
+.evo-col.now{box-shadow:var(--e2), inset 0 1px 0 color-mix(in srgb,var(--ink) 7%, transparent)}
+.pbtn, .opt{background:linear-gradient(180deg,var(--paper),var(--surface-2))}
+.chk input{accent-color:var(--c, var(--m1))}
+.tabs{background:var(--code-bar)}
+.codewrap{background:var(--code-bg)}
+pre{color:var(--code-fg)}
+
+/* the philosophy plate is dark in both themes — in dark it needs an edge */
+:root[data-theme="dark"] .philo,
+:root:not([data-theme="light"]) .philo{border:1px solid color-mix(in srgb,var(--ink) 12%, transparent)}
+
+/* ============================================================================
+   BACKGROUND FX — five fixed layers, none of them in the way of the text.
+   Hue follows whichever milestone you are reading; light follows the cursor.
+   ========================================================================= */
+#bgfx{
+  position:fixed; inset:0; z-index:-3; pointer-events:none; overflow:hidden; contain:strict;
+  --aur1:var(--m1); --aur2:var(--m2); --aur3:var(--m3);
+  --mx:50%; --my:30%;
+}
+#bgfx > *{position:absolute; inset:-20%; will-change:transform}
+
+/* three aurora fields, each drifting on its own clock so they never repeat */
+.fx-a1{
+  background:radial-gradient(46% 42% at 22% 26%, color-mix(in srgb,var(--aur1) 30%, transparent), transparent 68%);
+  animation:fxA 29s ease-in-out infinite alternate;
+}
+.fx-a2{
+  background:radial-gradient(44% 40% at 80% 20%, color-mix(in srgb,var(--aur2) 28%, transparent), transparent 66%);
+  animation:fxB 37s ease-in-out infinite alternate;
+}
+.fx-a3{
+  background:radial-gradient(52% 46% at 52% 92%, color-mix(in srgb,var(--aur3) 24%, transparent), transparent 68%);
+  animation:fxC 43s ease-in-out infinite alternate;
+}
+#bgfx > .fx-a1,#bgfx > .fx-a2,#bgfx > .fx-a3{
+  opacity:.5; transition:background 1.6s linear, opacity .6s linear;
+}
+@keyframes fxA{from{transform:translate3d(0,0,0) scale(1)}      to{transform:translate3d(6%,-5%,0) scale(1.18)}}
+@keyframes fxB{from{transform:translate3d(0,0,0) scale(1.1)}    to{transform:translate3d(-7%,6%,0) scale(1)}}
+@keyframes fxC{from{transform:translate3d(0,0,0) scale(1)}      to{transform:translate3d(4%,-8%,0) scale(1.22)}}
+
+/* a slow beam raking across everything — barely there in light, real in dark */
+.fx-beam{
+  inset:-60%; opacity:.16;
+  background:conic-gradient(from 210deg at 50% 50%,
+    transparent 0deg, color-mix(in srgb,var(--aur1) 55%, transparent) 26deg,
+    transparent 52deg, transparent 300deg,
+    color-mix(in srgb,var(--aur2) 45%, transparent) 330deg, transparent 356deg);
+  animation:fxSpin 64s linear infinite;
+}
+@keyframes fxSpin{to{transform:rotate(1turn)}}
+
+/* the cursor carries a soft light with it */
+.fx-spot{
+  inset:0; opacity:.5; transition:opacity .5s linear;
+  background:radial-gradient(420px 420px at var(--mx) var(--my),
+    color-mix(in srgb,var(--aur1) 16%, transparent), transparent 70%);
+}
+
+/* fine grain so the gradients never band */
+.fx-grain{
+  inset:0; opacity:.028; mix-blend-mode:normal;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* dark mode turns the whole thing up */
+:root[data-theme="dark"] #bgfx > .fx-a1,
+:root[data-theme="dark"] #bgfx > .fx-a2,
+:root[data-theme="dark"] #bgfx > .fx-a3{opacity:.42}
+:root[data-theme="dark"] .fx-beam{opacity:.3}
+:root[data-theme="dark"] .fx-spot{opacity:.9}
+:root[data-theme="dark"] .fx-grain{opacity:.05}
+:root[data-theme="dark"] .fx-stars{opacity:1}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) #bgfx > .fx-a1,
+  :root:not([data-theme="light"]) #bgfx > .fx-a2,
+  :root:not([data-theme="light"]) #bgfx > .fx-a3{opacity:.42}
+  :root:not([data-theme="light"]) .fx-beam{opacity:.3}
+  :root:not([data-theme="light"]) .fx-spot{opacity:.9}
+  :root:not([data-theme="light"]) .fx-grain{opacity:.05}
+  :root:not([data-theme="light"]) .fx-stars{opacity:1}
+}
+/* a quiet star field, dark only */
+.fx-stars{
+  inset:0; opacity:0; transition:opacity .6s linear;
+  background-image:
+    radial-gradient(1.4px 1.4px at 18% 22%, rgba(255,255,255,.55), transparent),
+    radial-gradient(1.2px 1.2px at 74% 12%, rgba(255,255,255,.42), transparent),
+    radial-gradient(1.6px 1.6px at 41% 62%, rgba(255,255,255,.38), transparent),
+    radial-gradient(1.1px 1.1px at 88% 71%, rgba(255,255,255,.45), transparent),
+    radial-gradient(1.3px 1.3px at 62% 38%, rgba(255,255,255,.35), transparent),
+    radial-gradient(1.2px 1.2px at 8% 78%, rgba(255,255,255,.40), transparent),
+    radial-gradient(1.5px 1.5px at 33% 8%, rgba(255,255,255,.30), transparent);
+  background-size:640px 640px;
+  animation:fxTwinkle 9s ease-in-out infinite alternate;
+}
+@keyframes fxTwinkle{from{opacity:.5} to{opacity:1}}
+
+/* the old body-level aurora is superseded by #bgfx */
+body::before,body::after{display:none !important}
+
+/* ---------- theme toggle, injected next to the language switch ---------- */
+.themesw{
+  display:inline-flex; align-items:center; gap:2px; flex:none; padding:3px;
+  background:color-mix(in srgb,var(--ink) 7%, transparent); border-radius:999px;
+  box-shadow:inset 0 1px 2px color-mix(in srgb,var(--ink) 8%, transparent);
+}
+.themesw button{
+  border:0; background:transparent; cursor:pointer; color:var(--muted);
+  width:30px; height:26px; border-radius:999px; display:grid; place-items:center;
+  transition:color .2s var(--swift), background .2s var(--swift), transform .25s var(--spring);
+}
+.themesw button:hover{color:var(--ink)}
+.themesw button:active{transform:scale(.9)}
+.themesw button.on{
+  background:var(--paper); color:var(--ink);
+  box-shadow:0 1px 2px rgba(20,32,43,.10), 0 2px 8px -2px rgba(20,32,43,.16);
+}
+.themesw svg{width:15px; height:15px; display:block}
+@media(max-width:700px){.themesw button{width:27px}}
+
+@media(prefers-reduced-motion:reduce){
+  .fx-a1,.fx-a2,.fx-a3,.fx-beam,.fx-stars{animation:none}
+  .fx-spot{display:none}
+}
+
+/* the display gradient has to run the other way once the page is dark */
+:root[data-theme="dark"] h1,
+:root[data-theme="dark"] .herostats div b{
+  background:linear-gradient(168deg, #ffffff 22%, color-mix(in srgb, var(--ink) 55%, var(--m1)) 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) h1,
+  :root:not([data-theme="light"]) .herostats div b{
+    background:linear-gradient(168deg, #ffffff 22%, color-mix(in srgb, var(--ink) 55%, var(--m1)) 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+}
+.themesw button{width:28px}
+.navlinks{min-width:0}
+
+/* ---------------------------------------------------------------------------
+   ALWAYS-DARK PLATES. These panels are dark in both themes, so inside them the
+   token set is pinned to its dark values — every rule underneath then resolves
+   correctly without being rewritten one by one.
+   ------------------------------------------------------------------------- */
+.philo, footer, .devtip, .roledetail, .towerdetail, .rungdetail, .yourjob,
+.codewrap, .term, .gitcanvas, .gitlog, .dwrap, .bo, .nameout,
+.fpbody.dark, .sandbox textarea, .dtbl{
+  color-scheme:dark;
+  --paper:#0f172a; --surface-2:#131d33; --surface-3:#1e293b; --surface-4:#1a2430;
+  --line:#1e293b; --line-2:#334155;
+  --ink:#e9eff5; --ink-2:#cbd5e1; --muted:#9fb0c2; --muted-2:#8496a8;
+  --m1:#818cf8; --m2:#2dd4bf; --m3:#c084fc; --m4:#fbbf24; --m5:#fb7185;
+  --ok:#34d399; --no:#f87171;
+  --m1-deep:#a5b4fc; --m2-deep:#5eead4; --m4-deep:#fcd34d; --m5-deep:#fda4af;
+  --ok-deep:#6ee7b7; --no-deep:#fca5a5; --info-deep:#7dd3fc;
+}
+.philo p{color:var(--on-dark-mute)}
+.philo, footer{background-color:#15202b}
+
+/* ---------------------------------------------------------------------------
+   Small uppercase labels drawn in the milestone accent sat at ~3.2:1 on paper.
+   Fills and large type keep the brand hue; only the small text is deepened,
+   derived from --c so every milestone follows automatically.
+   ------------------------------------------------------------------------- */
+.lens-tabs button.on, .lens-pane .kicker, .analogy .lab, .rw .rwh, .quiz .qh,
+.mshead .sub, .checks h4, .stage .cap span, .evo-lbl.l-now,
+.evo-col.now h5, .tldr b{
+  color:color-mix(in srgb, var(--c, var(--m1)) 76%, #000);
+}
+:root[data-theme="dark"] .lens-tabs button.on,
+:root[data-theme="dark"] .lens-pane .kicker,
+:root[data-theme="dark"] .analogy .lab,
+:root[data-theme="dark"] .rw .rwh,
+:root[data-theme="dark"] .quiz .qh,
+:root[data-theme="dark"] .mshead .sub,
+:root[data-theme="dark"] .checks h4,
+:root[data-theme="dark"] .stage .cap span,
+:root[data-theme="dark"] .evo-lbl.l-now,
+:root[data-theme="dark"] :root[data-theme="dark"] .evo-col.now h5,
+:root[data-theme="dark"] .tldr b{ color:var(--c, var(--m1)) }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .lens-tabs button.on,
+  :root:not([data-theme="light"]) .lens-pane .kicker,
+  :root:not([data-theme="light"]) .analogy .lab,
+  :root:not([data-theme="light"]) .rw .rwh,
+  :root:not([data-theme="light"]) .quiz .qh,
+  :root:not([data-theme="light"]) .mshead .sub,
+  :root:not([data-theme="light"]) .checks h4,
+  :root:not([data-theme="light"]) .stage .cap span,
+  :root:not([data-theme="light"]) .evo-lbl.l-now,
+  :root:not([data-theme="light"])   :root:not([data-theme="light"]) .evo-col.now h5,
+  :root:not([data-theme="light"]) .tldr b{ color:var(--c, var(--m1)) }
+}
 </style>
 
 <script>
@@ -4492,7 +4753,7 @@ window.addEventListener('pointermove', function(e){
       h += '<tr>' + cols.map(function(c){
         var v = r[c];
         return '<td>' + (v === null || v === undefined
-          ? '<span style="color:#dc2626">NULL</span>' : v) + '</td>';
+          ? '<span style="color:var(--no)">NULL</span>' : v) + '</td>';
       }).join('') + '</tr>';
     });
     h += '</table>';
@@ -4642,7 +4903,7 @@ window.addEventListener('pointermove', function(e){
       });
     });
     /* branch labels */
-    s += '<text x="14" y="145" style="font:700 11px sans-serif" fill="#94a3b8">main</text>';
+    s += '<text x="14" y="145" style="font:700 11px sans-serif" fill="var(--muted-2)">main</text>';
     if (S.hasFeature) s += '<text x="14" y="60" style="font:700 11px sans-serif" fill="#5eead4">feature</text>';
     /* nodes */
     S.nodes.forEach(function(n){
@@ -4944,7 +5205,7 @@ window.addEventListener('pointermove', function(e){
     $('#as-cost').textContent = '$' + cost.toLocaleString();
     $('#as-lat').style.color  = load > 1 ? '#dc2626' : (load > 0.85 ? '#d97706' : '');
     var note = $('#as-note');
-    if (!auto && load > 1) note.innerHTML = '<span style="color:#dc2626">' + bi(
+    if (!auto && load > 1) note.innerHTML = '<span style="color:var(--no)">' + bi(
       '<b>Overloaded.</b> Fixed capacity cannot absorb the spike — requests queue and response time climbs. This is exactly what a server room felt like on launch day: you had bought for the average, and the peak arrived anyway.',
       '<b>过载了。</b>固定容量吸收不了尖峰——请求开始排队，响应时间飙升。这正是自建机房在发布日的感觉：你按平均值采购，而峰值照样来了。') + '</span>';
     else if (!auto) note.innerHTML = bi(
@@ -5101,8 +5362,8 @@ window.addEventListener('pointermove', function(e){
      bEn:'built from: instructions', bZh:'建于：指令',
      tEn:'Python, C, JavaScript — so humans stop writing numbers.',
      tZh:'Python、C、JavaScript —— 让人类不必再写数字。',
-     dEn:'<p>Writing raw instruction numbers is possible and unbearable. So people invented languages: you write <code class="inl" style="background:#1e293b;color:#e2e8f0">if purity &gt;= 0.95</code> and a translator turns it into the numbers.</p><p><b>This is the exact floor where the C-versus-Python difference lives</b> (Milestone 5). C translates the whole thing once, up front. Python translates each line every time it reaches it. Same tower, different translation strategy — and a 50× speed difference falls out of that one choice.</p>',
-     dZh:'<p>直接写指令编号是可行的，也是难以忍受的。于是人们发明了语言：你写 <code class="inl" style="background:#1e293b;color:#e2e8f0">if purity &gt;= 0.95</code>，翻译器把它变成那些数字。</p><p><b>C 和 Python 的差别，正好就住在这一层</b>（阶段五）。C 提前把整份东西翻译一次；Python 每次走到某一行才翻译那一行。同一座塔，不同的翻译策略——50 倍的速度差距，就从这一个选择里掉出来。</p>'},
+     dEn:'<p>Writing raw instruction numbers is possible and unbearable. So people invented languages: you write <code class="inl" style="background:#1e293b;color:var(--ink)">if purity &gt;= 0.95</code> and a translator turns it into the numbers.</p><p><b>This is the exact floor where the C-versus-Python difference lives</b> (Milestone 5). C translates the whole thing once, up front. Python translates each line every time it reaches it. Same tower, different translation strategy — and a 50× speed difference falls out of that one choice.</p>',
+     dZh:'<p>直接写指令编号是可行的，也是难以忍受的。于是人们发明了语言：你写 <code class="inl" style="background:#1e293b;color:var(--ink)">if purity &gt;= 0.95</code>，翻译器把它变成那些数字。</p><p><b>C 和 Python 的差别，正好就住在这一层</b>（阶段五）。C 提前把整份东西翻译一次；Python 每次走到某一行才翻译那一行。同一座塔，不同的翻译策略——50 倍的速度差距，就从这一个选择里掉出来。</p>'},
     {lv:'06', en:'Instructions', zh:'指令', sEn:'ADD · MOVE · COMPARE · JUMP', sZh:'加法 · 搬运 · 比较 · 跳转',
      bEn:'built from: numbers', bZh:'建于：数字',
      tEn:'Certain numbers are agreed to mean "do this".',
@@ -5119,8 +5380,8 @@ window.addEventListener('pointermove', function(e){
      bEn:'built from: bytes', bZh:'建于：字节',
      tEn:'Counting, in base 2 instead of base 10.',
      tZh:'计数，只是用二进制而不是十进制。',
-     dEn:'<p>You count in tens because you have ten fingers. A machine counts in twos because it has one finger that is either up or down.</p><p>Nothing deeper than that is going on. <b>Hexadecimal exists purely because writing <code class="inl" style="background:#1e293b;color:#e2e8f0">11111111</code> is tedious and <code class="inl" style="background:#1e293b;color:#e2e8f0">0xFF</code> is not.</b> It is shorthand for humans, invented for the comfort of humans.</p>',
-     dZh:'<p>你用十进制计数，因为你有十根手指。机器用二进制计数，因为它只有一根手指，而且非抬即放。</p><p>没有比这更深奥的事情在发生。<b>十六进制存在的唯一理由是：写 <code class="inl" style="background:#1e293b;color:#e2e8f0">11111111</code> 很烦，而 <code class="inl" style="background:#1e293b;color:#e2e8f0">0xFF</code> 不烦。</b>它是给人看的速记，为人类的舒适而发明。</p>'},
+     dEn:'<p>You count in tens because you have ten fingers. A machine counts in twos because it has one finger that is either up or down.</p><p>Nothing deeper than that is going on. <b>Hexadecimal exists purely because writing <code class="inl" style="background:#1e293b;color:var(--ink)">11111111</code> is tedious and <code class="inl" style="background:#1e293b;color:var(--ink)">0xFF</code> is not.</b> It is shorthand for humans, invented for the comfort of humans.</p>',
+     dZh:'<p>你用十进制计数，因为你有十根手指。机器用二进制计数，因为它只有一根手指，而且非抬即放。</p><p>没有比这更深奥的事情在发生。<b>十六进制存在的唯一理由是：写 <code class="inl" style="background:#1e293b;color:var(--ink)">11111111</code> 很烦，而 <code class="inl" style="background:#1e293b;color:var(--ink)">0xFF</code> 不烦。</b>它是给人看的速记，为人类的舒适而发明。</p>'},
     {lv:'03', en:'A byte', zh:'字节', sEn:'eight switches, grouped', sZh:'八个开关，打成一组',
      bEn:'built from: bits', bZh:'建于：比特',
      tEn:'8 bits = 256 possible combinations.',
@@ -5510,7 +5771,7 @@ window.addEventListener('pointermove', function(e){
   var box = $('#showbox');
   var B = function(x,y,w,h,fill,stroke){ return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="10" fill="'+(fill||'#fff')+'" stroke="'+(stroke||'#cfd6dd')+'" stroke-width="1.5"/>' };
   var T = function(x,y,t,cls,anchor){ return '<text x="'+x+'" y="'+y+'" class="'+(cls||'sv-lbl')+'" text-anchor="'+(anchor||'middle')+'">'+t+'</text>' };
-  var L = function(x1,y1,x2,y2,dash){ return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="#cfd6dd" stroke-width="2"'+(dash?' stroke-dasharray="4 4"':'')+'/>' };
+  var L = function(x1,y1,x2,y2,dash){ return '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="var(--line)" stroke-width="2"'+(dash?' stroke-dasharray="4 4"':'')+'/>' };
 
   var S = [
   {
@@ -5894,7 +6155,7 @@ window.addEventListener('pointermove', function(e){
   function clear(){
     nodesEls.forEach(function(z){ z.classList.remove('dim','hot') });
     $$('.role', rolesEl).forEach(function(b){ b.classList.remove('on') });
-    det.innerHTML = '<div class="rl" style="color:#64748b">' + bi('Nobody selected','未选择角色') + '</div>'
+    det.innerHTML = '<div class="rl" style="color:var(--muted)">' + bi('Nobody selected','未选择角色') + '</div>'
       + bi('<p>Click a role above to light up the part of the map they are responsible for — or click any box on the map itself to find out what it is.</p><p>Notice how much the regions overlap. <b>These are territories, not walls.</b> Almost everyone works in two of them, and the people who can move between regions are the ones who get called when something is genuinely broken.</p>',
            '<p>点上面任意一个角色，地图上归他们负责的区域就会亮起来 —— 或者直接点地图上任意一个方块，看看它到底是什么。</p><p>注意这些区域重叠得有多厉害。<b>它们是地带，不是墙。</b>几乎每个人都在其中两块里干活，而那些能在区域之间移动的人，才是真正出事时被叫去的人。</p>');
   }
@@ -6069,14 +6330,14 @@ window.addEventListener('pointermove', function(e){
       LT.innerHTML = bi('On a machine you will never see','在一台你永远不会见到的机器上');
       RT.innerHTML = bi('The code that ran','实际运行的代码');
       L.innerHTML = '<div style="text-align:center;padding:12px 0">'
-        + '<div style="width:64px;height:64px;border-radius:18px;background:#ecfdf5;color:#0d9488;display:grid;place-items:center;margin:0 auto 12px">'
+        + '<div style="width:64px;height:64px;border-radius:18px;background:color-mix(in srgb, var(--ok) 7%, var(--paper));color:var(--m2);display:grid;place-items:center;margin:0 auto 12px">'
         + '<svg viewBox="0 0 24 24" style="width:32px;height:32px"><use href="#ic-server"/></svg></div>'
         + '<b style="font-size:15px">' + bi('Backend API','后端 API') + '</b></div>'
         + '<div style="font-size:14px">'
-        + '<div style="padding:8px 12px;border-radius:8px;background:#f0fdf4;margin-bottom:6px">✓ ' + bi('Is this caller allowed? <b>Yes</b> — valid token','这个调用方有权限吗？<b>有</b> —— 令牌有效') + '</div>'
-        + '<div style="padding:8px 12px;border-radius:8px;background:#f0fdf4;margin-bottom:6px">✓ ' + bi('Is the name empty? <b>No</b>','名字是空的吗？<b>不是</b>') + '</div>'
-        + '<div style="padding:8px 12px;border-radius:8px;background:#f0fdf4;margin-bottom:6px">✓ ' + bi('Which site are they at? <b>' + esc(p2.site) + '</b> (from their profile)','他们在哪个厂区？<b>' + esc(p2.site) + '</b>（来自他们的账号资料）') + '</div>'
-        + '<div style="padding:8px 12px;border-radius:8px;background:#f0fdf4">✓ ' + bi('Give it an id: <b>' + p2.id + '</b>','分配一个编号：<b>' + p2.id + '</b>') + '</div></div>';
+        + '<div style="padding:8px 12px;border-radius:8px;background:color-mix(in srgb, var(--ok) 8%, var(--paper));margin-bottom:6px">✓ ' + bi('Is this caller allowed? <b>Yes</b> — valid token','这个调用方有权限吗？<b>有</b> —— 令牌有效') + '</div>'
+        + '<div style="padding:8px 12px;border-radius:8px;background:color-mix(in srgb, var(--ok) 8%, var(--paper));margin-bottom:6px">✓ ' + bi('Is the name empty? <b>No</b>','名字是空的吗？<b>不是</b>') + '</div>'
+        + '<div style="padding:8px 12px;border-radius:8px;background:color-mix(in srgb, var(--ok) 8%, var(--paper));margin-bottom:6px">✓ ' + bi('Which site are they at? <b>' + esc(p2.site) + '</b> (from their profile)','他们在哪个厂区？<b>' + esc(p2.site) + '</b>（来自他们的账号资料）') + '</div>'
+        + '<div style="padding:8px 12px;border-radius:8px;background:color-mix(in srgb, var(--ok) 8%, var(--paper))">✓ ' + bi('Give it an id: <b>' + p2.id + '</b>','分配一个编号：<b>' + p2.id + '</b>') + '</div></div>';
       var py = '<span class="fn">@app.route</span>(<span class="st">"/api/samples"</span>, methods=[<span class="st">"POST"</span>])\n'
         + '<span class="kw">def</span> <span class="fn">create_sample</span>():\n'
         + '    user = <span class="fn">authenticate</span>(request.headers[<span class="st">"Authorization"</span>])\n'
@@ -6135,12 +6396,12 @@ window.addEventListener('pointermove', function(e){
       rows.forEach(function(r){ sitesRaw[r.site] = 1; sitesClean[r.site.trim().toUpperCase()] = 1; });
       var nRaw = Object.keys(sitesRaw).length, nClean = Object.keys(sitesClean).length;
       L.innerHTML = (rows.length
-        ? '<div style="font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#dc2626;margin-bottom:6px">'
+        ? '<div style="font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--no);margin-bottom:6px">'
             + bi('Raw — as the product stored it','原始 —— 产品存进去的样子') + '</div>' + tbl(rows,'raw')
-          + '<div style="font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#059669;margin:16px 0 6px">'
+          + '<div style="font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ok);margin:16px 0 6px">'
             + bi('Cleaned — what analysts get','清洗后 —— 分析师拿到的') + '</div>' + tbl(rows,'clean')
-          + '<div class="dstat" style="margin-top:14px"><div><b style="color:#dc2626">' + nRaw + '</b><span>'
-            + bi('distinct sites before','清洗前不同厂区数') + '</span></div><div><b style="color:#059669">' + nClean + '</b><span>'
+          + '<div class="dstat" style="margin-top:14px"><div><b style="color:var(--no)">' + nRaw + '</b><span>'
+            + bi('distinct sites before','清洗前不同厂区数') + '</span></div><div><b style="color:var(--ok)">' + nClean + '</b><span>'
             + bi('distinct sites after','清洗后不同厂区数') + '</span></div></div>'
         : '<div class="emptyhint">' + bi('Save a few names first — then come back and see what has to be fixed.','先存几个名字 —— 再回来看看有什么需要修的。') + '</div>');
       var pd = '<span class="kw">import</span> pandas <span class="kw">as</span> pd\n\n'
@@ -6441,6 +6702,178 @@ window.addEventListener('pointermove', function(e){
     if (!tick){ tick = true; requestAnimationFrame(upd) }
   }, {passive:true});
   upd();
+})();
+
+
+/* ================= THEME + BACKGROUND FX ================= */
+(function(){
+  var root = document.documentElement;
+  var KEY = 'labnotebook-theme';           /* 'auto' | 'light' | 'dark' */
+  var mq = window.matchMedia ? matchMedia('(prefers-color-scheme: dark)') : null;
+
+  function stored(){
+    try { return localStorage.getItem(KEY) || 'auto' } catch(e){ return 'auto' }
+  }
+  function apply(mode){
+    if (mode === 'auto') root.removeAttribute('data-theme');
+    else root.setAttribute('data-theme', mode);
+    try { localStorage.setItem(KEY, mode) } catch(e){}
+    $$('.themesw button').forEach(function(b){ b.classList.toggle('on', b.dataset.mode === mode) });
+    if (window.__repaintAccents) window.__repaintAccents();
+  }
+  function isDark(){
+    var m = stored();
+    return m === 'dark' || (m === 'auto' && mq && mq.matches);
+  }
+
+  /* ---- the switch: auto / light / dark, dropped in beside the language pills ---- */
+  var langsw = $('.langsw');
+  if (langsw){
+    var ICON = {
+      auto: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18" /><path d="M12 3a9 9 0 0 1 0 18" fill="currentColor" stroke="none"/></svg>',
+      light:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/></svg>',
+      dark: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.4 8.4 0 1 0 10.2 10.2z"/></svg>'
+    };
+    var sw = document.createElement('div');
+    sw.className = 'themesw';
+    sw.innerHTML = ['auto','light','dark'].map(function(m){
+      var t = {auto:'Follow system 跟随系统', light:'Light 浅色', dark:'Dark 深色'}[m];
+      return '<button type="button" data-mode="'+m+'" title="'+t+'" aria-label="'+t+'">'+ICON[m]+'</button>';
+    }).join('');
+    langsw.parentNode.insertBefore(sw, langsw.nextSibling);
+    sw.addEventListener('click', function(e){
+      var b = e.target.closest('button'); if (b) apply(b.dataset.mode);
+    });
+  }
+  apply(stored());
+  if (mq && mq.addEventListener) mq.addEventListener('change', function(){ if (stored()==='auto') apply('auto') });
+
+  /* ---- the five fixed layers ---- */
+  var fx = document.createElement('div');
+  fx.id = 'bgfx';
+  fx.setAttribute('aria-hidden','true');
+  fx.innerHTML = '<div class="fx-a1"></div><div class="fx-a2"></div><div class="fx-a3"></div>'
+               + '<div class="fx-beam"></div><div class="fx-stars"></div>'
+               + '<div class="fx-spot"></div><div class="fx-grain"></div>';
+  document.body.appendChild(fx);
+
+  var reduce = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)').matches : false;
+
+  /* ---- the light follows the pointer ---- */
+  if (!reduce){
+    var px = 50, py = 30, queued = false;
+    window.addEventListener('pointermove', function(e){
+      px = (e.clientX / innerWidth) * 100;
+      py = (e.clientY / innerHeight) * 100;
+      if (!queued){
+        queued = true;
+        requestAnimationFrame(function(){
+          queued = false;
+          fx.style.setProperty('--mx', px.toFixed(1) + '%');
+          fx.style.setProperty('--my', py.toFixed(1) + '%');
+        });
+      }
+    }, {passive:true});
+  }
+
+  /* ---- the hue follows whichever milestone you are actually reading ---- */
+  var zones = $$('section[style*="--c"]');
+  if (zones.length){
+    var PAIRS = [
+      ['--m1','--m2','--m3'], ['--m2','--m1','--m4'], ['--m3','--m5','--m1'],
+      ['--m4','--m2','--m5'], ['--m5','--m3','--m4']
+    ];
+    var cur = -1, pending = false;
+    function pick(){
+      pending = false;
+      var mid = innerHeight * 0.42, best = -1, bestD = Infinity;
+      zones.forEach(function(s, i){
+        var r = s.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > innerHeight) return;
+        var d = Math.abs((r.top + r.bottom) / 2 - mid);
+        /* a tall section that simply contains the line wins outright */
+        if (r.top <= mid && r.bottom >= mid) d = 0;
+        if (d < bestD){ bestD = d; best = i }
+      });
+      if (best === cur) return;
+      cur = best;
+      var p = best < 0 ? ['--m1','--m2','--m3'] : PAIRS[best % PAIRS.length];
+      fx.style.setProperty('--aur1', 'var(' + p[0] + ')');
+      fx.style.setProperty('--aur2', 'var(' + p[1] + ')');
+      fx.style.setProperty('--aur3', 'var(' + p[2] + ')');
+    }
+    window.addEventListener('scroll', function(){
+      if (!pending){ pending = true; requestAnimationFrame(pick) }
+    }, {passive:true});
+    pick();
+  }
+})();
+
+/* ---------- brand squares: authentic colours, readable label ---------- */
+(function(){
+  function ink(el){
+    var m = getComputedStyle(el).backgroundColor.match(/rgba?\(([^)]+)\)/);
+    if (!m) return;
+    var p = m[1].split(/[\s,\/]+/).filter(Boolean).map(Number);
+    var f = function(v){ v/=255; return v<=.03928 ? v/12.92 : Math.pow((v+.055)/1.055,2.4) };
+    var L = .2126*f(p[0]) + .7152*f(p[1]) + .0722*f(p[2]);
+    /* contrast against white vs against near-black, pick the winner */
+    el.style.color = (1.05/(L+.05)) >= ((L+.05)/.05) ? '#fff' : '#000';
+  }
+  function run(){ $$('.chip2 .lg, .lg').forEach(function(el){ el.style.color=''; ink(el) }) }
+  window.__inkChips = run;
+  run();
+  /* the atlas builds its chips lazily, so re-run when the grid changes */
+  var grid = $('.chips') || $('#stack');
+  if (grid && window.MutationObserver){
+    new MutationObserver(function(){ run() }).observe(grid, {childList:true, subtree:true});
+  }
+})();
+
+/* ---------- accents baked into JS data need the dark ramp too ---------- */
+(function(){
+  var SWAP = {
+    '#4f46e5':'#818cf8', '#6366f1':'#a5b4fc', '#0d9488':'#2dd4bf', '#9333ea':'#c084fc',
+    '#d97706':'#fbbf24', '#e11d48':'#fb7185', '#059669':'#34d399', '#dc2626':'#f87171',
+    '#0f766e':'#5eead4', '#0369a1':'#7dd3fc', '#4338ca':'#a5b4fc', '#be123c':'#fda4af',
+    '#b45309':'#fcd34d', '#047857':'#6ee7b7', '#334155':'#94a3b8'
+  };
+  var RE = new RegExp(Object.keys(SWAP).join('|'), 'gi');
+  function dark(){
+    var t = document.documentElement.getAttribute('data-theme');
+    if (t === 'dark') return true;
+    if (t === 'light') return false;
+    return window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function paint(){
+    var on = dark();
+    $$('[style]').forEach(function(el){
+      var orig = el.getAttribute('data-lightstyle');
+      if (orig === null){
+        var s = el.getAttribute('style') || '';
+        if (!RE.test(s)) return;
+        RE.lastIndex = 0;
+        orig = s;
+        el.setAttribute('data-lightstyle', orig);
+      }
+      el.setAttribute('style', on ? orig.replace(RE, function(m){ return SWAP[m.toLowerCase()] || m }) : orig);
+    });
+    if (window.__inkChips) window.__inkChips();   /* labels follow the swapped fills */
+  }
+  window.__repaintAccents = paint;
+  paint();
+  /* childList only: paint() writes style attributes itself, and the scrub rail
+     rewrites --t every frame — observing attributes would loop and thrash */
+  var queued = false;
+  new MutationObserver(function(){
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(function(){ queued = false; paint() });
+  }).observe(document.body, {childList:true, subtree:true});
+  if (window.matchMedia){
+    var mq = matchMedia('(prefers-color-scheme: dark)');
+    if (mq.addEventListener) mq.addEventListener('change', paint);
+  }
 })();
 
 })();
