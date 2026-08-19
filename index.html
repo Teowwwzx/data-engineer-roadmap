@@ -3945,6 +3945,354 @@ body > section, body > .hero, body > .topbar, footer{position:relative; z-index:
 <div class="glow" id="glow"></div>
 <button id="totop" aria-label="Back to top">↑</button>
 
+<style id="design-layer">
+/* ============================================================================
+   DESIGN LAYER — sits last, so it wins on source order.
+   Keeps the lab-notebook soul: paper, ink, one accent per milestone.
+   Adds depth, atmosphere and motion on top of it.
+   ========================================================================= */
+
+:root{
+  /* a tuned elevation ramp — ambient + key, tinted with the ink, never pure black */
+  --e1:0 1px 2px rgba(20,32,43,.04), 0 1px 3px rgba(20,32,43,.05);
+  --e2:0 2px 4px rgba(20,32,43,.04), 0 8px 20px -6px rgba(20,32,43,.10);
+  --e3:0 4px 8px rgba(20,32,43,.04), 0 18px 42px -12px rgba(20,32,43,.16);
+  --e4:0 8px 16px rgba(20,32,43,.05), 0 34px 68px -20px rgba(20,32,43,.22);
+  --shadow:var(--e2);
+  --ring:color-mix(in srgb, var(--c, var(--m1)) 45%, transparent);
+  --hair:color-mix(in srgb, var(--ink) 9%, transparent);
+  --spring:cubic-bezier(.22,1,.36,1);
+  --swift:cubic-bezier(.4,0,.2,1);
+}
+
+/* ---------- atmosphere: two slow aurora fields + a grain plate ---------- */
+body::before{
+  content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
+  background:
+    radial-gradient(900px 620px at 12% -8%,  color-mix(in srgb,var(--m1) 13%, transparent), transparent 62%),
+    radial-gradient(820px 560px at 92% 6%,   color-mix(in srgb,var(--m2) 12%, transparent), transparent 60%),
+    radial-gradient(760px 620px at 50% 108%, color-mix(in srgb,var(--m3) 9%,  transparent), transparent 62%);
+  animation:drift 34s ease-in-out infinite alternate;
+}
+body::after{
+  content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.03;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@keyframes drift{
+  from{transform:translate3d(0,0,0) scale(1)}
+  to  {transform:translate3d(0,-26px,0) scale(1.05)}
+}
+
+::selection{background:color-mix(in srgb,var(--m1) 22%, transparent)}
+:focus-visible{outline:2.5px solid var(--ring); outline-offset:3px; border-radius:6px}
+
+/* ---------- top bar: real glass, glowing progress ---------- */
+.topbar{
+  background:color-mix(in srgb, var(--bg) 72%, transparent);
+  backdrop-filter:blur(18px) saturate(180%); -webkit-backdrop-filter:blur(18px) saturate(180%);
+  border-bottom:1px solid transparent;
+  border-image:linear-gradient(90deg, transparent, var(--line) 12%, var(--line) 88%, transparent) 1;
+  transition:box-shadow .3s var(--swift);
+}
+.topbar.stuck{box-shadow:0 1px 0 var(--hair), 0 12px 30px -18px rgba(20,32,43,.35)}
+.brand{letter-spacing:-.015em; font-size:15.5px}
+.brand .dot{
+  background:conic-gradient(from 180deg, var(--m2), var(--m1), var(--m3), var(--m2));
+  box-shadow:0 0 0 4px color-mix(in srgb,var(--m2) 14%, transparent), 0 0 14px color-mix(in srgb,var(--m2) 55%, transparent);
+  animation:spin 7s linear infinite;
+}
+@keyframes spin{to{transform:rotate(1turn)}}
+.navlinks a{position:relative; transition:color .2s var(--swift), background .2s var(--swift)}
+.navlinks a::after{
+  content:""; position:absolute; left:50%; right:50%; bottom:2px; height:2px; border-radius:2px;
+  background:var(--m1); transition:left .28s var(--spring), right .28s var(--spring);
+}
+.navlinks a:hover{background:color-mix(in srgb,#fff 70%, transparent)}
+.navlinks a:hover::after{left:11px; right:11px}
+.navlinks a.on{background:var(--ink); color:#fff; box-shadow:0 6px 16px -8px rgba(20,32,43,.9)}
+.navlinks a.on::after{left:50%; right:50%}
+.langsw{background:color-mix(in srgb,var(--ink) 7%, transparent); box-shadow:inset 0 1px 2px rgba(20,32,43,.06)}
+.langsw button.on{box-shadow:0 1px 2px rgba(20,32,43,.10), 0 2px 8px -2px rgba(20,32,43,.16)}
+.pbar{height:2.5px; background:transparent}
+.pbar > i{
+  background:linear-gradient(90deg,var(--m1),var(--m3) 34%,var(--m2) 68%,var(--m4));
+  box-shadow:0 0 12px color-mix(in srgb,var(--m1) 70%, transparent);
+  transition:width .25s var(--swift);
+}
+
+/* ---------- hero ---------- */
+.hero{padding:88px 0 52px}
+.hero:before,.hero:after{display:none}          /* the body aurora does this now */
+.eyebrow{
+  position:relative; overflow:hidden; isolation:isolate;
+  background:color-mix(in srgb,var(--m2) 10%, transparent);
+  border:1px solid color-mix(in srgb,var(--m2) 22%, transparent);
+  box-shadow:0 1px 2px rgba(20,32,43,.04);
+}
+.eyebrow::after{                                 /* a slow sheen crossing the pill */
+  content:""; position:absolute; inset:0; z-index:-1;
+  background:linear-gradient(105deg, transparent 30%, color-mix(in srgb,var(--m2) 26%, transparent) 50%, transparent 70%);
+  transform:translateX(-120%); animation:sheen 5.5s ease-in-out 1.2s infinite;
+}
+@keyframes sheen{0%{transform:translateX(-120%)} 55%,100%{transform:translateX(120%)}}
+h1{
+  font-size:clamp(36px,6.2vw,68px); letter-spacing:-.032em; line-height:1.04; max-width:15ch;
+  background:linear-gradient(168deg, var(--ink) 30%, color-mix(in srgb,var(--ink) 62%, var(--m1)) 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+body.lang-zh h1{letter-spacing:-.01em; line-height:1.22}
+.lede{font-size:clamp(17px,2.1vw,20.5px); max-width:60ch; line-height:1.62}
+.herostats{gap:0; border-top:1px solid var(--hair); padding-top:26px}
+.herostats > div{padding:0 30px; position:relative}
+.herostats > div:first-child{padding-left:0}
+.herostats > div + div::before{
+  content:""; position:absolute; left:0; top:4px; bottom:4px; width:1px;
+  background:linear-gradient(180deg, transparent, var(--line), transparent);
+}
+.herostats div b{
+  font-size:34px; letter-spacing:-.03em; font-variant-numeric:tabular-nums;
+  background:linear-gradient(160deg,var(--m1),var(--m2)); -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.herostats div span{font-size:11.5px; letter-spacing:.09em; color:var(--muted)}
+
+/* ---------- section heads ---------- */
+section{padding:64px 0}
+.sechead{align-items:center; gap:14px; margin-bottom:14px}
+.sechead h2{letter-spacing:-.028em}
+.sechead::after{                                  /* a rule that fades out to the right */
+  content:""; flex:1; height:1px; margin-left:2px;
+  background:linear-gradient(90deg, var(--line), transparent);
+}
+
+/* ---------- milestone header: numeral as jewellery ---------- */
+.mshead{align-items:center; gap:18px}
+.msnum{
+  width:60px; height:60px; border-radius:19px; font-size:24px; letter-spacing:-.02em; position:relative;
+  background:linear-gradient(150deg, color-mix(in srgb,var(--c) 82%, #fff), var(--c) 55%, color-mix(in srgb,var(--c) 78%, var(--ink)));
+  box-shadow:0 10px 26px -8px color-mix(in srgb,var(--c) 62%, transparent),
+             inset 0 1px 0 rgba(255,255,255,.45), inset 0 -1px 0 rgba(0,0,0,.12);
+}
+.msnum::after{                                    /* glass highlight */
+  content:""; position:absolute; inset:1px 1px 46% 1px; border-radius:18px 18px 40% 40%;
+  background:linear-gradient(180deg, rgba(255,255,255,.30), transparent);
+  pointer-events:none;
+}
+.mshead h2{letter-spacing:-.03em}
+.mshead .sub{letter-spacing:.13em; font-size:11.5px}
+
+/* ---------- cards: one elevation language ---------- */
+.card,.lens,.tlrow,.stage,.quiz,.checks,.play,.rw{
+  box-shadow:var(--e2);
+  transition:box-shadow .35s var(--swift), transform .35s var(--spring), border-color .35s var(--swift);
+}
+.card:hover,.lens:hover,.stage:hover,.quiz:hover,.play:hover{box-shadow:var(--e3)}
+.tlrow{border-radius:16px}
+.tlrow:hover{transform:translateX(6px) translateY(-1px); box-shadow:var(--e3); border-color:color-mix(in srgb,var(--c) 55%, var(--line))}
+.tlmonth{
+  background:linear-gradient(150deg, color-mix(in srgb,var(--c) 84%, #fff), var(--c));
+  box-shadow:0 6px 14px -6px color-mix(in srgb,var(--c) 65%, transparent), inset 0 1px 0 rgba(255,255,255,.35);
+}
+
+/* ---------- topic ---------- */
+.topic{border-top:1px solid var(--hair); padding-top:34px; margin-top:34px}
+.topic > h3{font-size:21.5px; letter-spacing:-.022em; gap:12px}
+.topic > h3 .ic{
+  width:32px; height:32px; border-radius:10px; font-size:14.5px; font-weight:800; color:#fff;
+  background:linear-gradient(150deg, color-mix(in srgb,var(--c) 78%, #fff), var(--c));
+  border:0;
+  box-shadow:0 4px 12px -4px color-mix(in srgb,var(--c) 70%, transparent), inset 0 1px 0 rgba(255,255,255,.35);
+}
+
+/* ---------- analogy / ifnot: keep the coloured spine, soften the slab ---------- */
+.analogy{
+  border-left-width:3px; border-radius:0 16px 16px 0; padding:20px 24px;
+  background:linear-gradient(100deg, color-mix(in srgb,var(--c) 8%, #fff), color-mix(in srgb,var(--c) 3%, #fff));
+  box-shadow:var(--e1);
+}
+.analogy .lab{letter-spacing:.13em}
+.ifnot{
+  border-left-width:3px; border-radius:0 16px 16px 0; padding:18px 22px;
+  background:linear-gradient(100deg, #fff5f5, #fffafa); box-shadow:var(--e1);
+}
+.rw{border-radius:16px; border-width:1px; box-shadow:var(--e2)}
+.rw .rwh{letter-spacing:.14em}
+
+/* ---------- LENS: a segmented control, with a sliding pill ---------- */
+.lens{border-radius:18px}
+.lens-tabs{
+  gap:2px; padding:8px; border-bottom:1px solid var(--hair);
+  background:linear-gradient(180deg, color-mix(in srgb,var(--c) 7%, #fff), color-mix(in srgb,var(--c) 3%, #fff));
+}
+.lens-tabs button{
+  border-radius:10px; border-bottom:0; margin-bottom:0; padding:8px 14px; position:relative;
+  letter-spacing:.055em; font-size:12px; transition:color .22s var(--swift);
+}
+.lens-tabs button::before{
+  content:""; position:absolute; inset:0; border-radius:10px; z-index:-1;
+  background:#fff; box-shadow:0 1px 2px rgba(20,32,43,.10), 0 4px 12px -6px rgba(20,32,43,.25);
+  opacity:0; transform:scale(.94); transition:opacity .24s var(--swift), transform .3s var(--spring);
+}
+.lens-tabs button.on{color:var(--c)}
+.lens-tabs button.on::before{opacity:1; transform:none}
+.lens-tabs button:hover:not(.on){color:var(--ink); background:color-mix(in srgb,#fff 55%, transparent)}
+.lens-pane{padding:24px 26px; animation:lensin .34s var(--spring)}
+@keyframes lensin{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:none}}
+.lens-pane .kicker{letter-spacing:.14em}
+
+/* ---------- stage ---------- */
+.stage{
+  border-radius:18px; padding:20px;
+  background:linear-gradient(180deg,#fcfcfa,#f1f0ea);
+  box-shadow:var(--e2), inset 0 1px 0 #fff;
+}
+.stage .cap span{letter-spacing:.1em}
+.replay{
+  border-radius:999px; font-weight:700;
+  box-shadow:0 1px 2px rgba(20,32,43,.06);
+  transition:transform .22s var(--spring), background .2s var(--swift), color .2s var(--swift), box-shadow .22s var(--swift);
+}
+.replay:hover{transform:translateY(-1px); box-shadow:0 4px 12px -4px rgba(20,32,43,.4)}
+.replay:active{transform:translateY(0) scale(.97)}
+
+/* ---------- the scrub rail, dressed up ---------- */
+.evo-fill{filter:drop-shadow(0 0 4px color-mix(in srgb,var(--c) 55%, transparent))}
+.evo-head{filter:drop-shadow(0 2px 4px color-mix(in srgb,var(--c) 45%, transparent))}
+.evo-col{border-radius:14px; box-shadow:var(--e1)}
+.evo-col.now{box-shadow:var(--e2), inset 0 1px 0 #fff}
+
+/* ---------- reveal: spring in, slightly staggered ---------- */
+.reveal{transition:opacity .7s var(--swift), transform .8s var(--spring)}
+.topic.reveal,.rw.reveal,.play.reveal,.quiz.reveal{transform:translateY(18px)}
+.reveal.in{transform:none}
+
+@media(max-width:700px){
+  .hero{padding:56px 0 38px}
+  section{padding:44px 0}
+  /* a flex row wraps into ragged columns with orphan dividers — use a grid */
+  .herostats{display:grid; grid-template-columns:1fr 1fr; gap:20px 0}
+  .herostats > div{padding:0 0 0 16px}
+  .herostats > div:nth-child(odd){padding-left:0}
+  .herostats > div + div::before{display:none}
+  .herostats > div:nth-child(even)::after{
+    content:""; position:absolute; left:0; top:2px; bottom:2px; width:1px;
+    background:linear-gradient(180deg, transparent, var(--line), transparent);
+  }
+  .herostats div b{font-size:30px}
+  .msnum{width:50px; height:50px; border-radius:16px; font-size:20px}
+}
+@media(prefers-reduced-motion:reduce){
+  body::before{animation:none}
+  .eyebrow::after,.brand .dot{animation:none}
+  .reveal{transition:opacity .3s linear}
+}
+
+/* ---------- playgrounds: the best part of the guide, dressed like it ---------- */
+.play{
+  border-width:1px; border-radius:20px;
+  border-color:color-mix(in srgb,var(--c) 30%, var(--line));
+  box-shadow:var(--e3), 0 0 0 1px color-mix(in srgb,var(--c) 8%, transparent),
+             0 30px 60px -30px color-mix(in srgb,var(--c) 45%, transparent);
+}
+.play-head{
+  padding:17px 24px;
+  background:linear-gradient(100deg, color-mix(in srgb,var(--c) 15%,#fff), color-mix(in srgb,var(--c) 4%,#fff) 70%);
+  border-bottom:1px solid color-mix(in srgb,var(--c) 18%, transparent);
+}
+.play-head h4{letter-spacing:-.015em}
+.pbtn{
+  border-width:1px; border-radius:10px; padding:7px 15px;
+  background:linear-gradient(180deg,#fff,#fbfbf9);
+  box-shadow:0 1px 2px rgba(20,32,43,.05);
+  transition:transform .2s var(--spring), border-color .2s var(--swift), color .2s var(--swift), box-shadow .2s var(--swift);
+}
+.pbtn:hover{transform:translateY(-2px); box-shadow:0 6px 14px -6px color-mix(in srgb,var(--c) 65%, transparent); border-color:color-mix(in srgb,var(--c) 55%, transparent)}
+.pbtn:active{transform:translateY(0) scale(.97)}
+.pbtn.on{
+  background:linear-gradient(150deg, color-mix(in srgb,var(--c) 88%, #fff), var(--c));
+  color:#fff; border-color:transparent;
+  box-shadow:0 6px 16px -6px color-mix(in srgb,var(--c) 75%, transparent), inset 0 1px 0 rgba(255,255,255,.3);
+}
+.plabel{letter-spacing:.13em}
+
+/* ---------- code panels ---------- */
+.codewrap{
+  border-radius:16px; border-color:#1e293b;
+  box-shadow:var(--e3), inset 0 1px 0 rgba(255,255,255,.06);
+}
+.tabs{padding:8px 8px 0; background:#0b1428}
+.tabs button{border-radius:9px 9px 0 0; transition:background .2s var(--swift), color .2s var(--swift)}
+.tabs button:hover:not(.on){color:#cbd5e1; background:rgba(255,255,255,.05)}
+pre{padding:18px 20px}
+code.inl{
+  background:color-mix(in srgb,var(--ink) 6%, transparent);
+  border:1px solid color-mix(in srgb,var(--ink) 8%, transparent);
+  border-radius:6px; padding:1.5px 6px;
+}
+
+/* ---------- quiz ---------- */
+.quiz{border-radius:16px; padding:22px 24px}
+.quiz .qh{letter-spacing:.14em}
+.opt{
+  border-width:1px; border-radius:12px; padding:12px 16px;
+  background:linear-gradient(180deg,#fff,#fbfbf9);
+  transition:transform .2s var(--spring), border-color .2s var(--swift), box-shadow .2s var(--swift), background .2s var(--swift);
+}
+.opt:hover:not(:disabled){
+  transform:translateX(3px); border-color:color-mix(in srgb,var(--c,var(--m1)) 55%, transparent);
+  box-shadow:0 4px 14px -8px rgba(20,32,43,.5);
+}
+.opt.right{box-shadow:0 0 0 3px rgba(5,150,105,.14)}
+.opt.wrong{box-shadow:0 0 0 3px rgba(220,38,38,.12)}
+.fb{border-radius:12px; border-left:3px solid var(--c,var(--m1))}
+
+/* ---------- checklist ---------- */
+.checks{
+  border-radius:16px; border-style:dashed;      /* keep the notebook cue */
+  border-color:color-mix(in srgb,var(--c) 34%, transparent);
+  background:linear-gradient(150deg, color-mix(in srgb,var(--c) 5%,#fff), #fff 60%);
+  box-shadow:var(--e1);
+}
+.chk{border-radius:9px; padding:8px 10px; margin-left:-10px; transition:background .18s var(--swift)}
+.chk:hover{background:color-mix(in srgb,var(--c) 6%, transparent)}
+.chk input{width:18px; height:18px; border-radius:6px}
+.chk input:checked ~ span{opacity:.6}
+
+/* ---------- the dark philosophy block: give it real depth ---------- */
+.philo{
+  border-radius:24px; padding:40px 38px;
+  background:
+    radial-gradient(700px 380px at 8% -10%,  color-mix(in srgb,var(--m1) 42%, transparent), transparent 62%),
+    radial-gradient(620px 420px at 96% 108%, color-mix(in srgb,var(--m2) 34%, transparent), transparent 60%),
+    linear-gradient(160deg, #1b2735, var(--ink) 55%, #0e1720);
+  box-shadow:var(--e4), inset 0 1px 0 rgba(255,255,255,.08);
+}
+.philo::after{                                   /* faint grid, like notebook paper */
+  content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
+  background-image:linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+                   linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size:34px 34px;
+  mask-image:radial-gradient(120% 100% at 50% 0%, #000 35%, transparent 78%);
+  -webkit-mask-image:radial-gradient(120% 100% at 50% 0%, #000 35%, transparent 78%);
+}
+.philo > *{position:relative; z-index:1}
+.philo .quote{border-left-width:3px; font-size:20px; line-height:1.5; letter-spacing:-.012em}
+.chip{backdrop-filter:blur(6px); border-radius:9px}
+.chip.base{box-shadow:0 6px 18px -8px color-mix(in srgb,var(--m2) 90%, transparent)}
+
+/* ---------- misc cards ---------- */
+.mini{border-radius:14px; box-shadow:var(--e1); transition:transform .3s var(--spring), box-shadow .3s var(--swift)}
+.mini:hover{transform:translateY(-3px); box-shadow:var(--e2)}
+.warn{border-radius:14px}
+
+/* ---------- back-to-top ---------- */
+.totop{
+  border-radius:14px; box-shadow:var(--e3);
+  transition:transform .28s var(--spring), box-shadow .28s var(--swift), opacity .28s var(--swift);
+}
+.totop:hover{transform:translateY(-3px); box-shadow:var(--e4)}
+
+</style>
+
 <script>
 (function(){
 "use strict";
@@ -6077,6 +6425,22 @@ window.addEventListener('pointermove', function(e){
   } else {
     blocks.forEach(function(evo){ if (evo._set){ evo._done = 1; evo._set(1, true) } });
   }
+})();
+
+
+/* ---------------- top bar lifts off the page once you scroll ---------------- */
+(function(){
+  var bar = $('.topbar'); if (!bar) return;
+  var on = false, tick = false;
+  function upd(){
+    tick = false;
+    var s = window.scrollY > 8;
+    if (s !== on){ on = s; bar.classList.toggle('stuck', s) }
+  }
+  window.addEventListener('scroll', function(){
+    if (!tick){ tick = true; requestAnimationFrame(upd) }
+  }, {passive:true});
+  upd();
 })();
 
 })();

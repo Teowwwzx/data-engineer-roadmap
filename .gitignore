@@ -1,3 +1,4 @@
 .claude/
 .DS_Store
-_harness.html
+_*.html
+_*.css
