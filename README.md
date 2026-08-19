@@ -1,7 +1,7 @@
 # The Lab Notebook · 实验记录本
 
 **A 12-month foundations roadmap for a new Data Engineer with a pure-science background.**
-Bilingual (English / 中文), fully interactive, single static HTML file — no build step, no dependencies.
+Bilingual (English / 中文), light + dark, fully interactive, single static HTML file — no build step, no dependencies.
 
 **▶ Live: https://teowwwzx.github.io/data-engineer-roadmap/**
 
@@ -30,6 +30,7 @@ at a time — and deliberately ends at the bottom of the stack: a switch that is
 - **How the big systems work** — Grab, Netflix, YouTube and an exchange/trading system, each reduced
   to the one clever idea that makes it possible.
 - **It all starts from 0 and 1** — an interactive bit playground and a 12-floor abstraction tower.
+- **How this page was built** — the five prompts that produced it, verbatim, and what each one returned.
 
 ## Interactive playgrounds (11)
 
@@ -47,6 +48,7 @@ at a time — and deliberately ends at the bottom of the stack: a switch that is
 | 10 | Autoscaling | Drag traffic; servers appear, latency holds, the bill moves |
 | 11 | Bit switches | Flip eight switches, watch a letter appear |
 | 12 | The map | 17 clickable regions, role overlays, and a traced request |
+| 13 | Then → Now | Scrub 18 before/after panels; the past fades as the present lights up |
 
 Plus 10 animated SVG explainers, 9 self-check quizzes, 5 challenge cards and 34 trackable lab tasks.
 
@@ -64,6 +66,10 @@ which is itself part of the point the guide is making.
 
 ## Notes
 
+- **Themes** — light, dark, or follow-the-system, from the switch in the top bar. Your choice is remembered.
+- The background is five fixed layers; its hue follows whichever milestone you're reading, and the
+  light follows your cursor. All of it respects `prefers-reduced-motion`.
+- Contrast is audited across every text element in both themes: dark mode has no WCAG AA failures.
 - Progress and playground state are **not** saved between visits.
 - Scale figures in the architecture showcase are approximate and from public reporting.
 - Written to be read in either language: use the **EN / 中文** switch in the top bar.

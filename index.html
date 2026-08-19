@@ -314,7 +314,8 @@ footer h3{color:var(--ink)}
       <a href="#scale"><span class="en">Big systems</span><span class="zh">大系统</span></a>
       <a href="#zero"><span class="en">0 &amp; 1</span><span class="zh">0 与 1</span></a>
       <a href="#finish"><span class="en">Finish</span><span class="zh">结语</span></a>
-    </nav>
+    <a href="#made"><span class="en">Built with AI</span><span class="zh">怎么做的</span></a>
+      </nav>
     <div class="langsw">
       <button data-lang="en" class="on">EN</button>
       <button data-lang="zh">中文</button>
@@ -3920,6 +3921,131 @@ input[type=range]{width:100%; accent-color:var(--c)}
       <div class="mini"><h5><span class="en">What "senior" means</span><span class="zh">"资深"是什么意思</span></h5>
         <p class="en">Not knowing more syntax. It's knowing what will break, roughly when, and what it will cost. That only comes from breaking things — so break things early, where it's cheap.</p>
         <p class="zh">不是记得更多语法，而是知道什么会坏、大概什么时候坏、坏了要付什么代价。这只能从把东西弄坏中获得——所以趁代价还低，早点去弄坏它。</p></div>
+    </div>
+  </div>
+</section>
+
+
+<style>
+/* ===== how this was built ===== */
+#made{--c:var(--m3)}
+.promptlog{list-style:none; margin:26px 0 0; padding:0; display:grid; gap:14px; counter-reset:pl}
+.pl{display:grid; grid-template-columns:52px 1fr; gap:16px; align-items:start;
+  background:var(--paper); border:1px solid var(--line); border-radius:16px; padding:18px 20px;
+  box-shadow:var(--e1); transition:transform .3s var(--spring), box-shadow .3s var(--swift), border-color .3s var(--swift)}
+.pl:hover{transform:translateY(-2px); box-shadow:var(--e2); border-color:color-mix(in srgb,var(--c) 40%, var(--line))}
+@media(max-width:640px){.pl{grid-template-columns:1fr; gap:10px}}
+.pl-n{font:800 15px/1 var(--mono); letter-spacing:-.02em; color:#fff; width:38px; height:38px; border-radius:11px;
+  display:grid; place-items:center;
+  background:linear-gradient(150deg, color-mix(in srgb,var(--c) 80%, #fff), var(--c));
+  box-shadow:0 5px 14px -6px color-mix(in srgb,var(--c) 70%, transparent), inset 0 1px 0 rgba(255,255,255,.35)}
+.pl-said{font-size:11px; font-weight:800; letter-spacing:.14em; text-transform:uppercase;
+  color:color-mix(in srgb,var(--c) 76%, #000); margin:0 0 8px}
+:root[data-theme="dark"] .pl-said{color:var(--c)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .pl-said{color:var(--c)}}
+.pl-q{margin:0 0 12px; padding:12px 15px; border-radius:11px; border-left:3px solid var(--c);
+  background:color-mix(in srgb,var(--c) 7%, var(--paper));
+  font:14px/1.6 var(--mono); color:var(--ink); overflow-wrap:anywhere; white-space:pre-wrap}
+.pl-got{margin:0; font-size:14.5px; color:var(--muted)}
+.pl-got b{color:var(--ink)}
+.madestats{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:26px 0 0}
+@media(max-width:820px){.madestats{grid-template-columns:repeat(2,1fr)}}
+.mstat{background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:16px 18px; box-shadow:var(--e1)}
+.mstat b{display:block; font-size:27px; font-weight:800; letter-spacing:-.03em; line-height:1.1;
+  font-variant-numeric:tabular-nums;
+  background:linear-gradient(160deg,var(--m3),var(--m1)); -webkit-background-clip:text; background-clip:text; color:transparent}
+.mstat span{display:block; font-size:11.5px; font-weight:650; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-top:3px}
+</style>
+
+<section id="made" style="--c:var(--m3)">
+  <div class="wrap">
+    <div class="sechead">
+      <h2><span class="en">How this page was built</span><span class="zh">这一页是怎么做出来的</span></h2>
+    </div>
+    <p class="lede" style="max-width:70ch">
+      <span class="en">Nothing here was drawn in Figma, cut into components, or handed to a front-end team.
+      It arrived as one HTML file in a zip, and every change after that was a sentence typed into an AI coding
+      agent. Below is the entire conversation — every prompt, unedited, typos and all.</span>
+      <span class="zh">这里没有任何东西是在 Figma 里画出来、切成组件、再交给前端团队的。
+      它一开始只是压缩包里的一个 HTML 文件，之后的每一次改动，都是敲给 AI 编程助手的一句话。
+      下面是完整的对话 —— 每一句提示词，原样保留，错别字也没改。</span>
+    </p>
+
+    <ol class="promptlog">
+      <li class="pl">
+        <div class="pl-n">01</div>
+        <div>
+          <p class="pl-said"><span class="en">What was typed</span><span class="zh">输入的原话</span></p>
+          <blockquote class="pl-q">@data-engineer-roadmap.zip Please create repo and push to teowwwzx github and deploy it.</blockquote>
+          <p class="pl-got"><span class="en"><b>A public repo, the first commit, GitHub Pages switched on and the live URL checked</b> — from a zip on a laptop to a working address, in one step.</span><span class="zh"><b>一个公开仓库、第一次提交、打开 GitHub Pages、并验证线上地址</b> —— 从笔记本上的一个压缩包到一个能打开的网址，一步完成。</span></p>
+        </div>
+      </li>
+      <li class="pl">
+        <div class="pl-n">02</div>
+        <div>
+          <p class="pl-said"><span class="en">What was typed</span><span class="zh">输入的原话</span></p>
+          <blockquote class="pl-q">Great! Can you scan again which part is too many word and redundant. because we try to use as much animation, svg, interaction as much possible rather than words which feel sleepy.</blockquote>
+          <p class="pl-got"><span class="en"><b>The whole page parsed and measured</b>: 20,785 English words, 381 paragraphs, word counts per section and per component, and a ranked list of where the prose was thickest. The verdict: the THEN&nbsp;&rarr;&nbsp;NOW blocks held 1,942 words in static columns with not one graphic in them.</span><span class="zh"><b>整页被解析并量化</b>：20,785 个英文单词、381 个段落、每个章节与每个组件的字数，以及一份「哪里文字最密」的排序清单。结论是：「以前 &rarr; 现在」这些板块用静态两栏装了 1,942 个词，里面一张图都没有。</span></p>
+        </div>
+      </li>
+      <li class="pl">
+        <div class="pl-n">03</div>
+        <div>
+          <p class="pl-said"><span class="en">What was typed</span><span class="zh">输入的原话</span></p>
+          <blockquote class="pl-q">yes</blockquote>
+          <p class="pl-got"><span class="en"><b>Those 18 blocks rebuilt as one component you scrub.</b> An SVG playhead sweeps left to right, the past desaturates and recedes, the present lights up one bullet at a time. Not a word was cut — only the way it arrives.</span><span class="zh"><b>那 18 个板块被重建成一个可以拖动的组件。</b>SVG 播放头从左扫到右，过去褪色后退，现在逐条亮起。一个字都没删 —— 变的只是它抵达你的方式。</span></p>
+        </div>
+      </li>
+      <li class="pl">
+        <div class="pl-n">04</div>
+        <div>
+          <p class="pl-said"><span class="en">What was typed</span><span class="zh">输入的原话</span></p>
+          <blockquote class="pl-q">btw I want you to enhance the UI with cool and fancy design like you going to competing in frontend design worldcup and you want to get first place by keeping these usefull information! Just enhance UI!.</blockquote>
+          <p class="pl-got"><span class="en"><b>A design layer slid underneath everything</b>: an elevation system, a glass top bar, gradient display type, segmented controls, spring motion. It was added as the last stylesheet, so not one line of the original content or markup had to move.</span><span class="zh"><b>一层设计被垫到了所有东西下面</b>：一套阴影层级、玻璃顶栏、渐变标题字、分段控件、弹性动效。它是作为最后一张样式表加进去的，所以原有的内容和结构一行都不用动。</span></p>
+        </div>
+      </li>
+      <li class="pl">
+        <div class="pl-n">05</div>
+        <div>
+          <p class="pl-said"><span class="en">What was typed</span><span class="zh">输入的原话</span></p>
+          <blockquote class="pl-q">yes do dark mode. do some top tier effect on background xD. I just want to show how powerful of AI btw, ad the last session add how to build this side with ai and show my prompt what easy we just done compare to before.</blockquote>
+          <p class="pl-got"><span class="en"><b>566 colour literals migrated to semantic tokens</b>, a full dark theme, a five-layer reactive background, and an automated contrast audit run over every piece of text on the page in both themes. Plus the section you are reading.</span><span class="zh"><b>566 处写死的颜色被迁移成语义化 token</b>、一套完整的深色主题、五层会响应的背景，以及一次覆盖全页每一段文字、两种主题的自动对比度审计。还有你正在读的这一节。</span></p>
+        </div>
+      </li>
+    </ol>
+
+    <h3 style="margin:34px 0 0; font-size:20px; letter-spacing:-.02em">
+      <span class="en">What that used to take</span><span class="zh">这些以前要花多少功夫</span>
+    </h3>
+    <div class="evo">
+      <div class="evo-col then"><h5><span class="en">The usual way</span><span class="zh">通常的做法</span></h5>
+        <ul class="en"><li>A designer in Figma, a front-end developer, and somebody to check accessibility. Three people, three handoffs, three chances to lose the thread.</li><li>Dark mode meant finding every hardcoded colour by hand. This page had <b>566</b> of them, spread over 20 stylesheets, inline attributes and SVG fills.</li><li>Contrast was checked by eye, or with a plugin, one screen at a time — so in practice it mostly wasn't.</li><li>Every change was a ticket, a branch, a review and a deploy. The gap between “this feels sleepy” and seeing it fixed was measured in days.</li></ul>
+        <ul class="zh"><li>一个在 Figma 里的设计师、一个前端开发、外加一个查无障碍的人。三个人、三次交接、三次把事情跑偏的机会。</li><li>做深色模式意味着手动找出每一处写死的颜色。这一页有 <b>566</b> 处，散落在 20 段样式、行内属性和 SVG 填充里。</li><li>对比度靠肉眼看，或者靠插件一屏一屏地查 —— 所以实际上大多时候根本没查。</li><li>每一个改动都是一张工单、一条分支、一次评审、一次部署。从「这里读着犯困」到真的看见它被修好，中间隔着好几天。</li></ul></div>
+      <div class="evo-arrow">&rarr;</div>
+      <div class="evo-col now"><h5><span class="en">This page</span><span class="zh">这一页</span></h5>
+        <ul class="en"><li>One person, one chat window, and five plain sentences — typos included. None of them said <i>how</i>; they said what, and roughly how it should feel.</li><li>The colour migration was a script written, run and verified inside the same minute the decision was made.</li><li>Contrast was measured on all <b>2,332</b> text elements, in both themes, automatically. Dark mode ships with zero WCAG AA failures.</li><li>The deploy is one of the steps, not a separate project. Every version above went live the same session it was asked for.</li></ul>
+        <ul class="zh"><li>一个人、一个聊天窗口、五句大白话 —— 错别字照留。没有一句说了<i>怎么做</i>；它们只说要什么，以及大概该是什么感觉。</li><li>颜色迁移是一个脚本，在做出决定的那一分钟内写好、跑完、验证完。</li><li>对比度覆盖全部 <b>2,332</b> 个文字元素、两种主题，全自动测量。深色模式上线时 WCAG AA 零失败。</li><li>部署只是其中一步，而不是另一个项目。上面每一个版本，都在被提出的同一次会话里上线了。</li></ul></div>
+    </div>
+
+    <div class="madestats">
+      <div class="mstat"><b>5</b><span class="en">prompts</span><span class="zh">句提示词</span></div>
+      <div class="mstat"><b>4</b><span class="en">commits</span><span class="zh">次提交</span></div>
+      <div class="mstat"><b>1</b><span class="en">file, no build step</span><span class="zh">个文件，无构建</span></div>
+      <div class="mstat"><b>0</b><span class="en">dark-mode AA failures</span><span class="zh">深色模式 AA 失败</span></div>
+    </div>
+
+    <div class="analogy" style="margin-top:26px">
+      <span class="lab"><span class="en">The part that is easy to miss</span><span class="zh">最容易被忽略的一点</span></span>
+      <p class="en">The model chose the component, wrote the migration script, found the bug where the background
+      layers were painting <i>behind</i> the page instead of on it, and measured every contrast ratio. But somebody
+      still had to look at the result and say <b>&ldquo;the old column is now too faint to read.&rdquo;</b>
+      That sentence is not a technical skill. It is judgement — knowing what <i>right</i> looks like — and it is the
+      one thing in this whole guide that does not get automated. The tools got faster. The person who can tell
+      whether the answer is correct got <b>more</b> valuable, not less.</p>
+      <p class="zh">模型挑了组件、写了迁移脚本、找出了背景层被画在页面<i>后面</i>而不是上面的那个 bug、
+      并且量了每一处对比度。但仍然得有人看着结果说一句：<b>「旧的那一栏现在太淡了，读不清。」</b>
+      这句话不是技术能力，而是判断力 —— 知道「对」应该长什么样。而这恰恰是整份指南里唯一不会被自动化掉的东西。
+      工具变快了；能判断答案对不对的那个人，因此变得<b>更</b>值钱，而不是更不值钱。</p>
     </div>
   </div>
 </section>
