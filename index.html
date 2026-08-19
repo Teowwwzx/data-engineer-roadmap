@@ -141,8 +141,8 @@ section{padding:44px 0}
   padding:9px 14px; border-radius:9px 9px 0 0; transition:.15s; border-bottom:2.5px solid transparent; margin-bottom:-1px}
 .lens-tabs button:hover{color:var(--ink)}
 .lens-tabs button.on{color:var(--c); border-bottom-color:var(--c); background:var(--paper)}
-.lens-pane{padding:22px 24px; display:none; animation:lensin .25s ease}
-.lens-pane.on{display:block}
+.lens-pane{padding:22px 24px; display:none}
+.lens-pane.on{display:block; animation:lensin .25s ease}
 @keyframes lensin{from{opacity:0; transform:translateY(6px)}to{opacity:1; transform:none}}
 .lens-pane p:last-child{margin-bottom:0}
 .lens-pane .kicker{font-size:11.5px; font-weight:800; letter-spacing:.11em; text-transform:uppercase; color:var(--c); margin-bottom:8px}
@@ -4274,6 +4274,36 @@ body > section, body > .hero, body > .topbar, footer{position:relative; z-index:
 .disc-msg.err{color:var(--no)}
 .disc-msg.ok{color:var(--ok)}
 </style>
+
+<style id="perf-layer">
+/* ---------------------------------------------------------------------------
+   RENDER PERFORMANCE: this is one very long page. content-visibility lets the
+   browser skip style, layout AND paint for anything far off-screen — it only
+   does the work once a section is about to be scrolled into view. The
+   intrinsic sizes below are rough averages, just enough to stop the scrollbar
+   jumping as blocks are skipped/un-skipped.
+   ------------------------------------------------------------------------- */
+.topic{content-visibility:auto; contain-intrinsic-size:0 900px}
+.rw{content-visibility:auto; contain-intrinsic-size:0 260px}
+.play{content-visibility:auto; contain-intrinsic-size:0 520px}
+.quiz{content-visibility:auto; contain-intrinsic-size:0 220px}
+.checks{content-visibility:auto; contain-intrinsic-size:0 320px}
+.disc{content-visibility:auto; contain-intrinsic-size:0 260px}
+.stage{content-visibility:auto; contain-intrinsic-size:0 300px}
+.mini{content-visibility:auto; contain-intrinsic-size:0 160px}
+/* the lens component drives its own layout via JS (tab measurement) and sits
+   inside .topic already, so it is skipped for free — no separate rule needed */
+@supports not (content-visibility: auto){
+  .topic,.rw,.play,.quiz,.checks,.disc,.stage,.mini{content-visibility:visible}
+}
+
+/* the background settles to a still frame once scrolled well past the hero —
+   fewer always-on compositing layers over the length of a very long page */
+#bgfx{transition:opacity .8s var(--swift)}
+#bgfx.paused > .fx-a1,#bgfx.paused > .fx-a2,#bgfx.paused > .fx-a3,
+#bgfx.paused > .fx-beam,#bgfx.paused > .fx-stars{animation-play-state:paused}
+#bgfx.paused > .fx-spot{opacity:0}
+</style>
 <style id="design-layer">
 /* ============================================================================
    DESIGN LAYER — sits last, so it wins on source order.
@@ -4317,11 +4347,15 @@ body::after{
 
 /* ---------- top bar: real glass, glowing progress ---------- */
 .topbar{
-  background:color-mix(in srgb, var(--bg) 72%, transparent);
-  backdrop-filter:blur(18px) saturate(180%); -webkit-backdrop-filter:blur(18px) saturate(180%);
+  background:var(--bg);
+  backdrop-filter:none; -webkit-backdrop-filter:none;
   border-bottom:1px solid transparent;
   border-image:linear-gradient(90deg, transparent, var(--line) 12%, var(--line) 88%, transparent) 1;
-  transition:box-shadow .3s var(--swift);
+  transition:box-shadow .3s var(--swift), background-color .3s var(--swift), backdrop-filter .3s var(--swift);
+}
+.topbar.stuck{
+  background:color-mix(in srgb, var(--bg) 72%, transparent);
+  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
 }
 .topbar.stuck{box-shadow:0 1px 0 var(--hair), 0 12px 30px -18px rgba(20,32,43,.35)}
 .brand{letter-spacing:-.015em; font-size:15.5px}
@@ -7423,8 +7457,20 @@ window.addEventListener('pointermove', function(e){
       fx.style.setProperty('--aur2', 'var(' + p[0] + ')');
       fx.style.setProperty('--aur3', 'var(' + p[1] + ')');
     }
+    /* the moving background does its job in the first viewport or two; past
+       that the reader's attention is on content, and continuous compositing
+       across a 56,000px scroll is real, avoidable GPU cost. Fade to a still
+       frame once well past the hero, wake it back up near the top. */
+    var bgAwake = true;
+    function bgWake(){
+      var awake = scrollY < innerHeight * 2.2;
+      if (awake === bgAwake) return;
+      bgAwake = awake;
+      fx.classList.toggle('paused', !awake);
+    }
     window.addEventListener('scroll', function(){
       if (!pending){ pending = true; requestAnimationFrame(pick) }
+      bgWake();
     }, {passive:true});
     window.addEventListener('resize', function(){
       if (!pending){ pending = true; requestAnimationFrame(pick) }
