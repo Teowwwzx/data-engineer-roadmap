@@ -452,86 +452,190 @@ document.addEventListener('visibilitychange', function(){
   else if (motionOn && !reduce && !raf) startScene();
 });
 
-/* ============================ THE MUSIC ================================= */
-/* generative, not a file: a slow pad + sparse plucked notes from a scale */
+/* ============================ THE MUSIC =================================
+   Generated, not sampled. The first version picked random notes from a scale
+   at random moments over a static drone — which is, almost exactly, how you
+   score a horror film. This one has chords, a pulse, and notes that resolve.
+
+   Per vibe: a root, a tempo, and a chord progression (semitones from root).
+   Every voice draws only from the chord that is currently sounding, so it
+   cannot land on a dissonance by accident. The lead walks to the nearest
+   chord tone instead of leaping, which is what makes a line sound intentional.
+   ===================================================================== */
 var MUSIC = {
-  minimalist:{root:220, scale:[0,3,5,7,10],   wave:'sine',     step:2400, pad:.14, note:.17, cut:1400, dec:2.6},
-  futuristic:{root:110, scale:[0,2,3,7,8,10], wave:'sawtooth', step:520,  pad:.11, note:.13, cut:900,  dec:.9},
-  ai:        {root:174, scale:[0,2,4,6,7,11], wave:'triangle', step:900,  pad:.12, note:.14, cut:1800, dec:1.8},
-  pixel:     {root:262, scale:[0,2,4,7,9],    wave:'square',   step:300,  pad:0,   note:.20, cut:2600, dec:.22},
-  gamify:    {root:330, scale:[0,4,7,9,12],   wave:'triangle', step:420,  pad:.08, note:.17, cut:2400, dec:.5},
-  chill:     {root:196, scale:[0,4,7,11,14],  wave:'sine',     step:1800, pad:.17, note:.15, cut:1100, dec:2.8},
-  natural:   {root:147, scale:[0,2,5,7,9],    wave:'sine',     step:2100, pad:.15, note:.15, cut:800,  dec:3.2},
-  modern:    {root:233, scale:[0,3,5,7,10],   wave:'triangle', step:1300, pad:.11, note:.13, cut:1500, dec:1.6}
+  /* I – iii – IV – I : calm, unhurried, always resolving home */
+  minimalist:{root:220, bpm:52, hold:2, cut:1500,
+    prog:[[0,4,7],[4,7,11],[5,9,12],[0,4,7]],
+    lead:{wave:'sine',     gain:.20, dec:2.6, density:.30},
+    pad :{wave:'sine',     gain:.055}, bass:{gain:.10}},
+
+  /* i – VI – III – VII : the synthwave cadence. Moody, not menacing. */
+  futuristic:{root:110, bpm:96, hold:1, cut:1250,
+    prog:[[0,3,7],[8,12,15],[3,7,10],[10,14,17]],
+    lead:{wave:'sawtooth', gain:.14, dec:.7, density:.55, arp:true},
+    pad :{wave:'sawtooth', gain:.045}, bass:{gain:.13}},
+
+  /* I – II – vi – IV : lydian colour from the II, but always resolved */
+  ai:{root:174, bpm:72, hold:2, cut:1900,
+    prog:[[0,4,7,11],[2,6,9],[9,12,16],[5,9,12]],
+    lead:{wave:'triangle', gain:.15, dec:1.7, density:.42},
+    pad :{wave:'triangle', gain:.055}, bass:{gain:.09}},
+
+  /* I – V – vi – IV, arpeggiated in 16ths: actual chiptune, not bleeping */
+  pixel:{root:262, bpm:126, hold:1, cut:2800,
+    prog:[[0,4,7],[7,11,14],[9,12,16],[5,9,12]],
+    lead:{wave:'square',   gain:.125, dec:.16, density:1, arp:true},
+    pad :{wave:null,       gain:0},   bass:{gain:.14, wave:'square'}},
+
+  /* I – IV – V – I : bright and obvious, like a menu screen */
+  gamify:{root:330, bpm:112, hold:1, cut:2500,
+    prog:[[0,4,7],[5,9,12],[7,11,14],[0,4,7]],
+    lead:{wave:'triangle', gain:.14, dec:.42, density:.62},
+    pad :{wave:'triangle', gain:.035}, bass:{gain:.10}},
+
+  /* Imaj7 – vi7 – IVmaj7 – V : the warm one */
+  chill:{root:196, bpm:60, hold:2, cut:1250,
+    prog:[[0,4,7,11],[9,12,16,19],[5,9,12,16],[7,11,14]],
+    lead:{wave:'sine',     gain:.18, dec:2.4, density:.34},
+    pad :{wave:'sine',     gain:.07}, bass:{gain:.10}},
+
+  /* I – V – vi – IV, very slow: folk-open, nothing clever */
+  natural:{root:147, bpm:54, hold:2, cut:1000,
+    prog:[[0,4,7],[7,11,14],[9,12,16],[5,9,12]],
+    lead:{wave:'sine',     gain:.19, dec:2.8, density:.28},
+    pad :{wave:'sine',     gain:.065}, bass:{gain:.10}},
+
+  /* i – VII – VI – VII : neutral, slightly serious, still consonant */
+  modern:{root:233, bpm:76, hold:2, cut:1600,
+    prog:[[0,3,7],[10,14,17],[8,12,15],[10,14,17]],
+    lead:{wave:'triangle', gain:.16, dec:1.5, density:.40},
+    pad :{wave:'triangle', gain:.05}, bass:{gain:.10}}
 };
+
 var Audio_ = (function(){
-  var actx = null, master = null, padOsc = [], timer = null, cfg = MUSIC[VIBE] || MUSIC.modern, delay = null;
+  var cfg = MUSIC[VIBE] || MUSIC.modern;
+  var actx=null, master=null, delay=null, padGain=null;
+  var timer=null, step=0, nextT=0, padVoices=[], lastPitch=null;
+
+  function hz(semi){ return cfg.root * Math.pow(2, semi/12) }
+
   function ensure(){
     if (actx) return true;
     var AC = window.AudioContext || window.webkitAudioContext;
     if (!AC) return false;
     actx = new AC();
     master = actx.createGain(); master.gain.value = 0;
-    /* safety limiter: notes overlap and the delay tail stacks, so cap the sum
-       rather than trusting the arithmetic to stay under 1.0 */
     var comp = actx.createDynamicsCompressor();
-    comp.threshold.value = -10; comp.knee.value = 6;
-    comp.ratio.value = 12; comp.attack.value = .003; comp.release.value = .25;
-    /* a touch of space, cheap: one delay line fed back gently */
-    delay = actx.createDelay(1.2); delay.delayTime.value = .38;
-    var fb = actx.createGain(); fb.gain.value = .28;
-    var wet = actx.createGain(); wet.gain.value = .3;
+    comp.threshold.value=-10; comp.knee.value=6; comp.ratio.value=12;
+    comp.attack.value=.003; comp.release.value=.25;
+    delay = actx.createDelay(1.2); delay.delayTime.value = 60/cfg.bpm * 0.75;
+    var fb = actx.createGain(); fb.gain.value=.26;
+    var wet= actx.createGain(); wet.gain.value=.28;
     delay.connect(fb); fb.connect(delay); delay.connect(wet); wet.connect(master);
+    padGain = actx.createGain(); padGain.gain.value = 1; padGain.connect(master);
     master.connect(comp); comp.connect(actx.destination);
     return true;
   }
-  function note(freq, dur, gain, wave){
-    var o = actx.createOscillator(), g = actx.createGain(), f = actx.createBiquadFilter();
-    o.type = wave || cfg.wave; o.frequency.value = freq;
-    f.type = 'lowpass'; f.frequency.value = cfg.cut;
-    g.gain.setValueAtTime(0, actx.currentTime);
-    g.gain.linearRampToValueAtTime(gain, actx.currentTime + 0.02);
-    g.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + dur);
-    o.connect(f); f.connect(g); g.connect(master); g.connect(delay);
-    o.start(); o.stop(actx.currentTime + dur + .05);
+
+  /* one plucked/bowed voice with a real envelope, not a raw tone */
+  function voice(freq, at, dur, gain, wave, toDelay){
+    var o=actx.createOscillator(), g=actx.createGain(), f=actx.createBiquadFilter();
+    o.type = wave || 'sine'; o.frequency.value = freq;
+    f.type='lowpass'; f.frequency.setValueAtTime(cfg.cut, at);
+    f.frequency.exponentialRampToValueAtTime(Math.max(240, cfg.cut*0.5), at+dur);
+    var atk = Math.min(.06, dur*0.25);
+    g.gain.setValueAtTime(0.0001, at);
+    g.gain.exponentialRampToValueAtTime(gain, at+atk);
+    g.gain.exponentialRampToValueAtTime(0.0001, at+dur);
+    o.connect(f); f.connect(g); g.connect(master);
+    if (toDelay) g.connect(delay);
+    o.start(at); o.stop(at+dur+.05);
   }
+
+  /* the pad moves with the chord instead of droning on one note forever */
+  function setPad(chord, at){
+    padVoices.forEach(function(v){
+      v.g.gain.cancelScheduledValues(at);
+      v.g.gain.setValueAtTime(v.g.gain.value, at);
+      v.g.gain.exponentialRampToValueAtTime(0.0001, at+1.6);
+      try { v.o.stop(at+1.8) } catch(e){}
+    });
+    padVoices = [];
+    if (!cfg.pad.wave || cfg.pad.gain <= 0) return;
+    chord.forEach(function(semi, i){
+      var o=actx.createOscillator(), g=actx.createGain(), f=actx.createBiquadFilter();
+      o.type = cfg.pad.wave;
+      o.frequency.value = hz(semi - 12);
+      o.detune.value = (i%2 ? 5 : -5);
+      f.type='lowpass'; f.frequency.value = cfg.cut*0.55;
+      g.gain.setValueAtTime(0.0001, at);
+      g.gain.exponentialRampToValueAtTime(cfg.pad.gain, at+1.4);
+      o.connect(f); f.connect(g); g.connect(padGain);
+      o.start(at);
+      padVoices.push({o:o, g:g});
+    });
+  }
+
+  /* pick the chord tone closest to where the line already is */
+  function nearestTone(chord){
+    var opts=[];
+    chord.forEach(function(semi){ [-12,0,12].forEach(function(oct){ opts.push(semi+oct) }) });
+    if (lastPitch === null) return chord[0];
+    var best=opts[0], bd=1e9;
+    opts.forEach(function(p){
+      var d = Math.abs(p-lastPitch) + Math.random()*3;   /* a little wander, no leaps */
+      if (d < bd && !(p === lastPitch && Math.random() < .7)){ bd=d; best=p }
+    });
+    return best;
+  }
+
+  /* lookahead scheduler — setTimeout alone drifts and sounds sloppy */
   function tick(){
     if (!actx) return;
-    if (Math.random() < 0.75){
-      var s = cfg.scale[Math.floor(Math.random()*cfg.scale.length)];
-      var oct = [0,0,12,-12][Math.floor(Math.random()*4)];
-      note(cfg.root * Math.pow(2,(s+oct)/12), cfg.dec, cfg.note);
+    var beat = 60/cfg.bpm, sixteenth = beat/4;
+    var barsPerChord = cfg.hold, stepsPerBar = 16;
+    while (nextT < actx.currentTime + 0.12){
+      var bar = Math.floor(step/stepsPerBar);
+      var chordIx = Math.floor(bar/barsPerChord) % cfg.prog.length;
+      var chord = cfg.prog[chordIx];
+      var inBar = step % stepsPerBar;
+
+      if (inBar === 0 && bar % barsPerChord === 0){
+        setPad(chord, nextT);
+        if (cfg.bass.gain > 0)
+          voice(hz(chord[0]-24), nextT, beat*2.2, cfg.bass.gain, cfg.bass.wave || 'sine', false);
+      }
+      if (cfg.lead.arp){
+        /* steady 16ths cycling the chord — the chiptune/synthwave engine */
+        var t = chord[(step) % chord.length] + (Math.floor(step/chord.length)%2 ? 12 : 0);
+        if (inBar % (cfg.lead.density >= 1 ? 1 : 2) === 0)
+          voice(hz(t), nextT, Math.max(sixteenth*0.9, cfg.lead.dec), cfg.lead.gain, cfg.lead.wave, true);
+      } else if (inBar % 2 === 0 && Math.random() < cfg.lead.density){
+        var p = nearestTone(chord); lastPitch = p;
+        voice(hz(p), nextT, cfg.lead.dec, cfg.lead.gain, cfg.lead.wave, true);
+      }
+      nextT += sixteenth; step++;
     }
-    timer = setTimeout(tick, cfg.step * (0.75 + Math.random()*0.5));
+    timer = setTimeout(tick, 25);
   }
+
   return {
     start: function(){
       if (!ensure()) return;
       if (actx.state === 'suspended') actx.resume();
       master.gain.cancelScheduledValues(actx.currentTime);
       master.gain.linearRampToValueAtTime(0.55, actx.currentTime + 1.2);
-      if (cfg.pad > 0 && !padOsc.length){
-        [0, 7].forEach(function(iv, i){
-          var o = actx.createOscillator(), g = actx.createGain(), f = actx.createBiquadFilter();
-          o.type = 'sine'; o.frequency.value = cfg.root * Math.pow(2, iv/12) / 2;
-          o.detune.value = i ? 6 : -6;
-          f.type = 'lowpass'; f.frequency.value = cfg.cut * .6;
-          g.gain.value = cfg.pad;
-          o.connect(f); f.connect(g); g.connect(master);
-          o.start(); padOsc.push({o:o,g:g});
-        });
-      }
-      if (!timer) tick();
+      if (!timer){ step=0; lastPitch=null; nextT = actx.currentTime + 0.1; tick() }
     },
     stop: function(){
       if (!actx) return;
       master.gain.cancelScheduledValues(actx.currentTime);
-      master.gain.linearRampToValueAtTime(0, actx.currentTime + 0.6);
-      clearTimeout(timer); timer = null;
+      master.gain.linearRampToValueAtTime(0, actx.currentTime + 0.7);
+      clearTimeout(timer); timer=null;
       setTimeout(function(){
-        padOsc.forEach(function(p){ try{ p.o.stop() }catch(e){} });
-        padOsc = [];
-      }, 700);
+        padVoices.forEach(function(v){ try{ v.o.stop() }catch(e){} });
+        padVoices=[];
+      }, 800);
     }
   };
 })();
