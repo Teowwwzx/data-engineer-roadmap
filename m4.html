@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Engineering · The Lab Notebook</title>
+<meta name="description" content="A 12-month foundations roadmap for a new Data Engineer. Bilingual, interactive, one chapter at a time.">
+<link rel="stylesheet" href="assets/core.css">
+<link rel="stylesheet" href="assets/themes.css">
+<script>/* set theme + language before first paint, no flash */
+(function(){try{
+ var t=localStorage.getItem('labnotebook-theme');
+ if(t&&t!=='auto')document.documentElement.setAttribute('data-theme',t);
+ var l=localStorage.getItem('labnotebook-lang')||'en';
+ document.documentElement.setAttribute('data-lang',l);
+}catch(e){}})();</script>
+</head>
+<body class="lang-en" data-vibe="natural" data-chapter="m4">
+<div class="topbar">
+<div class="wrap">
+<div class="brand"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></div>
+<nav class="navlinks"><a href="index.html"><span class="en">Start</span><span class="zh">开始</span></a>
+<a href="map.html"><span class="en">The map</span><span class="zh">地图</span></a>
+<a href="words.html"><span class="en">Words</span><span class="zh">词汇</span></a>
+<a href="terminal.html"><span class="en">Terminal</span><span class="zh">终端</span></a>
+<a href="m1.html"><span class="en">1 · IT Basics</span><span class="zh">1 · IT 基础</span></a>
+<a href="m2.html"><span class="en">2 · Tools</span><span class="zh">2 · 工具</span></a>
+<a href="m3.html"><span class="en">3 · AI</span><span class="zh">3 · AI</span></a>
+<a class="on" href="m4.html"><span class="en">4 · Data</span><span class="zh">4 · 数据</span></a>
+<a href="m5.html"><span class="en">5 · CS &amp; Cloud</span><span class="zh">5 · 计算机与云</span></a>
+<a href="systems.html"><span class="en">Big systems</span><span class="zh">大系统</span></a>
+<a href="zero.html"><span class="en">0 and 1</span><span class="zh">0 与 1</span></a>
+<a href="finish.html"><span class="en">Finish</span><span class="zh">完成</span></a></nav>
+<div class="langsw">
+<button class="on" data-lang="en">EN</button>
+<button data-lang="zh">中文</button>
+</div>
+</div>
+<div class="pbar"><i id="pbar"></i></div>
+</div>
+
+<section data-scene="flow" id="m4" style="--c:var(--m4)">
+<div class="wrap">
+<div class="ms">
+<div class="mshead">
+<div class="msnum">4</div>
+<div><div class="sub"><span class="en">Months 8–10 · The actual job</span><span class="zh">第 8–10 月 · 真正的工作本身</span></div>
+<h2><span class="en">Data Engineering Core</span><span class="zh">数据工程核心</span></h2></div>
+</div>
+<p class="en" style="color:var(--muted); max-width:68ch">Everything so far was foundation. This is the work itself: taking data that arrives messy, incomplete and inconsistent, and turning it into something a scientist or an executive can trust without asking you first.</p>
+<p class="zh" style="color:var(--muted); max-width:68ch">前面全是打地基。这一段是工作本身：把脏的、不全的、前后不一致的数据，变成科学家或高管不用先问你就敢信的东西。</p>
+<div class="tldr"><div class="tl2"><span class="en">In plain English — the whole milestone in 4 lines</span><span class="zh">大白话版 —— 四行讲完这个阶段</span></div><ul class="en"><li><b>Data always arrives dirty.</b> Six quick checks catch the errors that never throw an error.</li><li>A <b>pipeline</b> is a scheduled script that collects, cleans and stores — the same way every night.</li><li>It must survive being <b>run twice</b>, and it must <b>fail loudly</b> rather than load garbage quietly.</li><li><b>Modelling</b> is deciding what one row means, before you have ten million of them.</li></ul><ul class="zh"><li><b>数据到手时永远是脏的。</b>六项快速检查，专抓那些不会报错的错误。</li><li><b>管道</b>就是一个定时脚本：采集、清洗、入库 —— 每晚都用同一种方式。</li><li>它必须<b>跑两遍也没事</b>，而且要<b>大声失败</b>，而不是悄悄写进垃圾数据。</li><li><b>建模</b>就是在你还没有一千万行之前，先想清楚"一行代表什么"。</li></ul></div>
+<div class="analogy">
+<span class="lab"><span class="en">🧪 You are running the sample prep, not the assay</span><span class="zh">🧪 你做的是样本前处理，不是检测本身</span></span>
+<p class="en">In the lab, the analysis is only as good as the prep. If the sample is contaminated, mislabelled, or degraded, the most elegant instrument in the building gives you a beautiful wrong number. Data engineering is sample prep at industrial scale — and the analysts downstream trust your output the way you trust a clean sample. That trust is your entire product.</p>
+<p class="zh">在实验室里，分析的上限取决于前处理。样本被污染、贴错标签、降解了，楼里最精密的仪器也只会给你一个漂亮的错数。数据工程就是工业规模的样本前处理——下游的分析师信任你的输出，就像你信任一份干净的样本。这份信任，就是你的全部产品。</p>
+</div>
+<!-- ============ 4.1 DATA MANIPULATION ============ -->
+<div class="topic" style="border-top:0">
+<h3><span class="ic">1</span><span class="en">Data manipulation — Python (and a little R)</span><span class="zh">数据处理 —— Python（外加一点 R）</span></h3>
+<div class="lens">
+<div class="lens-tabs">
+<button class="on"><span class="en">WHY</span><span class="zh">为什么</span></button>
+<button><span class="en">THEN → NOW</span><span class="zh">以前 → 现在</span></button>
+<button><span class="en">WHAT &amp; HOW</span><span class="zh">是什么 · 怎么做</span></button>
+<button><span class="en">IF YOU SKIP IT</span><span class="zh">不做会怎样</span></button>
+</div>
+<div class="lens-pane on">
+<div class="kicker"><span class="en">Why not just use Excel?</span><span class="zh">为什么不直接用 Excel？</span></div>
+<p class="en">Excel is genuinely excellent for looking at data. It is terrible at <b>repeating</b> a process, because there's no record of what you did. Six months later nobody can tell which cells were typed by hand, which were formulas, and which were pasted from somewhere else.</p>
+<p class="en">A script is a protocol: it states every step, it runs identically every time, and someone else can read it and disagree with you. <b>The purpose in one line:</b> turn a set of manual decisions into a reviewable, repeatable procedure.</p>
+<p class="zh">Excel 看数据确实非常好用，但它极不擅长<b>重复</b>一个过程，因为没有任何记录说明你做了什么。半年后没人分得清哪些格子是手打的、哪些是公式、哪些是从别处粘来的。</p>
+<p class="zh">脚本就是一份方案：它写明每一步，每次运行结果一致，而且别人能读它、能跟你争论。<b>一句话说清目的：</b>把一堆手工决定，变成一个可评审、可重复的流程。</p>
+</div>
+<div class="lens-pane">
+<div class="evo">
+<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h5>
+<ul class="en"><li>Download a CSV, open it, sort, filter, delete some rows, save as <code class="inl">_clean_v3.xlsx</code>.</li><li>Charts made by hand, pasted into slides that go stale the moment they're sent.</li><li>Everything capped by what fits in memory on one laptop.</li><li>The knowledge of "how we calculate this" lived in one person's head.</li></ul>
+<ul class="zh"><li>下载一个 CSV，打开、排序、筛选、删几行，另存为 <code class="inl">_clean_v3.xlsx</code>。</li><li>图表手工做好粘进幻灯片，发出去那一刻就已经过期。</li><li>一切受限于一台笔记本内存装得下多少。</li><li>"这个指标我们是怎么算的"，只存在某个人脑子里。</li></ul></div>
+<div class="evo-arrow">→</div>
+<div class="evo-col now"><h5><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h5>
+<ul class="en"><li>A script reads the raw file, applies named transformations, and writes a clean table — same result every run.</li><li>Charts regenerate from live data; nothing is ever "as of last Tuesday" by accident.</li><li>Bigger than memory? Polars or DuckDB stream it, or the warehouse does the work in place.</li><li>The calculation is in Git, reviewed, and survives the person who wrote it.</li></ul>
+<ul class="zh"><li>脚本读原始文件、施加一系列命名好的转换、写出一张干净的表——每次跑结果都一样。</li><li>图表从实时数据重新生成，不会莫名其妙"截止到上周二"。</li><li>数据比内存大？用 Polars 或 DuckDB 流式处理，或者让数仓原地算。</li><li>算法存在 Git 里、被评审过，而且比写它的人活得久。</li></ul></div>
+</div>
+<p class="en" style="margin-top:14px; font-size:14.5px; color:var(--muted)"><b>The newest shift:</b> pandas is no longer the only answer. <b>Polars</b> and <b>DuckDB</b> handle datasets far larger than memory on a normal laptop, and DuckDB lets you run SQL directly on Parquet files with no database server at all. Learn pandas first — then know these exist for the day pandas says <i>MemoryError</i>.</p>
+<p class="zh" style="margin-top:14px; font-size:14.5px; color:var(--muted)"><b>最新的变化：</b>pandas 不再是唯一答案。<b>Polars</b> 和 <b>DuckDB</b> 能在普通笔记本上处理远大于内存的数据集，而 DuckDB 让你不用任何数据库服务就能直接对 Parquet 文件跑 SQL。先学 pandas——然后记住这两个的存在，留给 pandas 报 <i>MemoryError</i> 的那天。</p>
+</div>
+<div class="lens-pane">
+<div class="two" style="margin:0 0 16px">
+<div class="mini"><h5><span class="en">Python / pandas</span><span class="zh">Python / pandas</span></h5>
+<p class="en">The default. Better for pipelines, automation, integration with everything else. Learn <code class="inl">read_csv</code>, filtering, <code class="inl">groupby</code>, <code class="inl">merge</code>, <code class="inl">fillna</code>, and dates.</p>
+<p class="zh">默认选择。更适合做管道、自动化、和其他一切集成。重点学 <code class="inl">read_csv</code>、筛选、<code class="inl">groupby</code>、<code class="inl">merge</code>、<code class="inl">fillna</code>，以及日期处理。</p></div>
+<div class="mini"><h5><span class="en">R / tidyverse</span><span class="zh">R / tidyverse</span></h5>
+<p class="en">Still excellent for statistics and publication-quality plots. Coming from science you may already know it. Keep it for exploration and stats; use Python for anything that must run on a schedule.</p>
+<p class="zh">做统计和出版级图表依然出色。你有理科背景，可能本来就会。探索和统计留给它；任何需要定时运行的东西用 Python。</p></div>
+</div>
+<div class="codewrap">
+<div class="tabs"><button class="on">pandas</button><button><span class="en">same thing in R</span><span class="zh">R 里的同一件事</span></button><button><span class="en">the 6 checks</span><span class="zh">六项必查</span></button></div>
+<div class="pane on"><pre><span class="kw">import</span> pandas <span class="kw">as</span> pd
+
+df = pd.<span class="fn">read_csv</span>(<span class="st">"samples.csv"</span>, parse_dates=[<span class="st">"collected_at"</span>])
+
+<span class="cm"># 1. look before you leap / 先看再动</span>
+<span class="fn">print</span>(df.shape, df.dtypes, df.<span class="fn">isna</span>().<span class="fn">sum</span>(), sep=<span class="st">"\n\n"</span>)
+
+<span class="cm"># 2. clean / 清洗</span>
+df = df.<span class="fn">dropna</span>(subset=[<span class="st">"sample_id"</span>])            <span class="cm"># no ID = unusable</span>
+df[<span class="st">"lab_site"</span>] = df[<span class="st">"lab_site"</span>].<span class="fn">str</span>.<span class="fn">strip</span>().<span class="fn">str</span>.<span class="fn">upper</span>()
+df = df.<span class="fn">drop_duplicates</span>(subset=[<span class="st">"sample_id"</span>], keep=<span class="st">"last"</span>)
+
+<span class="cm"># 3. derive / 派生</span>
+df[<span class="st">"passed"</span>] = (df[<span class="st">"purity"</span>] &gt;= <span class="nu">0.95</span>) &amp; (df[<span class="st">"volume_ml"</span>] &gt;= <span class="nu">1.0</span>)
+
+<span class="cm"># 4. aggregate / 汇总</span>
+summary = (df.<span class="fn">groupby</span>([<span class="st">"lab_site"</span>, df[<span class="st">"collected_at"</span>].dt.<span class="fn">to_period</span>(<span class="st">"M"</span>)])
+             .<span class="fn">agg</span>(n=(<span class="st">"sample_id"</span>, <span class="st">"count"</span>), pass_rate=(<span class="st">"passed"</span>, <span class="st">"mean"</span>))
+             .<span class="fn">reset_index</span>())</pre></div>
+<div class="pane"><pre><span class="kw">library</span>(tidyverse)
+
+samples &lt;- <span class="fn">read_csv</span>(<span class="st">"samples.csv"</span>)
+
+summary &lt;- samples |&gt;
+  <span class="fn">filter</span>(!<span class="fn">is.na</span>(sample_id)) |&gt;
+  <span class="fn">mutate</span>(lab_site = <span class="fn">str_to_upper</span>(<span class="fn">str_trim</span>(lab_site)),
+         passed   = purity &gt;= <span class="nu">0.95</span> &amp; volume_ml &gt;= <span class="nu">1.0</span>,
+         month    = <span class="fn">floor_date</span>(collected_at, <span class="st">"month"</span>)) |&gt;
+  <span class="fn">distinct</span>(sample_id, .keep_all = <span class="kw">TRUE</span>) |&gt;
+  <span class="fn">group_by</span>(lab_site, month) |&gt;
+  <span class="fn">summarise</span>(n = <span class="fn">n</span>(), pass_rate = <span class="fn">mean</span>(passed), .groups = <span class="st">"drop"</span>)
+
+<span class="cm"># Same logic, different grammar. / 同样的逻辑，不同的语法。</span></pre></div>
+<div class="pane"><pre><span class="cm"># Run these on EVERY new dataset. This is your QC panel.
+# 每拿到一份新数据都跑一遍。这是你的 QC 检查项。</span>
+
+<span class="nu">1.</span> df.shape                    <span class="cm"># row count as expected? / 行数对吗</span>
+<span class="nu">2.</span> df.dtypes                   <span class="cm"># date read as text? / 日期被当成文本了吗</span>
+<span class="nu">3.</span> df.isna().sum()             <span class="cm"># where are the holes? / 洞在哪</span>
+<span class="nu">4.</span> df.describe()               <span class="cm"># impossible min/max? / 有不可能的极值吗</span>
+<span class="nu">5.</span> df["key"].duplicated().sum()<span class="cm"># key really unique? / 主键真唯一吗</span>
+<span class="nu">6.</span> df["cat"].value_counts()    <span class="cm"># "IPOH"/"Ipoh"/"ipoh " ?</span>
+
+<span class="cm"># Every one of these has silently ruined somebody's
+# quarterly report. Probably this quarter.
+# 这六项里每一项，都悄悄毁过某人的季度报表。可能就是这个季度。</span></pre></div>
+</div>
+</div>
+<div class="lens-pane">
+<div class="ifnot">
+<p class="en"><b>If you skip the six checks:</b> you will publish a number that is wrong in a way nobody can see. A date column read as text sorts "10 Jan" before "2 Feb". A duplicated key silently doubles a total. Neither throws an error — that's what makes them dangerous.</p>
+<p class="en"><b>If you clean data by hand each time:</b> the cleaning is un-reviewable and un-repeatable. When the source changes format next quarter, you won't remember what you did last time, and neither will anyone else.</p>
+<p class="en"><b>If you don't document null-handling decisions:</b> "we dropped rows with missing volume" is a scientific choice that changes the result. Undocumented, it becomes an invisible bias baked into every downstream report.</p>
+<p class="zh"><b>如果跳过那六项检查：</b>你会发布一个错得没人看得出来的数字。日期列被当成文本，排序时"10 Jan"排在"2 Feb"前面；主键重复会悄悄把总数翻倍。这两者都不会报错——这才是它们危险的地方。</p>
+<p class="zh"><b>如果每次都手工清洗：</b>清洗过程不可评审、不可重复。下季度源数据改格式时，你不记得上次怎么做的，别人也不知道。</p>
+<p class="zh"><b>如果不记录空值处理的决定：</b>"我们丢掉了体积缺失的行"是一个会改变结果的科学选择。不写下来，它就变成一个被烘进所有下游报表里的隐形偏差。</p>
+</div>
+</div>
+</div>
+<div class="play" data-play="clean">
+<div class="play-head">
+<span class="play-badge"><span class="en">▶ Playground</span><span class="zh">▶ 动手玩</span></span>
+<h4><span class="en">Clean a genuinely messy dataset, one operation at a time</span><span class="zh">一步一步清洗一份真正脏的数据</span></h4>
+<p class="sub2"><span class="en">This is real messiness of the kind you'll meet on your first day: inconsistent casing, stray whitespace, three date formats, missing IDs, a duplicated key and an impossible value. Apply each fix and watch the rows change. The counters at the bottom are what you'd report.</span><span class="zh">这是你上班第一天就会遇到的那种真实的脏：大小写不一致、多余空格、三种日期格式、缺失 ID、重复主键、还有一个不可能的数值。逐个应用修复，看行怎么变。下面的计数就是你要汇报的东西。</span></p>
+</div>
+<div class="play-body">
+<div class="prow">
+<button class="pbtn" data-clean="trim">.str.strip().str.upper()</button>
+<button class="pbtn" data-clean="dates">parse_dates</button>
+<button class="pbtn" data-clean="nulls">dropna(subset=["id"])</button>
+<button class="pbtn" data-clean="dupes">drop_duplicates()</button>
+<button class="pbtn" data-clean="range"><span class="en">range check</span><span class="zh">范围校验</span></button>
+<button class="pbtn ghost" data-clean="reset"><span class="en">reset</span><span class="zh">重来</span></button>
+</div>
+<div class="dwrap"><table class="dtbl" id="clean-tbl"></table></div>
+<div class="dstat">
+<div><b id="c-rows">—</b><span class="en">rows remaining</span><span class="zh">剩余行数</span></div>
+<div><b id="c-sites">—</b><span class="en">distinct lab sites</span><span class="zh">不同厂区数</span></div>
+<div><b id="c-issues">—</b><span class="en">issues left</span><span class="zh">剩余问题</span></div>
+<div><b id="c-pass">—</b><span class="en">pass rate</span><span class="zh">合格率</span></div>
+</div>
+<p id="clean-note" style="font-size:13.5px; color:var(--muted); margin:12px 0 0"></p>
+</div>
+</div>
+<div class="rw">
+<div class="rwh"><span class="en">◈ Real-world example</span><span class="zh">◈ 真实场景</span></div>
+<p class="scene en">A regional manager escalates: "Ipoh's numbers look 30% lower than they should. Are we losing samples?"</p>
+<p class="en">No samples were lost. <code class="inl">value_counts()</code> on <code class="inl">lab_site</code> shows <code class="inl">IPOH</code> (400), <code class="inl">Ipoh</code> (23) and <code class="inl">"ipoh "</code> (7) — one site being reported as three, because two upstream systems capitalise differently and one has a trailing space from a form field. Every group-by silently split the site three ways.<br/><b>Cost of the fix:</b> one line. <b>Cost of not having checked:</b> three weeks of a manager mistrusting the dashboard, and a meeting about whether the plant has a process problem.</p>
+<p class="scene zh">区域经理升级投诉："怡保的数字比应该的低了 30%，我们是不是在丢样本？"</p>
+<p class="zh">没有丢样本。对 <code class="inl">lab_site</code> 跑一次 <code class="inl">value_counts()</code>：<code class="inl">IPOH</code>（400）、<code class="inl">Ipoh</code>（23）、<code class="inl">"ipoh "</code>（7）——同一个厂区被算成了三个，因为上游两个系统大小写规则不同，还有一个表单字段带了尾随空格。每次分组统计都悄悄把这个厂区拆成三份。<br/><b>修复成本：</b>一行代码。<b>没检查的成本：</b>经理三周不信任看板，外加一场"工厂是不是流程有问题"的会议。</p>
+</div>
+</div>
+<!-- ============ 4.2 ETL ============ -->
+<div class="topic">
+<h3><span class="ic">2</span><span class="en">ETL pipelines</span><span class="zh">ETL 数据管道</span></h3>
+<div class="lens">
+<div class="lens-tabs">
+<button class="on"><span class="en">WHY</span><span class="zh">为什么</span></button>
+<button><span class="en">THEN → NOW</span><span class="zh">以前 → 现在</span></button>
+<button><span class="en">WHAT &amp; HOW</span><span class="zh">是什么 · 怎么做</span></button>
+<button><span class="en">IF YOU SKIP IT</span><span class="zh">做不好会怎样</span></button>
+</div>
+<div class="lens-pane on">
+<div class="kicker"><span class="en">Why not query the source systems directly?</span><span class="zh">为什么不直接查源系统？</span></div>
+<p class="en">Four reasons, and each one on its own would justify a pipeline.</p>
+<p class="en"><b>1. You'd take production down.</b> An analyst's exploratory query on the live order system can lock tables the business needs to take orders.<br/>
+<b>2. The shapes don't match.</b> Source systems are built to write one record fast. Analysis needs to read a million records fast. Those are opposite designs.<br/>
+<b>3. History disappears.</b> Source systems overwrite. When a customer changes address, last year's report silently changes too — unless someone captured the old value.<br/>
+<b>4. Nothing joins.</b> The CRM says "Acme Corp", finance says "ACME Corporation", the shipping system says customer #4471. Someone has to decide those are the same company, once, in one place.</p>
+<p class="zh">四个原因，任何一个单独拿出来都足以支撑建一条管道。</p>
+<p class="zh"><b>1. 你会把生产环境搞挂。</b>分析师在线上订单系统做的探索性查询，可能锁住业务下单要用的表。<br/>
+<b>2. 结构对不上。</b>源系统的设计目标是快速写一条记录，分析需要的是快速读一百万条。这是两种相反的设计。<br/>
+<b>3. 历史会消失。</b>源系统是覆盖写的。客户改了地址，去年的报表也会悄悄跟着变——除非有人把旧值保存下来。<br/>
+<b>4. 拼不起来。</b>CRM 里叫"Acme Corp"，财务系统叫"ACME Corporation"，物流系统叫客户 #4471。得有人在某一处、一次性地判定这是同一家公司。</p>
+</div>
+<div class="lens-pane">
+<div class="evo">
+<div class="evo-col then"><h5><span class="en">Classic ETL (1990s–2010s)</span><span class="zh">经典 ETL（1990s–2010s）</span></h5>
+<ul class="en"><li><b>Extract → Transform → Load.</b> Transform <i>before</i> loading, because warehouse storage was expensive.</li><li>Raw data was thrown away after transformation. Got the logic wrong? The original is gone.</li><li>Built by dragging boxes in a proprietary GUI tool. Not reviewable, not in version control.</li><li>Ran overnight; you found out about failures the next morning, from a user.</li></ul>
+<ul class="zh"><li><b>抽取 → 转换 → 加载。</b>先转换<i>再</i>入库，因为数仓存储很贵。</li><li>转换完原始数据就丢了。逻辑写错了？原件已经没了。</li><li>用商业 GUI 工具拖框搭出来，不可评审，不进版本控制。</li><li>半夜跑，出问题第二天早上从用户那里才知道。</li></ul></div>
+<div class="evo-arrow">→</div>
+<div class="evo-col now"><h5><span class="en">Modern ELT</span><span class="zh">现代 ELT</span></h5>
+<ul class="en"><li><b>Extract → Load → Transform.</b> Land the raw data first; transform inside the warehouse. Storage got cheap.</li><li>Raw is kept forever, so you can rebuild everything when a definition changes — and you will.</li><li>Transformations are SQL files in Git, reviewed in pull requests, tested (dbt).</li><li>Orchestrators (Airflow, Dagster, Prefect) retry, alert, and show you exactly which step failed.</li></ul>
+<ul class="zh"><li><b>抽取 → 加载 → 转换。</b>先把原始数据落地，再在数仓里转换。因为存储变便宜了。</li><li>原始数据永久保留，定义一变就能全量重建——而定义一定会变。</li><li>转换逻辑是 Git 里的 SQL 文件，走 PR 评审，有测试（dbt）。</li><li>调度器（Airflow、Dagster、Prefect）会重试、告警，并明确告诉你哪一步失败了。</li></ul></div>
+</div>
+<p class="en" style="margin-top:14px; font-size:14.5px; color:var(--muted)"><b>Why the flip happened:</b> cloud storage costs collapsed while warehouse compute became elastic. Once keeping raw data is nearly free, throwing it away is just risk with no upside. If you learn one modern habit, learn this one: <b>never destroy the raw input</b>.</p>
+<p class="zh" style="margin-top:14px; font-size:14.5px; color:var(--muted)"><b>为什么会反转：</b>云存储成本塌了，而数仓算力变成弹性的。一旦保留原始数据几乎免费，丢掉它就只剩风险、没有好处。如果只学一个现代习惯，学这个：<b>永远不要销毁原始输入</b>。</p>
+</div>
+<div class="lens-pane">
+<div class="analogy" style="margin-top:0">
+<span class="lab"><span class="en">🧪 Extract, Transform, Load = collect, prep, store</span><span class="zh">🧪 抽取、转换、加载 = 采集、前处理、入库</span></span>
+<p class="en"><b>Extract</b> — collect the raw sample from wherever it lives. <b>Transform</b> — the prep bench: clean, standardise units, remove contaminants, derive what you need. <b>Load</b> — store the finished, labelled preparation where everyone can find it.</p>
+<p class="en">The critical property is the same one your protocols have: <b>reproducibility</b>. Run it twice on the same input, get the same output. If a pipeline can't be re-run safely, it isn't a pipeline — it's a one-off you'll be nervous about forever.</p>
+<p class="zh"><b>抽取</b>——从数据所在的任何地方把原始样本采集过来。<b>转换</b>——前处理台：清洗、统一单位、去除杂质、派生你需要的指标。<b>加载</b>——把处理好、贴好标签的成品存到大家都能找到的地方。</p>
+<p class="zh">最关键的性质和你的实验方案一样：<b>可复现</b>。同样的输入跑两次，得到同样的输出。一条不能安全重跑的管道就不是管道——它只是一次性的东西，你会一直为它提心吊胆。</p>
+</div>
+<details class="acc"><summary><span class="en">The four properties every production pipeline needs</span><span class="zh">生产级管道必须具备的四个性质</span></summary>
+<div class="body">
+<p class="en"><b>1. Idempotent.</b> Re-running doesn't duplicate or corrupt anything. Rerun-safety is what lets you sleep.</p>
+<p class="en"><b>2. Observable.</b> It logs what it did, how many rows, how long. When someone asks "did last night's run work?", you should not have to guess.</p>
+<p class="en"><b>3. Validated.</b> It checks its own output — row counts in range, no nulls in key columns, no impossible values — and <b>fails loudly</b> rather than quietly loading garbage.</p>
+<p class="en"><b>4. Recoverable.</b> When it fails at 3am (it will), it's obvious where it stopped and safe to restart from there.</p>
+<p class="zh"><b>1. 幂等。</b>重跑不会重复或损坏任何东西。重跑安全，你才睡得着。</p>
+<p class="zh"><b>2. 可观测。</b>它记录自己做了什么、多少行、跑了多久。有人问"昨晚跑成功了吗"，你不该靠猜。</p>
+<p class="zh"><b>3. 有校验。</b>它检查自己的输出——行数在合理范围、关键列无空值、没有不可能的数值——发现问题就<b>大声失败</b>，而不是悄悄写进垃圾数据。</p>
+<p class="zh"><b>4. 可恢复。</b>凌晨三点它挂掉时（一定会），能一眼看出停在哪，并且能安全地从那里重启。</p>
+</div>
+</details>
+<div class="two" style="margin-top:14px">
+<div class="mini"><h5><span class="en">Batch vs streaming</span><span class="zh">批处理 vs 流处理</span></h5>
+<p class="en"><b>Batch</b> runs on a schedule and covers most needs. <b>Streaming</b> processes each event as it arrives. Start with batch. Only go streaming when someone can articulate why minutes-old data isn't good enough.</p>
+<p class="zh"><b>批处理</b>按计划运行，覆盖绝大多数需求。<b>流处理</b>逐条实时处理。先做批处理。只有当有人能说清"为什么几分钟前的数据不够用"时，再上流处理。</p></div>
+<div class="mini"><h5><span class="en">Tools you'll hear about</span><span class="zh">你会听到的工具</span></h5>
+<p class="en">Airflow / Dagster / Prefect for scheduling; dbt for SQL transformations; Great Expectations or Soda for validation. Learn the concepts — the tools are interchangeable and will be replaced.</p>
+<p class="zh">Airflow / Dagster / Prefect 做调度；dbt 做 SQL 转换；Great Expectations 或 Soda 做校验。要学的是概念——工具可以互换，也终将被替换。</p></div>
+</div>
+</div>
+<div class="lens-pane">
+<div class="ifnot">
+<p class="en"><b>If your pipeline isn't idempotent:</b> the first failed-and-rerun night doubles your numbers. Revenue looks like it grew 100%, someone celebrates, and then someone else has to un-celebrate.</p>
+<p class="en"><b>If it isn't validated:</b> it will happily load a day of zeros because an upstream API returned an error page instead of data. Silence is the worst possible failure mode — an error at least tells you.</p>
+<p class="en"><b>If it isn't observable:</b> "is the data fresh?" becomes unanswerable, and people stop trusting the whole warehouse. Trust is lost far faster than it's rebuilt.</p>
+<p class="en"><b>If you transform before loading and throw away raw:</b> the day someone changes the definition of "active customer," you cannot recompute history. You'll have to say "our numbers only go back to today," which is a genuinely painful sentence.</p>
+<p class="zh"><b>如果管道不幂等：</b>第一个"失败后重跑"的夜晚就会让数字翻倍。收入看起来涨了 100%，有人开始庆祝，然后另一个人得去取消庆祝。</p>
+<p class="zh"><b>如果没有校验：</b>上游 API 返回了一个错误页面而不是数据，它会高高兴兴地写进一整天的 0。无声失败是最糟的失败方式——至少报错还会告诉你。</p>
+<p class="zh"><b>如果不可观测：</b>"数据是不是最新的？"变成没法回答的问题，然后人们开始不信任整个数仓。信任崩塌的速度远快于重建的速度。</p>
+<p class="zh"><b>如果先转换再加载、还丢掉原始数据：</b>等哪天有人改了"活跃客户"的定义，你没法重算历史。你只能说"我们的数据只能从今天开始"——这是一句真的很难说出口的话。</p>
+</div>
+</div>
+</div>
+<div class="stage" data-anim="">
+<div class="cap"><span><span class="en">Animation · an ETL pipeline running</span><span class="zh">动画 · 一条 ETL 管道在跑</span></span><button class="replay"><span class="en">↻ Replay</span><span class="zh">↻ 重播</span></button></div>
+<svg viewbox="0 0 800 240">
+<g class="etl-stage etl-s1">
+<rect class="sv-box" height="100" rx="12" style="stroke:var(--m4)" width="150" x="20" y="70"></rect>
+<text class="sv-ttl" style="fill:var(--m4)" text-anchor="middle" x="95" y="52"><tspan class="en">EXTRACT</tspan><tspan class="zh">抽取</tspan></text>
+<text class="sv-sm" text-anchor="middle" x="95" y="100"><tspan class="en">APIs · CSVs</tspan><tspan class="zh">API · CSV</tspan></text>
+<text class="sv-sm" text-anchor="middle" x="95" y="118"><tspan class="en">databases · logs</tspan><tspan class="zh">数据库 · 日志</tspan></text>
+<text class="sv-sm" style="fill:var(--no)" text-anchor="middle" x="95" y="140"><tspan class="en">messy, inconsistent</tspan><tspan class="zh">脏、不一致</tspan></text>
+</g>
+<g class="etl-stage etl-s2">
+<rect class="sv-box" height="100" rx="12" style="stroke:var(--m4)" width="150" x="290" y="70"></rect>
+<text class="sv-ttl" style="fill:var(--m4)" text-anchor="middle" x="365" y="52"><tspan class="en">TRANSFORM</tspan><tspan class="zh">转换</tspan></text>
+<text class="sv-sm" text-anchor="middle" x="365" y="100"><tspan class="en">clean · dedupe</tspan><tspan class="zh">清洗 · 去重</tspan></text>
+<text class="sv-sm" text-anchor="middle" x="365" y="118"><tspan class="en">standardise · validate</tspan><tspan class="zh">标准化 · 校验</tspan></text>
+<text class="sv-sm" text-anchor="middle" x="365" y="140"><tspan class="en">join · derive</tspan><tspan class="zh">关联 · 派生</tspan></text>
+</g>
+<g class="etl-stage etl-s3">
+<rect class="sv-box" height="100" rx="12" style="stroke:var(--m4)" width="150" x="560" y="70"></rect>
+<text class="sv-ttl" style="fill:var(--m4)" text-anchor="middle" x="635" y="52"><tspan class="en">LOAD</tspan><tspan class="zh">加载</tspan></text>
+<text class="sv-sm" text-anchor="middle" x="635" y="100"><tspan class="en">warehouse</tspan><tspan class="zh">数据仓库</tspan></text>
+<text class="sv-sm" text-anchor="middle" x="635" y="118"><tspan class="en">modelled tables</tspan><tspan class="zh">建模好的表</tspan></text>
+<text class="sv-sm" style="fill:var(--ok)" text-anchor="middle" x="635" y="140"><tspan class="en">trusted, queryable</tspan><tspan class="zh">可信、可查</tspan></text>
+</g>
+<line class="sv-line" stroke-dasharray="4 4" x1="170" x2="290" y1="120" y2="120"></line>
+<line class="sv-line" stroke-dasharray="4 4" x1="440" x2="560" y1="120" y2="120"></line>
+<circle class="drop d1" cx="180" cy="120" fill="var(--m4)" r="6"></circle>
+<circle class="drop d2" cx="180" cy="120" fill="var(--m4)" r="6"></circle>
+<circle class="drop d3" cx="180" cy="120" fill="#f59e0b" r="6"></circle>
+<circle class="drop d4" cx="180" cy="120" fill="#f59e0b" r="6"></circle>
+<circle class="drop d5" cx="180" cy="120" fill="#fbbf24" r="6"></circle>
+<text class="sv-lbl keepmono dirty" style="fill:var(--no)" x="20" y="205">"ipoh ", NULL, 0.98, "12/3/25"</text>
+<text class="sv-lbl keepmono clean" style="fill:var(--ok)" text-anchor="end" x="780" y="205">IPOH, 2025-03-12, 0.98, PASS</text>
+<text class="sv-sm" text-anchor="middle" x="400" y="228"><tspan class="en">same input in → same output out, every single run</tspan><tspan class="zh">同样的输入 → 同样的输出，每一次都是</tspan></text>
+</svg>
+</div>
+<div class="rw">
+<div class="rwh"><span class="en">◈ Real-world example</span><span class="zh">◈ 真实场景</span></div>
+<p class="scene en">The nightly job fails at 02:40 on a network blip. You re-run it at 09:00. By 09:05 the revenue dashboard shows double.</p>
+<p class="en">The pipeline appended rows instead of replacing them, so yesterday is now in the table twice. Nothing errored — the numbers are simply wrong, and three people have already seen them.<br/><b>The fix, in order of preference:</b> delete-then-insert for the affected date range, or an upsert keyed on <code class="inl">(date, site, sample_id)</code>. Both make a re-run a no-op instead of a duplication. <b>The lesson:</b> design for the re-run before the failure — the failure is guaranteed, and it will happen at the least convenient hour.</p>
+<p class="scene zh">凌晨 2:40 网络抖动导致每晚任务失败。你 9:00 重跑了一次。9:05 收入看板显示的数字翻了一倍。</p>
+<p class="zh">管道是追加而不是替换，所以昨天的数据现在在表里有两份。没有任何报错——数字就是错的，而且已经有三个人看到了。<br/><b>修复方式，按优先级：</b>对受影响的日期区间先删后插，或者按 <code class="inl">(date, site, sample_id)</code> 做 upsert。两者都能让重跑变成"什么都没发生"而不是"翻倍"。<b>教训：</b>在失败之前就为重跑做设计——失败是必然的，而且一定发生在最不方便的时刻。</p>
+</div>
+</div>
+<!-- ============ 4.3 DATA MODELLING ============ -->
+<div class="topic">
+<h3><span class="ic">3</span><span class="en">Data modelling</span><span class="zh">数据建模</span></h3>
+<div class="lens">
+<div class="lens-tabs">
+<button class="on"><span class="en">WHY</span><span class="zh">为什么</span></button>
+<button><span class="en">THEN → NOW</span><span class="zh">以前 → 现在</span></button>
+<button><span class="en">WHAT &amp; HOW</span><span class="zh">是什么 · 怎么做</span></button>
+<button><span class="en">IF YOU SKIP IT</span><span class="zh">不做会怎样</span></button>
+</div>
+<div class="lens-pane on">
+<div class="kicker"><span class="en">Why design the tables before you fill them?</span><span class="zh">为什么要在装满之前先设计好表？</span></div>
+<p class="en">Because a table's shape decides which questions are cheap and which are impossible. Get it right and "pass rate by region by quarter for instruments overdue for calibration" is one join. Get it wrong and the same question needs a week and a apologetic email.</p>
+<p class="en">And unlike code, data models are extremely hard to change later — because by then a hundred queries, five dashboards and someone's bonus calculation all depend on the shape you chose.</p>
+<p class="en"><b>The purpose in one line:</b> decide the shape while it's still free to decide.</p>
+<p class="zh">因为表的形状决定了哪些问题是廉价的、哪些是不可能的。设计对了，"按区域、按季度、只看超期未校准的仪器的合格率"就是一次连接。设计错了，同样的问题要花一周，外加一封道歉邮件。</p>
+<p class="zh">而且和代码不同，数据模型后期极难修改——因为到那时，一百条查询、五个看板、还有某人的奖金计算，全都依赖你当初选的那个形状。</p>
+<p class="zh"><b>一句话说清目的：</b>趁改动还免费的时候，把形状定下来。</p>
+</div>
+<div class="lens-pane">
+<div class="evo">
+<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h5>
+<ul class="en"><li>One enormous "reporting table" with 180 columns, most of them empty for most rows.</li><li>New question → add three more columns. Nobody dared remove any.</li><li>Historical values overwritten, so last year's report changed every time someone updated a record.</li><li>Every analyst wrote their own definition of "active customer." There were nine.</li></ul>
+<ul class="zh"><li>一张巨大的"报表宽表"，180 列，其中大部分对大部分行都是空的。</li><li>来一个新问题就再加三列，而且没人敢删任何一列。</li><li>历史值被覆盖，所以每次有人更新一条记录，去年的报表就跟着变。</li><li>每个分析师都自己定义"活跃客户"。总共有九种定义。</li></ul></div>
+<div class="evo-arrow">→</div>
+<div class="evo-col now"><h5><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h5>
+<ul class="en"><li><b>Star schema:</b> a narrow fact table of events, surrounded by small descriptive dimension tables.</li><li>New question → usually a new join, not a new column.</li><li>History is preserved deliberately (slowly changing dimensions), so old reports still reproduce.</li><li>Definitions live in one modelled layer that everyone queries. One definition, agreed once.</li></ul>
+<ul class="zh"><li><b>星型模型：</b>一张窄的事实表记录发生的事件，周围环绕若干小的描述性维度表。</li><li>来一个新问题，通常是加一次连接，而不是加一列。</li><li>历史被刻意保留（缓慢变化维），所以旧报表依然能复现。</li><li>定义集中在一个建模层里，所有人都查它。一个定义，一次达成一致。</li></ul></div>
+</div>
+</div>
+<div class="lens-pane">
+<div class="analogy" style="margin-top:0">
+<span class="lab"><span class="en">🧪 Designing the freezer layout before you fill it</span><span class="zh">🧪 在装满之前先设计好冷冻柜的布局</span></span>
+<p class="en">Anyone can shove boxes in a freezer. A good layout means that six months later, someone who has never met you can find every sample from a given study in thirty seconds.</p>
+<p class="en">The workhorse pattern is the <b>star schema</b>: one <b>fact</b> table in the middle recording events that happened (one row per test performed, with the numbers), surrounded by <b>dimension</b> tables describing the things involved (patient, site, instrument, date).</p>
+<p class="zh">谁都会往冷冻柜里塞盒子。好的布局意味着半年后，一个从没见过你的人能在三十秒内找到某个课题的全部样本。</p>
+<p class="zh">最主力的模式是<b>星型模型</b>：中间一张<b>事实</b>表记录发生过的事件（一行 = 做过的一次检测，带数值），周围是描述相关事物的<b>维度</b>表（病人、厂区、仪器、日期）。</p>
+</div>
+<details class="acc"><summary><span class="en">Three questions to ask before you create any table</span><span class="zh">建任何一张表之前先问的三个问题</span></summary>
+<div class="body">
+<p class="en"><b>1. What does one row mean?</b> Say it in a full sentence — "one row is one test performed on one sample by one instrument." If you can't say it cleanly, the table is wrong. This is called the <i>grain</i>, and getting it wrong is the most expensive mistake in data modelling.</p>
+<p class="en"><b>2. What makes a row unique?</b> Which column, or combination, can never repeat? If nothing does, you can't safely re-run anything.</p>
+<p class="en"><b>3. What happens when the source changes?</b> A patient moves city. Do you overwrite, or keep history so last year's report still reproduces?</p>
+<p class="zh"><b>1. 一行代表什么？</b>用一个完整句子说出来——"一行 = 一台仪器对一份样本做的一次检测"。说不利索，这张表就是错的。这叫<i>粒度</i>，搞错它是数据建模里最贵的错误。</p>
+<p class="zh"><b>2. 什么让一行唯一？</b>哪一列、或哪几列的组合永远不会重复？如果没有，你就没法安全地重跑任何东西。</p>
+<p class="zh"><b>3. 源数据变了会怎样？</b>病人搬到另一个城市。你是覆盖旧值，还是保留历史让去年的报表仍能复现？</p>
+</div>
+</details>
+</div>
+<div class="lens-pane">
+<div class="ifnot">
+<p class="en"><b>If you can't state the grain:</b> your fact table will silently mix levels — some rows are per-test, some are per-batch — and every <code class="inl">SUM</code> is quietly wrong. This is the single hardest bug class to detect, because the totals look reasonable.</p>
+<p class="en"><b>If you always overwrite instead of keeping history:</b> you lose the ability to answer "what did we believe at the time?" Regulators, auditors and post-mortems all ask exactly that question.</p>
+<p class="en"><b>If every team models its own version:</b> you end up in the meeting where marketing says 40,000 active customers and finance says 31,000, and the next two hours are spent on definitions instead of decisions.</p>
+<p class="zh"><b>如果说不清粒度：</b>你的事实表会悄悄混入不同层级——有些行是按检测的、有些是按批次的——于是每一次 <code class="inl">SUM</code> 都在无声地出错。这是最难发现的一类 bug，因为总数看起来很合理。</p>
+<p class="zh"><b>如果永远覆盖而不保留历史：</b>你就失去了回答"我们当时相信的是什么"的能力。监管、审计和事故复盘问的恰恰就是这个问题。</p>
+<p class="zh"><b>如果每个团队各建各的模型：</b>你会开上那种会——市场部说四万活跃客户，财务说三万一，接下来两小时全花在讨论定义而不是做决策上。</p>
+</div>
+</div>
+</div>
+<div class="stage" data-anim="">
+<div class="cap"><span><span class="en">Animation · a star schema</span><span class="zh">动画 · 星型模型</span></span><button class="replay"><span class="en">↻ Replay</span><span class="zh">↻ 重播</span></button></div>
+<svg viewbox="0 0 800 300">
+<line class="st-line sv-line" x1="400" x2="400" y1="120" y2="70"></line>
+<line class="st-line sv-line" x1="330" x2="200" y1="150" y2="150"></line>
+<line class="st-line sv-line" x1="470" x2="600" y1="150" y2="150"></line>
+<line class="st-line sv-line" x1="400" x2="400" y1="180" y2="230"></line>
+<g class="st-el st-c">
+<rect class="sv-box" height="60" rx="10" style="fill:color-mix(in srgb, var(--m4) 9%, var(--paper));stroke:var(--m4);stroke-width:2.5" width="140" x="330" y="120"></rect>
+<text class="sv-ttl" style="fill:var(--m4-deep)" text-anchor="middle" x="400" y="144">fact_test_result</text>
+<text class="sv-sm" text-anchor="middle" x="400" y="164"><tspan class="en">one row = one test run</tspan><tspan class="zh">一行 = 一次检测</tspan></text>
+</g>
+<g class="st-el st-d1"><rect class="sv-box" height="52" rx="10" width="160" x="320" y="18"></rect><text class="sv-lbl keepmono" text-anchor="middle" x="400" y="40">dim_patient</text><text class="sv-sm" text-anchor="middle" x="400" y="58"><tspan class="en">age band, city</tspan><tspan class="zh">年龄段、城市</tspan></text></g>
+<g class="st-el st-d2"><rect class="sv-box" height="52" rx="10" width="160" x="40" y="124"></rect><text class="sv-lbl keepmono" text-anchor="middle" x="120" y="146">dim_lab_site</text><text class="sv-sm" text-anchor="middle" x="120" y="164"><tspan class="en">name, region</tspan><tspan class="zh">名称、区域</tspan></text></g>
+<g class="st-el st-d3"><rect class="sv-box" height="52" rx="10" width="160" x="600" y="124"></rect><text class="sv-lbl keepmono" text-anchor="middle" x="680" y="146">dim_instrument</text><text class="sv-sm" text-anchor="middle" x="680" y="164"><tspan class="en">model, calibration</tspan><tspan class="zh">型号、校准</tspan></text></g>
+<g class="st-el st-d4"><rect class="sv-box" height="52" rx="10" width="160" x="320" y="230"></rect><text class="sv-lbl keepmono" text-anchor="middle" x="400" y="252">dim_date</text><text class="sv-sm" text-anchor="middle" x="400" y="270"><tspan class="en">day, month, quarter</tspan><tspan class="zh">日、月、季度</tspan></text></g>
+</svg>
+<p class="note"><span class="en">"Pass rate by region, by quarter, for instruments overdue for calibration" — one join away, instead of a week of work.</span><span class="zh">"按区域、按季度、只看超期未校准仪器的合格率"——一次连接就够了，而不是一周的工作量。</span></p>
+</div>
+<div class="rw">
+<div class="rwh"><span class="en">◈ Real-world example</span><span class="zh">◈ 真实场景</span></div>
+<p class="scene en">A customer relocates from Penang to Ipoh. Marketing runs last year's regional report again and the numbers have changed.</p>
+<p class="en">The dimension table overwrote the city, so every historical order that customer ever placed now counts as Ipoh. Last year's report no longer reproduces — and if it was ever filed with a regulator or used in a board pack, you now have two different official versions of the same year.<br/><b>The fix is a design decision made in advance:</b> keep a row per version of the customer with valid-from and valid-to dates, and join on the date of the order. It costs a little complexity forever, and it buys you the ability to say "here is exactly what we knew, and when" — which is the only defensible answer when someone asks.</p>
+<p class="scene zh">一个客户从槟城搬到怡保。市场部重跑去年的区域报表，发现数字变了。</p>
+<p class="zh">维度表把城市覆盖掉了，于是这个客户历史上所有订单现在都算到怡保头上。去年的报表不再可复现——而如果它曾经报给监管或进过董事会材料，你现在就有了同一年的两个官方版本。<br/><b>解法是一个提前做出的设计决定：</b>为客户的每个版本各存一行，带生效起止日期，按订单日期做连接。它会永久带来一点复杂度，换来的是你能说出"这就是我们当时知道的，以及在什么时候知道的"——当有人来问时，这是唯一站得住脚的答案。</p>
+</div>
+</div>
+<div class="chal">
+<div class="chal-head">
+<span class="chal-badge"><span class="en">⚡ Challenge</span><span class="zh">⚡ 挑战</span></span>
+<h4><span class="en">Build something that runs every night without you</span><span class="zh">做一个每晚自己跑、不用你在场的东西</span></h4>
+<span class="diff">★★★</span>
+</div>
+<div class="chal-body">
+<p class="brief en">Pick a public data source that changes daily — air quality, exchange rates, transit delays, weather, your country's open-data portal. Build the full pipeline: <b>pull it, clean it, store it, and let history accumulate.</b></p>
+<p class="brief en">Then earn the hard part. Make it <b>survive being run twice</b>. Make it <b>refuse to load garbage</b> — assert the row count is in range and key columns have no nulls, and fail loudly if not. Make it <b>tell you what it did</b> in a log line you could read half asleep. Schedule it. Leave it alone for two weeks.</p>
+<p class="brief zh">挑一个每天都在变的公开数据源——空气质量、汇率、交通延误、天气、你所在国家的开放数据门户。搭一条完整的管道：<b>拉取、清洗、入库，并让历史数据一天天累积起来。</b></p>
+<p class="brief zh">然后去挣那个难的部分。让它<b>跑两遍也不出错</b>。让它<b>拒绝写入垃圾</b>——断言行数在合理范围、关键列没有空值，不满足就大声失败。让它<b>把做了什么告诉你</b>，一行你半睡半醒也读得懂的日志。设成定时任务，然后两周别管它。</p>
+<div class="win"><span class="wl"><span class="en">You've won when</span><span class="zh">达成条件</span></span>
+<span class="en">Two weeks later you open the database and there are fourteen days of clean history you never touched — and on the day the source was down, the log says so instead of the table containing zeros.</span>
+<span class="zh">两周后你打开数据库，里面有十四天你从没碰过的干净历史——而在数据源挂掉的那一天，日志会明说，而不是表里静静躺着一堆 0。</span></div>
+<details class="acc"><summary><span class="en">Show me how to approach it</span><span class="zh">给我一点思路</span></summary>
+<div class="body">
+<p class="en"><b>1.</b> Land the raw response first, untouched, with a timestamp — before any cleaning. When you get the transformation wrong (you will), you can rebuild from raw instead of re-downloading history you can no longer get.</p>
+<p class="en"><b>2.</b> Decide the grain out loud: "one row is one reading, from one station, at one hour." Write it in a comment at the top of the file.</p>
+<p class="en"><b>3.</b> Idempotency: delete the rows for the date you're loading, then insert. Now running it five times is identical to running it once. Test that by actually running it five times.</p>
+<p class="en"><b>4.</b> Validation before load, not after: <code class="inl">assert 20 &lt; len(df) &lt; 5000</code>, <code class="inl">assert df["station_id"].notna().all()</code>. Then break it on purpose — point it at a bad URL and confirm it screams instead of writing nothing quietly.</p>
+<p class="en"><b>5.</b> Log one line per run: rows in, rows written, seconds taken. Two weeks later that log is how you'll know it never silently skipped a day.</p>
+<p class="zh"><b>1.</b> 先把原始响应原封不动落地，带时间戳——在任何清洗之前。等你把转换逻辑写错的时候（一定会），你能从原始数据重建，而不是去重新下载一段已经拿不回来的历史。</p>
+<p class="zh"><b>2.</b> 把粒度说出声："一行 = 一个站点、一个小时的一次读数。"把它写在文件开头的注释里。</p>
+<p class="zh"><b>3.</b> 幂等：先删掉本次要加载那一天的行，再插入。这样跑五次和跑一次结果完全一样。而且要真的跑五次来验证。</p>
+<p class="zh"><b>4.</b> 校验放在加载之前，不是之后：<code class="inl">assert 20 &lt; len(df) &lt; 5000</code>、<code class="inl">assert df["station_id"].notna().all()</code>。然后故意弄坏它——把地址指向一个错的 URL，确认它会尖叫，而不是安静地什么都不写。</p>
+<p class="zh"><b>5.</b> 每次运行记一行日志：读入多少行、写入多少行、耗时多少秒。两周后，正是这份日志能让你确认它从没悄悄漏掉过一天。</p>
+</div>
+</details>
+<p class="stakes"><span class="en">Three or four weekends. This is the first thing on your CV that is unambiguously data engineering — not analysis, not scripting. A system that runs without you.</span><span class="zh">三到四个周末。这是你简历上第一件明确属于"数据工程"的东西——不是分析，也不是写脚本，而是一套没有你也能运转的系统。</span></p>
+</div>
+</div>
+<div class="quiz">
+<div class="qh"><span class="en">Check yourself · Milestone 4</span><span class="zh">自我检验 · 阶段四</span></div>
+<p class="q"><span class="en">Your nightly pipeline failed halfway through and you re-ran it. Revenue in the dashboard is now double. What was missing?</span><span class="zh">你的每晚管道跑到一半失败，你重跑了一次。现在看板上的收入翻倍了。缺的是什么？</span></p>
+<button class="opt" data-c="0"><span class="en">More logging</span><span class="zh">更多日志</span></button>
+<button class="opt" data-c="1"><span class="en">Idempotency — a re-run should replace, not append</span><span class="zh">幂等性 —— 重跑应该是替换而不是追加</span></button>
+<button class="opt" data-c="0"><span class="en">A faster machine</span><span class="zh">更快的机器</span></button>
+<div class="fb"><span class="en">Idempotency. The pipeline appended the same rows a second time. Usual fixes: delete-then-insert for the affected range, or an upsert on a unique key. Design for the re-run <b>before</b> the failure, because the failure is guaranteed.</span><span class="zh">幂等性。管道把同样的行又追加了一遍。常见修法：对受影响区间先删后插，或按唯一键 upsert。在失败<b>之前</b>就为重跑做设计，因为失败是必然的。</span></div>
+</div>
+<div class="quiz">
+<p class="q"><span class="en"><code class="inl">value_counts()</code> on your <code class="inl">lab_site</code> column returns: IPOH (400), Ipoh (23), "ipoh " (7). What is this?</span><span class="zh">对 <code class="inl">lab_site</code> 列跑 <code class="inl">value_counts()</code> 得到：IPOH（400）、Ipoh（23）、"ipoh "（7）。这是什么情况？</span></p>
+<button class="opt" data-c="1"><span class="en">One site that will be reported as three unless you standardise it</span><span class="zh">同一个厂区，不标准化就会被统计成三个</span></button>
+<button class="opt" data-c="0"><span class="en">Three genuinely different sites</span><span class="zh">三个真的不同的厂区</span></button>
+<button class="opt" data-c="0"><span class="en">A pandas display bug</span><span class="zh">pandas 的显示 bug</span></button>
+<div class="fb"><span class="en">One site, three spellings — exactly why check #6 exists. Left alone, every group-by silently splits Ipoh into three, and nobody notices until a regional manager asks why their numbers look low.</span><span class="zh">一个厂区，三种写法——这正是第 6 项检查存在的理由。放着不管，每次分组都会悄悄把怡保拆成三份，直到区域经理来问"为什么我的数字这么低"才有人发现。</span></div>
+</div>
+<div class="checks">
+<h4><span class="en">🔬 Lab tasks</span><span class="zh">🔬 实操任务</span></h4>
+<label class="chk"><input type="checkbox"/><span class="en">Take a genuinely messy real CSV (government open-data portals are full of them) and run all six QC checks on it.</span><span class="zh">找一份真正脏的真实 CSV（政府开放数据门户上一抓一大把），跑一遍那六项检查。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Clean that file with pandas: fix inconsistent categories, parse dates properly, handle nulls with a documented decision for each column.</span><span class="zh">用 pandas 清洗它：统一分类值、正确解析日期、对每一列的空值处理都写下明确决定。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Build a small ETL script: pull from a public API → transform → load into SQLite. Run it twice and prove the row count doesn't change.</span><span class="zh">写一个小 ETL 脚本：从公开 API 拉取 → 转换 → 写入 SQLite。跑两次，证明行数不变。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Add validation to it: assert the row count is in an expected range and key columns have no nulls. Make it fail loudly on purpose.</span><span class="zh">给它加校验：断言行数在预期范围内、关键列无空值。故意让它大声失败一次。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Design a star schema on paper for something you know — a lab, a warehouse, a construction project. Write the grain sentence for the fact table.</span><span class="zh">给你熟悉的东西在纸上设计一个星型模型——实验室、仓库、工程项目都行。为事实表写出那句"粒度"。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Schedule your pipeline to run daily (cron, or a free Airflow/Prefect tier) and check the logs for a week.</span><span class="zh">把你的管道设成每天运行（cron，或 Airflow/Prefect 的免费额度），连着看一周日志。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Rewrite one of your pandas transformations as pure SQL. Notice which one is easier to read six weeks later.</span><span class="zh">把你的一段 pandas 转换用纯 SQL 重写一遍。六周后再看，注意哪一个更好读。</span></label>
+</div>
+</div>
+</div>
+<div class="disc" data-section="m4" id="disc-m4">
+<div class="disc-head">
+<h3><span class="en">Discussion</span><span class="zh">讨论</span></h3>
+<span class="disc-count" data-role="count">···</span>
+</div>
+<p class="disc-sub"><span class="en">Stuck, or got it working a different way? Leave it for the next learner.</span><span class="zh">卡住了，或者用别的方法搞定了？留给下一个学习者看看。</span></p>
+<div class="disc-list" data-role="list"></div>
+<form class="disc-form" data-parent="" data-role="form">
+<div class="disc-row2">
+<input autocomplete="name" data-role="name" maxlength="40" placeholder="Your name / 你的名字" required="" type="text"/>
+<input autocomplete="off" class="disc-hp" data-role="hp" tabindex="-1" type="text"/>
+</div>
+<textarea data-role="text" maxlength="2000" placeholder="Say something about Month 4 / 说点什么…" required=""></textarea>
+<div class="disc-foot">
+<button class="disc-post" type="submit"><span class="en">Post</span><span class="zh">发布</span></button>
+<span class="disc-msg" data-role="msg"></span>
+</div>
+</form>
+</div>
+</section>
+    <nav class="chapnav">
+    <a class="cn cn-prev" href="m3.html"><span class="cn-k"><span class="en">Previous</span><span class="zh">上一章</span></span><span class="cn-t"><span class="en">AI Fundamentals</span><span class="zh">AI 基础</span></span></a>
+    <a class="cn cn-next" href="m5.html"><span class="cn-k"><span class="en">Next</span><span class="zh">下一章</span></span><span class="cn-t"><span class="en">CS & Cloud</span><span class="zh">计算机原理与云</span></span></a>
+    </nav>
+<footer>
+<div class="wrap">
+<h3><span class="en">One last thing</span><span class="zh">最后一件事</span></h3>
+<p class="en" style="max-width:64ch">Feeling lost is not a sign that you chose wrong. It's the normal steady state of this field for everyone, including the people who look like they have it figured out. The difference is that they've learned it's survivable.</p>
+<p class="zh" style="max-width:64ch">感到迷茫不代表你选错了路。在这个行业里，这是所有人的常态，包括那些看起来什么都懂的人。区别只在于，他们已经学会了这是熬得过去的。</p>
+<p class="en" style="max-width:64ch">You already know how to be careful with a method you don't fully trust, how to check a result before you believe it, and how to write down what you did so someone else can repeat it. Those are the rare skills. The syntax is the easy part.</p>
+<p class="zh" style="max-width:64ch">你早就知道怎么谨慎对待一个还不完全信任的方法、怎么在相信一个结果之前先去核实、怎么把做过的事写下来让别人能复现。这些才是稀缺的能力。语法是最容易的那部分。</p>
+<p style="color:var(--muted); font-size:13px; margin-top:28px; margin-bottom:0"><span class="en">Progress and playground state are not saved between visits — work through a section in one sitting, or keep your own checklist alongside.</span><span class="zh">进度和练习状态不会跨次保存——建议一次做完一个章节，或者自己另外记一份清单。</span></p>
+</div>
+</footer>
+<button aria-label="Back to top" id="totop">↑</button>
+<div class="glow" id="glow"></div>
+<script src="assets/core.js"></script>
+<script src="assets/vibe.js"></script>
+</body>
+</html>

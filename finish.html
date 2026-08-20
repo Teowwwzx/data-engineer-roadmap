@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Month 12 and after · The Lab Notebook</title>
+<meta name="description" content="A 12-month foundations roadmap for a new Data Engineer. Bilingual, interactive, one chapter at a time.">
+<link rel="stylesheet" href="assets/core.css">
+<link rel="stylesheet" href="assets/themes.css">
+<script>/* set theme + language before first paint, no flash */
+(function(){try{
+ var t=localStorage.getItem('labnotebook-theme');
+ if(t&&t!=='auto')document.documentElement.setAttribute('data-theme',t);
+ var l=localStorage.getItem('labnotebook-lang')||'en';
+ document.documentElement.setAttribute('data-lang',l);
+}catch(e){}})();</script>
+</head>
+<body class="lang-en" data-vibe="chill" data-chapter="finish">
+<div class="topbar">
+<div class="wrap">
+<div class="brand"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></div>
+<nav class="navlinks"><a href="index.html"><span class="en">Start</span><span class="zh">开始</span></a>
+<a href="map.html"><span class="en">The map</span><span class="zh">地图</span></a>
+<a href="words.html"><span class="en">Words</span><span class="zh">词汇</span></a>
+<a href="terminal.html"><span class="en">Terminal</span><span class="zh">终端</span></a>
+<a href="m1.html"><span class="en">1 · IT Basics</span><span class="zh">1 · IT 基础</span></a>
+<a href="m2.html"><span class="en">2 · Tools</span><span class="zh">2 · 工具</span></a>
+<a href="m3.html"><span class="en">3 · AI</span><span class="zh">3 · AI</span></a>
+<a href="m4.html"><span class="en">4 · Data</span><span class="zh">4 · 数据</span></a>
+<a href="m5.html"><span class="en">5 · CS &amp; Cloud</span><span class="zh">5 · 计算机与云</span></a>
+<a href="systems.html"><span class="en">Big systems</span><span class="zh">大系统</span></a>
+<a href="zero.html"><span class="en">0 and 1</span><span class="zh">0 与 1</span></a>
+<a class="on" href="finish.html"><span class="en">Finish</span><span class="zh">完成</span></a></nav>
+<div class="langsw">
+<button class="on" data-lang="en">EN</button>
+<button data-lang="zh">中文</button>
+</div>
+</div>
+<div class="pbar"><i id="pbar"></i></div>
+</div>
+
+<section data-scene="neural" id="finish">
+<div class="wrap">
+<div class="philo">
+<h2><span class="en">Month 12 and everything after</span><span class="zh">第 12 个月，以及之后的一切</span></h2>
+<p class="en">By now you can read a system diagram, write a pipeline that survives a re-run, argue about a data model, judge what an AI hands you, and explain why something is slow. That is not "junior with potential." That is a working engineer.</p>
+<p class="zh">到这时，你能读懂架构图、能写出经得起重跑的管道、能就数据模型跟人争论、能判断 AI 交给你的东西、能解释某个东西为什么慢。这已经不是"有潜力的新人"了，这是一个能干活的工程师。</p>
+<p class="quote en">The tools in this guide will be partly obsolete in five years. The foundations underneath them will not have moved an inch.</p>
+<p class="quote zh">这份指南里的工具，五年后有一部分会过时。而它们底下的地基，一寸都不会动。</p>
+<p class="en">Frameworks will be replaced. Cloud services will be renamed. Whichever model is best today will not be best next year. But a CPU will still be faster than RAM, which will still be faster than disk. A JOIN will still work the way it works. HTTP will still return 404. Duplicated data will still drift apart. <b style="color:var(--ink)">Everything you learned in this roadmap is the part that keeps paying.</b></p>
+<p class="zh">框架会被替换，云服务会改名，今天最好的模型明年不会是最好的。但 CPU 依然比内存快，内存依然比磁盘快；JOIN 依然是那样工作；HTTP 依然会返回 404；重复的数据依然会互相分叉。<b style="color:var(--ink)">这条路线图里学到的每一样，都是会持续回报的那部分。</b></p>
+<div class="titlestack">
+<div class="tsrow"><span class="tslabel"><span class="en">What's next</span><span class="zh">接下来</span></span>
+<span class="chip"><span class="en">Distributed compute (Spark)</span><span class="zh">分布式计算（Spark）</span></span>
+<span class="chip"><span class="en">Streaming (Kafka)</span><span class="zh">流处理（Kafka）</span></span>
+<span class="chip"><span class="en">Docker &amp; containers</span><span class="zh">Docker 与容器</span></span>
+<span class="chip">CI/CD</span>
+<span class="chip"><span class="en">Infrastructure as code</span><span class="zh">基础设施即代码</span></span>
+<span class="chip"><span class="en">Data governance</span><span class="zh">数据治理</span></span></div>
+</div>
+<p class="en" style="margin-top:22px; margin-bottom:0">Pick whichever one your actual job needs first. That's always the right order.</p>
+<p class="zh" style="margin-top:22px; margin-bottom:0">先挑你实际工作最需要的那一个。这永远是对的顺序。</p>
+</div>
+<div class="grid3" style="margin-top:26px">
+<div class="mini"><h5><span class="en">When you get stuck</span><span class="zh">卡住的时候</span></h5>
+<p class="en">Read the <b>whole</b> error message — the answer is usually literally in it. Then search the exact text. Then ask an AI with full context. Then ask a human, showing all three things you already tried.</p>
+<p class="zh">把报错<b>完整</b>读一遍——答案通常就明明白白写在里面。然后按原文搜索。然后带上完整上下文问 AI。最后问人，并展示你已经试过的那三步。</p></div>
+<div class="mini"><h5><span class="en">The habit that compounds</span><span class="zh">会复利的习惯</span></h5>
+<p class="en">Keep a running document of every problem you solved and how. In a year it becomes the thing your team relies on — and the thing that gets you promoted.</p>
+<p class="zh">持续记录你解决过的每一个问题和解法。一年后它会变成团队依赖的东西——也是让你升职的东西。</p></div>
+<div class="mini"><h5><span class="en">What "senior" means</span><span class="zh">"资深"是什么意思</span></h5>
+<p class="en">Not knowing more syntax. It's knowing what will break, roughly when, and what it will cost. That only comes from breaking things — so break things early, where it's cheap.</p>
+<p class="zh">不是记得更多语法，而是知道什么会坏、大概什么时候坏、坏了要付什么代价。这只能从把东西弄坏中获得——所以趁代价还低，早点去弄坏它。</p></div>
+</div>
+</div>
+</section>
+<section data-scene="neural" id="made" style="--c:var(--m3)">
+<div class="wrap">
+<div class="sechead">
+<h2><span class="en">How this page was built</span><span class="zh">这一页是怎么做出来的</span></h2>
+</div>
+<p class="lede" style="max-width:70ch">
+<span class="en">Nothing here was drawn in Figma, cut into components, or handed to a front-end team.
+      It arrived as one HTML file in a zip, and every change after that was a sentence typed into an AI coding
+      agent. Below is the entire conversation — every prompt, unedited, typos and all.</span>
+<span class="zh">这里没有任何东西是在 Figma 里画出来、切成组件、再交给前端团队的。
+      它一开始只是压缩包里的一个 HTML 文件，之后的每一次改动，都是敲给 AI 编程助手的一句话。
+      下面是完整的对话 —— 每一句提示词，原样保留，错别字也没改。</span>
+</p>
+<ol class="promptlog">
+<li class="pl">
+<div class="pl-n">01</div>
+<div>
+<p class="pl-said"><span class="en">What was typed</span><span class="zh">输入的原话</span></p>
+<blockquote class="pl-q">@data-engineer-roadmap.zip Please create repo and push to teowwwzx github and deploy it.</blockquote>
+<p class="pl-got"><span class="en"><b>A public repo, the first commit, GitHub Pages switched on and the live URL checked</b> — from a zip on a laptop to a working address, in one step.</span><span class="zh"><b>一个公开仓库、第一次提交、打开 GitHub Pages、并验证线上地址</b> —— 从笔记本上的一个压缩包到一个能打开的网址，一步完成。</span></p>
+</div>
+</li>
+<li class="pl">
+<div class="pl-n">02</div>
+<div>
+<p class="pl-said"><span class="en">What was typed</span><span class="zh">输入的原话</span></p>
+<blockquote class="pl-q">Great! Can you scan again which part is too many word and redundant. because we try to use as much animation, svg, interaction as much possible rather than words which feel sleepy.</blockquote>
+<p class="pl-got"><span class="en"><b>The whole page parsed and measured</b>: 20,785 English words, 381 paragraphs, word counts per section and per component, and a ranked list of where the prose was thickest. The verdict: the THEN → NOW blocks held 1,942 words in static columns with not one graphic in them.</span><span class="zh"><b>整页被解析并量化</b>：20,785 个英文单词、381 个段落、每个章节与每个组件的字数，以及一份「哪里文字最密」的排序清单。结论是：「以前 → 现在」这些板块用静态两栏装了 1,942 个词，里面一张图都没有。</span></p>
+</div>
+</li>
+<li class="pl">
+<div class="pl-n">03</div>
+<div>
+<p class="pl-said"><span class="en">What was typed</span><span class="zh">输入的原话</span></p>
+<blockquote class="pl-q">yes</blockquote>
+<p class="pl-got"><span class="en"><b>Those 18 blocks rebuilt as one component you scrub.</b> An SVG playhead sweeps left to right, the past desaturates and recedes, the present lights up one bullet at a time. Not a word was cut — only the way it arrives.</span><span class="zh"><b>那 18 个板块被重建成一个可以拖动的组件。</b>SVG 播放头从左扫到右，过去褪色后退，现在逐条亮起。一个字都没删 —— 变的只是它抵达你的方式。</span></p>
+</div>
+</li>
+<li class="pl">
+<div class="pl-n">04</div>
+<div>
+<p class="pl-said"><span class="en">What was typed</span><span class="zh">输入的原话</span></p>
+<blockquote class="pl-q">btw I want you to enhance the UI with cool and fancy design like you going to competing in frontend design worldcup and you want to get first place by keeping these usefull information! Just enhance UI!.</blockquote>
+<p class="pl-got"><span class="en"><b>A design layer slid underneath everything</b>: an elevation system, a glass top bar, gradient display type, segmented controls, spring motion. It was added as the last stylesheet, so not one line of the original content or markup had to move.</span><span class="zh"><b>一层设计被垫到了所有东西下面</b>：一套阴影层级、玻璃顶栏、渐变标题字、分段控件、弹性动效。它是作为最后一张样式表加进去的，所以原有的内容和结构一行都不用动。</span></p>
+</div>
+</li>
+<li class="pl">
+<div class="pl-n">05</div>
+<div>
+<p class="pl-said"><span class="en">What was typed</span><span class="zh">输入的原话</span></p>
+<blockquote class="pl-q">yes do dark mode. do some top tier effect on background xD. I just want to show how powerful of AI btw, ad the last session add how to build this side with ai and show my prompt what easy we just done compare to before.</blockquote>
+<p class="pl-got"><span class="en"><b>566 colour literals migrated to semantic tokens</b>, a full dark theme, a five-layer reactive background, and an automated contrast audit run over every piece of text on the page in both themes. Plus the section you are reading.</span><span class="zh"><b>566 处写死的颜色被迁移成语义化 token</b>、一套完整的深色主题、五层会响应的背景，以及一次覆盖全页每一段文字、两种主题的自动对比度审计。还有你正在读的这一节。</span></p>
+</div>
+</li>
+</ol>
+<h3 style="margin:34px 0 0; font-size:20px; letter-spacing:-.02em">
+<span class="en">What that used to take</span><span class="zh">这些以前要花多少功夫</span>
+</h3>
+<div class="evo">
+<div class="evo-col then"><h5><span class="en">The usual way</span><span class="zh">通常的做法</span></h5>
+<ul class="en"><li>A designer in Figma, a front-end developer, and somebody to check accessibility. Three people, three handoffs, three chances to lose the thread.</li><li>Dark mode meant finding every hardcoded colour by hand. This page had <b>566</b> of them, spread over 20 stylesheets, inline attributes and SVG fills.</li><li>Contrast was checked by eye, or with a plugin, one screen at a time — so in practice it mostly wasn't.</li><li>Every change was a ticket, a branch, a review and a deploy. The gap between “this feels sleepy” and seeing it fixed was measured in days.</li></ul>
+<ul class="zh"><li>一个在 Figma 里的设计师、一个前端开发、外加一个查无障碍的人。三个人、三次交接、三次把事情跑偏的机会。</li><li>做深色模式意味着手动找出每一处写死的颜色。这一页有 <b>566</b> 处，散落在 20 段样式、行内属性和 SVG 填充里。</li><li>对比度靠肉眼看，或者靠插件一屏一屏地查 —— 所以实际上大多时候根本没查。</li><li>每一个改动都是一张工单、一条分支、一次评审、一次部署。从「这里读着犯困」到真的看见它被修好，中间隔着好几天。</li></ul></div>
+<div class="evo-arrow">→</div>
+<div class="evo-col now"><h5><span class="en">This page</span><span class="zh">这一页</span></h5>
+<ul class="en"><li>One person, one chat window, and five plain sentences — typos included. None of them said <i>how</i>; they said what, and roughly how it should feel.</li><li>The colour migration was a script written, run and verified inside the same minute the decision was made.</li><li>Contrast was measured on all <b>2,332</b> text elements, in both themes, automatically. Dark mode ships with zero WCAG AA failures.</li><li>The deploy is one of the steps, not a separate project. Every version above went live the same session it was asked for.</li></ul>
+<ul class="zh"><li>一个人、一个聊天窗口、五句大白话 —— 错别字照留。没有一句说了<i>怎么做</i>；它们只说要什么，以及大概该是什么感觉。</li><li>颜色迁移是一个脚本，在做出决定的那一分钟内写好、跑完、验证完。</li><li>对比度覆盖全部 <b>2,332</b> 个文字元素、两种主题，全自动测量。深色模式上线时 WCAG AA 零失败。</li><li>部署只是其中一步，而不是另一个项目。上面每一个版本，都在被提出的同一次会话里上线了。</li></ul></div>
+</div>
+<div class="madestats">
+<div class="mstat"><b>5</b><span class="en">prompts</span><span class="zh">句提示词</span></div>
+<div class="mstat"><b>4</b><span class="en">commits</span><span class="zh">次提交</span></div>
+<div class="mstat"><b>1</b><span class="en">file, no build step</span><span class="zh">个文件，无构建</span></div>
+<div class="mstat"><b>0</b><span class="en">dark-mode AA failures</span><span class="zh">深色模式 AA 失败</span></div>
+</div>
+<div class="analogy" style="margin-top:26px">
+<span class="lab"><span class="en">The part that is easy to miss</span><span class="zh">最容易被忽略的一点</span></span>
+<p class="en">The model chose the component, wrote the migration script, found the bug where the background
+      layers were painting <i>behind</i> the page instead of on it, and measured every contrast ratio. But somebody
+      still had to look at the result and say <b>“the old column is now too faint to read.”</b>
+      That sentence is not a technical skill. It is judgement — knowing what <i>right</i> looks like — and it is the
+      one thing in this whole guide that does not get automated. The tools got faster. The person who can tell
+      whether the answer is correct got <b>more</b> valuable, not less.</p>
+<p class="zh">模型挑了组件、写了迁移脚本、找出了背景层被画在页面<i>后面</i>而不是上面的那个 bug、
+      并且量了每一处对比度。但仍然得有人看着结果说一句：<b>「旧的那一栏现在太淡了，读不清。」</b>
+      这句话不是技术能力，而是判断力 —— 知道「对」应该长什么样。而这恰恰是整份指南里唯一不会被自动化掉的东西。
+      工具变快了；能判断答案对不对的那个人，因此变得<b>更</b>值钱，而不是更不值钱。</p>
+</div>
+</div>
+<div class="disc" data-section="made" id="disc-made">
+<div class="disc-head">
+<h3><span class="en">Discussion</span><span class="zh">讨论</span></h3>
+<span class="disc-count" data-role="count">···</span>
+</div>
+<p class="disc-sub"><span class="en">Stuck, or got it working a different way? Leave it for the next learner.</span><span class="zh">卡住了，或者用别的方法搞定了？留给下一个学习者看看。</span></p>
+<div class="disc-list" data-role="list"></div>
+<form class="disc-form" data-parent="" data-role="form">
+<div class="disc-row2">
+<input autocomplete="name" data-role="name" maxlength="40" placeholder="Your name / 你的名字" required="" type="text"/>
+<input autocomplete="off" class="disc-hp" data-role="hp" tabindex="-1" type="text"/>
+</div>
+<textarea data-role="text" maxlength="2000" placeholder="Say something about Month e / 说点什么…" required=""></textarea>
+<div class="disc-foot">
+<button class="disc-post" type="submit"><span class="en">Post</span><span class="zh">发布</span></button>
+<span class="disc-msg" data-role="msg"></span>
+</div>
+</form>
+</div>
+</section>
+    <nav class="chapnav">
+    <a class="cn cn-prev" href="zero.html"><span class="cn-k"><span class="en">Previous</span><span class="zh">上一章</span></span><span class="cn-t"><span class="en">It all starts from 0 and 1</span><span class="zh">一切从 0 和 1 开始</span></span></a>
+    <span class="cn cn-ghost"></span>
+    </nav>
+<footer>
+<div class="wrap">
+<h3><span class="en">One last thing</span><span class="zh">最后一件事</span></h3>
+<p class="en" style="max-width:64ch">Feeling lost is not a sign that you chose wrong. It's the normal steady state of this field for everyone, including the people who look like they have it figured out. The difference is that they've learned it's survivable.</p>
+<p class="zh" style="max-width:64ch">感到迷茫不代表你选错了路。在这个行业里，这是所有人的常态，包括那些看起来什么都懂的人。区别只在于，他们已经学会了这是熬得过去的。</p>
+<p class="en" style="max-width:64ch">You already know how to be careful with a method you don't fully trust, how to check a result before you believe it, and how to write down what you did so someone else can repeat it. Those are the rare skills. The syntax is the easy part.</p>
+<p class="zh" style="max-width:64ch">你早就知道怎么谨慎对待一个还不完全信任的方法、怎么在相信一个结果之前先去核实、怎么把做过的事写下来让别人能复现。这些才是稀缺的能力。语法是最容易的那部分。</p>
+<p style="color:var(--muted); font-size:13px; margin-top:28px; margin-bottom:0"><span class="en">Progress and playground state are not saved between visits — work through a section in one sitting, or keep your own checklist alongside.</span><span class="zh">进度和练习状态不会跨次保存——建议一次做完一个章节，或者自己另外记一份清单。</span></p>
+</div>
+</footer>
+<button aria-label="Back to top" id="totop">↑</button>
+<div class="glow" id="glow"></div>
+<script src="assets/core.js"></script>
+<script src="assets/vibe.js"></script>
+</body>
+</html>

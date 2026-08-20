@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Developer Tools · The Lab Notebook</title>
+<meta name="description" content="A 12-month foundations roadmap for a new Data Engineer. Bilingual, interactive, one chapter at a time.">
+<link rel="stylesheet" href="assets/core.css">
+<link rel="stylesheet" href="assets/themes.css">
+<script>/* set theme + language before first paint, no flash */
+(function(){try{
+ var t=localStorage.getItem('labnotebook-theme');
+ if(t&&t!=='auto')document.documentElement.setAttribute('data-theme',t);
+ var l=localStorage.getItem('labnotebook-lang')||'en';
+ document.documentElement.setAttribute('data-lang',l);
+}catch(e){}})();</script>
+</head>
+<body class="lang-en" data-vibe="gamify" data-chapter="m2">
+<div class="topbar">
+<div class="wrap">
+<div class="brand"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></div>
+<nav class="navlinks"><a href="index.html"><span class="en">Start</span><span class="zh">开始</span></a>
+<a href="map.html"><span class="en">The map</span><span class="zh">地图</span></a>
+<a href="words.html"><span class="en">Words</span><span class="zh">词汇</span></a>
+<a href="terminal.html"><span class="en">Terminal</span><span class="zh">终端</span></a>
+<a href="m1.html"><span class="en">1 · IT Basics</span><span class="zh">1 · IT 基础</span></a>
+<a class="on" href="m2.html"><span class="en">2 · Tools</span><span class="zh">2 · 工具</span></a>
+<a href="m3.html"><span class="en">3 · AI</span><span class="zh">3 · AI</span></a>
+<a href="m4.html"><span class="en">4 · Data</span><span class="zh">4 · 数据</span></a>
+<a href="m5.html"><span class="en">5 · CS &amp; Cloud</span><span class="zh">5 · 计算机与云</span></a>
+<a href="systems.html"><span class="en">Big systems</span><span class="zh">大系统</span></a>
+<a href="zero.html"><span class="en">0 and 1</span><span class="zh">0 与 1</span></a>
+<a href="finish.html"><span class="en">Finish</span><span class="zh">完成</span></a></nav>
+<div class="langsw">
+<button class="on" data-lang="en">EN</button>
+<button data-lang="zh">中文</button>
+</div>
+</div>
+<div class="pbar"><i id="pbar"></i></div>
+</div>
+
+<section data-scene="hatch" id="m2" style="--c:var(--m2)">
+<div class="wrap">
+<div class="ms">
+<div class="mshead">
+<div class="msnum">2</div>
+<div><div class="sub"><span class="en">Months 4–5 · Stop rebuilding the bench</span><span class="zh">第 4–5 月 · 别再重造实验台</span></div>
+<h2><span class="en">Essential Developer Tools</span><span class="zh">必备开发工具</span></h2></div>
+</div>
+<p class="en" style="color:var(--muted); max-width:68ch">Milestone 1 taught you to write things from scratch. This milestone teaches you to stop. Professional work is mostly assembling well-tested parts other people built, and keeping an impeccable record of what you changed and why.</p>
+<p class="zh" style="color:var(--muted); max-width:68ch">阶段一教你从零写东西，阶段二教你别再从零写。专业工作的大部分，是把别人写好、验证过的零件组装起来，同时把"你改了什么、为什么改"记录得无可挑剔。</p>
+<div class="tldr"><div class="tl2"><span class="en">In plain English — the whole milestone in 4 lines</span><span class="zh">大白话版 —— 四行讲完这个阶段</span></div><ul class="en"><li>A <b>framework</b> is pre-built plumbing. You write the small part that is actually yours.</li><li><b>Git</b> is a notebook for code: every change dated, signed, and undoable.</li><li><b>GitHub</b> is where the team's notebooks live, plus a colleague reading yours before it counts.</li><li><b>Open source</b> means you can read the recipe — which is the only way to really trust a tool.</li></ul><ul class="zh"><li><b>框架</b>是别人搭好的水电管路，你只写真正属于你的那一小块。</li><li><b>Git</b> 是给代码用的记录本：每次改动都有日期、有署名、可撤销。</li><li><b>GitHub</b> 是全组记录本存放的地方，外加一位同事在它生效前先读一遍。</li><li><b>开源</b>意味着配方你能读到 —— 这是真正信任一个工具的唯一方式。</li></ul></div>
+<!-- ============ 2.1 FRAMEWORKS ============ -->
+<div class="topic" style="border-top:0; padding-top:0">
+<h3><span class="ic">1</span><span class="en">Frameworks — React and Flask</span><span class="zh">框架 —— React 与 Flask</span></h3>
+<div class="lens">
+<div class="lens-tabs">
+<button class="on"><span class="en">WHY</span><span class="zh">为什么</span></button>
+<button><span class="en">THEN → NOW</span><span class="zh">以前 → 现在</span></button>
+<button><span class="en">WHAT &amp; HOW</span><span class="zh">是什么 · 怎么做</span></button>
+<button><span class="en">IF YOU SKIP IT</span><span class="zh">不用会怎样</span></button>
+</div>
+<div class="lens-pane on">
+<div class="kicker"><span class="en">Why use someone else's code instead of writing your own?</span><span class="zh">为什么要用别人的代码而不是自己写？</span></div>
+<p class="en">Because the boring parts are also the dangerous parts. Parsing an HTTP request, escaping user input so it can't inject SQL, setting the right security headers, handling half-uploaded files — none of it is interesting, all of it has been got wrong catastrophically by smart people, and all of it is already solved.</p>
+<p class="en"><b>The purpose in one line:</b> a framework lets you spend your attention on the 5% of the system that is actually yours, and inherit twenty years of other people's bug fixes for the other 95%.</p>
+<p class="zh">因为无聊的部分同时也是危险的部分。解析 HTTP 请求、转义用户输入以防 SQL 注入、设置正确的安全响应头、处理只上传了一半的文件——没有一件是有趣的，每一件都被聪明人搞砸过而且后果严重，而每一件都已经被解决了。</p>
+<p class="zh"><b>一句话说清目的：</b>框架让你把注意力花在真正属于你的那 5%，剩下 95% 直接继承别人二十年的踩坑修复。</p>
+</div>
+<div class="lens-pane">
+<div class="evo">
+<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h5>
+<ul class="en"><li>Every team wrote its own routing, own session handling, own database layer. Every company had a slightly different, slightly broken version.</li><li>Security was whatever the most senior person happened to remember.</li><li>A new hire needed three months to learn one company's homemade stack — knowledge that was worthless anywhere else.</li></ul>
+<ul class="zh"><li>每个团队自己写路由、自己写会话管理、自己写数据库层。每家公司都有一套略有不同、略有毛病的版本。</li><li>安全取决于组里最资深那个人当时恰好记得什么。</li><li>新人要三个月才能学会一家公司自制的那套东西——而这份知识换一家公司就一文不值。</li></ul></div>
+<div class="evo-arrow">→</div>
+<div class="evo-col now"><h5><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h5>
+<ul class="en"><li>A handful of frameworks are used by millions. Bugs are found by strangers and fixed before they reach you.</li><li>Security defaults are on unless you deliberately turn them off.</li><li>A new hire who knows Flask is productive on day two — anywhere in the world.</li><li>Upgrading brings you improvements you didn't ask for and didn't have to write.</li></ul>
+<ul class="zh"><li>少数几个框架被几百万人使用。bug 由陌生人发现，在传到你这之前就被修好了。</li><li>安全默认是开着的，除非你主动关掉。</li><li>一个会 Flask 的新人第二天就能干活——在世界任何地方。</li><li>升级一次，就白拿一堆你没要求、也不用自己写的改进。</li></ul></div>
+</div>
+<p class="en" style="margin-top:14px; font-size:14.5px; color:var(--muted)"><b>The trade you're making:</b> you give up total control and accept the framework's opinions. That is almost always a good trade — but it's why you should still understand what's underneath, so that when the framework's opinion is wrong for your case, you can tell.</p>
+<p class="zh" style="margin-top:14px; font-size:14.5px; color:var(--muted)"><b>你在做的这笔交易：</b>放弃完全控制权，接受框架的"主张"。这几乎总是笔划算的交易——但也正因如此，你仍然要懂底下那层，这样当框架的主张不适合你的场景时，你分得出来。</p>
+</div>
+<div class="lens-pane">
+<div class="analogy" style="margin-top:0">
+<span class="lab"><span class="en">🧪 Nobody synthesises their own buffer</span><span class="zh">🧪 没人自己配缓冲液</span></span>
+<p class="en">You could make PBS from raw salts every morning. You don't — you buy it pre-made, validated, consistent. A framework is pre-made infrastructure. You supply only the part that's specific to your problem.</p>
+<p class="zh">你当然可以每天早上从原料盐配 PBS。但你不会——你买现成的，已验证、批次一致。框架就是现成的基础设施，你只提供你这个问题特有的那一小块。</p>
+</div>
+<div class="codewrap">
+<div class="tabs"><button class="on">flask_api.py</button><button><span class="en">a React component</span><span class="zh">一个 React 组件</span></button></div>
+<div class="pane on"><pre><span class="kw">from</span> flask <span class="kw">import</span> Flask, jsonify
+
+app = <span class="fn">Flask</span>(__name__)
+
+<span class="fn">@app.route</span>(<span class="st">"/api/samples/&lt;sample_id&gt;"</span>)
+<span class="kw">def</span> <span class="fn">get_sample</span>(sample_id):
+    <span class="cm"># in real life you'd query the database here / 真实场景这里查数据库</span>
+    <span class="kw">return</span> <span class="fn">jsonify</span>({<span class="st">"id"</span>: sample_id, <span class="st">"purity"</span>: <span class="nu">0.98</span>, <span class="st">"status"</span>: <span class="st">"PASS"</span>})
+
+<span class="kw">if</span> __name__ == <span class="st">"__main__"</span>:
+    app.<span class="fn">run</span>(debug=<span class="kw">True</span>)
+
+<span class="cm"># That's a real, working REST API. Nine lines.
+# Flask wrote the other 40,000.
+# 这就是一个能跑的真 REST API，九行。另外四万行是 Flask 写的。</span></pre></div>
+<div class="pane"><pre><span class="cm">// A component = one reusable piece of UI. 组件 = 一块可复用的界面</span>
+
+<span class="kw">function</span> <span class="fn">SampleCard</span>({ id, purity, status }) {
+  <span class="kw">return</span> (
+    &lt;<span class="kw">div</span> className=<span class="st">"card"</span>&gt;
+      &lt;<span class="kw">h3</span>&gt;{id}&lt;/<span class="kw">h3</span>&gt;
+      &lt;<span class="kw">p</span>&gt;Purity: {purity}&lt;/<span class="kw">p</span>&gt;
+      &lt;<span class="kw">span</span> className={status === <span class="st">"PASS"</span> ? <span class="st">"ok"</span> : <span class="st">"bad"</span>}&gt;{status}&lt;/<span class="kw">span</span>&gt;
+    &lt;/<span class="kw">div</span>&gt;
+  );
+}
+
+<span class="cm">// Then render 500 of them from data: / 然后用数据渲染 500 个：</span>
+samples.<span class="fn">map</span>(s =&gt; &lt;<span class="fn">SampleCard</span> key={s.id} {...s} /&gt;)</pre></div>
+</div>
+<div class="warn">
+<p class="en" style="margin:0"><b>Honest scope for you:</b> learn <b>Flask (or FastAPI) properly</b> — you will build internal APIs. Learn <b>just enough React to read it</b> — enough to understand what a frontend colleague is asking your API for. Don't sink a month into React.</p>
+<p class="zh" style="margin:0"><b>给你的诚实建议：</b><b>把 Flask（或 FastAPI）学扎实</b>——你一定会写内部 API。<b>React 学到能读懂就行</b>——够你理解前端同事想从你的 API 拿什么。别在 React 上砸一个月。</p>
+</div>
+</div>
+<div class="lens-pane">
+<div class="ifnot">
+<p class="en"><b>If you write your own instead:</b> you will get it 90% right, and the missing 10% will be the security. The classic outcome is an endpoint that concatenates user input straight into SQL — the single most exploited bug in the history of the web, and every framework prevents it by default.</p>
+<p class="en"><b>The organisational damage:</b> homemade infrastructure only you understand means you can never hand the project over. It looks like job security. It is actually a cage.</p>
+<p class="zh"><b>如果坚持自己写：</b>你会做对 90%，而缺的那 10% 恰好是安全。最经典的结局是某个接口把用户输入直接拼进 SQL——网络史上被利用最多的漏洞，而任何框架默认都会挡住它。</p>
+<p class="zh"><b>组织层面的代价：</b>只有你懂的自制基础设施，意味着这个项目永远交接不出去。看着像职位护城河，实际上是笼子。</p>
+</div>
+</div>
+</div>
+<div class="stage" data-anim="">
+<div class="cap"><span><span class="en">Animation · what a framework gives you for free</span><span class="zh">动画 · 框架白送给你的东西</span></span><button class="replay"><span class="en">↻ Replay</span><span class="zh">↻ 重播</span></button></div>
+<svg viewbox="0 0 800 250">
+<g class="fw-brick fw-b1"><rect height="30" rx="6" style="fill:color-mix(in srgb, var(--m2) 10%, var(--paper));stroke:var(--m2);stroke-width:1.2" width="680" x="60" y="200"></rect><text class="sv-lbl" text-anchor="middle" x="400" y="220"><tspan class="en">HTTP server &amp; request parsing</tspan><tspan class="zh">HTTP 服务与请求解析</tspan></text></g>
+<g class="fw-brick fw-b2"><rect height="30" rx="6" style="fill:color-mix(in srgb, var(--m2) 10%, var(--paper));stroke:var(--m2);stroke-width:1.2" width="680" x="60" y="166"></rect><text class="sv-lbl" text-anchor="middle" x="400" y="186"><tspan class="en">Routing — matching a URL to your function</tspan><tspan class="zh">路由 —— 把 URL 匹配到你的函数</tspan></text></g>
+<g class="fw-brick fw-b3"><rect height="30" rx="6" style="fill:color-mix(in srgb, var(--m2) 10%, var(--paper));stroke:var(--m2);stroke-width:1.2" width="680" x="60" y="132"></rect><text class="sv-lbl" text-anchor="middle" x="400" y="152"><tspan class="en">Serialisation — Python objects ⇄ JSON</tspan><tspan class="zh">序列化 —— Python 对象 ⇄ JSON</tspan></text></g>
+<g class="fw-brick fw-b4"><rect height="30" rx="6" style="fill:color-mix(in srgb, var(--m2) 10%, var(--paper));stroke:var(--m2);stroke-width:1.2" width="680" x="60" y="98"></rect><text class="sv-lbl" text-anchor="middle" x="400" y="118"><tspan class="en">Error handling &amp; sensible status codes</tspan><tspan class="zh">错误处理与合理的状态码</tspan></text></g>
+<g class="fw-brick fw-b5"><rect height="30" rx="6" style="fill:color-mix(in srgb, var(--m2) 10%, var(--paper));stroke:var(--m2);stroke-width:1.2" width="680" x="60" y="64"></rect><text class="sv-lbl" text-anchor="middle" x="400" y="84"><tspan class="en">Security defaults — headers, escaping, sessions</tspan><tspan class="zh">安全默认值 —— 响应头、转义、会话</tspan></text></g>
+<g class="fw-you"><rect height="34" rx="8" style="fill:var(--m2-deep);stroke:var(--m2-deep)" width="380" x="210" y="18"></rect><text style="font:700 13px -apple-system,sans-serif;fill:var(--paper)" text-anchor="middle" x="400" y="40"><tspan class="en">YOUR ACTUAL LOGIC — 20 lines</tspan><tspan class="zh">你真正的业务逻辑 —— 20 行</tspan></text></g>
+</svg>
+<p class="note"><span class="en">The framework is the bottom five layers. Your job is the small green block — and knowing what's under it when it breaks.</span><span class="zh">下面五层是框架给的。你的工作是最上面那个小绿块——以及在它出问题时，知道底下是什么。</span></p>
+</div>
+<div class="rw">
+<div class="rwh"><span class="en">◈ Real-world example</span><span class="zh">◈ 真实场景</span></div>
+<p class="scene en">The quality team wants a page showing live pass rates by site. They ask how long it will take.</p>
+<p class="en">Without a framework: two weeks, and you'd be personally responsible for authentication, session handling and input validation. With Flask: a working API by lunchtime, a rough page by the afternoon, in front of real users the next morning — and the parts you didn't write are the parts an auditor would have flagged. The framework didn't just save time. It changed the answer from "next sprint" to "tomorrow," which is the difference between a tool people use and a tool people stopped waiting for.</p>
+<p class="scene zh">质量部门想要一个按厂区显示实时合格率的页面。他们问你要多久。</p>
+<p class="zh">不用框架：两周，而且认证、会话、输入校验都要你一个人负责。用 Flask：午饭前 API 能跑，下午出个粗糙页面，第二天早上就摆在真实用户面前了——而你没写的那些部分，恰恰是审计会挑刺的部分。框架省的不只是时间，它把答案从"下个迭代"变成了"明天"，这就是"大家在用的工具"和"大家已经不等的工具"之间的差别。</p>
+</div>
+</div>
+<!-- ============ 2.2 GIT ============ -->
+<div class="topic">
+<h3><span class="ic">2</span><span class="en">Version control — Git and GitHub</span><span class="zh">版本控制 —— Git 与 GitHub</span></h3>
+<div class="lens">
+<div class="lens-tabs">
+<button class="on"><span class="en">WHY</span><span class="zh">为什么</span></button>
+<button><span class="en">THEN → NOW</span><span class="zh">以前 → 现在</span></button>
+<button><span class="en">WHAT &amp; HOW</span><span class="zh">是什么 · 怎么做</span></button>
+<button><span class="en">IF YOU SKIP IT</span><span class="zh">不用会怎样</span></button>
+</div>
+<div class="lens-pane on">
+<div class="kicker"><span class="en">Why does code need a notebook?</span><span class="zh">为什么代码需要一本记录本？</span></div>
+<p class="en">Three questions come up constantly, and without version control none of them have answers:</p>
+<p class="en"><b>"When did this break?"</b> — you need to compare today's code with a version that worked.<br/>
+<b>"Why is this line here?"</b> — you need the reasoning of the person who wrote it, eight months ago, who may have left.<br/>
+<b>"Can we undo it?"</b> — you need to go back without losing everything that came after.</p>
+<p class="en"><b>The purpose in one line:</b> Git makes every change reversible, attributable and explainable — which is exactly what a lab notebook does for an experiment, and for exactly the same reason.</p>
+<p class="zh">有三个问题会反复出现，而没有版本控制，它们一个都答不上来：</p>
+<p class="zh"><b>"这是什么时候坏的？"</b>——你需要把今天的代码和一个能跑的版本对比。<br/>
+<b>"这行为什么在这？"</b>——你需要八个月前写它那个人的理由，而那人可能已经离职了。<br/>
+<b>"能撤回吗？"</b>——你需要退回去，同时不丢掉之后做的所有东西。</p>
+<p class="zh"><b>一句话说清目的：</b>Git 让每一次改动都可撤销、可追责、可解释——这正是实验记录本对实验做的事，理由也完全一样。</p>
+</div>
+<div class="lens-pane">
+<div class="evo">
+<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h5>
+<ul class="en"><li><code class="inl">report_v2_final_FINAL_usethis.py</code>. Seven copies of a folder, and nobody sure which one is live.</li><li>Two people editing the same file meant one person's work silently vanished.</li><li>History lived in email threads, or in one person's memory.</li><li>"Who changed this and why?" was usually unanswerable.</li></ul>
+<ul class="zh"><li><code class="inl">report_v2_final_FINAL_usethis.py</code>。同一个文件夹七个副本，没人确定哪个在跑。</li><li>两个人改同一个文件，其中一个人的工作就无声消失了。</li><li>历史记录存在邮件线程里，或者某个人的记忆里。</li><li>"这是谁改的、为什么改？"通常答不上来。</li></ul></div>
+<div class="evo-arrow">→</div>
+<div class="evo-col now"><h5><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h5>
+<ul class="en"><li>One folder. Every version ever, retrievable, with dates and authors.</li><li>Parallel <b>branches</b> let ten people work at once without touching each other's files.</li><li>Every change carries a written reason, permanently attached.</li><li><b>Pull requests</b> mean a second person reads it before it reaches production — peer review for code.</li></ul>
+<ul class="zh"><li>一个文件夹。历史上每一个版本都能取回，带日期和作者。</li><li>并行的<b>分支</b>让十个人同时干活，互不碰对方的文件。</li><li>每次改动都带一段书面理由，永久附在上面。</li><li><b>Pull Request</b> 意味着上线前有第二个人读过——代码版的同行评议。</li></ul></div>
+</div>
+<p class="en" style="margin-top:14px; font-size:14.5px; color:var(--muted)"><b>Where it's heading:</b> Git is now the trigger for everything else. Push a branch and tests run automatically; merge it and it deploys itself. The commit isn't just a record any more — it's the button that starts the machine.</p>
+<p class="zh" style="margin-top:14px; font-size:14.5px; color:var(--muted)"><b>它正在往哪走：</b>Git 现在是一切的触发器。推一个分支，测试自动跑；合并进去，它自己就上线了。提交不再只是记录——它是启动整台机器的那个按钮。</p>
+</div>
+<div class="lens-pane">
+<div class="analogy" style="margin-top:0">
+<span class="lab"><span class="en">🧪 This <i>is</i> your lab notebook</span><span class="zh">🧪 这<i>就是</i>你的实验记录本</span></span>
+<p class="en">A proper lab notebook is dated, signed, never erased. Git is that, for code. And it has one thing your paper notebook never did: you can start a <b>branch</b> — a parallel copy where you try a risky new protocol without touching the version that currently works. Fails? Throw the branch away. Works? <b>Merge</b> it back.</p>
+<p class="zh">一本合格的实验记录本：有日期、有签名、从不涂改。Git 就是代码版的它。而且它有一件纸质记录本永远做不到的事：你可以开一条<b>分支</b>——一份平行副本，在上面试危险的新方案，完全不碰当前能用的版本。失败？丢掉分支。成功？<b>合并</b>回去。</p>
+</div>
+<div class="codewrap">
+<div class="tabs"><button class="on"><span class="en">the 8 commands you need</span><span class="zh">你需要的 8 条命令</span></button><button><span class="en">a good commit message</span><span class="zh">好的提交信息</span></button><button><span class="en">when it goes wrong</span><span class="zh">出事的时候</span></button></div>
+<div class="pane on"><pre>git clone &lt;url&gt;              <span class="cm"># copy a repo, once / 克隆仓库，一次</span>
+git status                   <span class="cm"># what have I changed? RUN CONSTANTLY / 常敲</span>
+git checkout -b my-feature   <span class="cm"># start a new branch / 开新分支</span>
+git add .                    <span class="cm"># stage changes / 暂存改动</span>
+git commit -m <span class="st">"message"</span>      <span class="cm"># write the notebook entry / 写记录</span>
+git push                     <span class="cm"># send to GitHub / 推上去</span>
+git pull                     <span class="cm"># get everyone else's work / 拉别人的</span>
+git log --oneline            <span class="cm"># read the history / 看历史</span>
+
+<span class="cm"># That's 95% of daily Git. / 日常 Git 的 95% 就这些。</span></pre></div>
+<div class="pane"><pre><span class="cm"># BAD — tells a future reader nothing / 差：未来的人看不懂</span>
+git commit -m <span class="st">"fix"</span>
+git commit -m <span class="st">"updates"</span>
+
+<span class="cm"># GOOD — says WHAT and WHY / 好：说清做了什么、为什么</span>
+git commit -m <span class="st">"Reject samples below 0.95 purity in QC step
+
+The lab changed its acceptance threshold in March.
+Previously we passed anything above 0.90, which let
+14 bad batches through in Q1."</span>
+
+<span class="cm"># Test: will this make sense to you in eight months,
+# at 11pm, when something is broken? Write for that person.
+# 检验标准：八个月后的深夜、系统坏了的时候，你还看得懂吗？
+# 就是写给那个人看的。</span></pre></div>
+<div class="pane"><pre><span class="cm"># Undo the last commit, keep the file changes
+# 撤销上一次提交，但保留文件改动</span>
+git reset --soft HEAD~1
+
+<span class="cm"># Throw away uncommitted mess / 丢掉未提交的改动</span>
+git checkout -- .
+
+<span class="cm"># What did I actually change? / 我到底改了什么</span>
+git diff
+
+<span class="cm"># Merge conflict — Git marks it like this:
+# 合并冲突 —— Git 会在文件里这样标出来：</span>
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+threshold = 0.90        <span class="cm"># their version / 对方的</span>
+=======
+threshold = 0.95        <span class="cm"># your version / 你的</span>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; my-feature
+
+<span class="cm"># Delete the markers, keep the right line, commit.
+# It happens every week. It is not a disaster.
+# 删掉标记，留下对的那行，提交。每周都会遇到，不是灾难。</span></pre></div>
+</div>
+</div>
+<div class="lens-pane">
+<div class="ifnot">
+<p class="en"><b>If you use folder copies instead:</b> within a month you'll have <code class="inl">pipeline_v3_new_FIXED</code> and no idea which is running in production. The day you need to roll back, you will roll back to the wrong one.</p>
+<p class="en"><b>If you commit but never branch:</b> every experiment happens on the live version. One bad afternoon and the thing that was working this morning is gone, with nothing to return to.</p>
+<p class="en"><b>If your commit messages say "fix":</b> in six months the history is useless. Git can tell you <i>what</i> changed, but only your message can tell anyone <i>why</i> — and "why" is the only thing that actually helps at 3am.</p>
+<p class="zh"><b>如果你用复制文件夹的方式：</b>一个月内你就会有 <code class="inl">pipeline_v3_new_FIXED</code>，而且不知道生产上跑的是哪个。真需要回滚那天，你会回滚到错的那个。</p>
+<p class="zh"><b>如果只提交、从不开分支：</b>每次试验都直接在线上版本进行。一个糟糕的下午之后，今早还好好的东西就没了，而且没有可退回的地方。</p>
+<p class="zh"><b>如果提交信息写"fix"：</b>半年后这份历史就是废纸。Git 能告诉你<i>改了什么</i>，但只有你的留言能告诉别人<i>为什么</i>——而凌晨三点真正有用的只有"为什么"。</p>
+</div>
+</div>
+</div>
+<div class="play" data-play="git">
+<div class="play-head">
+<span class="play-badge"><span class="en">▶ Playground</span><span class="zh">▶ 动手玩</span></span>
+<h4><span class="en">Run a Git repository. Watch the history build itself.</span><span class="zh">操作一个 Git 仓库，看历史自己长出来</span></h4>
+<p class="sub2"><span class="en">Click the commands in any order. The graph draws what actually happens to your history — including the mistakes. Try committing on a branch and then merging. Then try committing directly on main while a branch is open, and merge — that's how conflicts are born.</span><span class="zh">按任意顺序点这些命令。图会画出你的历史真实发生了什么——包括你犯的错。试试在分支上提交再合并；然后试试分支还开着时直接在 main 上提交再合并——冲突就是这么产生的。</span></p>
+</div>
+<div class="play-body">
+<div class="prow">
+<button class="pbtn" id="git-commit">git commit</button>
+<button class="pbtn" id="git-branch">git checkout -b feature</button>
+<button class="pbtn" id="git-switch">git checkout main</button>
+<button class="pbtn" id="git-merge">git merge feature</button>
+<button class="pbtn ghost" id="git-reset"><span class="en">reset all</span><span class="zh">全部重来</span></button>
+</div>
+<div class="gitsim">
+<div class="gitcanvas"><svg id="git-svg" viewbox="0 0 760 190"></svg></div>
+<div class="gitlog" id="git-log"></div>
+</div>
+</div>
+</div>
+<div class="rw">
+<div class="rwh"><span class="en">◈ Real-world example</span><span class="zh">◈ 真实场景</span></div>
+<p class="scene en">A dashboard has been showing slightly wrong revenue for an unknown number of weeks. Nobody knows when it started.</p>
+<p class="en">With Git, this is a twenty-minute job. <code class="inl">git log</code> on the pipeline file shows every change with a date. You find a commit from six weeks ago titled "simplify currency handling," read the diff, and see that someone removed a rounding step. You know the exact date, the exact author to ask, and the exact line to revert — and you can prove to finance which weeks are affected.<br/>Without Git, this is an archaeology project with no artefacts. You'd be guessing, and you'd never be able to tell finance which numbers to trust.</p>
+<p class="scene zh">某个看板的收入数字一直略有偏差，已经持续了不知道几周，没人知道从什么时候开始的。</p>
+<p class="zh">有 Git，这是二十分钟的活。对那个管道文件敲 <code class="inl">git log</code>，每次改动带日期一目了然。你找到六周前一个叫"简化币种处理"的提交，读 diff，发现有人删掉了一步四舍五入。你立刻知道确切日期、该问谁、该回滚哪一行——而且能向财务证明受影响的是哪几周。<br/>没有 Git，这就是一场没有文物的考古。你只能猜，而且永远没法告诉财务哪些数字可以信。</p>
+</div>
+</div>
+<!-- ============ 2.3 OPEN SOURCE ============ -->
+<div class="topic">
+<h3><span class="ic">3</span><span class="en">Open source — libraries and models</span><span class="zh">开源 —— 库与模型</span></h3>
+<div class="lens">
+<div class="lens-tabs">
+<button class="on"><span class="en">WHY</span><span class="zh">为什么</span></button>
+<button><span class="en">THEN → NOW</span><span class="zh">以前 → 现在</span></button>
+<button><span class="en">WHAT &amp; HOW</span><span class="zh">是什么 · 怎么做</span></button>
+<button><span class="en">IF YOU SKIP IT</span><span class="zh">不看会怎样</span></button>
+</div>
+<div class="lens-pane on">
+<div class="kicker"><span class="en">Why would anyone give away code — and why should you care?</span><span class="zh">为什么有人白送代码 —— 你为什么该在意？</span></div>
+<p class="en">Because software has almost zero copying cost, and a tool used by a million people gets debugged by a million people. Giving it away is often the fastest route to a tool that actually works.</p>
+<p class="en">For you, the reason to care is <b>verifiability</b>. Open source is a published protocol with the full recipe attached — you can read it, test it, and know exactly what it does to your data. Closed software is a black-box kit: often excellent, but you take its word for it, and if the vendor discontinues it you are stranded.</p>
+<p class="zh">因为软件的复制成本几乎为零，而一个被一百万人使用的工具会被一百万人调试。白送出去，往往是让工具真正可用的最快路径。</p>
+<p class="zh">对你来说，值得在意的理由是<b>可验证性</b>。开源就是一份连完整配方一起发表的方案——你能读它、测它，确切知道它对你的数据做了什么。闭源软件是一个黑盒试剂盒：常常很好用，但你只能信它的说法，而且供应商一停产你就被困住了。</p>
+</div>
+<div class="lens-pane">
+<div class="evo">
+<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h5>
+<ul class="en"><li>You bought a licence, got a compiled binary, and could never see inside.</li><li>A bug meant filing a ticket and waiting for the next quarterly release.</li><li>Vendor lock-in was the business model, and price rises were unarguable.</li><li>AI models, similarly, were entirely behind an API — rent only.</li></ul>
+<ul class="zh"><li>你买一份授权，拿到一个编译好的程序，永远看不到里面。</li><li>发现 bug 就提工单，然后等下一个季度版本。</li><li>供应商锁定就是商业模式，涨价你也没得谈。</li><li>AI 模型同理，完全藏在 API 后面——只能租。</li></ul></div>
+<div class="evo-arrow">→</div>
+<div class="evo-col now"><h5><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h5>
+<ul class="en"><li>Most of the stack — Python, Postgres, Linux, pandas, Kubernetes — is open and free to read.</li><li>You can fix a bug yourself today rather than wait a quarter.</li><li>The same split has arrived for AI: <b>open-weight</b> models (Llama, Mistral, Qwen, DeepSeek) run on your own hardware, so sensitive data never leaves the building.</li><li>Companies fund the projects they depend on, because the alternative is maintaining a fork alone.</li></ul>
+<ul class="zh"><li>技术栈的绝大部分——Python、Postgres、Linux、pandas、Kubernetes——都是开放可读的。</li><li>发现 bug 今天就能自己修，不用等一个季度。</li><li>AI 也出现了同样的分化：<b>开放权重</b>模型（Llama、Mistral、Qwen、DeepSeek）可以跑在自己的硬件上，敏感数据不出楼。</li><li>公司会资助自己依赖的项目，因为另一条路是独自维护一个分叉。</li></ul></div>
+</div>
+</div>
+<div class="lens-pane">
+<div class="tblwrap"><table class="tbl">
+<tr><th><span class="en">Question to ask</span><span class="zh">要问的问题</span></th><th><span class="en">Open source / open weights</span><span class="zh">开源 / 开放权重</span></th><th><span class="en">Closed / hosted</span><span class="zh">闭源 / 托管</span></th></tr>
+<tr><td><span class="en">Can my data leave the company?</span><span class="zh">数据可以出公司吗？</span></td><td><span class="en">Doesn't have to — run it locally</span><span class="zh">不必 —— 可以本地运行</span></td><td><span class="en">It does, unless you have an enterprise agreement</span><span class="zh">要出去，除非有企业协议</span></td></tr>
+<tr><td><span class="en">Cost shape</span><span class="zh">成本结构</span></td><td><span class="en">Free software, you pay for hardware &amp; your time</span><span class="zh">软件免费，付硬件和你的时间</span></td><td><span class="en">Pay per use, near-zero setup</span><span class="zh">按量付费，几乎零搭建</span></td></tr>
+<tr><td><span class="en">Peak capability</span><span class="zh">能力上限</span></td><td><span class="en">Good, and closing fast</span><span class="zh">不错，而且追得很快</span></td><td><span class="en">Usually still the frontier</span><span class="zh">通常仍是最前沿</span></td></tr>
+<tr><td><span class="en">Who fixes it when it breaks</span><span class="zh">坏了谁修</span></td><td><span class="en">You, or the community</span><span class="zh">你，或社区</span></td><td><span class="en">Their support team</span><span class="zh">他们的支持团队</span></td></tr>
+</table></div>
+<details class="acc"><summary><span class="en">How to judge whether an open-source library is safe to depend on</span><span class="zh">怎么判断一个开源库能不能依赖</span></summary>
+<div class="body">
+<p class="en">Before you add anything to a project, spend two minutes checking:</p>
+<p class="en"><b>1. Recent commits.</b> Has anyone touched it in the last six months?<br/>
+<b>2. Open issues.</b> Hundreds of unanswered bug reports is a warning.<br/>
+<b>3. Licence.</b> MIT and Apache-2.0 are permissive and safe for commercial work. GPL has obligations — ask before using.<br/>
+<b>4. Downloads.</b> Wide use means bugs have been found by someone other than you.<br/>
+<b>5. Who maintains it.</b> A single unpaid person is a real risk; a foundation or a company is steadier.</p>
+<p class="zh">在往项目里加任何东西之前，花两分钟检查：</p>
+<p class="zh"><b>1. 最近的提交。</b>过去半年有人动过吗？<br/>
+<b>2. 未关闭的 issue。</b>几百个没人回的 bug 报告是警告信号。<br/>
+<b>3. 许可证。</b>MIT 和 Apache-2.0 宽松，商用安全。GPL 有义务条款——用之前先问。<br/>
+<b>4. 下载量。</b>用的人多，意味着 bug 是别人先踩到的。<br/>
+<b>5. 谁在维护。</b>只有一个没报酬的个人是真实风险；基金会或公司维护更稳。</p>
+</div>
+</details>
+</div>
+<div class="lens-pane">
+<div class="ifnot">
+<p class="en"><b>If you add libraries without checking:</b> you inherit an abandoned dependency with a known security hole, and you find out from a compliance scan rather than from yourself.</p>
+<p class="en"><b>If you ignore licences:</b> a GPL library in a commercial product can legally oblige your company to publish its source. That is a conversation with legal that nobody enjoys, and it is entirely avoidable by reading one line.</p>
+<p class="en"><b>If you only ever use hosted AI:</b> you may be sending customer data to a third party without realising it. Knowing that open-weight models exist is what gives you a second option when someone says "this data cannot leave."</p>
+<p class="zh"><b>如果不检查就加库：</b>你会继承一个已被弃坑、带已知安全漏洞的依赖，而且是合规扫描先发现，不是你先发现。</p>
+<p class="zh"><b>如果无视许可证：</b>商业产品里混进 GPL 库，法律上可能要求你们公司公开源码。这是一场没人喜欢的法务对话，而只要读一行字就能完全避免。</p>
+<p class="zh"><b>如果只会用托管 AI：</b>你可能在不知情的情况下把客户数据发给了第三方。知道有开放权重模型这条路，才是别人说"这批数据不能出去"时你还有第二个选择的原因。</p>
+</div>
+</div>
+</div>
+<div class="rw">
+<div class="rwh"><span class="en">◈ Real-world example</span><span class="zh">◈ 真实场景</span></div>
+<p class="scene en">Legal says the customer contract data cannot be sent to any external service. Management still wants AI summarisation of it.</p>
+<p class="en">If your only mental model is "AI = call an API," this is a dead end and the project dies. If you know open-weight models exist, the answer is: run a mid-sized open model on a machine inside the company network. It's somewhat less capable than the frontier model, needs a GPU, and someone has to maintain it — but the data never leaves, legal signs off, and the project ships. <b>Knowing the option existed is the entire contribution.</b></p>
+<p class="scene zh">法务说客户合同数据不能发给任何外部服务，但管理层仍然想用 AI 做摘要。</p>
+<p class="zh">如果你脑子里只有"AI = 调 API"，这就是死路，项目就没了。如果你知道有开放权重模型，答案就是：在公司内网的一台机器上跑一个中等规模的开源模型。它比前沿模型弱一些、需要 GPU、还得有人维护——但数据不出门，法务签字，项目落地。<b>知道"还有这个选项"，本身就是全部的贡献。</b></p>
+</div>
+</div>
+<div class="chal">
+<div class="chal-head">
+<span class="chal-badge"><span class="en">⚡ Challenge</span><span class="zh">⚡ 挑战</span></span>
+<h4><span class="en">Rescue a script that only one person knows how to run</span><span class="zh">拯救一个"只有一个人会跑"的脚本</span></h4>
+<span class="diff">★★☆</span>
+</div>
+<div class="chal-body">
+<p class="brief en">Every team has one: a script that lives in someone's Downloads folder, has hard-coded paths, and is emailed around as an attachment. Find yours — or write a deliberately bad one — and <b>turn it into something a stranger could run</b>.</p>
+<p class="brief en">Repository. README that assumes zero knowledge. Config instead of hard-coded paths. A branch, a pull request, a merge. Then wrap the useful part in a Flask endpoint so a colleague can get the answer without running anything at all.</p>
+<p class="brief zh">每个团队都有这么一个：躺在某人下载文件夹里、路径写死、靠邮件附件传来传去的脚本。找出你们的那一个——或者故意写一个很糟的——然后<b>把它变成一个陌生人也能跑起来的东西</b>。</p>
+<p class="brief zh">建仓库。写一份假设读者零基础的 README。用配置替代写死的路径。开分支、提 PR、合并。最后把有用的那部分包成一个 Flask 接口，让同事什么都不用跑就能拿到答案。</p>
+<div class="win"><span class="wl"><span class="en">You've won when</span><span class="zh">达成条件</span></span>
+<span class="en">Someone who has never seen it can clone the repo, follow the README, and get the right answer — without messaging you.</span>
+<span class="zh">一个从没见过它的人，能克隆仓库、照着 README 操作、拿到正确答案——全程不用来问你。</span></div>
+<details class="acc"><summary><span class="en">Show me how to approach it</span><span class="zh">给我一点思路</span></summary>
+<div class="body">
+<p class="en"><b>1.</b> Commit it <i>as-is</i> first, warts and all. That ugly first commit is your before-photo, and Git will keep it forever.</p>
+<p class="en"><b>2.</b> Write the README before you clean the code. Writing "how to run this" is what exposes every hidden assumption — you will find three things that only work on your laptop.</p>
+<p class="en"><b>3.</b> Move every path, threshold and credential into a config file or environment variable. Nothing secret goes in the repo. Ever.</p>
+<p class="en"><b>4.</b> Now the discipline: make the change on a branch, open a pull request against your own main, and review your own diff as if a stranger wrote it. You will find something.</p>
+<p class="en"><b>5.</b> Wrap the core function in Flask: <code class="inl">@app.route("/report")</code>. The script becomes a service, and the answer becomes a link you can send.</p>
+<p class="zh"><b>1.</b> 先<i>原封不动</i>提交一次，丑就丑。那次难看的初始提交是你的"改造前照片"，Git 会永远替你留着。</p>
+<p class="zh"><b>2.</b> 在清理代码之前先写 README。写"怎么运行"这件事，会把所有隐藏假设都暴露出来——你会发现有三个地方只在你的笔记本上成立。</p>
+<p class="zh"><b>3.</b> 把所有路径、阈值、凭据移进配置文件或环境变量。任何机密都不进仓库。永远不。</p>
+<p class="zh"><b>4.</b> 然后是纪律：在分支上改动、对自己的 main 提 PR、像审别人写的代码一样审自己的 diff。你一定会发现点什么。</p>
+<p class="zh"><b>5.</b> 用 Flask 把核心函数包起来：<code class="inl">@app.route("/report")</code>。脚本变成了服务，答案变成了一条你能发出去的链接。</p>
+</div>
+</details>
+<p class="stakes"><span class="en">Two weekends. This single exercise is the difference between "she wrote a script" and "she owns a tool the team uses."</span><span class="zh">两个周末。仅这一件事，就区分了"她写了个脚本"和"她维护着一件全组在用的工具"。</span></p>
+</div>
+</div>
+<div class="quiz">
+<div class="qh"><span class="en">Check yourself · Milestone 2</span><span class="zh">自我检验 · 阶段二</span></div>
+<p class="q"><span class="en">You're about to try a risky change to a pipeline that currently runs in production. What do you do first?</span><span class="zh">你打算对一个正在生产环境运行的管道做一次有风险的改动。第一步做什么？</span></p>
+<button class="opt" data-c="0"><span class="en">Make a copy of the folder called <code class="inl">pipeline_v2_final_FINAL</code></span><span class="zh">复制一份文件夹，叫 <code class="inl">pipeline_v2_final_FINAL</code></span></button>
+<button class="opt" data-c="1"><span class="en">Create a Git branch, work there, and open a pull request when it's ready</span><span class="zh">开一条 Git 分支，在上面改，好了再提 Pull Request</span></button>
+<button class="opt" data-c="0"><span class="en">Edit it directly but commit very often</span><span class="zh">直接改，但很频繁地提交</span></button>
+<div class="fb"><span class="en">A branch. Folder copies are how you end up with six versions and no idea which one is live. The branch keeps the working version untouched and gives your colleague something reviewable before it touches production.</span><span class="zh">开分支。复制文件夹的结局就是六个版本、不知道哪个在跑。分支让能用的版本原封不动，同时在碰到生产之前给同事一个可以评审的东西。</span></div>
+</div>
+<div class="checks">
+<h4><span class="en">🔬 Lab tasks</span><span class="zh">🔬 实操任务</span></h4>
+<p class="hint"><span class="en">By the end of this milestone you should have a GitHub profile with real commits on it.</span><span class="zh">这个阶段结束时，你的 GitHub 上应该已经有真实的提交记录。</span></p>
+<label class="chk"><input type="checkbox"/><span class="en">Create a GitHub account and push your Milestone 1 Python script to a new repository.</span><span class="zh">注册 GitHub，把阶段一的 Python 脚本推到一个新仓库。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Make a branch, change something, commit, push, and open a pull request against your own <code class="inl">main</code>. Merge it.</span><span class="zh">开分支、改点东西、提交、推送，对自己的 <code class="inl">main</code> 提一个 Pull Request，然后合并。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Deliberately cause a merge conflict (edit the same line on two branches) and resolve it. Do this while nothing is at stake.</span><span class="zh">故意制造一次合并冲突（在两条分支上改同一行）然后解决掉。趁着还没有代价的时候练。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Build a Flask API with two endpoints that reads from your SQLite database from Milestone 1.</span><span class="zh">写一个有两个接口的 Flask API，读取阶段一建的 SQLite 数据库。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Write a README for that repo explaining what it does and how to run it. Assume the reader knows nothing.</span><span class="zh">给那个仓库写一份 README，说明它做什么、怎么运行。假设读者什么都不知道。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Pick a library your team already uses. Open its GitHub page and run the five-point health check above on it.</span><span class="zh">挑一个你团队已经在用的库，打开它的 GitHub 页面，按上面那五点做一次体检。</span></label>
+</div>
+</div>
+</div>
+<div class="disc" data-section="m2" id="disc-m2">
+<div class="disc-head">
+<h3><span class="en">Discussion</span><span class="zh">讨论</span></h3>
+<span class="disc-count" data-role="count">···</span>
+</div>
+<p class="disc-sub"><span class="en">Stuck, or got it working a different way? Leave it for the next learner.</span><span class="zh">卡住了，或者用别的方法搞定了？留给下一个学习者看看。</span></p>
+<div class="disc-list" data-role="list"></div>
+<form class="disc-form" data-parent="" data-role="form">
+<div class="disc-row2">
+<input autocomplete="name" data-role="name" maxlength="40" placeholder="Your name / 你的名字" required="" type="text"/>
+<input autocomplete="off" class="disc-hp" data-role="hp" tabindex="-1" type="text"/>
+</div>
+<textarea data-role="text" maxlength="2000" placeholder="Say something about Month 2 / 说点什么…" required=""></textarea>
+<div class="disc-foot">
+<button class="disc-post" type="submit"><span class="en">Post</span><span class="zh">发布</span></button>
+<span class="disc-msg" data-role="msg"></span>
+</div>
+</form>
+</div>
+</section>
+    <nav class="chapnav">
+    <a class="cn cn-prev" href="m1.html"><span class="cn-k"><span class="en">Previous</span><span class="zh">上一章</span></span><span class="cn-t"><span class="en">IT Basics</span><span class="zh">IT 基础</span></span></a>
+    <a class="cn cn-next" href="m3.html"><span class="cn-k"><span class="en">Next</span><span class="zh">下一章</span></span><span class="cn-t"><span class="en">AI Fundamentals</span><span class="zh">AI 基础</span></span></a>
+    </nav>
+<footer>
+<div class="wrap">
+<h3><span class="en">One last thing</span><span class="zh">最后一件事</span></h3>
+<p class="en" style="max-width:64ch">Feeling lost is not a sign that you chose wrong. It's the normal steady state of this field for everyone, including the people who look like they have it figured out. The difference is that they've learned it's survivable.</p>
+<p class="zh" style="max-width:64ch">感到迷茫不代表你选错了路。在这个行业里，这是所有人的常态，包括那些看起来什么都懂的人。区别只在于，他们已经学会了这是熬得过去的。</p>
+<p class="en" style="max-width:64ch">You already know how to be careful with a method you don't fully trust, how to check a result before you believe it, and how to write down what you did so someone else can repeat it. Those are the rare skills. The syntax is the easy part.</p>
+<p class="zh" style="max-width:64ch">你早就知道怎么谨慎对待一个还不完全信任的方法、怎么在相信一个结果之前先去核实、怎么把做过的事写下来让别人能复现。这些才是稀缺的能力。语法是最容易的那部分。</p>
+<p style="color:var(--muted); font-size:13px; margin-top:28px; margin-bottom:0"><span class="en">Progress and playground state are not saved between visits — work through a section in one sitting, or keep your own checklist alongside.</span><span class="zh">进度和练习状态不会跨次保存——建议一次做完一个章节，或者自己另外记一份清单。</span></p>
+</div>
+</footer>
+<button aria-label="Back to top" id="totop">↑</button>
+<div class="glow" id="glow"></div>
+<script src="assets/core.js"></script>
+<script src="assets/vibe.js"></script>
+</body>
+</html>

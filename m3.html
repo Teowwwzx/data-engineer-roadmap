@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Fundamentals · The Lab Notebook</title>
+<meta name="description" content="A 12-month foundations roadmap for a new Data Engineer. Bilingual, interactive, one chapter at a time.">
+<link rel="stylesheet" href="assets/core.css">
+<link rel="stylesheet" href="assets/themes.css">
+<script>/* set theme + language before first paint, no flash */
+(function(){try{
+ var t=localStorage.getItem('labnotebook-theme');
+ if(t&&t!=='auto')document.documentElement.setAttribute('data-theme',t);
+ var l=localStorage.getItem('labnotebook-lang')||'en';
+ document.documentElement.setAttribute('data-lang',l);
+}catch(e){}})();</script>
+</head>
+<body class="lang-en" data-vibe="ai" data-chapter="m3">
+<div class="topbar">
+<div class="wrap">
+<div class="brand"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></div>
+<nav class="navlinks"><a href="index.html"><span class="en">Start</span><span class="zh">开始</span></a>
+<a href="map.html"><span class="en">The map</span><span class="zh">地图</span></a>
+<a href="words.html"><span class="en">Words</span><span class="zh">词汇</span></a>
+<a href="terminal.html"><span class="en">Terminal</span><span class="zh">终端</span></a>
+<a href="m1.html"><span class="en">1 · IT Basics</span><span class="zh">1 · IT 基础</span></a>
+<a href="m2.html"><span class="en">2 · Tools</span><span class="zh">2 · 工具</span></a>
+<a class="on" href="m3.html"><span class="en">3 · AI</span><span class="zh">3 · AI</span></a>
+<a href="m4.html"><span class="en">4 · Data</span><span class="zh">4 · 数据</span></a>
+<a href="m5.html"><span class="en">5 · CS &amp; Cloud</span><span class="zh">5 · 计算机与云</span></a>
+<a href="systems.html"><span class="en">Big systems</span><span class="zh">大系统</span></a>
+<a href="zero.html"><span class="en">0 and 1</span><span class="zh">0 与 1</span></a>
+<a href="finish.html"><span class="en">Finish</span><span class="zh">完成</span></a></nav>
+<div class="langsw">
+<button class="on" data-lang="en">EN</button>
+<button data-lang="zh">中文</button>
+</div>
+</div>
+<div class="pbar"><i id="pbar"></i></div>
+</div>
+
+<section data-scene="neural" id="m3" style="--c:var(--m3)">
+<div class="wrap">
+<div class="ms">
+<div class="mshead">
+<div class="msnum">3</div>
+<div><div class="sub"><span class="en">Months 6–7 · Your fastest, most confident colleague</span><span class="zh">第 6–7 月 · 你最快、也最自信的同事</span></div>
+<h2><span class="en">AI Fundamentals &amp; Modern Workflows</span><span class="zh">AI 基础与现代工作流</span></h2></div>
+</div>
+<p class="en" style="color:var(--muted); max-width:68ch">Six months in, you know enough to judge AI output instead of just accepting it. That order matters — Milestones 1 and 2 come first for a reason. Now you learn to work <i>with</i> the tools that are reshaping how everyone builds.</p>
+<p class="zh" style="color:var(--muted); max-width:68ch">走到第六个月，你已经有能力判断 AI 的输出，而不只是照单全收。这个顺序很重要——阶段一和阶段二排在前面是有原因的。现在，学着和这些正在重塑一切的工具<i>一起</i>工作。</p>
+<div class="tldr"><div class="tl2"><span class="en">In plain English — the whole milestone in 4 lines</span><span class="zh">大白话版 —— 四行讲完这个阶段</span></div><ul class="en"><li>An <b>LLM</b> predicts the most likely next words. It is often right, and it never knows when it is wrong.</li><li>A <b>prompt</b> is a briefing. Vague briefing, vague answer — that is almost always the real problem.</li><li><b>AI in your editor</b> writes the boring parts fast. You still have to read every line.</li><li><b>Agents and MCP</b> let AI actually run things — which is why you give it the narrowest keys that work.</li></ul><ul class="zh"><li><b>大模型</b>预测最可能的下一段文字。它经常是对的，而且永远不知道自己什么时候错了。</li><li><b>提示词</b>是一份任务简报。简报含糊，答案就含糊 —— 这几乎永远才是真正的问题。</li><li><b>编辑器里的 AI</b> 能飞快写完无聊的部分，但每一行你还是得读。</li><li><b>Agent 和 MCP</b> 让 AI 真的能动手做事 —— 所以要给它刚好够用的最小钥匙。</li></ul></div>
+<!-- ============ 3.1 WHAT AN LLM IS ============ -->
+<div class="topic" style="border-top:0; padding-top:0">
+<h3><span class="ic">1</span><span class="en">What an LLM actually is</span><span class="zh">大模型到底是什么</span></h3>
+<div class="lens">
+<div class="lens-tabs">
+<button class="on"><span class="en">WHY</span><span class="zh">为什么</span></button>
+<button><span class="en">THEN → NOW</span><span class="zh">以前 → 现在</span></button>
+<button><span class="en">WHAT &amp; HOW</span><span class="zh">是什么 · 怎么做</span></button>
+<button><span class="en">IF YOU SKIP IT</span><span class="zh">不懂会怎样</span></button>
+</div>
+<div class="lens-pane on">
+<div class="kicker"><span class="en">Why does understanding the mechanism matter, if you can just use it?</span><span class="zh">既然会用就行，为什么还要懂它的原理？</span></div>
+<p class="en">Because the mechanism explains every strength and every failure. A model does one thing: predict the most likely next chunk of text, over and over, extremely well.</p>
+<p class="en">From that one sentence, everything follows. Why is it so good at boilerplate? Because boilerplate is highly predictable. Why does it invent a column name that doesn't exist? Because <code class="inl">sample_purity_pct</code> is what usually comes next in text like yours — and the model has no way to check. Why does a wrong answer sound exactly as confident as a right one? Because confidence isn't computed separately; it's generated the same way the content is.</p>
+<p class="en"><b>The purpose of knowing this:</b> it tells you precisely where to look for errors, instead of trusting or distrusting the whole thing at random.</p>
+<p class="zh">因为原理解释了它的每一项长处和每一种失败。模型只做一件事：一次又一次地预测最可能的下一段文字，而且做得极好。</p>
+<p class="zh">从这一句话，一切都能推出来。为什么它写样板代码那么强？因为样板代码高度可预测。为什么它会编出一个不存在的列名？因为在类似你这样的文本里，接下来通常就是 <code class="inl">sample_purity_pct</code>——而模型没有任何办法去核实。为什么错误答案听起来和正确答案一样笃定？因为"笃定"不是单独算出来的，它和内容是同一套机制生成的。</p>
+<p class="zh"><b>知道这个的用处：</b>它精确地告诉你该去哪里找错，而不是凭感觉整体相信或整体怀疑。</p>
+</div>
+<div class="lens-pane">
+<div class="evo">
+<div class="evo-col then"><h5><span class="en">How software used to be built</span><span class="zh">以前软件是怎么造的</span></h5>
+<ul class="en"><li>Every behaviour had to be written as an explicit rule by a human. "If purity &lt; 0.95 then fail."</li><li>Anything fuzzy — reading a messy address, summarising a document — was effectively impossible.</li><li>Adding a language, a format or an edge case meant a new project.</li><li>Search meant matching keywords. If you used a different word, you found nothing.</li></ul>
+<ul class="zh"><li>每一种行为都得由人写成明确的规则。"如果纯度 &lt; 0.95 就判不合格。"</li><li>任何模糊的事——读一个乱写的地址、给文档做摘要——基本不可能。</li><li>多支持一种语言、一种格式、一个边缘情况，就是一个新项目。</li><li>搜索靠关键词匹配。换个说法就什么都搜不到。</li></ul></div>
+<div class="evo-arrow">→</div>
+<div class="evo-col now"><h5><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h5>
+<ul class="en"><li>You describe the outcome in plain language and the model produces a first attempt.</li><li>Fuzzy tasks became routine: extract fields from a scanned invoice, summarise 200 tickets, translate a script from R to Python.</li><li>The bottleneck moved from <b>writing</b> code to <b>verifying</b> it — which is where your judgment now earns its keep.</li><li>Search works by meaning, not by matching characters.</li></ul>
+<ul class="zh"><li>你用大白话描述想要的结果，模型给出第一版尝试。</li><li>模糊任务变成了日常：从扫描发票里抽字段、给 200 张工单做摘要、把 R 脚本翻译成 Python。</li><li>瓶颈从<b>写</b>代码变成了<b>验</b>代码——而这正是你的判断力开始值钱的地方。</li><li>搜索按含义匹配，而不是按字符匹配。</li></ul></div>
+</div>
+<p class="en" style="margin-top:14px; font-size:14.5px; color:var(--muted)"><b>What did NOT change:</b> the model still cannot know whether it's right. Everything about verification, testing, data quality and security got <i>more</i> important, not less — because code now arrives faster than anyone can read it.</p>
+<p class="zh" style="margin-top:14px; font-size:14.5px; color:var(--muted)"><b>没有变的是：</b>模型依然无法知道自己对不对。验证、测试、数据质量、安全这些事变得<i>更</i>重要而不是更不重要——因为现在代码产生的速度已经超过任何人阅读的速度。</p>
+</div>
+<div class="lens-pane">
+<div class="analogy" style="margin-top:0">
+<span class="lab"><span class="en">🧪 An enormously well-read assistant with no lab access</span><span class="zh">🧪 一个博览群书、但从没进过实验室的助手</span></span>
+<p class="en">Picture someone who has read essentially every paper, manual and forum post ever written, has a superb instinct for what sentence usually comes next — and has <b>never once run an experiment</b>. They answer any question fluently and confidently. Sometimes the fluent answer is wrong, and it sounds exactly as confident as the right one.</p>
+<p class="zh">想象一个人，几乎读过有史以来所有论文、手册和论坛帖子，对"下一句通常是什么"有极好的直觉——但<b>一次实验都没做过</b>。他能流畅、笃定地回答任何问题。有时候那个流畅的答案是错的，而且听起来和对的一样笃定。</p>
+</div>
+<div class="tblwrap"><table class="tbl">
+<tr><th><span class="en">Model family</span><span class="zh">模型家族</span></th><th><span class="en">Made by</span><span class="zh">出自</span></th><th><span class="en">Where it tends to shine</span><span class="zh">通常擅长什么</span></th></tr>
+<tr><td><b>Claude</b></td><td>Anthropic</td><td><span class="en">Long documents, careful reasoning, writing and reviewing code, agentic multi-step work</span><span class="zh">长文档、缜密推理、写和审代码、多步骤 Agent 任务</span></td></tr>
+<tr><td><b>GPT</b></td><td>OpenAI</td><td><span class="en">Broad general capability, huge ecosystem of integrations, image and voice</span><span class="zh">通用能力广、生态集成多、图像与语音</span></td></tr>
+<tr><td><b>Gemini</b></td><td>Google</td><td><span class="en">Very long context, tight integration with Google Cloud and Workspace</span><span class="zh">超长上下文、与 Google Cloud 和 Workspace 深度集成</span></td></tr>
+<tr><td><b>DeepSeek</b></td><td>DeepSeek AI</td><td><span class="en">Open weights, strong reasoning and code, dramatically cheaper — often self-hosted</span><span class="zh">开放权重、推理与代码能力强、成本低得多——常用于自建部署</span></td></tr>
+</table></div>
+<p class="en" style="font-size:14.5px; color:var(--muted)">Rankings shuffle every few months, so don't memorise them. Learn the <b>shape</b> of the choice instead: capability vs cost vs where your data is allowed to go. That question never goes out of date.</p>
+<p class="zh" style="font-size:14.5px; color:var(--muted)">排名每隔几个月就洗一次牌，别去背。要学的是这个选择的<b>结构</b>：能力 vs 成本 vs 数据允许去哪。这个问题永远不会过时。</p>
+</div>
+<div class="lens-pane">
+<div class="ifnot">
+<p class="en"><b>If you treat it as a search engine:</b> you'll assume it retrieved a fact when it actually composed one. Search engines return documents that exist; a model returns text that is likely. These are completely different guarantees.</p>
+<p class="en"><b>If you treat it as a calculator:</b> you'll trust arithmetic it did in prose. Ask it to write the code that computes the number instead — code you can run and check.</p>
+<p class="en"><b>If you never verify:</b> the failure is not that you'll be wrong occasionally. It's that you'll be wrong <i>confidently and at scale</i>, having shipped a plausible answer into a report that people made decisions on.</p>
+<p class="zh"><b>如果把它当搜索引擎：</b>你会以为它"查到"了一个事实，其实它是"编"了一个。搜索引擎返回存在的文档，模型返回可能的文本。这是完全不同的保证。</p>
+<p class="zh"><b>如果把它当计算器：</b>你会相信它在行文中做的算术。应该让它写出计算这个数字的代码——你能跑、能验的代码。</p>
+<p class="zh"><b>如果从不验证：</b>问题不是你偶尔会错，而是你会<i>笃定地、成规模地</i>错——把一个看起来很合理的答案发进了别人据以做决策的报表里。</p>
+</div>
+</div>
+</div>
+<div class="stage" data-anim="">
+<div class="cap"><span><span class="en">Animation · next-token prediction, one step at a time</span><span class="zh">动画 · 逐个 token 的预测过程</span></span><button class="replay"><span class="en">↻ Replay</span><span class="zh">↻ 重播</span></button></div>
+<svg viewbox="0 0 800 250">
+<text class="sv-sm" style="font-size:12px" x="40" y="34"><tspan class="en">Your prompt →</tspan><tspan class="zh">你的提示词 →</tspan></text>
+<rect class="sv-box" height="34" rx="8" style="fill:color-mix(in srgb, var(--m3) 7%, var(--paper));stroke:var(--m3)" width="300" x="40" y="46"></rect>
+<text class="sv-lbl keepmono" x="56" y="68">The QC threshold for purity</text>
+<g class="tok tk1"><rect height="34" rx="7" style="fill:color-mix(in srgb, var(--m3) 12%, var(--paper));stroke:var(--m3)" width="52" x="352" y="46"></rect><text class="sv-lbl keepmono" text-anchor="middle" x="378" y="68">was</text></g>
+<g class="tok tk2"><rect height="34" rx="7" style="fill:color-mix(in srgb, var(--m3) 12%, var(--paper));stroke:var(--m3)" width="72" x="410" y="46"></rect><text class="sv-lbl keepmono" text-anchor="middle" x="446" y="68">raised</text></g>
+<g class="tok tk3"><rect height="34" rx="7" style="fill:color-mix(in srgb, var(--m3) 12%, var(--paper));stroke:var(--m3)" width="42" x="488" y="46"></rect><text class="sv-lbl keepmono" text-anchor="middle" x="509" y="68">to</text></g>
+<g class="tok tk4"><rect height="34" rx="7" style="fill:color-mix(in srgb, var(--m3) 12%, var(--paper));stroke:var(--m3)" width="60" x="536" y="46"></rect><text class="sv-lbl keepmono" text-anchor="middle" x="566" y="68">0.95</text></g>
+<g class="tok tk5"><rect height="34" rx="7" style="fill:color-mix(in srgb, var(--m3) 12%, var(--paper));stroke:var(--m3)" width="34" x="602" y="46"></rect><text class="sv-lbl keepmono" text-anchor="middle" x="619" y="68">in</text></g>
+<g class="tok tk6"><rect height="34" rx="7" style="fill:color-mix(in srgb, var(--m3) 12%, var(--paper));stroke:var(--m3)" width="62" x="642" y="46"></rect><text class="sv-lbl keepmono" text-anchor="middle" x="673" y="68">March</text></g>
+<g class="probg"><text class="sv-sm" style="font-size:12px" x="40" y="126"><tspan class="en">At each step it is really choosing between candidates:</tspan><tspan class="zh">每一步，它其实是在候选词之间做选择：</tspan></text></g>
+<g class="probg"><text class="sv-lbl keepmono" x="40" y="158">"March"</text></g>
+<rect class="pbarr pb1" fill="var(--m3)" height="16" rx="4" width="380" x="130" y="145"></rect>
+<g class="probg"><text class="sv-sm" x="524" y="158">62%</text></g>
+<g class="probg"><text class="sv-lbl keepmono" x="40" y="186">"April"</text></g>
+<rect class="pbarr pb2" fill="#c084fc" height="16" rx="4" width="150" x="130" y="173"></rect>
+<g class="probg"><text class="sv-sm" x="294" y="186">24%</text></g>
+<g class="probg"><text class="sv-lbl keepmono" x="40" y="214">"2019"</text></g>
+<rect class="pbarr pb3" fill="color-mix(in srgb, var(--m1) 20%, var(--paper))" height="16" rx="4" width="70" x="130" y="201"></rect>
+<g class="probg"><text class="sv-sm" x="214" y="214">9%</text></g>
+<g class="probg"><text class="sv-sm" style="fill:var(--m4-deep)" x="40" y="240"><tspan class="en">It picked the most likely word — not the true one. It has no idea which is which.</tspan><tspan class="zh">它选的是最可能的词，不是真实的词。而且它分不清这两者。</tspan></text></g>
+</svg>
+</div>
+<div class="warn">
+<p class="en" style="margin:0"><b>The rule that will save your career:</b> an LLM produces something <i>plausible</i>, not something <i>verified</i>. Treat every output the way you'd treat a promising result from a single unreplicated run — interesting, worth checking, never publishable on its own. Run the code. Check the number. Read the source.</p>
+<p class="zh" style="margin:0"><b>能保住你职业生涯的一条规矩：</b>大模型产出的是<i>看起来合理</i>的东西，不是<i>已验证</i>的东西。对待每一个输出，就像对待一次未重复实验得到的漂亮结果——有意思、值得查、但绝不能单独发表。跑一遍代码、核一遍数字、读一遍原始出处。</p>
+</div>
+</div>
+<!-- ============ 3.2 PROMPTING ============ -->
+<div class="topic">
+<h3><span class="ic">2</span><span class="en">Prompt engineering — writing a good protocol</span><span class="zh">提示词工程 —— 写一份好的操作方案</span></h3>
+<div class="lens">
+<div class="lens-tabs">
+<button class="on"><span class="en">WHY</span><span class="zh">为什么</span></button>
+<button><span class="en">THEN → NOW</span><span class="zh">以前 → 现在</span></button>
+<button><span class="en">WHAT &amp; HOW</span><span class="zh">是什么 · 怎么做</span></button>
+<button><span class="en">IF YOU SKIP IT</span><span class="zh">不学会怎样</span></button>
+</div>
+<div class="lens-pane on">
+<div class="kicker"><span class="en">Why does phrasing change the answer so much?</span><span class="zh">为什么换个说法，答案差这么多？</span></div>
+<p class="en">Because the model can only use what's in front of it. It cannot see your screen, your schema, your team's conventions, or the thing you decided last Tuesday. Every ambiguity you leave open, it must fill with the statistically most common assumption — which is usually not yours.</p>
+<p class="en"><b>The purpose in one line:</b> a prompt is a briefing. Most bad answers are not stupid models; they are starved briefings.</p>
+<p class="zh">因为模型只能用它眼前有的东西。它看不到你的屏幕、你的表结构、你团队的惯例，也不知道你上周二定了什么。你留下的每一处模糊，它都必须用统计上最常见的假设去填——而那通常不是你的假设。</p>
+<p class="zh"><b>一句话说清目的：</b>提示词是一份任务简报。大部分糟糕的答案不是因为模型笨，而是因为简报太饿。</p>
+</div>
+<div class="lens-pane">
+<div class="evo">
+<div class="evo-col then"><h5><span class="en">Early prompting (2022–23)</span><span class="zh">早期的提示词（2022–23）</span></h5>
+<ul class="en"><li>Magic phrases and superstition — "you are a world-class expert," "I will tip you $200."</li><li>Tiny context windows, so you had to compress everything and hope.</li><li>Chained tricks to get JSON out reliably; often it came back malformed.</li><li>Prompts were personal folklore, passed around as screenshots.</li></ul>
+<ul class="zh"><li>咒语和迷信——"你是世界顶级专家""我会给你 200 美元小费"。</li><li>上下文窗口很小，什么都得压缩，然后祈祷。</li><li>要靠一连串技巧才能稳定拿到 JSON，而且常常格式还是坏的。</li><li>提示词是个人经验，靠截图在群里流传。</li></ul></div>
+<div class="evo-arrow">→</div>
+<div class="evo-col now"><h5><span class="en">Prompting now</span><span class="zh">现在的提示词</span></h5>
+<ul class="en"><li>Plain, specific, structured instructions. The superstition mostly stopped working and stopped being needed.</li><li>Long context: paste the whole schema, the whole error, the whole file.</li><li>Structured output is a first-class feature — you define the shape, you get that shape.</li><li>Good prompts live in Git as reusable files, reviewed like code.</li></ul>
+<ul class="zh"><li>朴素、具体、有结构的指令。咒语基本失效，也不再需要。</li><li>长上下文：整个表结构、整段报错、整个文件，直接贴进去。</li><li>结构化输出成了一等功能——你定义形状，就得到那个形状。</li><li>好的提示词像代码一样存进 Git、可复用、可评审。</li></ul></div>
+</div>
+<p class="en" style="margin-top:14px; font-size:14.5px; color:var(--muted)"><b>What this means:</b> "prompt engineering" is becoming ordinary technical writing — say precisely what you want, for a reader with no context. That skill was always valuable. Now it's compensated.</p>
+<p class="zh" style="margin-top:14px; font-size:14.5px; color:var(--muted)"><b>这意味着：</b>"提示词工程"正在变成普通的技术写作——把你要什么说清楚，写给一个毫无背景的读者看。这项能力一直都值钱，现在只是终于被付钱了。</p>
+</div>
+<div class="lens-pane">
+<div class="analogy" style="margin-top:0">
+<span class="lab"><span class="en">🧪 Briefing a brilliant new intern</span><span class="zh">🧪 给一个很聪明的新实习生交代任务</span></span>
+<p class="en">"Analyse this data" gets you something vague. "Here are 400 rows of HPLC output; flag any run where peak area drops more than 15% from the previous run for the same compound, return a table sorted by severity, and tell me if any column looks corrupted" gets you something useful. Same intern. Different briefing.</p>
+<p class="zh">"分析一下这批数据"，你会得到一堆含糊的东西。"这是 400 行 HPLC 输出；把同一化合物峰面积比上一次下降超过 15% 的批次标出来，按严重程度排序成表，并告诉我有没有哪一列看起来是坏的"，你会得到能用的东西。同一个实习生，不同的交代。</p>
+</div>
+<div class="codewrap">
+<div class="tabs"><button class="on"><span class="en">weak prompt</span><span class="zh">弱提示词</span></button><button><span class="en">strong prompt</span><span class="zh">强提示词</span></button></div>
+<div class="pane on"><pre><span class="cm"># Weak — no context, no schema, no definition of "duplicate"
+# 弱 —— 没有背景、没有表结构、没定义什么算"重复"</span>
+
+<span class="st">"write me a sql query to find duplicates"</span>
+
+<span class="cm"># You get a generic query against imaginary tables, and you
+# spend 20 minutes adapting it.
+# 你会拿到一条针对想象中的表的通用查询，然后花 20 分钟改。</span></pre></div>
+<div class="pane"><pre><span class="cm"># Strong — context, schema, rule, output format, edge case
+# 强 —— 背景、表结构、规则、输出格式、边界情况</span>
+
+<span class="st">"""You are a senior data engineer reviewing a clinical
+sample database (PostgreSQL 15).
+
+Schema:
+  samples(sample_id TEXT, patient_id TEXT, collected_at TIMESTAMPTZ,
+          purity NUMERIC, volume_ml NUMERIC, lab_site TEXT)
+
+A duplicate = same patient_id AND same collected_at date
+(not timestamp) AND same lab_site.
+
+Write one query that returns each duplicate group with its
+row count, most recent first. Exclude NULL lab_site rows.
+
+Return only the SQL, no commentary. Then, separately,
+list any assumption you had to make."""</span>
+
+<span class="cm"># Every ambiguity you resolve up front is one the model
+# doesn't get to guess wrong.
+# 你提前消除的每一处模糊，都是模型不会猜错的一处。</span></pre></div>
+</div>
+</div>
+<div class="lens-pane">
+<div class="ifnot">
+<p class="en"><b>If you prompt vaguely:</b> you get generic output, then spend longer fixing it than writing it yourself would have taken. The tool feels useless, and you conclude AI doesn't work for your job. It's the briefing.</p>
+<p class="en"><b>If you never specify the output format:</b> you can't automate anything. A pipeline needs JSON with known keys, not a friendly paragraph that changes shape each run.</p>
+<p class="en"><b>If you paste data you shouldn't:</b> the real risk. Customer names, patient IDs, unreleased financials — into a third-party service, logged, out of your control. Know your company's rule <i>before</i> you paste, not after.</p>
+<p class="zh"><b>如果提示词写得含糊：</b>你会拿到通用输出，然后花在修上的时间比自己写还长。于是工具显得没用，你得出"AI 不适合我的工作"的结论。其实是简报的问题。</p>
+<p class="zh"><b>如果从不指定输出格式：</b>你什么都自动化不了。管道需要的是键名固定的 JSON，不是每次形状都不一样的一段友好文字。</p>
+<p class="zh"><b>如果贴了不该贴的数据：</b>这是真正的风险。客户姓名、患者编号、未发布的财务数据——进了第三方服务、被记录、脱离你的控制。在贴之前搞清楚公司的规定，而不是贴完之后。</p>
+</div>
+</div>
+</div>
+<div class="play" data-play="prompt">
+<div class="play-head">
+<span class="play-badge"><span class="en">▶ Playground</span><span class="zh">▶ 动手玩</span></span>
+<h4><span class="en">Prompt Lab — build a briefing, watch the answer change</span><span class="zh">提示词实验室 —— 一步步加料，看答案怎么变</span></h4>
+<p class="sub2"><span class="en">Tick each ingredient and watch two things update live: the prompt you'd actually send, and the kind of answer it produces. Notice how much of the improvement comes from ordinary specificity, not clever tricks.</span><span class="zh">勾上每一项"配料"，看两样东西实时变化：你真正会发出去的提示词，以及它会产出什么样的答案。注意其中大部分提升来自朴素的具体，而不是什么技巧。</span></p>
+</div>
+<div class="play-body">
+<div class="ingr" id="prompt-ingr">
+<label class="ing"><input data-k="ctx" data-w="22" type="checkbox"/><span><b><span class="en">Context &amp; schema</span><span class="zh">背景与表结构</span></b><small><span class="en">Paste the actual table definitions and one sample row</span><span class="zh">把真实的表定义和一行样例数据贴进去</span></small></span></label>
+<label class="ing"><input data-k="rule" data-w="18" type="checkbox"/><span><b><span class="en">Define the fuzzy word</span><span class="zh">定义那个模糊的词</span></b><small><span class="en">Say exactly what "duplicate" / "active" / "late" means here</span><span class="zh">明确说清在这里"重复"/"活跃"/"逾期"到底指什么</span></small></span></label>
+<label class="ing"><input data-k="fmt" data-w="16" type="checkbox"/><span><b><span class="en">Output format</span><span class="zh">输出格式</span></b><small><span class="en">"Return only valid PostgreSQL, no commentary"</span><span class="zh">"只返回合法的 PostgreSQL，不要解释"</span></small></span></label>
+<label class="ing"><input data-k="role" data-w="12" type="checkbox"/><span><b><span class="en">Role &amp; standard</span><span class="zh">角色与标准</span></b><small><span class="en">"Review this as a senior engineer worried about nulls"</span><span class="zh">"以一个担心空值的资深工程师视角来审查"</span></small></span></label>
+<label class="ing"><input data-k="think" data-w="16" type="checkbox"/><span><b><span class="en">Ask it to reason first</span><span class="zh">让它先推理</span></b><small><span class="en">"Walk through your logic before the final query"</span><span class="zh">"给出最终查询之前，先把思路走一遍"</span></small></span></label>
+<label class="ing"><input data-k="ex" data-w="16" type="checkbox"/><span><b><span class="en">One worked example</span><span class="zh">一个示例</span></b><small><span class="en">Show one input → output pair. Beats three paragraphs.</span><span class="zh">给一组"输入 → 输出"，胜过三段描述。</span></small></span></label>
+</div>
+<div style="margin:18px 0 6px">
+<div class="scorehead"><span><span class="en">Briefing quality</span><span class="zh">简报质量</span></span><span id="p-score">0 / 100</span></div>
+<div class="meter"><i id="p-meter"></i></div>
+<p id="p-verdict" style="font-size:13.5px; color:var(--muted); margin:6px 0 0"></p>
+</div>
+<div class="sandbox" style="margin-top:14px">
+<div><span class="plabel"><span class="en">What you send</span><span class="zh">你发出去的</span></span>
+<div style="background:#0f172a; border-radius:10px; height:250px; overflow:auto"><pre id="p-prompt" style="padding:14px 16px"></pre></div></div>
+<div><span class="plabel"><span class="en">What you get back</span><span class="zh">你拿回来的</span></span>
+<div style="background:#0f172a; border-radius:10px; height:250px; overflow:auto"><pre id="p-answer" style="padding:14px 16px"></pre></div></div>
+</div>
+</div>
+</div>
+<div class="rw">
+<div class="rwh"><span class="en">◈ Real-world example</span><span class="zh">◈ 真实场景</span></div>
+<p class="scene en">You need to classify 4,000 free-text maintenance complaints into eight categories.</p>
+<p class="en">Vague prompt: "categorise these." You get eleven categories, inconsistent naming, and prose around each answer that breaks your parser. Useless for a pipeline.<br/>Real prompt: list the eight allowed categories verbatim, give two worked examples including one ambiguous case, specify <code class="inl">{"id":..., "category":..., "confidence":...}</code> as the only output, and add "if it fits none, return <code class="inl">OTHER</code> — do not invent a category." Now it runs unattended over 4,000 rows, and the <code class="inl">confidence</code> field tells you which 60 need a human. <b>The second prompt took eight minutes longer to write and turned a demo into a system.</b></p>
+<p class="scene zh">你需要把 4000 条自由文本的维修投诉分成八类。</p>
+<p class="zh">含糊的提示词："帮我分类。"结果你拿到十一个类别、命名不统一、每条答案外面还包着一段话，把你的解析程序搞崩。管道里完全没法用。<br/>真正的提示词：把八个允许的类别原样列出，给两个示例（其中一个是边界情况），指定唯一输出为 <code class="inl">{"id":..., "category":..., "confidence":...}</code>，并加上"如果都不符合，返回 <code class="inl">OTHER</code>——不要自己造类别"。现在它能无人值守跑完 4000 行，而 <code class="inl">confidence</code> 字段会告诉你哪 60 条需要人看。<b>第二版只多花了八分钟去写，却把一个演示变成了一套系统。</b></p>
+</div>
+</div>
+<!-- ============ 3.3 AI-ASSISTED DEV ============ -->
+<div class="topic">
+<h3><span class="ic">3</span><span class="en">AI-assisted development — Cursor and friends</span><span class="zh">AI 辅助开发 —— Cursor 之类</span></h3>
+<div class="lens">
+<div class="lens-tabs">
+<button class="on"><span class="en">WHY</span><span class="zh">为什么</span></button>
+<button><span class="en">THEN → NOW</span><span class="zh">以前 → 现在</span></button>
+<button><span class="en">WHAT &amp; HOW</span><span class="zh">是什么 · 怎么做</span></button>
+<button><span class="en">IF YOU SKIP IT</span><span class="zh">用不好会怎样</span></button>
+</div>
+<div class="lens-pane on">
+<div class="kicker"><span class="en">Why an AI editor instead of a chat window?</span><span class="zh">为什么要用 AI 编辑器，而不是聊天窗口？</span></div>
+<p class="en">Because context is everything, and a chat window has none of yours. Paste a function into a chat and the model must guess your file layout, your naming conventions, your database schema and which library version you're on.</p>
+<p class="en">An editor like Cursor can read the repository. Ask "why is this pipeline dropping rows?" and it can actually go and look at the transform, the schema and the tests. <b>The purpose in one line:</b> move the model from guessing about your code to reading it.</p>
+<p class="zh">因为上下文就是一切，而聊天窗口对你的上下文一无所知。把一个函数粘进聊天框，模型只能猜你的文件结构、命名习惯、数据库表结构，以及你用的是哪个版本的库。</p>
+<p class="zh">像 Cursor 这样的编辑器能读整个仓库。你问"这条管道为什么在丢数据？"，它可以真的去看转换逻辑、表结构和测试。<b>一句话说清目的：</b>让模型从"猜你的代码"变成"读你的代码"。</p>
+</div>
+<div class="lens-pane">
+<div class="evo">
+<div class="evo-col then"><h5><span class="en">How coding used to go</span><span class="zh">以前写代码是怎样</span></h5>
+<ul class="en"><li>Hit an unfamiliar error → search → open nine tabs → find a 2016 answer for an older version.</li><li>Boilerplate typed by hand, every time, with typos.</li><li>Tests written last, badly, or not at all.</li><li>Understanding a stranger's 800-line file took a full day.</li></ul>
+<ul class="zh"><li>遇到陌生报错 → 搜索 → 开九个标签页 → 找到一个 2016 年针对旧版本的答案。</li><li>样板代码每次都手敲，每次都有拼写错误。</li><li>测试最后写、写得差，或者干脆不写。</li><li>看懂别人写的 800 行文件要花一整天。</li></ul></div>
+<div class="evo-arrow">→</div>
+<div class="evo-col now"><h5><span class="en">How it goes now</span><span class="zh">现在是怎样</span></h5>
+<ul class="en"><li>Paste the error <i>with</i> the file — get an explanation grounded in your actual code.</li><li>Boilerplate is generated in seconds; you review instead of type.</li><li>Tests get written because the cost of writing them collapsed.</li><li>That 800-line file gets explained function by function in ten minutes.</li></ul>
+<ul class="zh"><li>把报错<i>连同文件</i>一起给它——得到基于你真实代码的解释。</li><li>样板代码几秒生成，你从"敲"变成"审"。</li><li>测试终于写了，因为写测试的成本塌下来了。</li><li>那个 800 行的文件，十分钟就能被逐个函数讲清楚。</li></ul></div>
+</div>
+<p class="en" style="margin-top:14px; font-size:14.5px; color:var(--muted)"><b>The honest trade-off:</b> the cost of <i>producing</i> code fell much faster than the cost of <i>understanding</i> it. Teams that don't adjust end up with more code than anyone has read. Review discipline is now the scarce skill.</p>
+<p class="zh" style="margin-top:14px; font-size:14.5px; color:var(--muted)"><b>诚实的取舍：</b><i>产出</i>代码的成本下降得比<i>理解</i>代码的成本快得多。不做调整的团队，最后会拥有比任何人读过的都多的代码。评审的纪律，才是现在稀缺的能力。</p>
+</div>
+<div class="lens-pane">
+<div class="analogy" style="margin-top:0">
+<span class="lab"><span class="en">🧪 A very fast pair of hands, still your experiment</span><span class="zh">🧪 一双很快的手，但实验仍然是你的</span></span>
+<p class="en">A lab partner who can set up any apparatus in seconds but has no idea what you're trying to prove. Delegate the tedium — boilerplate, renaming, writing tests, translating R to Python. Never delegate the decision about whether the result is correct.</p>
+<p class="zh">一个几秒钟就能搭好任何装置、但完全不知道你想证明什么的实验搭档。把繁琐的部分交出去——样板代码、批量改名、写测试、把 R 翻成 Python。永远不要把"结果对不对"的判断交出去。</p>
+</div>
+<div class="two" style="margin:16px 0">
+<div class="mini"><h5><span class="en">Great uses</span><span class="zh">很好的用法</span></h5>
+<p class="en">Explaining unfamiliar code line by line. Writing tests. Converting between languages. Generating boilerplate. First-draft documentation. Suggesting what might be causing an error.</p>
+<p class="zh">逐行解释陌生代码；写测试；语言之间转换；生成样板代码；文档初稿；给出报错可能的原因。</p></div>
+<div class="mini"><h5><span class="en">Dangerous uses</span><span class="zh">危险的用法</span></h5>
+<p class="en">Accepting a 200-line diff you haven't read. Letting it design your data model. Trusting a number it produced. Running its shell commands against production without reading them.</p>
+<p class="zh">接受一份你没读过的 200 行 diff；让它设计你的数据模型；相信它算出来的数字；不看就把它给的命令对着生产环境执行。</p></div>
+</div>
+<div class="warn">
+<p class="en" style="margin:0"><b>A discipline worth building now:</b> for the first year, before accepting any AI-written block, make yourself explain out loud what each line does. If you can't, don't merge it. The moment you ship code you don't understand, you've made a promise you can't keep at 3am.</p>
+<p class="zh" style="margin:0"><b>现在就该养成的纪律：</b>第一年里，接受任何 AI 写的代码块之前，逼自己出声解释每一行在干什么。解释不出来，就别合并。你上线一段自己看不懂的代码那一刻，就许下了一个凌晨三点兑现不了的承诺。</p>
+</div>
+</div>
+<div class="lens-pane">
+<div class="ifnot">
+<p class="en"><b>If you refuse to use it:</b> you'll be roughly two to four times slower than colleagues on mechanical work, and that gap is visible in a performance review. There's no medal for typing boilerplate by hand.</p>
+<p class="en"><b>If you use it without reading:</b> far worse. You accumulate code nobody understands — including you. The first outage is unrecoverable in any reasonable time, because debugging requires a mental model you never built.</p>
+<p class="en"><b>The career version:</b> people who only accept suggestions stop learning at the level they started. People who read every suggestion and ask "why that way?" learn faster than any previous generation could. Same tool, opposite outcomes.</p>
+<p class="zh"><b>如果你拒绝用：</b>在机械性工作上，你会比同事慢两到四倍，而这个差距在绩效评估里是看得见的。手敲样板代码没有奖章。</p>
+<p class="zh"><b>如果用了但不读：</b>糟得多。你会积累一堆没人看得懂的代码——包括你自己。第一次故障就无法在合理时间内恢复，因为排查需要一个你从未建立过的心智模型。</p>
+<p class="zh"><b>职业发展版本：</b>只会点"接受"的人，水平会停在起点。每条建议都读一遍、并追问"为什么这么写"的人，学得比以往任何一代都快。同一个工具，两种相反的结局。</p>
+</div>
+</div>
+</div>
+<div class="rw">
+<div class="rwh"><span class="en">◈ Real-world example</span><span class="zh">◈ 真实场景</span></div>
+<p class="scene en">You inherit a 1,200-line pipeline from someone who left the company. It runs nightly. Nobody knows what half of it does.</p>
+<p class="en">Old approach: two weeks of careful reading, and you still wouldn't touch it.<br/>New approach: open it in an AI editor and ask, function by function, "what does this do and what would break if I removed it?" Then — and this is the part people skip — <b>verify each claim against the code yourself</b>. In two days you have a documented map, a set of tests describing current behaviour, and the confidence to change it. The AI didn't give you understanding. It gave you a fast first draft of understanding that you then checked. That distinction is your whole job.</p>
+<p class="scene zh">你接手了一条 1200 行的管道，原作者已经离职。它每晚都在跑，一半的逻辑没人知道是干嘛的。</p>
+<p class="zh">旧办法：两周仔细阅读，读完你还是不敢动它。<br/>新办法：用 AI 编辑器打开，一个函数一个函数地问："这段是做什么的？删掉会坏什么？"然后——这是大多数人跳过的一步——<b>你自己对着代码逐条核实</b>。两天之内，你就有了一份文档化的地图、一组描述现有行为的测试，以及动它的底气。AI 给你的不是理解，而是一份"理解的快速初稿"，然后由你去核。这个区别，就是你这份工作的全部。</p>
+</div>
+</div>
+<!-- ============ 3.4 AGENTS & MCP ============ -->
+<div class="topic">
+<h3><span class="ic">4</span><span class="en">Agents, MCP, and custom skills</span><span class="zh">Agent、MCP 与自定义技能</span></h3>
+<div class="lens">
+<div class="lens-tabs">
+<button class="on"><span class="en">WHY</span><span class="zh">为什么</span></button>
+<button><span class="en">THEN → NOW</span><span class="zh">以前 → 现在</span></button>
+<button><span class="en">WHAT &amp; HOW</span><span class="zh">是什么 · 怎么做</span></button>
+<button><span class="en">IF YOU SKIP IT</span><span class="zh">不懂会怎样</span></button>
+</div>
+<div class="lens-pane on">
+<div class="kicker"><span class="en">Why does an AI need a protocol to use tools?</span><span class="zh">为什么 AI 用工具还需要一套协议？</span></div>
+<p class="en">Because a model that can only talk is limited to what it was trained on. It cannot know today's row count, or whether last night's job succeeded. Give it the ability to <b>run a query and read the result</b>, and it can answer questions about the real world instead of about text.</p>
+<p class="en">But that ability is dangerous without a boundary. MCP exists so that connection is <b>standard</b> (write it once, any AI client can use it) and <b>scoped</b> (you decide exactly which tools, which tables, read or write).</p>
+<p class="en"><b>The purpose in one line:</b> it's the difference between an assistant who can advise you and an assistant who can act — with a clearly defined set of keys.</p>
+<p class="zh">因为一个只会说话的模型，被限制在它训练过的内容里。它不可能知道今天的行数，也不知道昨晚的任务有没有成功。给它<b>执行一次查询并读取结果</b>的能力，它就能回答关于真实世界的问题，而不只是关于文本的问题。</p>
+<p class="zh">但这种能力没有边界就很危险。MCP 的存在，是为了让这种连接既<b>标准</b>（写一次，任何 AI 客户端都能用），又<b>受限</b>（你精确决定哪些工具、哪些表、只读还是可写）。</p>
+<p class="zh"><b>一句话说清目的：</b>这是"能给你建议的助手"和"能替你动手的助手"之间的差别——而且钥匙串是明确定义好的。</p>
+</div>
+<div class="lens-pane">
+<div class="evo">
+<div class="evo-col then"><h5><span class="en">How integration used to work</span><span class="zh">以前的集成是怎么做的</span></h5>
+<ul class="en"><li>Every AI tool needed a bespoke integration with every data source. N tools × M systems = N×M pieces of glue code.</li><li>Permissions were whatever each integration's author happened to implement.</li><li>You copied data out by hand and pasted it into a chat window — including things you shouldn't have.</li><li>Nothing was auditable. No log of what the AI actually touched.</li></ul>
+<ul class="zh"><li>每个 AI 工具都要为每个数据源写专门的集成。N 个工具 × M 个系统 = N×M 段胶水代码。</li><li>权限完全取决于写那个集成的人当时实现了什么。</li><li>你手动把数据复制出来粘进聊天框——包括那些本不该复制的。</li><li>完全无法审计。AI 到底碰了什么，没有日志。</li></ul></div>
+<div class="evo-arrow">→</div>
+<div class="evo-col now"><h5><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h5>
+<ul class="en"><li>One standard socket. Write an MCP server for your warehouse <b>once</b>; every MCP-compatible client can use it.</li><li>Permissions live in one place, at the socket — not scattered across integrations.</li><li>The AI queries live data itself, so nobody pastes a customer list into a chat box.</li><li>Every tool call is logged. You can answer "what did it touch, and when?"</li></ul>
+<ul class="zh"><li>一个标准插口。为你的数仓写<b>一次</b> MCP 服务，所有兼容 MCP 的客户端都能用。</li><li>权限集中在插口这一处——不再散落在各个集成里。</li><li>AI 自己去查实时数据，没人再把客户名单粘进聊天框。</li><li>每次工具调用都有日志。"它碰了什么、什么时候碰的"，你答得上来。</li></ul></div>
+</div>
+</div>
+<div class="lens-pane">
+<div class="analogy" style="margin-top:0">
+<span class="lab"><span class="en">🧪 Giving your assistant keys to the instruments</span><span class="zh">🧪 把仪器的钥匙交给助手</span></span>
+<p class="en">An <b>agent</b> is your well-read assistant, now with hands: it can run a query, read a file, call an API, and decide what to do next based on what came back. <b>MCP</b> is the standardised connector — like every instrument in the lab accepting the same plug. A <b>custom skill</b> is your team's written SOP: "when someone asks for the monthly QC report, here's exactly how we do it here, here's the template, here are the gotchas."</p>
+<p class="zh"><b>Agent</b> 就是你那位博览群书的助手，现在有了手：能执行查询、读文件、调 API，并根据返回结果决定下一步。<b>MCP</b> 是标准化的接口——就像实验室里所有仪器都用同一种插头。<b>自定义技能</b>则是你团队写下来的 SOP："有人要月度 QC 报表时，我们这里是这样做的，模板在这，这些坑要注意。"</p>
+</div>
+<div class="warn">
+<p class="en" style="margin:0"><b>Security instinct to build early:</b> give an agent the narrowest access that lets it do the job. Read-only beats read-write. One schema beats the whole warehouse. An agent with production write access and a confidently wrong plan is a very fast way to lose data.</p>
+<p class="zh" style="margin:0"><b>要早点养成的安全直觉：</b>给 Agent 刚好够用的最小权限。只读优于读写，一个 schema 优于整个数仓。一个有生产写权限、又带着一个自信但错误的计划的 Agent，是丢数据最快的方式。</p>
+</div>
+</div>
+<div class="lens-pane">
+<div class="ifnot">
+<p class="en"><b>If you give an agent broad write access:</b> the first confidently wrong plan does real damage, quickly, and possibly across many tables before anyone notices. Agents act faster than humans can supervise.</p>
+<p class="en"><b>If you skip the standard and hand-roll integrations:</b> you build N×M glue scripts, each with its own auth handling, each a place where a credential can leak. Replacing one tool means rewriting all of them.</p>
+<p class="en"><b>If you never write down your team's procedures:</b> every AI-assisted task starts from zero context, and the answers drift. The skill file is what makes the assistant consistent instead of merely fluent.</p>
+<p class="zh"><b>如果给 Agent 宽泛的写权限：</b>第一个自信但错误的计划就会造成真实损失，而且很快，可能在有人发现之前已经波及多张表。Agent 行动的速度超过人类监督的速度。</p>
+<p class="zh"><b>如果不用标准、自己手搓集成：</b>你会写出 N×M 个胶水脚本，每个都有自己的认证处理，每个都是一个可能泄露凭据的地方。换掉一个工具，就得重写全部。</p>
+<p class="zh"><b>如果从不把团队流程写下来：</b>每次 AI 辅助的任务都从零上下文开始，答案会飘。技能文件才是让助手"稳定"而不只是"流畅"的东西。</p>
+</div>
+</div>
+</div>
+<div class="stage" data-anim="">
+<div class="cap"><span><span class="en">Animation · how an agent reaches your real systems</span><span class="zh">动画 · Agent 怎么连到你真实的系统</span></span><button class="replay"><span class="en">↻ Replay</span><span class="zh">↻ 重播</span></button></div>
+<svg viewbox="0 0 800 230">
+<g class="mcp-el mc1"><rect class="sv-box" height="70" rx="12" style="stroke:var(--m3)" width="160" x="30" y="88"></rect>
+<text class="sv-ttl" text-anchor="middle" x="110" y="116"><tspan class="en">AI AGENT</tspan><tspan class="zh">AI AGENT</tspan></text><text class="sv-sm" text-anchor="middle" x="110" y="136"><tspan class="en">decides what to do</tspan><tspan class="zh">决定做什么</tspan></text></g>
+<g class="mcp-el mc2"><rect class="sv-box" height="70" rx="12" style="stroke:var(--m4);stroke-dasharray:5 4" width="150" x="320" y="88"></rect>
+<text class="sv-ttl" text-anchor="middle" x="395" y="112">MCP</text><text class="sv-sm" text-anchor="middle" x="395" y="130"><tspan class="en">the standard socket</tspan><tspan class="zh">标准插口</tspan></text><text class="sv-sm" text-anchor="middle" x="395" y="146"><tspan class="en">+ permissions</tspan><tspan class="zh">+ 权限控制</tspan></text></g>
+<g class="mcp-el mc3"><rect class="sv-box" height="52" rx="10" width="170" x="600" y="18"></rect><text class="sv-lbl" text-anchor="middle" x="685" y="40"><tspan class="en">Data warehouse</tspan><tspan class="zh">数据仓库</tspan></text><text class="sv-sm" text-anchor="middle" x="685" y="58"><tspan class="en">read-only SQL</tspan><tspan class="zh">只读 SQL</tspan></text></g>
+<g class="mcp-el mc4"><rect class="sv-box" height="52" rx="10" width="170" x="600" y="88"></rect><text class="sv-lbl" text-anchor="middle" x="685" y="110"><tspan class="en">Internal REST API</tspan><tspan class="zh">内部 REST API</tspan></text><text class="sv-sm" text-anchor="middle" x="685" y="128"><tspan class="en">sample service</tspan><tspan class="zh">样本服务</tspan></text></g>
+<g class="mcp-el mc5"><rect class="sv-box" height="52" rx="10" width="170" x="600" y="158"></rect><text class="sv-lbl" text-anchor="middle" x="685" y="180"><tspan class="en">Files &amp; reports</tspan><tspan class="zh">文件与报表</tspan></text><text class="sv-sm" text-anchor="middle" x="685" y="198"><tspan class="en">shared drive</tspan><tspan class="zh">共享盘</tspan></text></g>
+<line class="sv-line" x1="190" x2="320" y1="123" y2="123"></line>
+<line class="sv-line" x1="470" x2="600" y1="123" y2="44"></line>
+<line class="sv-line" x1="470" x2="600" y1="123" y2="114"></line>
+<line class="sv-line" x1="470" x2="600" y1="123" y2="184"></line>
+<circle class="mcp-dot" cx="200" cy="123" fill="var(--m4)" r="7"></circle>
+</svg>
+<p class="note"><span class="en">The dashed box is the important one: MCP is also where you decide what the agent is <b>allowed</b> to touch.</span><span class="zh">虚线那个框才是关键：MCP 也是你决定 Agent <b>被允许</b>碰什么的地方。</span></p>
+</div>
+<div class="rw">
+<div class="rwh"><span class="en">◈ Real-world example</span><span class="zh">◈ 真实场景</span></div>
+<p class="scene en">Every Monday someone spends two hours assembling the same operations report: query three systems, cross-check the numbers, write a summary, post it.</p>
+<p class="en">With MCP, the assistant is given <b>read-only</b> access to those three systems and a written skill file describing exactly how the report is built — which metrics, which definitions, which caveats to flag. Monday morning it produces the draft in ninety seconds, with the numbers pulled live and every source cited. A human reads it, corrects the one thing that needed judgment, and posts it.<br/><b>Note what stayed human:</b> the judgment and the accountability. What left was the assembling. That's the shape of most AI wins that actually stick.</p>
+<p class="scene zh">每周一都有人花两小时拼同一份运营报表：查三个系统、对数、写总结、发出去。</p>
+<p class="zh">用 MCP，助手被授予这三个系统的<b>只读</b>权限，外加一份写好的技能文件，说明这份报表到底怎么做——用哪些指标、怎么定义、要标注哪些注意事项。周一早上，它九十秒产出初稿，数字是实时拉的，每个来源都标注了。人读一遍，改掉那一处需要判断的地方，发出去。<br/><b>注意留给人的是什么：</b>判断和责任。被拿走的是"拼装"。真正能长期留下来的 AI 应用，基本都是这个形状。</p>
+</div>
+</div>
+<div class="chal">
+<div class="chal-head">
+<span class="chal-badge"><span class="en">⚡ Challenge</span><span class="zh">⚡ 挑战</span></span>
+<h4><span class="en">Make an AI do a week of someone's work — correctly</span><span class="zh">让 AI 做完某人一周的活 —— 而且做对</span></h4>
+<span class="diff">★★☆</span>
+</div>
+<div class="chal-body">
+<p class="brief en">Find a pile of free text nobody has time to read: support tickets, survey comments, maintenance notes, product reviews. Two hundred rows minimum. Somebody in your company would love these summarised and has quietly given up.</p>
+<p class="brief en">Build a script that classifies every row into <b>categories you defined in advance</b>, returns strict JSON with a confidence score, and runs unattended. Then do the part everyone skips: <b>hand-label 30 rows yourself first</b>, and measure how often the model agrees with you.</p>
+<p class="brief zh">找一堆没人有时间读的自由文本：客服工单、问卷留言、维修记录、产品评价。至少两百行。公司里一定有人很想要这些东西的汇总，只是已经默默放弃了。</p>
+<p class="brief zh">写一个脚本，把每一行分类到<b>你事先定义好的类别</b>里，返回带置信度的严格 JSON，并且能无人值守运行。然后做那个所有人都跳过的步骤：<b>先自己手工标注 30 行</b>，再测量模型和你的一致率。</p>
+<div class="win"><span class="wl"><span class="en">You've won when</span><span class="zh">达成条件</span></span>
+<span class="en">You can state a number: "it agrees with me on 27 of 30, and the 3 it got wrong all had confidence below 0.6." That sentence is what turns a demo into something a manager can act on.</span>
+<span class="zh">你能说出一个数字："30 条里它和我一致 27 条，而错的那 3 条置信度都低于 0.6。"就是这句话，把一个演示变成了管理者敢用的东西。</span></div>
+<details class="acc"><summary><span class="en">Show me how to approach it</span><span class="zh">给我一点思路</span></summary>
+<div class="body">
+<p class="en"><b>1.</b> Define the categories <i>before</i> you look at the model's output. If you let the model invent them, you get eleven overlapping ones and no way to compare runs.</p>
+<p class="en"><b>2.</b> Label 30 rows by hand, in a spreadsheet, before writing any prompt. This is your ground truth. It is tedious and it is the whole value of the project.</p>
+<p class="en"><b>3.</b> Write the prompt using the Prompt Lab above: list the categories verbatim, give two worked examples including one ambiguous case, demand JSON only, and add <i>"if it fits none, return OTHER — do not invent a category."</i></p>
+<p class="en"><b>4.</b> Run it on your 30. Compare. Where it disagrees, ask honestly: was the model wrong, or was your category definition ambiguous? Usually the second. Fix the definition and run again.</p>
+<p class="en"><b>5.</b> Only now run all 200. Sort by confidence ascending, and read the bottom 10% yourself — that is where the interesting cases live.</p>
+<p class="zh"><b>1.</b> 在看模型输出<i>之前</i>就把类别定好。让模型自己发明类别，你会得到十一个互相重叠的类，而且两次运行没法比较。</p>
+<p class="zh"><b>2.</b> 在写任何提示词之前，先在表格里手工标注 30 行。这是你的标准答案。枯燥，但它就是这个项目的全部价值所在。</p>
+<p class="zh"><b>3.</b> 用上面那个提示词实验室来写提示词：把类别原样列出、给两个示例（其中一个是边界情况）、只要 JSON，并加上<i>"如果都不符合就返回 OTHER——不要自己造类别"</i>。</p>
+<p class="zh"><b>4.</b> 先跑那 30 条，对比。不一致的地方，诚实地问一句：是模型错了，还是你的类别定义本身有歧义？通常是后者。改定义，再跑一遍。</p>
+<p class="zh"><b>5.</b> 到这一步才跑完整的 200 条。按置信度升序排列，亲自读最低的 10%——有意思的案例都在那里。</p>
+</div>
+</details>
+<p class="stakes"><span class="en">A week of evenings. This is the project that gets shown in a meeting — and the measurement step is why nobody can dismiss it.</span><span class="zh">大概一周的晚上。这是那种会被拿到会上展示的项目——而"测量"那一步，正是没人能轻易否定它的原因。</span></p>
+</div>
+</div>
+<div class="quiz">
+<div class="qh"><span class="en">Check yourself · Milestone 3</span><span class="zh">自我检验 · 阶段三</span></div>
+<p class="q"><span class="en">An LLM gives you a SQL query that looks perfect and cites a column called <code class="inl">sample_purity_pct</code>. What's your next move?</span><span class="zh">大模型给了你一条看起来完美的 SQL，里面用到一个叫 <code class="inl">sample_purity_pct</code> 的列。你下一步做什么？</span></p>
+<button class="opt" data-c="0"><span class="en">Run it in production — it clearly understands the schema</span><span class="zh">直接在生产环境跑 —— 它显然懂表结构</span></button>
+<button class="opt" data-c="1"><span class="en">Check that the column actually exists, then run it against a limited/test dataset first</span><span class="zh">先确认这个列真的存在，再在测试或受限数据集上跑一次</span></button>
+<button class="opt" data-c="0"><span class="en">Ask it "are you sure?" and trust the answer</span><span class="zh">问它"你确定吗？"然后相信它的回答</span></button>
+<div class="fb"><span class="en">Verify, then test small. Models invent plausible column names constantly — and asking "are you sure?" is worthless, because confidence is generated the same way the content is. It may well have been right; the point is you found out rather than assumed.</span><span class="zh">先核实，再小规模测试。模型经常编出看起来很合理的列名——而问"你确定吗"毫无意义，因为"确定"和内容是同一套机制生成的。它当然可能是对的；关键在于你是查出来的，不是假设出来的。</span></div>
+</div>
+<div class="quiz">
+<p class="q"><span class="en">What problem does MCP actually solve?</span><span class="zh">MCP 到底解决了什么问题？</span></p>
+<button class="opt" data-c="0"><span class="en">It makes the model smarter</span><span class="zh">它让模型更聪明</span></button>
+<button class="opt" data-c="1"><span class="en">It gives AI tools one standard, permissioned way to connect to real systems</span><span class="zh">它给 AI 工具提供了一种标准的、带权限控制的方式去连接真实系统</span></button>
+<button class="opt" data-c="0"><span class="en">It compresses prompts so they cost less</span><span class="zh">它压缩提示词以降低成本</span></button>
+<div class="fb"><span class="en">It's a connection standard, not an intelligence upgrade. Before it, every tool needed a bespoke integration with every data source. MCP is the universal connector — plus the place where you scope what the agent may touch.</span><span class="zh">它是连接标准，不是智力升级。在它之前，每个工具都要为每个数据源写专门的集成。MCP 是那个通用接口——同时也是你划定 Agent 能碰什么的地方。</span></div>
+</div>
+<div class="checks">
+<h4><span class="en">🔬 Lab tasks</span><span class="zh">🔬 实操任务</span></h4>
+<label class="chk"><input type="checkbox"/><span class="en">Ask the same question to two different models. Compare where they disagree — that gap is where you need to verify.</span><span class="zh">把同一个问题问两个不同的模型，比较它们分歧的地方——那就是你需要去核实的地方。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Deliberately catch a model being confidently wrong. Ask about something obscure you actually know well. Save the example.</span><span class="zh">故意抓一次模型"自信地说错"。挑一个你自己很懂的冷门话题去问。把这个例子存下来。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Take one weak prompt you wrote and rewrite it with schema, role, output format, and an edge case. Compare the two answers side by side.</span><span class="zh">把你写过的一个弱提示词，补上表结构、角色、输出格式和一个边界情况重写一遍，把两个答案并排比较。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Install Cursor (or a similar AI editor) and use it to explain an unfamiliar file in your team's codebase line by line.</span><span class="zh">装一个 Cursor（或类似的 AI 编辑器），用它逐行讲解团队代码库里一个你不熟的文件。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Have an AI write tests for your Milestone 2 Flask API — then read every test and check it's actually testing something meaningful.</span><span class="zh">让 AI 给你阶段二的 Flask API 写测试——然后逐条读一遍，确认它真的测到了有意义的东西。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Read the MCP documentation and connect one MCP server (a filesystem or SQLite one is easiest) to an AI client.</span><span class="zh">读一遍 MCP 文档，把一个 MCP 服务（文件系统或 SQLite 的最简单）接到一个 AI 客户端上。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Write a one-page "skill" describing a repetitive task on your team precisely enough that someone new could follow it.</span><span class="zh">写一页"技能文件"，把团队里一件重复性的任务描述到新人照着就能做的程度。</span></label>
+</div>
+</div>
+</div>
+<div class="disc" data-section="m3" id="disc-m3">
+<div class="disc-head">
+<h3><span class="en">Discussion</span><span class="zh">讨论</span></h3>
+<span class="disc-count" data-role="count">···</span>
+</div>
+<p class="disc-sub"><span class="en">Stuck, or got it working a different way? Leave it for the next learner.</span><span class="zh">卡住了，或者用别的方法搞定了？留给下一个学习者看看。</span></p>
+<div class="disc-list" data-role="list"></div>
+<form class="disc-form" data-parent="" data-role="form">
+<div class="disc-row2">
+<input autocomplete="name" data-role="name" maxlength="40" placeholder="Your name / 你的名字" required="" type="text"/>
+<input autocomplete="off" class="disc-hp" data-role="hp" tabindex="-1" type="text"/>
+</div>
+<textarea data-role="text" maxlength="2000" placeholder="Say something about Month 3 / 说点什么…" required=""></textarea>
+<div class="disc-foot">
+<button class="disc-post" type="submit"><span class="en">Post</span><span class="zh">发布</span></button>
+<span class="disc-msg" data-role="msg"></span>
+</div>
+</form>
+</div>
+</section>
+    <nav class="chapnav">
+    <a class="cn cn-prev" href="m2.html"><span class="cn-k"><span class="en">Previous</span><span class="zh">上一章</span></span><span class="cn-t"><span class="en">Developer Tools</span><span class="zh">开发工具</span></span></a>
+    <a class="cn cn-next" href="m4.html"><span class="cn-k"><span class="en">Next</span><span class="zh">下一章</span></span><span class="cn-t"><span class="en">Data Engineering</span><span class="zh">数据工程</span></span></a>
+    </nav>
+<footer>
+<div class="wrap">
+<h3><span class="en">One last thing</span><span class="zh">最后一件事</span></h3>
+<p class="en" style="max-width:64ch">Feeling lost is not a sign that you chose wrong. It's the normal steady state of this field for everyone, including the people who look like they have it figured out. The difference is that they've learned it's survivable.</p>
+<p class="zh" style="max-width:64ch">感到迷茫不代表你选错了路。在这个行业里，这是所有人的常态，包括那些看起来什么都懂的人。区别只在于，他们已经学会了这是熬得过去的。</p>
+<p class="en" style="max-width:64ch">You already know how to be careful with a method you don't fully trust, how to check a result before you believe it, and how to write down what you did so someone else can repeat it. Those are the rare skills. The syntax is the easy part.</p>
+<p class="zh" style="max-width:64ch">你早就知道怎么谨慎对待一个还不完全信任的方法、怎么在相信一个结果之前先去核实、怎么把做过的事写下来让别人能复现。这些才是稀缺的能力。语法是最容易的那部分。</p>
+<p style="color:var(--muted); font-size:13px; margin-top:28px; margin-bottom:0"><span class="en">Progress and playground state are not saved between visits — work through a section in one sitting, or keep your own checklist alongside.</span><span class="zh">进度和练习状态不会跨次保存——建议一次做完一个章节，或者自己另外记一份清单。</span></p>
+</div>
+</footer>
+<button aria-label="Back to top" id="totop">↑</button>
+<div class="glow" id="glow"></div>
+<script src="assets/core.js"></script>
+<script src="assets/vibe.js"></script>
+</body>
+</html>

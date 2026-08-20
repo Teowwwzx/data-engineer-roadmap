@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>It all starts from 0 and 1 · The Lab Notebook</title>
+<meta name="description" content="A 12-month foundations roadmap for a new Data Engineer. Bilingual, interactive, one chapter at a time.">
+<link rel="stylesheet" href="assets/core.css">
+<link rel="stylesheet" href="assets/themes.css">
+<script>/* set theme + language before first paint, no flash */
+(function(){try{
+ var t=localStorage.getItem('labnotebook-theme');
+ if(t&&t!=='auto')document.documentElement.setAttribute('data-theme',t);
+ var l=localStorage.getItem('labnotebook-lang')||'en';
+ document.documentElement.setAttribute('data-lang',l);
+}catch(e){}})();</script>
+</head>
+<body class="lang-en" data-vibe="pixel" data-chapter="zero">
+<div class="topbar">
+<div class="wrap">
+<div class="brand"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></div>
+<nav class="navlinks"><a href="index.html"><span class="en">Start</span><span class="zh">开始</span></a>
+<a href="map.html"><span class="en">The map</span><span class="zh">地图</span></a>
+<a href="words.html"><span class="en">Words</span><span class="zh">词汇</span></a>
+<a href="terminal.html"><span class="en">Terminal</span><span class="zh">终端</span></a>
+<a href="m1.html"><span class="en">1 · IT Basics</span><span class="zh">1 · IT 基础</span></a>
+<a href="m2.html"><span class="en">2 · Tools</span><span class="zh">2 · 工具</span></a>
+<a href="m3.html"><span class="en">3 · AI</span><span class="zh">3 · AI</span></a>
+<a href="m4.html"><span class="en">4 · Data</span><span class="zh">4 · 数据</span></a>
+<a href="m5.html"><span class="en">5 · CS &amp; Cloud</span><span class="zh">5 · 计算机与云</span></a>
+<a href="systems.html"><span class="en">Big systems</span><span class="zh">大系统</span></a>
+<a class="on" href="zero.html"><span class="en">0 and 1</span><span class="zh">0 与 1</span></a>
+<a href="finish.html"><span class="en">Finish</span><span class="zh">完成</span></a></nav>
+<div class="langsw">
+<button class="on" data-lang="en">EN</button>
+<button data-lang="zh">中文</button>
+</div>
+</div>
+<div class="pbar"><i id="pbar"></i></div>
+</div>
+
+<section data-scene="bits" id="zero">
+<div class="wrap">
+<div class="sechead"><h2><span class="en">Why is IT full of alien words? Because it all starts from 0 and 1.</span><span class="zh">为什么 IT 里全是外星词？因为一切都从 0 和 1 开始。</span></h2></div>
+<p class="essay" style="color:var(--muted)"><span class="en">Here is the thing that makes all of it make sense at once. At the very bottom of every computer, every phone, every server, every AI model in the world, there is exactly one physical fact: <b>a tiny switch that is either off or on.</b> Nothing else. No numbers, no letters, no pictures, no code — just a switch.</span>
+<span class="zh">有一件事，能让前面所有内容瞬间讲得通。在世界上每一台电脑、每一部手机、每一台服务器、每一个 AI 模型的最底层，只存在一个物理事实：<b>一个要么关、要么开的小开关。</b>没有别的。没有数字、没有字母、没有图像、没有代码——只有开关。</span></p>
+<p class="essay" style="color:var(--muted)"><span class="en">Everything above that — every single word in this guide — is a name somebody had to invent for a clever way of stacking those switches. That is the whole reason the vocabulary sounds alien: these things had never existed before, so there were no words for them.</span>
+<span class="zh">而在它之上的一切——这份指南里的每一个词——都是有人为"某种巧妙的开关堆叠方式"发明出来的名字。这就是这套词汇听起来像外星语的全部原因：这些东西以前从没存在过，所以世上原本没有对应的词。</span></p>
+<div class="play" data-play="bits" style="--c:var(--m2-deep)">
+<div class="play-head">
+<span class="play-badge"><span class="en">▶ Playground</span><span class="zh">▶ 动手玩</span></span>
+<h4><span class="en">Eight switches. That's a letter.</span><span class="zh">八个开关，就是一个字母。</span></h4>
+<p class="sub2"><span class="en">Flip the switches below. Each one is a single transistor being off or on. Eight of them together are called a <b>byte</b>, and a byte can be read as a number — or, by agreement, as a letter. Try to spell your own initial.</span><span class="zh">把下面的开关拨一拨。每一个都是一个晶体管的关或开。八个凑在一起叫一个<b>字节</b>，而一个字节可以被读成一个数字——或者，按照约定，被读成一个字母。试着拼出你名字的首字母。</span></p>
+</div>
+<div class="play-body">
+<div class="bitrow" id="bits"></div>
+<div class="bitout">
+<div class="bo"><b id="b-bin">00000000</b><span class="en">binary (the switches)</span><span class="zh">二进制（开关本身）</span></div>
+<div class="bo"><b id="b-dec">0</b><span class="en">as a number</span><span class="zh">当作数字</span></div>
+<div class="bo"><b id="b-hex">0x00</b><span class="en">as hex (shorthand)</span><span class="zh">十六进制（简写）</span></div>
+<div class="bo"><b id="b-chr">—</b><span class="en">as a letter</span><span class="zh">当作字母</span></div>
+</div>
+<div class="prow">
+<button class="pbtn" data-bit="65">A = 65</button>
+<button class="pbtn" data-bit="97">a = 97</button>
+<button class="pbtn" data-bit="48">"0" = 48</button>
+<button class="pbtn" data-bit="32"><span class="en">space = 32</span><span class="zh">空格 = 32</span></button>
+<button class="pbtn ghost" data-bit="0"><span class="en">all off</span><span class="zh">全部关掉</span></button>
+</div>
+<p class="en" style="font-size:14px; color:var(--muted); margin:6px 0 0"><b>Notice:</b> nothing in the machine "knows" that 65 means A. Somebody in 1963 wrote down an agreement — a table — saying it does, and the whole world adopted it. That is what a <b>standard</b> is, and almost everything in IT is one of these agreements sitting on top of another.</p>
+<p class="zh" style="font-size:14px; color:var(--muted); margin:6px 0 0"><b>注意：</b>机器里没有任何东西"知道"65 代表 A。是 1963 年有人写下了一份约定——一张表——规定它就是 A，然后全世界都采用了。这就是<b>标准</b>的含义，而 IT 里几乎所有东西，都是这样一层约定叠在另一层约定上。</p>
+<label class="plabel" style="margin-top:18px"><span class="en">Now type anything — see what actually travels down the wire</span><span class="zh">现在随便打点字 —— 看看真正在线路上传输的是什么</span></label>
+<input id="b-text" maxlength="12" style="width:100%; max-width:340px; padding:10px 14px; border:1.5px solid var(--line); border-radius:10px; font:15px inherit; outline:none" type="text" value="Hi"/>
+<div class="nameout"><pre id="b-textout"></pre></div>
+</div>
+</div>
+<div class="sechead" style="margin-top:36px"><h2 style="font-size:22px"><span class="en">The tower — every floor is built from the one below it</span><span class="zh">这座塔 —— 每一层都建在下面那一层上</span></h2></div>
+<p style="color:var(--muted); max-width:70ch"><span class="en">Read it from the bottom up. Click any floor. Notice that nothing here is magic — each level is just a useful lie told about the level beneath it, so that humans can stop thinking about that level forever.</span><span class="zh">从下往上读，点击任意一层。你会发现这里没有任何魔法——每一层都只是关于下一层的一个"有用的谎言"，好让人类可以永远不用再去想那一层。</span></p>
+<div class="tower" id="tower"></div>
+<div class="towerdetail" id="towerdetail"></div>
+<div class="essay">
+<h3><span class="en">So why does it all sound so alien?</span><span class="zh">那为什么它听起来这么陌生？</span></h3>
+<p class="en">Because every one of those floors had to invent words for things that had no name. Some were borrowed from the physical office — <i>file, folder, desktop, window, clipboard, trash</i> — which is why they feel almost sensible. Some were borrowed from buildings and bodies — <i>firewall, port, gateway, memory, protocol, host</i>. And some were just made up in a room by tired people at 2am: <i>cookie, daemon, blob, kernel, socket, mutex, git</i>.</p>
+<p class="en">None of them are hard. They are just <b>new</b>. Every one of them is a normal idea wearing an unfamiliar name, and the reason nobody explains them to you is that the people around you learned them so long ago that they've forgotten the words are strange at all.</p>
+<p class="zh">因为上面每一层，都必须给一些从没有名字的东西起名字。有些是从办公室借来的——<i>文件、文件夹、桌面、窗口、剪贴板、回收站</i>——所以它们听起来还算合理。有些是从建筑和身体借来的——<i>防火墙、端口、网关、内存、协议、主机</i>。还有一些，纯粹是几个疲惫的人在凌晨两点的房间里编出来的：<i>cookie、守护进程、blob、内核、套接字、互斥锁、git</i>。</p>
+<p class="zh">它们没有一个是难的，它们只是<b>新的</b>。每一个都只是一个普通的概念，穿着一件你不熟悉的名字外衣。之所以没人给你解释，是因为你身边的人学会它们太久了，久到已经忘了这些词其实很怪。</p>
+<p class="bigq"><span class="en">"I don't understand this" is almost always "nobody has told me which floor of the tower this word lives on."</span><span class="zh">"我不懂这个"，几乎总是等于"没人告诉我这个词住在塔的哪一层"。</span></p>
+<p class="en">So when you meet a new term this year — and you will meet one almost every week — don't ask "what does it do?" first. Ask <b>which floor is this on, and what problem on the floor below it was invented to hide?</b> That question turns an alien word into an obvious one, every single time.</p>
+<p class="zh">所以今年当你遇到一个新词时——你几乎每周都会遇到一个——先别问"它是干什么的"。先问：<b>它在哪一层？它是为了掩盖下面那一层的什么麻烦才被发明出来的？</b>这个问题每一次都能把一个外星词变成一个理所当然的词。</p>
+<h3><span class="en">And why our whole world is really like IT</span><span class="zh">以及，为什么我们整个世界其实就是 IT</span></h3>
+<p class="en">Here is the part that surprised me, and that I think will stay with you longer than any syntax: <b>the tower is not a computer thing. It's a civilisation thing.</b> Humans have been doing exactly this trick for thousands of years, and computing is simply the newest and most visible example.</p>
+<p class="zh">下面这部分是让我意外的，也是我认为会比任何语法都留在你脑子里更久的：<b>这座塔不是计算机独有的东西，它是文明的运作方式。</b>人类干这件事已经干了几千年，而计算只是其中最新、也最显眼的一个例子。</p>
+<div class="parallel">
+<div class="par"><h5><span class="en">Money</span><span class="zh">货币</span></h5><p class="en">A number in a database, standing for a promise, standing for goods, standing for labour. Four layers of agreement. Nobody checks the bottom one, and the whole economy works because nobody has to.</p><p class="zh">数据库里的一个数字，代表一个承诺，代表一批货物，代表一份劳动。四层约定。没人去核最底下那一层，而整个经济能运转，恰恰因为没人需要去核。</p></div>
+<div class="par"><h5><span class="en">Language</span><span class="zh">语言</span></h5><p class="en">Sounds → letters → words → sentences → meaning. You are running the top of that stack right now and have not thought about your vocal cords once.</p><p class="zh">声音 → 字母 → 词 → 句子 → 意义。你此刻正在运行这个栈的最顶层，而且一次都没想过你的声带。</p></div>
+<div class="par"><h5><span class="en">An address</span><span class="zh">地址</span></h5><p class="en">Country → state → city → street → number. A globally agreed hierarchy that lets a stranger find your door. That is DNS, invented centuries earlier.</p><p class="zh">国家 → 州省 → 城市 → 街道 → 门牌。一套全球通行的层级约定，让陌生人能找到你家门口。这就是 DNS，只是早发明了几百年。</p></div>
+<div class="par"><h5><span class="en">A hospital</span><span class="zh">医院</span></h5><p class="en">Reception, triage, lab, records, pharmacy. Standard forms between departments so nobody has to understand another department's internals. That is an API.</p><p class="zh">挂号、分诊、化验、病案、药房。科室之间用标准表单沟通，谁都不需要理解别的科室内部怎么运作。这就是 API。</p></div>
+<div class="par"><h5><span class="en">Electricity</span><span class="zh">电</span></h5><p class="en">You plug in a kettle. You do not think about the turbine, the grid, the substation, or the phase. The socket is the interface, and the interface is the whole gift.</p><p class="zh">你插上电水壶，不会去想涡轮机、电网、变电站或者相位。插座就是接口，而接口本身就是全部的馈赠。</p></div>
+<div class="par"><h5><span class="en">Law</span><span class="zh">法律</span></h5><p class="en">Constitution → statute → regulation → contract → the clause you actually signed. Each layer inherits from the one below and cannot contradict it. That's inheritance, and version control.</p><p class="zh">宪法 → 法律 → 法规 → 合同 → 你真正签下的那一条。每一层继承自下一层，且不得与之抵触。这就是继承，也是版本控制。</p></div>
+</div>
+<p class="en">Which means the skill you are actually building this year is <b>not "computers."</b> It is the habit of asking, about anything: what layer am I standing on, what is it hiding, and what happens when the layer below it fails? That habit works on a data pipeline, on a supply chain, on a contract, on a diagnosis, on an argument.</p>
+<p class="zh">这意味着你今年真正在培养的能力<b>不是"电脑"</b>，而是一种习惯：对任何事情都问一句——我站在哪一层？它藏起了什么？如果下面那一层坏了会发生什么？这个习惯对一条数据管道有用，对一条供应链、一份合同、一次诊断、一场争论，同样有用。</p>
+<p class="bigq"><span class="en">Everyone can use the top floor. The people who get paid, promoted and trusted are the ones who can go down one floor when it breaks.</span><span class="zh">顶层谁都会用。而拿到报酬、升职、被信任的，是那些在东西坏掉时能往下走一层的人。</span></p>
+<p class="en">You spent a year walking down that staircase on purpose: from a web page, to a server, to a database, to a pipeline, to memory, to a compiler, to a switch that is either off or on. Almost nobody does that. It is the entire reason this roadmap exists — and it is why, whatever the job title says next year, you will be fine.</p>
+<p class="zh">这一年，你是有意识地一级一级走下这道楼梯的：从一个网页，到服务器，到数据库，到数据管道，到内存，到编译器，最后到那个要么关、要么开的开关。几乎没有人会这么做。这正是这份路线图存在的全部理由——也是为什么，无论明年那个岗位名称写的是什么，你都不会有问题。</p>
+</div>
+</div>
+</section>
+    <nav class="chapnav">
+    <a class="cn cn-prev" href="systems.html"><span class="cn-k"><span class="en">Previous</span><span class="zh">上一章</span></span><span class="cn-t"><span class="en">How the big ones work</span><span class="zh">大家伙怎么运转</span></span></a>
+    <a class="cn cn-next" href="finish.html"><span class="cn-k"><span class="en">Next</span><span class="zh">下一章</span></span><span class="cn-t"><span class="en">Month 12 and after</span><span class="zh">第 12 个月之后</span></span></a>
+    </nav>
+<footer>
+<div class="wrap">
+<h3><span class="en">One last thing</span><span class="zh">最后一件事</span></h3>
+<p class="en" style="max-width:64ch">Feeling lost is not a sign that you chose wrong. It's the normal steady state of this field for everyone, including the people who look like they have it figured out. The difference is that they've learned it's survivable.</p>
+<p class="zh" style="max-width:64ch">感到迷茫不代表你选错了路。在这个行业里，这是所有人的常态，包括那些看起来什么都懂的人。区别只在于，他们已经学会了这是熬得过去的。</p>
+<p class="en" style="max-width:64ch">You already know how to be careful with a method you don't fully trust, how to check a result before you believe it, and how to write down what you did so someone else can repeat it. Those are the rare skills. The syntax is the easy part.</p>
+<p class="zh" style="max-width:64ch">你早就知道怎么谨慎对待一个还不完全信任的方法、怎么在相信一个结果之前先去核实、怎么把做过的事写下来让别人能复现。这些才是稀缺的能力。语法是最容易的那部分。</p>
+<p style="color:var(--muted); font-size:13px; margin-top:28px; margin-bottom:0"><span class="en">Progress and playground state are not saved between visits — work through a section in one sitting, or keep your own checklist alongside.</span><span class="zh">进度和练习状态不会跨次保存——建议一次做完一个章节，或者自己另外记一份清单。</span></p>
+</div>
+</footer>
+<button aria-label="Back to top" id="totop">↑</button>
+<div class="glow" id="glow"></div>
+<script src="assets/core.js"></script>
+<script src="assets/vibe.js"></script>
+</body>
+</html>

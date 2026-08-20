@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The whole map · The Lab Notebook</title>
+<meta name="description" content="A 12-month foundations roadmap for a new Data Engineer. Bilingual, interactive, one chapter at a time.">
+<link rel="stylesheet" href="assets/core.css">
+<link rel="stylesheet" href="assets/themes.css">
+<script>/* set theme + language before first paint, no flash */
+(function(){try{
+ var t=localStorage.getItem('labnotebook-theme');
+ if(t&&t!=='auto')document.documentElement.setAttribute('data-theme',t);
+ var l=localStorage.getItem('labnotebook-lang')||'en';
+ document.documentElement.setAttribute('data-lang',l);
+}catch(e){}})();</script>
+</head>
+<body class="lang-en" data-vibe="futuristic" data-chapter="map">
+<div class="topbar">
+<div class="wrap">
+<div class="brand"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></div>
+<nav class="navlinks"><a href="index.html"><span class="en">Start</span><span class="zh">开始</span></a>
+<a class="on" href="map.html"><span class="en">The map</span><span class="zh">地图</span></a>
+<a href="words.html"><span class="en">Words</span><span class="zh">词汇</span></a>
+<a href="terminal.html"><span class="en">Terminal</span><span class="zh">终端</span></a>
+<a href="m1.html"><span class="en">1 · IT Basics</span><span class="zh">1 · IT 基础</span></a>
+<a href="m2.html"><span class="en">2 · Tools</span><span class="zh">2 · 工具</span></a>
+<a href="m3.html"><span class="en">3 · AI</span><span class="zh">3 · AI</span></a>
+<a href="m4.html"><span class="en">4 · Data</span><span class="zh">4 · 数据</span></a>
+<a href="m5.html"><span class="en">5 · CS &amp; Cloud</span><span class="zh">5 · 计算机与云</span></a>
+<a href="systems.html"><span class="en">Big systems</span><span class="zh">大系统</span></a>
+<a href="zero.html"><span class="en">0 and 1</span><span class="zh">0 与 1</span></a>
+<a href="finish.html"><span class="en">Finish</span><span class="zh">完成</span></a></nav>
+<div class="langsw">
+<button class="on" data-lang="en">EN</button>
+<button data-lang="zh">中文</button>
+</div>
+</div>
+<div class="pbar"><i id="pbar"></i></div>
+</div>
+
+<section data-scene="grid" id="map">
+<div class="wrap">
+<div class="sechead"><h2><span class="en">The whole map on one page — and where you sit on it</span><span class="zh">一页看完整张地图 —— 以及你站在哪</span></h2></div>
+<p style="color:var(--muted); max-width:72ch"><span class="en">Before any of the details, here is the entire landscape. Every job title in software is a person standing in one region of this picture. <b>Click any box</b> to find out what it is, <b>press Trace a request</b> to watch data move through it, and <b>pick a role</b> to see exactly which parts belong to them.</span><span class="zh">在进入任何细节之前，先看整片地形。软件行业里的每一个头衔，都只是站在这张图某个区域里的人。<b>点任意一个方块</b>看它到底是什么，<b>点"追踪一次请求"</b>看数据怎么流动，<b>选一个角色</b>看看哪些部分归他们管。</span></p>
+<div class="mapwrap">
+<div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap">
+<span style="font-size:12px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--muted)"><span class="en">Click any box · pick a role below</span><span class="zh">点任意方块 · 或选下面的角色</span></span>
+<button class="replay" id="map-trace">▶ <span class="en">Trace a request</span><span class="zh">追踪一次请求</span></button>
+</div>
+<svg aria-label="Map of frontend, network, server side, data platform and infrastructure" id="mapsvg" role="img" viewbox="0 0 960 482">
+<defs>
+<g fill="none" id="ic-browser" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+<rect height="16" rx="2.5" width="20" x="2" y="4"></rect><path d="M2 9h20"></path><circle cx="5.4" cy="6.5" fill="currentColor" r=".9" stroke="none"></circle><circle cx="8.2" cy="6.5" fill="currentColor" r=".9" stroke="none"></circle></g>
+<g fill="none" id="ic-phone" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+<rect height="19" rx="2.5" width="11" x="6.5" y="2.5"></rect><path d="M10.5 18.6h3"></path></g>
+<g fill="none" id="ic-globe" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+<circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c2.6 3 2.6 15 0 18M12 3c-2.6 3-2.6 15 0 18"></path></g>
+<g fill="none" id="ic-split" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+<path d="M3 12h5M8 12l5-6h8M8 12l5 6h8"></path><circle cx="21" cy="6" r="1.6"></circle><circle cx="21" cy="18" r="1.6"></circle></g>
+<g fill="none" id="ic-server" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+<rect height="6.5" rx="1.6" width="18" x="3" y="4"></rect><rect height="6.5" rx="1.6" width="18" x="3" y="13.5"></rect>
+<circle cx="6.6" cy="7.2" fill="currentColor" r=".9" stroke="none"></circle><circle cx="6.6" cy="16.7" fill="currentColor" r=".9" stroke="none"></circle></g>
+<g fill="none" id="ic-bolt" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+<path d="M13.5 2 4.5 13.5h6L10 22l9.5-11.5h-6z"></path></g>
+<g fill="none" id="ic-db" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+<ellipse cx="12" cy="5.5" rx="8" ry="3.2"></ellipse><path d="M4 5.5v13c0 1.8 3.6 3.2 8 3.2s8-1.4 8-3.2v-13"></path><path d="M4 12c0 1.8 3.6 3.2 8 3.2s8-1.4 8-3.2"></path></g>
+<g fill="none" id="ic-stream" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+<path d="M2 7c3-2.4 5-2.4 8 0s5 2.4 8 0M2 12c3-2.4 5-2.4 8 0s5 2.4 8 0M2 17c3-2.4 5-2.4 8 0s5 2.4 8 0"></path></g>
+<g fill="none" id="ic-funnel" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+<path d="M3 4h18l-7 8v8l-4-2v-6z"></path></g>
+<g fill="none" id="ic-warehouse" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+<path d="M2.5 9.5 12 4l9.5 5.5V21H2.5z"></path><rect height="8" width="4.2" x="7" y="13"></rect><rect height="4.2" width="4.2" x="12.8" y="13"></rect></g>
+<g fill="none" id="ic-chart" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+<path d="M3 21h18"></path><rect height="6" width="3.6" x="5" y="12"></rect><rect height="11" width="3.6" x="10.2" y="7"></rect><rect height="14.5" width="3.6" x="15.4" y="3.5"></rect></g>
+<g fill="none" id="ic-term" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+<rect height="16" rx="2.5" width="20" x="2" y="4"></rect><path d="M6.5 9.5 9.5 12l-3 2.5M12.5 15h5"></path></g>
+<g fill="none" id="ic-cube" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+<path d="M12 2.5 21 7v10l-9 4.5L3 17V7z"></path><path d="M3 7l9 4.5L21 7M12 11.5V21.5"></path></g>
+<g fill="none" id="ic-cloud" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+<path d="M6.5 18.5a4.5 4.5 0 0 1-.4-9A6.2 6.2 0 0 1 18 10.4a4 4 0 0 1-.5 8.1z"></path></g>
+<g fill="none" id="ic-net" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+<circle cx="12" cy="4.5" r="2.4"></circle><circle cx="4.8" cy="18" r="2.4"></circle><circle cx="19.2" cy="18" r="2.4"></circle><path d="M10.6 6.6 6.2 15.7M13.4 6.6l4.4 9.1M7.2 18h9.6"></path></g>
+<g fill="none" id="ic-lock" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+<rect height="11" rx="2.4" width="16" x="4" y="10"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path><circle cx="12" cy="15.5" fill="currentColor" r="1.4" stroke="none"></circle></g>
+<g fill="none" id="ic-git" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+<circle cx="6" cy="5" r="2.4"></circle><circle cx="6" cy="19" r="2.4"></circle><circle cx="18" cy="12" r="2.4"></circle><path d="M6 7.4v9.2M8.4 5H13a3 3 0 0 1 3 3v1.8"></path></g>
+<g fill="none" id="ic-user" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+<circle cx="12" cy="8" r="3.6"></circle><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"></path></g>
+<g fill="none" id="ic-brain" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+<path d="M12 4.5a3.2 3.2 0 0 0-6 1.4 3 3 0 0 0-1.4 5A3.1 3.1 0 0 0 6 16.6 3.2 3.2 0 0 0 12 19zM12 4.5a3.2 3.2 0 0 1 6 1.4 3 3 0 0 1 1.4 5A3.1 3.1 0 0 1 18 16.6 3.2 3.2 0 0 1 12 19z"></path></g>
+<g fill="none" id="ic-wrench" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8">
+<path d="M15.6 3.6a5.2 5.2 0 0 0-6.4 6.9L3.4 16.3a2 2 0 0 0 2.8 2.8l5.8-5.8a5.2 5.2 0 0 0 6.9-6.4l-3 3-2.4-2.4z"></path></g>
+<path d="M194,116 L232,116 L288,116 L392,113 L392,200 L472,233" id="p-req"></path>
+<path d="M458,240 L560,240 L560,112 L646,112 L788,112 L788,180 L788,248 L788,316" id="p-data"></path>
+</defs>
+<rect class="zoneback" height="290" rx="14" width="196" x="14" y="56"></rect><rect class="zoneback" height="290" rx="14" width="80" x="220" y="56"></rect><rect class="zoneback" height="290" rx="14" width="310" x="310" y="56"></rect><rect class="zoneback" height="290" rx="14" width="316" x="630" y="56"></rect><rect class="zoneback" height="96" rx="14" width="932" x="14" y="366"></rect><text class="zonelab" text-anchor="middle" x="112" y="44"><tspan class="en">YOUR DEVICE</tspan><tspan class="zh">你的设备</tspan></text><text class="zonelab" text-anchor="middle" x="260" y="44"><tspan class="en">NETWORK</tspan><tspan class="zh">网络</tspan></text><text class="zonelab" text-anchor="middle" x="465" y="44"><tspan class="en">THE SERVER SIDE</tspan><tspan class="zh">服务端</tspan></text><text class="zonelab" text-anchor="middle" x="788" y="44"><tspan class="en">THE DATA PLATFORM</tspan><tspan class="zh">数据平台</tspan></text><text class="zonelab" text-anchor="middle" x="480" y="392"><tspan class="en">INFRASTRUCTURE — everything above runs on this</tspan><tspan class="zh">基础设施 —— 上面所有东西都跑在这上面</tspan></text><g class="wires"><line stroke="var(--line-2)" stroke-width="2" x1="194" x2="232" y1="116" y2="116"></line><line stroke="var(--line-2)" stroke-width="2" x1="288" x2="326" y1="116" y2="113"></line><line stroke="var(--line-2)" stroke-width="2" x1="392" x2="392" y1="142" y2="200"></line><line stroke="var(--line-2)" stroke-width="2" x1="458" x2="472" y1="233" y2="233"></line><line stroke="var(--line-2)" stroke-width="2" x1="458" x2="472" y1="215" y2="113"></line><line stroke="var(--line-2)" stroke-width="2" x1="604" x2="630" y1="233" y2="233"></line><line stroke="var(--line-2)" stroke-width="2" x1="788" x2="788" y1="140" y2="152"></line><line stroke="var(--line-2)" stroke-width="2" x1="788" x2="788" y1="208" y2="220"></line><line stroke="var(--line-2)" stroke-width="2" x1="788" x2="788" y1="276" y2="288"></line><line stroke="var(--line-2)" stroke-width="2" x1="14" x2="946" y1="362" y2="362"></line><line stroke="var(--line-2)" stroke-dasharray="4 4" stroke-width="2" x1="590" x2="646" y1="233" y2="120"></line></g><g class="node" data-n="web" tabindex="0"><rect class="mbox" height="64" rx="10" style="stroke:var(--m1)" width="164" x="30" y="84"></rect><use height="22" href="#ic-browser" style="color:var(--m1)" width="22" x="43" y="98"></use><text class="mtitle" text-anchor="start" x="74" y="110"><tspan class="en">Browser / web page</tspan><tspan class="zh">浏览器 / 网页</tspan></text><text class="msub" text-anchor="start" x="74" y="126"><tspan class="en">HTML · CSS · JavaScript</tspan><tspan class="zh">HTML · CSS · JavaScript</tspan></text><text class="msub" text-anchor="start" x="74" y="142"><tspan class="en">runs on THEIR computer</tspan><tspan class="zh">跑在他们自己的电脑上</tspan></text><rect class="hit" height="64" rx="10" width="164" x="30" y="84"></rect></g><g class="node" data-n="app" tabindex="0"><rect class="mbox" height="58" rx="10" style="stroke:var(--m1)" width="164" x="30" y="164"></rect><use height="22" href="#ic-phone" style="color:var(--m1)" width="22" x="43" y="182"></use><text class="mtitle" text-anchor="start" x="74" y="189"><tspan class="en">Mobile app</tspan><tspan class="zh">手机 App</tspan></text><text class="msub" text-anchor="start" x="74" y="205"><tspan class="en">same job, another screen</tspan><tspan class="zh">同样的活，另一块屏</tspan></text><rect class="hit" height="58" rx="10" width="164" x="30" y="164"></rect></g><g class="node adv" data-n="lb" tabindex="0"><rect class="mbox" height="58" rx="10" style="stroke:var(--m2)" width="132" x="326" y="84"></rect><use height="22" href="#ic-split" style="color:var(--m2)" width="22" x="339" y="102"></use><text class="mtitle" text-anchor="start" x="370" y="109"><tspan class="en">Load balancer</tspan><tspan class="zh">负载均衡</tspan></text><text class="msub" text-anchor="start" x="370" y="125"><tspan class="en">shares the queue</tspan><tspan class="zh">分摊请求</tspan></text><rect class="hit" height="58" rx="10" width="132" x="326" y="84"></rect></g><g class="node adv" data-n="cache" tabindex="0"><rect class="mbox" height="58" rx="10" style="stroke:var(--m2)" width="132" x="472" y="84"></rect><use height="22" href="#ic-bolt" style="color:var(--m2)" width="22" x="485" y="102"></use><text class="mtitle" text-anchor="start" x="516" y="109"><tspan class="en">Cache</tspan><tspan class="zh">缓存</tspan></text><text class="msub" text-anchor="start" x="516" y="125"><tspan class="en">the fast answer</tspan><tspan class="zh">快速答案</tspan></text><rect class="hit" height="58" rx="10" width="132" x="472" y="84"></rect></g><g class="node" data-n="api" tabindex="0"><rect class="mbox" height="66" rx="10" style="stroke:var(--m2)" width="132" x="326" y="200"></rect><use height="22" href="#ic-server" style="color:var(--m2)" width="22" x="339" y="214"></use><text class="mtitle" text-anchor="start" x="370" y="226"><tspan class="en">Backend API</tspan><tspan class="zh">后端 API</tspan></text><text class="msub" text-anchor="start" x="370" y="242"><tspan class="en">Python · the rules</tspan><tspan class="zh">Python · 规则</tspan></text><text class="msub" text-anchor="start" x="370" y="258"><tspan class="en">who may see what</tspan><tspan class="zh">谁能看什么</tspan></text><rect class="hit" height="66" rx="10" width="132" x="326" y="200"></rect></g><g class="node" data-n="db" tabindex="0"><rect class="mbox" height="66" rx="10" style="stroke:var(--m3)" width="132" x="472" y="200"></rect><use height="22" href="#ic-db" style="color:var(--m3)" width="22" x="485" y="214"></use><text class="mtitle" text-anchor="start" x="516" y="226"><tspan class="en">Live database</tspan><tspan class="zh">生产数据库</tspan></text><text class="msub" text-anchor="start" x="516" y="242"><tspan class="en">what is true NOW</tspan><tspan class="zh">此刻的真相</tspan></text><text class="msub" text-anchor="start" x="516" y="258"><tspan class="en">built to write fast</tspan><tspan class="zh">为快速写入而生</tspan></text><rect class="hit" height="66" rx="10" width="132" x="472" y="200"></rect></g><g class="node" data-n="ing" tabindex="0"><rect class="mbox" height="56" rx="10" style="stroke:var(--m4)" width="284" x="646" y="84"></rect><use height="22" href="#ic-stream" style="color:var(--m4)" width="22" x="659" y="101"></use><text class="mtitle" text-anchor="start" x="690" y="108"><tspan class="en">Ingestion / event stream</tspan><tspan class="zh">数据接入 / 事件流</tspan></text><text class="msub" text-anchor="start" x="690" y="124"><tspan class="en">copy it out without slowing production</tspan><tspan class="zh">在不拖慢生产的前提下抄出来</tspan></text><rect class="hit" height="56" rx="10" width="284" x="646" y="84"></rect></g><g class="node" data-n="etl" tabindex="0"><rect class="mbox" height="56" rx="10" style="stroke:var(--m4)" width="284" x="646" y="152"></rect><use height="22" href="#ic-funnel" style="color:var(--m4)" width="22" x="659" y="169"></use><text class="mtitle" text-anchor="start" x="690" y="176"><tspan class="en">Pipelines (ETL)</tspan><tspan class="zh">数据管道（ETL）</tspan></text><text class="msub" text-anchor="start" x="690" y="192"><tspan class="en">clean · join · validate · every night</tspan><tspan class="zh">清洗 · 关联 · 校验 · 每晚一次</tspan></text><rect class="hit" height="56" rx="10" width="284" x="646" y="152"></rect></g><g class="node" data-n="wh" tabindex="0"><rect class="mbox" height="56" rx="10" style="stroke:var(--m4)" width="284" x="646" y="220"></rect><use height="22" href="#ic-warehouse" style="color:var(--m4)" width="22" x="659" y="237"></use><text class="mtitle" text-anchor="start" x="690" y="244"><tspan class="en">Warehouse (modelled tables)</tspan><tspan class="zh">数据仓库（建模好的表）</tspan></text><text class="msub" text-anchor="start" x="690" y="260"><tspan class="en">what is true OVER TIME · read fast</tspan><tspan class="zh">历史上的真相 · 为快速读取而生</tspan></text><rect class="hit" height="56" rx="10" width="284" x="646" y="220"></rect></g><g class="node" data-n="bi" tabindex="0"><rect class="mbox" height="56" rx="10" style="stroke:var(--m5)" width="284" x="646" y="288"></rect><use height="22" href="#ic-chart" style="color:var(--m5)" width="22" x="659" y="305"></use><text class="mtitle" text-anchor="start" x="690" y="312"><tspan class="en">Dashboards · reports · ML</tspan><tspan class="zh">看板 · 报表 · 机器学习</tspan></text><text class="msub" text-anchor="start" x="690" y="328"><tspan class="en">the decisions the business makes</tspan><tspan class="zh">公司真正据以做的决策</tspan></text><rect class="hit" height="56" rx="10" width="284" x="646" y="288"></rect></g><g class="node" data-n="net" tabindex="0"><rect class="mbox" height="182" rx="10" style="stroke:var(--info-deep);stroke-dasharray:5 4" width="56" x="232" y="84"></rect><use height="22" href="#ic-globe" style="color:var(--info-deep)" width="22" x="249" y="96"></use><text class="mtitle" text-anchor="middle" transform="rotate(-90 260 160)" x="260" y="160">HTTP</text><text class="msub" text-anchor="middle" transform="rotate(-90 260 216)" x="260" y="216">DNS · TLS</text><rect class="hit" height="182" rx="10" width="56" x="232" y="84"></rect></g><g class="node" data-n="linux" tabindex="0"><rect class="mbox" height="40" rx="9" style="stroke:var(--muted)" width="142" x="30" y="406"></rect><use height="20" href="#ic-term" style="color:var(--muted)" width="20" x="42" y="416"></use><text class="mtitle" text-anchor="start" x="70" y="431"><tspan class="en">Linux / OS</tspan><tspan class="zh">Linux / 操作系统</tspan></text><rect class="hit" height="40" rx="9" width="142" x="30" y="406"></rect></g><g class="node" data-n="cont" tabindex="0"><rect class="mbox" height="40" rx="9" style="stroke:var(--muted)" width="142" x="178" y="406"></rect><use height="20" href="#ic-cube" style="color:var(--muted)" width="20" x="190" y="416"></use><text class="mtitle" text-anchor="start" x="218" y="431"><tspan class="en">Containers</tspan><tspan class="zh">容器</tspan></text><rect class="hit" height="40" rx="9" width="142" x="178" y="406"></rect></g><g class="node" data-n="cloud" tabindex="0"><rect class="mbox" height="40" rx="9" style="stroke:var(--muted)" width="142" x="326" y="406"></rect><use height="20" href="#ic-cloud" style="color:var(--muted)" width="20" x="338" y="416"></use><text class="mtitle" text-anchor="start" x="366" y="431"><tspan class="en">Cloud</tspan><tspan class="zh">云平台</tspan></text><rect class="hit" height="40" rx="9" width="142" x="326" y="406"></rect></g><g class="node" data-n="netw" tabindex="0"><rect class="mbox" height="40" rx="9" style="stroke:var(--muted)" width="142" x="474" y="406"></rect><use height="20" href="#ic-net" style="color:var(--muted)" width="20" x="486" y="416"></use><text class="mtitle" text-anchor="start" x="514" y="431"><tspan class="en">Networking</tspan><tspan class="zh">网络</tspan></text><rect class="hit" height="40" rx="9" width="142" x="474" y="406"></rect></g><g class="node" data-n="sec" tabindex="0"><rect class="mbox" height="40" rx="9" style="stroke:var(--muted)" width="142" x="622" y="406"></rect><use height="20" href="#ic-lock" style="color:var(--muted)" width="20" x="634" y="416"></use><text class="mtitle" text-anchor="start" x="662" y="431"><tspan class="en">Security</tspan><tspan class="zh">安全</tspan></text><rect class="hit" height="40" rx="9" width="142" x="622" y="406"></rect></g><g class="node" data-n="git" tabindex="0"><rect class="mbox" height="40" rx="9" style="stroke:var(--muted)" width="142" x="770" y="406"></rect><use height="20" href="#ic-git" style="color:var(--muted)" width="20" x="782" y="416"></use><text class="mtitle" text-anchor="start" x="810" y="431"><tspan class="en">Git / CI-CD</tspan><tspan class="zh">Git / 持续交付</tspan></text><rect class="hit" height="40" rx="9" width="142" x="770" y="406"></rect></g><circle class="reqdot" r="7" style="offset-path:path('M194,116 L232,116 L288,116 L392,113 L392,200 L472,233');offset-rotate:0deg;opacity:0"></circle><circle class="datadot" r="7" style="offset-path:path('M458,240 L560,240 L560,112 L646,112 L788,112 L788,180 L788,248 L788,316');offset-rotate:0deg;opacity:0"></circle></svg>
+<p class="note" style="margin-top:12px"><span class="en"><b>Two different journeys.</b> The <b style="color:var(--m1)">purple dot</b> is one user's request and answer — it must finish in milliseconds. The <b style="color:var(--m4)">amber dot</b> is that same data being copied out to be understood — it can take all night. Almost every argument in this industry is really about which of those two you are optimising for.</span><span class="zh"><b>两段不同的旅程。</b><b style="color:var(--m1)">紫色的点</b>是某一个用户的请求和回答 —— 必须在毫秒内跑完。<b style="color:var(--m4)">琥珀色的点</b>是同一批数据被复制出来去理解 —— 它可以跑一整夜。这个行业里几乎所有争论，本质都是在争"你到底在为哪一条优化"。</span></p>
+</div>
+<div class="roles" id="roles"></div>
+<div class="roledetail" id="roledetail"></div>
+</div>
+<div class="disc" data-section="map" id="disc-map">
+<div class="disc-head">
+<h3><span class="en">Discussion</span><span class="zh">讨论</span></h3>
+<span class="disc-count" data-role="count">···</span>
+</div>
+<p class="disc-sub"><span class="en">Stuck, or got it working a different way? Leave it for the next learner.</span><span class="zh">卡住了，或者用别的方法搞定了？留给下一个学习者看看。</span></p>
+<div class="disc-list" data-role="list"></div>
+<form class="disc-form" data-parent="" data-role="form">
+<div class="disc-row2">
+<input autocomplete="name" data-role="name" maxlength="40" placeholder="Your name / 你的名字" required="" type="text"/>
+<input autocomplete="off" class="disc-hp" data-role="hp" tabindex="-1" type="text"/>
+</div>
+<textarea data-role="text" maxlength="2000" placeholder="Say something about Month p / 说点什么…" required=""></textarea>
+<div class="disc-foot">
+<button class="disc-post" type="submit"><span class="en">Post</span><span class="zh">发布</span></button>
+<span class="disc-msg" data-role="msg"></span>
+</div>
+</form>
+</div>
+</section>
+<div aria-modal="true" class="mdl" id="mapmodal" role="dialog">
+<div class="mdl-back"></div>
+<div class="mdl-card">
+<button aria-label="Close" class="mdl-x">×</button>
+<div class="mdl-top"><div class="mdl-ic" id="mdl-ic"></div>
+<div><div class="mdl-tag" id="mdl-tag"></div><h3 id="mdl-title"></h3></div></div>
+<div class="mdl-body" id="mdl-body"></div>
+</div>
+</div>
+<section data-scene="flow" id="flow">
+<div class="wrap">
+<div class="sechead"><h2><span class="en">Watch one click travel the whole map</span><span class="zh">看一次点击，走完整张地图</span></h2></div>
+<p style="color:var(--muted); max-width:72ch"><span class="en">The map above shows the shape. This shows the <b>movement</b>. Type a name, press save, and follow the exact same piece of data through every box — seeing both what a person sees and what is actually happening underneath. Do it three or four times: the mess that builds up in the database is the reason the last step exists.</span><span class="zh">上面那张地图给的是形状，这里给的是<b>运动</b>。输入一个名字、点保存，然后跟着同一条数据走过每一个方块 —— 同时看到"人看到的"和"底下真正发生的"。多做三四次：数据库里堆起来的那些脏东西，正是最后一步存在的理由。</span></p>
+<div class="play" data-play="flow" style="--c:var(--m1)">
+<div class="play-head">
+<span class="play-badge"><span class="en">▶ Playground</span><span class="zh">▶ 动手玩</span></span>
+<h4><span class="en">The full journey, one step at a time</span><span class="zh">完整旅程，一步一步走</span></h4>
+<p class="sub2"><span class="en">Left panel: what a human sees. Right panel: the real code or data at that exact moment. Click any step to jump back to it.</span><span class="zh">左边：人看到的。右边：那一刻真实的代码或数据。点任意步骤都能跳回去。</span></p>
+</div>
+<div class="play-body">
+<div class="steps" id="fsteps"></div>
+<div class="flowgrid">
+<div class="fpane">
+<div class="fphead"><span id="fp-l-title"></span></div>
+<div class="fpbody" id="fp-left"></div>
+</div>
+<div class="fpane">
+<div class="fphead"><span id="fp-r-title"></span><span class="ftabs" id="fp-tabs"></span></div>
+<div class="fpbody dark" id="fp-right"></div>
+</div>
+</div>
+<div class="fnote" id="fp-note"></div>
+<div class="prow" style="margin-top:14px">
+<button class="pbtn" id="f-prev">◂ <span class="en">Back</span><span class="zh">上一步</span></button>
+<button class="pbtn active" id="f-next"><span class="en">Next step</span><span class="zh">下一步</span> ▸</button>
+<button class="pbtn ghost" id="f-reset"><span class="en">Start over</span><span class="zh">重来</span></button>
+<span id="f-count" style="font-size:13px;color:var(--muted)"></span>
+</div>
+</div>
+</div>
+</div>
+</section>
+    <nav class="chapnav">
+    <a class="cn cn-prev" href="index.html"><span class="cn-k"><span class="en">Previous</span><span class="zh">上一章</span></span><span class="cn-t"><span class="en">Start here</span><span class="zh">从这里开始</span></span></a>
+    <a class="cn cn-next" href="words.html"><span class="cn-k"><span class="en">Next</span><span class="zh">下一章</span></span><span class="cn-t"><span class="en">The words</span><span class="zh">那些词</span></span></a>
+    </nav>
+<footer>
+<div class="wrap">
+<h3><span class="en">One last thing</span><span class="zh">最后一件事</span></h3>
+<p class="en" style="max-width:64ch">Feeling lost is not a sign that you chose wrong. It's the normal steady state of this field for everyone, including the people who look like they have it figured out. The difference is that they've learned it's survivable.</p>
+<p class="zh" style="max-width:64ch">感到迷茫不代表你选错了路。在这个行业里，这是所有人的常态，包括那些看起来什么都懂的人。区别只在于，他们已经学会了这是熬得过去的。</p>
+<p class="en" style="max-width:64ch">You already know how to be careful with a method you don't fully trust, how to check a result before you believe it, and how to write down what you did so someone else can repeat it. Those are the rare skills. The syntax is the easy part.</p>
+<p class="zh" style="max-width:64ch">你早就知道怎么谨慎对待一个还不完全信任的方法、怎么在相信一个结果之前先去核实、怎么把做过的事写下来让别人能复现。这些才是稀缺的能力。语法是最容易的那部分。</p>
+<p style="color:var(--muted); font-size:13px; margin-top:28px; margin-bottom:0"><span class="en">Progress and playground state are not saved between visits — work through a section in one sitting, or keep your own checklist alongside.</span><span class="zh">进度和练习状态不会跨次保存——建议一次做完一个章节，或者自己另外记一份清单。</span></p>
+</div>
+</footer>
+<button aria-label="Back to top" id="totop">↑</button>
+<div class="glow" id="glow"></div>
+<script src="assets/core.js"></script>
+<script src="assets/vibe.js"></script>
+</body>
+</html>

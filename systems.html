@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How the big ones work · The Lab Notebook</title>
+<meta name="description" content="A 12-month foundations roadmap for a new Data Engineer. Bilingual, interactive, one chapter at a time.">
+<link rel="stylesheet" href="assets/core.css">
+<link rel="stylesheet" href="assets/themes.css">
+<script>/* set theme + language before first paint, no flash */
+(function(){try{
+ var t=localStorage.getItem('labnotebook-theme');
+ if(t&&t!=='auto')document.documentElement.setAttribute('data-theme',t);
+ var l=localStorage.getItem('labnotebook-lang')||'en';
+ document.documentElement.setAttribute('data-lang',l);
+}catch(e){}})();</script>
+</head>
+<body class="lang-en" data-vibe="gamify" data-chapter="systems">
+<div class="topbar">
+<div class="wrap">
+<div class="brand"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></div>
+<nav class="navlinks"><a href="index.html"><span class="en">Start</span><span class="zh">开始</span></a>
+<a href="map.html"><span class="en">The map</span><span class="zh">地图</span></a>
+<a href="words.html"><span class="en">Words</span><span class="zh">词汇</span></a>
+<a href="terminal.html"><span class="en">Terminal</span><span class="zh">终端</span></a>
+<a href="m1.html"><span class="en">1 · IT Basics</span><span class="zh">1 · IT 基础</span></a>
+<a href="m2.html"><span class="en">2 · Tools</span><span class="zh">2 · 工具</span></a>
+<a href="m3.html"><span class="en">3 · AI</span><span class="zh">3 · AI</span></a>
+<a href="m4.html"><span class="en">4 · Data</span><span class="zh">4 · 数据</span></a>
+<a href="m5.html"><span class="en">5 · CS &amp; Cloud</span><span class="zh">5 · 计算机与云</span></a>
+<a class="on" href="systems.html"><span class="en">Big systems</span><span class="zh">大系统</span></a>
+<a href="zero.html"><span class="en">0 and 1</span><span class="zh">0 与 1</span></a>
+<a href="finish.html"><span class="en">Finish</span><span class="zh">完成</span></a></nav>
+<div class="langsw">
+<button class="on" data-lang="en">EN</button>
+<button data-lang="zh">中文</button>
+</div>
+</div>
+<div class="pbar"><i id="pbar"></i></div>
+</div>
+
+<section data-scene="strata" id="scale">
+<div class="wrap">
+<div class="sechead"><h2><span class="en">Where does an app actually live?</span><span class="zh">一个应用到底住在哪里？</span></h2></div>
+<p style="color:var(--muted); max-width:70ch"><span class="en">You have written code that runs on your laptop. But when a company says "the app is live," where is it? On whose machine? Who turns it on? This is the question nobody explains, and the answer is a ladder — every company is standing on one of these rungs right now.</span><span class="zh">你写过在自己笔记本上运行的代码。但当公司说"应用上线了"，它到底在哪？在谁的机器上？谁把它打开的？这个问题没人解释，而答案是一把梯子——此刻每一家公司都站在其中某一级上。</span></p>
+<div class="ladder" id="ladder"></div>
+<div class="rungdetail" id="rungdetail"></div>
+<div class="analogy" style="--c:var(--info-deep); margin-top:24px">
+<span class="lab"><span class="en">🧪 The honest summary</span><span class="zh">🧪 一句实话总结</span></span>
+<p class="en">Hosting is renting somebody to keep your computer switched on, plugged in, cooled, patched and reachable — forever, without you thinking about it. Every rung above is just a different answer to <b>how much of that you want to stop caring about, and how much you'll pay to stop caring.</b></p>
+<p class="en">A small company on rung 2 is not behind. A company on rung 5 that only needed rung 2 is <i>burning money and attention</i>. Choose the lowest rung that solves your actual problem — that judgement is worth more than knowing Kubernetes.</p>
+<p class="zh">所谓托管，就是花钱请人替你把一台电脑永远开着、通着电、散着热、打着补丁、能被访问到——而你不用去想这些。上面每一级，只是对<b>"你想少操心多少、以及愿意为少操心付多少钱"</b>给出的不同答案。</p>
+<p class="zh">一家公司待在第 2 级并不落后。而一家只需要第 2 级却站在第 5 级的公司，是在<i>烧钱又烧注意力</i>。选择能解决你真实问题的最低那一级——这份判断力，比会用 Kubernetes 值钱得多。</p>
+</div>
+<div class="sechead" style="margin-top:40px"><h2><span class="en">Now the fun part — how the big ones actually work</span><span class="zh">现在是有意思的部分 —— 那些大家伙到底怎么运转</span></h2></div>
+<p style="color:var(--muted); max-width:70ch"><span class="en">Seven systems you use, or hear about, constantly — including four you probably opened today. Each one solved a problem nobody had solved before, and each solution is <b>one clever idea</b> plus a great deal of ordinary engineering. Look for the idea — the rest is detail.</span><span class="zh">七个你天天在用、或者天天听到的系统 —— 其中四个你今天很可能已经打开过了。每一个都解决了此前没人解决过的问题，而每一个解法都是<b>一个聪明的想法</b>加上大量平凡的工程工作。去找那个想法——剩下的都是细节。</span></p>
+<div class="showtabs" id="showtabs"></div>
+<div class="showbox" id="showbox"></div>
+<p class="srcnote"><span class="en">Scale figures are approximate and from public reporting; architectures are simplified to the shape that matters. The point is the pattern, not the exact number.</span><span class="zh">规模数字为公开报道的近似值；架构图做了简化，只保留关键形状。重点是模式，不是精确数字。</span></p>
+</div>
+</section>
+    <nav class="chapnav">
+    <a class="cn cn-prev" href="m5.html"><span class="cn-k"><span class="en">Previous</span><span class="zh">上一章</span></span><span class="cn-t"><span class="en">CS & Cloud</span><span class="zh">计算机原理与云</span></span></a>
+    <a class="cn cn-next" href="zero.html"><span class="cn-k"><span class="en">Next</span><span class="zh">下一章</span></span><span class="cn-t"><span class="en">It all starts from 0 and 1</span><span class="zh">一切从 0 和 1 开始</span></span></a>
+    </nav>
+<footer>
+<div class="wrap">
+<h3><span class="en">One last thing</span><span class="zh">最后一件事</span></h3>
+<p class="en" style="max-width:64ch">Feeling lost is not a sign that you chose wrong. It's the normal steady state of this field for everyone, including the people who look like they have it figured out. The difference is that they've learned it's survivable.</p>
+<p class="zh" style="max-width:64ch">感到迷茫不代表你选错了路。在这个行业里，这是所有人的常态，包括那些看起来什么都懂的人。区别只在于，他们已经学会了这是熬得过去的。</p>
+<p class="en" style="max-width:64ch">You already know how to be careful with a method you don't fully trust, how to check a result before you believe it, and how to write down what you did so someone else can repeat it. Those are the rare skills. The syntax is the easy part.</p>
+<p class="zh" style="max-width:64ch">你早就知道怎么谨慎对待一个还不完全信任的方法、怎么在相信一个结果之前先去核实、怎么把做过的事写下来让别人能复现。这些才是稀缺的能力。语法是最容易的那部分。</p>
+<p style="color:var(--muted); font-size:13px; margin-top:28px; margin-bottom:0"><span class="en">Progress and playground state are not saved between visits — work through a section in one sitting, or keep your own checklist alongside.</span><span class="zh">进度和练习状态不会跨次保存——建议一次做完一个章节，或者自己另外记一份清单。</span></p>
+</div>
+</footer>
+<button aria-label="Back to top" id="totop">↑</button>
+<div class="glow" id="glow"></div>
+<script src="assets/core.js"></script>
+<script src="assets/vibe.js"></script>
+</body>
+</html>

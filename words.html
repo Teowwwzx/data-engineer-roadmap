@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The words · The Lab Notebook</title>
+<meta name="description" content="A 12-month foundations roadmap for a new Data Engineer. Bilingual, interactive, one chapter at a time.">
+<link rel="stylesheet" href="assets/core.css">
+<link rel="stylesheet" href="assets/themes.css">
+<script>/* set theme + language before first paint, no flash */
+(function(){try{
+ var t=localStorage.getItem('labnotebook-theme');
+ if(t&&t!=='auto')document.documentElement.setAttribute('data-theme',t);
+ var l=localStorage.getItem('labnotebook-lang')||'en';
+ document.documentElement.setAttribute('data-lang',l);
+}catch(e){}})();</script>
+</head>
+<body class="lang-en" data-vibe="chill" data-chapter="words">
+<div class="topbar">
+<div class="wrap">
+<div class="brand"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></div>
+<nav class="navlinks"><a href="index.html"><span class="en">Start</span><span class="zh">开始</span></a>
+<a href="map.html"><span class="en">The map</span><span class="zh">地图</span></a>
+<a class="on" href="words.html"><span class="en">Words</span><span class="zh">词汇</span></a>
+<a href="terminal.html"><span class="en">Terminal</span><span class="zh">终端</span></a>
+<a href="m1.html"><span class="en">1 · IT Basics</span><span class="zh">1 · IT 基础</span></a>
+<a href="m2.html"><span class="en">2 · Tools</span><span class="zh">2 · 工具</span></a>
+<a href="m3.html"><span class="en">3 · AI</span><span class="zh">3 · AI</span></a>
+<a href="m4.html"><span class="en">4 · Data</span><span class="zh">4 · 数据</span></a>
+<a href="m5.html"><span class="en">5 · CS &amp; Cloud</span><span class="zh">5 · 计算机与云</span></a>
+<a href="systems.html"><span class="en">Big systems</span><span class="zh">大系统</span></a>
+<a href="zero.html"><span class="en">0 and 1</span><span class="zh">0 与 1</span></a>
+<a href="finish.html"><span class="en">Finish</span><span class="zh">完成</span></a></nav>
+<div class="langsw">
+<button class="on" data-lang="en">EN</button>
+<button data-lang="zh">中文</button>
+</div>
+</div>
+<div class="pbar"><i id="pbar"></i></div>
+</div>
+
+<section data-scene="paper" id="words">
+<div class="wrap">
+<div class="sechead"><h2><span class="en">The metaphor sheet — what all these alien words actually mean</span><span class="zh">词汇对照表 —— 那些"外星词"到底是什么意思</span></h2></div>
+<p class="en" style="color:var(--muted); max-width:70ch">Before anything else, here is the whole vocabulary in plain language. Every one of these words describes something you already understand from the physical world. They only sound alien because someone had to invent a name for a thing that had never existed before.</p>
+<p class="zh" style="color:var(--muted); max-width:70ch">在开始之前，先把整套词汇用大白话过一遍。下面每一个词，描述的都是你在现实世界里早就理解的东西。它们听起来像外星语，只是因为当年有人必须给一个从没存在过的东西起个名字。</p>
+<div class="play" data-play="fig" style="--c:var(--m2)">
+<div class="play-head">
+<span class="play-badge"><span class="en">▶ Playground</span><span class="zh">▶ 动手玩</span></span>
+<h4><span class="en">A web page is a body. Switch the layers on and off.</span><span class="zh">一个网页就是一具身体。把每一层开开关关看看。</span></h4>
+<p class="sub2"><span class="en">The same three switches control both panels. Watch what each layer is actually responsible for — and what is left when you take it away.</span><span class="zh">同样的三个开关同时控制两边。看清每一层到底负责什么——以及把它拿掉之后还剩下什么。</span></p>
+</div>
+<div class="play-body">
+<div class="fig" id="fig">
+<div class="figwrap">
+<div class="figbox">
+<span class="plabel"><span class="en">The body</span><span class="zh">身体</span></span>
+<div class="fig-body">
+<svg aria-label="A figure gaining clothes and a nervous system" viewbox="0 0 200 280">
+<!-- cloth (CSS) -->
+<g class="cloth">
+<path d="M62 108 L100 96 L138 108 L132 178 L68 178 Z" fill="var(--m2)"></path>
+<path d="M68 178 L96 178 L94 250 L74 250 Z" fill="var(--ink-2)"></path>
+<path d="M104 178 L132 178 L126 250 L106 250 Z" fill="var(--ink-2)"></path>
+<path d="M62 108 L52 150 L64 154 L72 118 Z" fill="var(--m2-deep)"></path>
+<circle cx="100" cy="52" fill="#fde68a" r="26"></circle>
+<circle cx="91" cy="48" fill="var(--ink-2)" r="2.6"></circle><circle cx="109" cy="48" fill="var(--ink-2)" r="2.6"></circle>
+<path d="M92 60 Q100 66 108 60" fill="none" stroke="var(--ink-2)" stroke-linecap="round" stroke-width="2"></path>
+</g>
+<!-- skeleton (HTML) -->
+<circle class="skull" cx="100" cy="52" r="24"></circle>
+<path class="bone" d="M100 76 L100 175"></path>
+<path class="bone" d="M72 100 L128 100"></path>
+<path class="bone" d="M76 118 L124 118"></path>
+<path class="bone" d="M80 136 L120 136"></path>
+<g class="arm-r"><path class="cloth" d="M138 108 L148 150 L136 154 L128 118 Z" fill="var(--m2-deep)"></path><path class="bone" d="M120 118 L150 152 L146 186"></path></g>
+<path class="bone" d="M80 118 L50 152 L54 186"></path>
+<path class="bone" d="M100 175 L78 215 L80 254"></path>
+<path class="bone" d="M100 175 L122 215 L120 254"></path>
+<!-- nerves (JS) -->
+<g class="nerve">
+<path d="M100 60 L100 172" fill="none" opacity=".7" stroke="#f59e0b" stroke-width="2"></path>
+<path d="M100 96 L128 128 L146 178" fill="none" opacity=".7" stroke="#f59e0b" stroke-width="1.8"></path>
+<path d="M100 96 L72 128 L54 178" fill="none" opacity=".7" stroke="#f59e0b" stroke-width="1.8"></path>
+<path d="M100 172 L82 212 L80 248" fill="none" opacity=".7" stroke="#f59e0b" stroke-width="1.8"></path>
+<path d="M100 172 L118 212 L120 248" fill="none" opacity=".7" stroke="#f59e0b" stroke-width="1.8"></path>
+<circle class="npulse" cx="100" cy="60" fill="#f59e0b" r="4"></circle>
+<circle class="npulse" cx="146" cy="178" fill="#f59e0b" r="4" style="animation-delay:.3s"></circle>
+<circle class="npulse" cx="54" cy="178" fill="#f59e0b" r="4" style="animation-delay:.6s"></circle>
+<circle class="npulse" cx="80" cy="248" fill="#f59e0b" r="4" style="animation-delay:.9s"></circle>
+<circle class="npulse" cx="120" cy="248" fill="#f59e0b" r="4" style="animation-delay:1.2s"></circle>
+</g>
+</svg>
+</div>
+</div>
+<div class="figbox">
+<span class="plabel"><span class="en">The web page</span><span class="zh">网页</span></span>
+<div class="mock" id="mock">
+<h4><span class="en">Sample QC Dashboard</span><span class="zh">样本 QC 看板</span></h4>
+<p><span class="en">Latest results from the Ipoh site.</span><span class="zh">怡保厂区的最新结果。</span></p>
+<div class="mrow"><span class="tag">S-001</span><span>0.98</span><span class="ok">PASS</span></div>
+<div class="mrow"><span class="tag">S-002</span><span>0.91</span><span class="bad">FAIL</span></div>
+<div class="mrow"><span class="tag">S-003</span><span>0.99</span><span class="ok">PASS</span></div>
+<button id="mock-btn"><span class="en">Run check</span><span class="zh">运行检查</span></button>
+<span class="mcount" id="mock-count"></span>
+</div>
+</div>
+</div>
+<div class="switches">
+<div class="sw on locked" style="--k:var(--m1)"><i></i>HTML — <span class="en">skeleton</span><span class="zh">骨架</span></div>
+<div class="sw" id="sw-css" style="--k:var(--m2)"><i></i>CSS — <span class="en">clothes &amp; skin</span><span class="zh">衣服与皮肤</span></div>
+<div class="sw" id="sw-js" style="--k:var(--m4)"><i></i>JavaScript — <span class="en">nervous system</span><span class="zh">神经系统</span></div>
+</div>
+<p id="fig-note" style="font-size:14px; margin:14px 0 0; color:var(--muted)"></p>
+</div>
+</div>
+</div>
+<div class="devtip">
+<h4><span class="en">⌨ Try this right now — on any website in the world</span><span class="zh">⌨ 现在就试试 —— 对世界上任何一个网站</span></h4>
+<p class="en">Here is the thing nobody tells beginners: <b style="color:var(--ink)">every website you have ever visited is just HTML, CSS and JavaScript</b>, sent to your computer as plain text. Google, your bank, this page. The server does not send a picture of a page — it sends the skeleton, the clothes and the nervous system, and <i>your browser assembles the body locally.</i></p>
+<p class="en">Which means you already own a copy of every site you visit, and you can open it up. Press <kbd>F12</kbd> (or <kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd> on a Mac) on any page:</p>
+<p class="en"><b style="color:var(--ink)">Elements</b> — the skeleton. Hover a line and the matching part of the page lights up. Edit the text and it changes in front of you (only on your screen — refresh and it's back).<br/>
+<b style="color:var(--ink)">Styles</b> — the clothes. Change a colour and watch it repaint instantly.<br/>
+<b style="color:var(--ink)">Console</b> — the nervous system talking. Errors appear here. So do your own <code class="inl" style="background:#1e293b;color:var(--ink)">console.log()</code> messages.<br/>
+<b style="color:var(--ink)">Network</b> — every request the page makes, with its status code and the exact JSON that came back.</p>
+<p class="en">This is not a beginner's toy. It is the same tool professionals use every day, and it is why a data engineer can prove in twenty seconds whether a wrong number came from the pipeline or from the page. <b style="color:var(--ink)">Open it on a site you use daily and just look around for five minutes.</b> Nothing you do there can break anything.</p>
+<p class="zh">有件事没人会告诉初学者：<b style="color:var(--ink)">你访问过的每一个网站，本质上都只是 HTML、CSS 和 JavaScript</b>，以纯文本的形式发到你的电脑上。谷歌、你的银行、这个页面，都是。服务器发过来的不是一张页面的图片——它发来的是骨架、衣服和神经系统，<i>然后由你的浏览器在本地把这具身体组装出来。</i></p>
+<p class="zh">这意味着你手上其实已经有了每个网站的一份副本，而且你可以把它打开。在任意页面按 <kbd>F12</kbd>（Mac 上是 <kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd>）：</p>
+<p class="zh"><b style="color:var(--ink)">Elements（元素）</b>——骨架。鼠标划过某一行，页面上对应的部分就会高亮。你甚至能直接改文字，页面当场就变（只在你的屏幕上，刷新就还原）。<br/>
+<b style="color:var(--ink)">Styles（样式）</b>——衣服。改一个颜色，立刻重新上色。<br/>
+<b style="color:var(--ink)">Console（控制台）</b>——神经系统在说话。报错出现在这里，你自己写的 <code class="inl" style="background:#1e293b;color:var(--ink)">console.log()</code> 也出现在这里。<br/>
+<b style="color:var(--ink)">Network（网络）</b>——页面发出的每一次请求，带状态码和返回的原始 JSON。</p>
+<p class="zh">这不是给初学者玩的玩具，它就是专业人员每天用的同一个工具——也正是数据工程师能在二十秒内证明"这个错数字来自管道还是来自页面"的原因。<b style="color:var(--ink)">找一个你每天都用的网站打开它，随便看五分钟。</b>你在里面做的任何操作都弄不坏任何东西。</p>
+</div>
+<div class="sechead" style="margin-top:34px"><h2 style="font-size:22px"><span class="en">The rest of the vocabulary</span><span class="zh">剩下的那些词</span></h2></div>
+<div class="wordgrid">
+<div class="word"><h5>HTML <span class="meta"><span class="en">the skeleton</span><span class="zh">骨架</span></span></h5>
+<p class="met en">Bones. What exists, and how the parts connect. Ugly on its own, but nothing can stand without it.</p>
+<p class="tech en">HyperText Markup Language — the tags that define headings, paragraphs, tables, buttons.</p>
+<p class="met zh">骨头。有什么、各部分怎么连接。单独看很难看，但没有它一切都立不起来。</p>
+<p class="tech zh">超文本标记语言 —— 用标签定义标题、段落、表格、按钮。</p></div>
+<div class="word"><h5>CSS <span class="meta"><span class="en">the clothes &amp; skin</span><span class="zh">衣服与皮肤</span></span></h5>
+<p class="met en">Appearance. Colour, spacing, size, where things sit. Take it away and the body still stands — it just looks like a hospital X-ray.</p>
+<p class="tech en">Cascading Style Sheets — rules that say "every h1 is teal and 20px."</p>
+<p class="met zh">外观。颜色、间距、大小、东西摆在哪。拿掉它，身体照样站着——只是看起来像一张 X 光片。</p>
+<p class="tech zh">层叠样式表 —— 用规则说"所有 h1 都是青色、20 像素"。</p></div>
+<div class="word"><h5>JavaScript <span class="meta"><span class="en">the nervous system</span><span class="zh">神经系统</span></span></h5>
+<p class="met en">Reaction. You touch something hot, the hand moves. You click, the number changes. Without it the body is a very well-dressed statue.</p>
+<p class="tech en">The language that runs inside the browser and reacts to events.</p>
+<p class="met zh">反应。碰到烫的，手就缩回来；你一点击，数字就变。没有它，身体就是一尊穿得很讲究的雕像。</p>
+<p class="tech zh">运行在浏览器里、对事件作出反应的语言。</p></div>
+<div class="word"><h5>Python <span class="meta"><span class="en">the brain, out of sight</span><span class="zh">看不见的大脑</span></span></h5>
+<p class="met en">The thinking happens somewhere the visitor cannot reach. Decisions, rules, judgement — deliberately kept off the user's machine.</p>
+<p class="tech en">The backend language where your real logic and data access live.</p>
+<p class="met zh">思考发生在访客够不到的地方。决策、规则、判断——刻意不放在用户的机器上。</p>
+<p class="tech zh">后端语言，你真正的业务逻辑和数据访问都在这里。</p></div>
+<div class="word"><h5>Apache / Nginx <span class="meta"><span class="en">the receptionist</span><span class="zh">前台接待</span></span></h5>
+<p class="met en">Sits at the front door all day. Someone knocks; it works out what they want, fetches the right file or passes the request to the right person, and hands back an answer. It never does the analysis itself — it just answers the door, thousands of times a second, and never gets tired.</p>
+<p class="tech en">A web server. It receives HTTP requests and returns responses — serving files directly, or forwarding to your Python app.</p>
+<p class="met zh">整天坐在大门口。有人敲门，它判断对方要什么，取出对应的文件、或者把请求转给该处理的人，然后把答案递回去。它从不亲自做分析——只负责应门，每秒几千次，而且从不喊累。</p>
+<p class="tech zh">Web 服务器。接收 HTTP 请求并返回响应——直接提供文件，或转发给你的 Python 应用。</p></div>
+<div class="word"><h5>API <span class="meta"><span class="en">the request slip</span><span class="zh">申请单</span></span></h5>
+<p class="met en">A standard form between two parties who don't want to walk into each other's building. "Run test X on sample Y." You fill in their form; they send back their standard report. Neither side has to know how the other works inside.</p>
+<p class="tech en">Application Programming Interface — an agreed set of requests a system will answer, and the shape of the answers.</p>
+<p class="met zh">两方之间的标准表单，谁都不用走进对方的楼里。"对 Y 号样本做 X 项检测。"你填他们的表，他们回一份标准报告。两边都不需要知道对方内部怎么运作。</p>
+<p class="tech zh">应用程序接口 —— 一套约定好的、系统会回应的请求，以及回应的固定形状。</p></div>
+<div class="word"><h5><span class="en">Framework</span><span class="zh">框架</span> <span class="meta"><span class="en">the prefab building</span><span class="zh">预制建筑</span></span></h5>
+<p class="met en">The foundations, plumbing, wiring and load-bearing walls are already poured. You decide the layout of the rooms. You could pour your own concrete — but you'd get the drainage wrong, and the drainage is the part that floods.</p>
+<p class="tech en">Flask, React, Django — pre-built infrastructure you fill in with your own logic.</p>
+<p class="met zh">地基、水管、电线、承重墙都已经浇好了，你只决定房间怎么分。你当然可以自己浇混凝土——但排水一定会做错，而排水正是会淹水的那部分。</p>
+<p class="tech zh">Flask、React、Django —— 现成的基础设施，你往里面填自己的逻辑。</p></div>
+<div class="word"><h5><span class="en">Database</span><span class="zh">数据库</span> <span class="meta"><span class="en">the sample freezer</span><span class="zh">样本冷冻柜</span></span></h5>
+<p class="met en">Everything labelled, indexed, findable, and safe when the power flickers. Not a pile of boxes — a system where two people can put things in at the same time without ruining each other's work.</p>
+<p class="tech en">PostgreSQL, MySQL, SQLite — stores data in related tables and answers SQL queries.</p>
+<p class="met zh">一切都贴好标签、建好索引、随时能找到，停电闪一下也不会丢。它不是一堆纸箱——而是一套两个人同时往里放东西也不会互相毁掉的系统。</p>
+<p class="tech zh">PostgreSQL、MySQL、SQLite —— 用关联的表存数据，并回答 SQL 查询。</p></div>
+<div class="word"><h5>Git <span class="meta"><span class="en">the lab notebook</span><span class="zh">实验记录本</span></span></h5>
+<p class="met en">Dated, signed, never erased. You can reconstruct exactly what the code looked like on 14 March, and read why it was changed. Plus something paper never had: a parallel page where you can try a risky idea without touching the working version.</p>
+<p class="tech en">A version control system. Tracks every change, supports branches and merges.</p>
+<p class="met zh">有日期、有签名、从不涂改。你能精确还原 3 月 14 日代码长什么样，还能读到当时为什么改。而且它有一样纸永远做不到的东西：一张平行的页面，让你在不碰当前可用版本的前提下试危险的想法。</p>
+<p class="tech zh">版本控制系统。记录每次改动，支持分支与合并。</p></div>
+<div class="word"><h5>GitHub <span class="meta"><span class="en">the shared shelf</span><span class="zh">共享的书架</span></span></h5>
+<p class="met en">Where the whole team's notebooks live, plus the peer-review step: before your pages join the official record, a colleague reads them and comments in the margin. That review is called a pull request.</p>
+<p class="tech en">A hosting platform for Git repositories, with reviews, issues and automation.</p>
+<p class="met zh">全组的记录本都放在这里，外加一道同行评议：在你的页面并入正式记录之前，同事会读一遍并在旁边写批注。这道评议就叫 Pull Request。</p>
+<p class="tech zh">托管 Git 仓库的平台，附带评审、议题追踪和自动化。</p></div>
+<div class="word"><h5><span class="en">Open source</span><span class="zh">开源</span> <span class="meta"><span class="en">a published protocol</span><span class="zh">公开发表的方案</span></span></h5>
+<p class="met en">A method published with the full recipe attached. Anyone can read it, check it, improve it, and catch your mistake. The closed alternative is a black-box kit: often excellent, but you take its word for everything, and if the vendor stops making it you are stranded.</p>
+<p class="tech en">Software whose source code is public and licensed for reuse — Python, Linux, pandas, Postgres.</p>
+<p class="met zh">一份把完整配方一起发表出来的方法。任何人都能读、能验、能改进，也能指出你的错。闭源那条路是黑盒试剂盒：常常很好用，但一切都只能听它的，而且供应商一停产你就被困住。</p>
+<p class="tech zh">源代码公开、并授权他人使用的软件 —— Python、Linux、pandas、Postgres。</p></div>
+<div class="word"><h5><span class="en">Cloud</span><span class="zh">云</span> <span class="meta"><span class="en">the shared facility</span><span class="zh">共享平台</span></span></h5>
+<p class="met en">Somebody else's building, full of machines, rented by the minute. You stop owning the mass spectrometer and start paying per run. There is no cloud — there is only someone else's computer, in a very well air-conditioned room.</p>
+<p class="tech en">AWS, Azure, GCP — compute, storage and networking rented on demand.</p>
+<p class="met zh">别人的一栋楼，里面全是机器，按分钟出租。你不再拥有那台质谱仪，而是按次付费。世上没有"云"——只有别人的电脑，放在一间空调开得很好的房间里。</p>
+<p class="tech zh">AWS、Azure、GCP —— 按需租用的算力、存储和网络。</p></div>
+<div class="word"><h5><span class="en">Server</span><span class="zh">服务器</span> <span class="meta"><span class="en">a computer that never sleeps</span><span class="zh">一台永不睡觉的电脑</span></span></h5>
+<p class="met en">Physically the same kind of machine as your laptop. The only difference is that it stays on, sits in a room with good cooling, and waits for other computers to ask it for things. That's it. That's the whole mystery.</p>
+<p class="tech en">A machine (or virtual machine) running software that responds to network requests.</p>
+<p class="met zh">物理上和你的笔记本是同一类机器。唯一的区别是它一直开着、待在散热良好的房间里、等着其他电脑来问它要东西。就这样。全部的神秘感就到此为止。</p>
+<p class="tech zh">一台（或一台虚拟的）机器，运行着响应网络请求的软件。</p></div>
+<div class="word"><h5>ETL <span class="meta"><span class="en">sample prep</span><span class="zh">样本前处理</span></span></h5>
+<p class="met en">Collect the raw material, clean and standardise it, store the finished preparation where everyone can find it. Exactly what you do before an assay — just at industrial scale and on a schedule.</p>
+<p class="tech en">Extract, Transform, Load — the pipeline that moves data from sources into a warehouse.</p>
+<p class="met zh">采集原料、清洗并标准化、把处理好的成品存到大家都能找到的地方。和你做检测前的准备一模一样——只是工业规模，而且按时自动跑。</p>
+<p class="tech zh">抽取、转换、加载 —— 把数据从源系统搬进数据仓库的管道。</p></div>
+</div>
+</div>
+</section>
+<section data-scene="strata" id="stack">
+<div class="wrap">
+<div class="sechead"><h2><span class="en">The tech stack — who lives where on the map</span><span class="zh">技术栈 —— 谁住在地图的哪个位置</span></h2></div>
+<p style="color:var(--muted); max-width:72ch"><span class="en">You will see roadmap posters full of logos and feel like you have to learn all of them. You do not. Every one of these tools belongs to <b>one region of the map above</b>, and most of them are alternatives to each other — you need one from each row, not all of them.</span><span class="zh">你会看到那种贴满 logo 的路线图海报，然后觉得自己得全学。不用。这里每一个工具都属于<b>上面那张地图的某一个区域</b>，而且它们大多是彼此的替代品 —— 每一行挑一个就够了，不是全都要。</span></p>
+<p style="color:var(--muted); max-width:72ch"><span class="en"><b>Click any one</b> for what it is, where it sits, and whether you actually need it this year.</span><span class="zh"><b>点任意一个</b>，看它是什么、在哪一层、以及今年你到底需不需要它。</span></p>
+<div class="legend">
+<span><i style="background:var(--ok)"></i><span class="en">Must learn this year</span><span class="zh">今年必学</span></span>
+<span><i style="background:var(--m4)"></i><span class="en">Good to recognise</span><span class="zh">认得就行</span></span>
+<span><i style="background:var(--line-2)"></i><span class="en">Later — or never</span><span class="zh">以后再说 —— 或者永远不用</span></span>
+</div>
+<div class="catgrid" id="catgrid"></div>
+<div class="warn" style="margin-top:22px">
+<p class="en" style="margin:0"><b>How to read a roadmap poster without panicking:</b> count the <i>rows</i>, not the logos. There are about eight rows on this whole page — frontend, backend, database, data, cloud, infrastructure, version control, AI. Nobody knows every tool in a row. Everybody knows their region deeply and can name the neighbours. That is the actual job.</p>
+<p class="zh" style="margin:0"><b>怎么看路线图海报才不会崩溃：</b>数<i>行</i>，别数 logo。整页大概就八行——前端、后端、数据库、数据、云、基础设施、版本控制、AI。没有人认识某一行里的所有工具。每个人都是深耕自己那一块，同时叫得出邻居的名字。这才是真实的工作状态。</p>
+</div>
+</div>
+</section>
+<div aria-modal="true" class="mdl" id="techmodal" role="dialog">
+<div class="mdl-back"></div>
+<div class="mdl-card">
+<button aria-label="Close" class="mdl-x">×</button>
+<div class="mdl-top"><div class="mdl-ic" id="tm-ic"></div>
+<div><div class="mdl-tag" id="tm-cat"></div><h3 id="tm-title"></h3></div></div>
+<div class="mdl-body" id="tm-body"></div>
+</div>
+</div>
+    <nav class="chapnav">
+    <a class="cn cn-prev" href="map.html"><span class="cn-k"><span class="en">Previous</span><span class="zh">上一章</span></span><span class="cn-t"><span class="en">The whole map</span><span class="zh">整张地图</span></span></a>
+    <a class="cn cn-next" href="terminal.html"><span class="cn-k"><span class="en">Next</span><span class="zh">下一章</span></span><span class="cn-t"><span class="en">The terminal</span><span class="zh">终端</span></span></a>
+    </nav>
+<footer>
+<div class="wrap">
+<h3><span class="en">One last thing</span><span class="zh">最后一件事</span></h3>
+<p class="en" style="max-width:64ch">Feeling lost is not a sign that you chose wrong. It's the normal steady state of this field for everyone, including the people who look like they have it figured out. The difference is that they've learned it's survivable.</p>
+<p class="zh" style="max-width:64ch">感到迷茫不代表你选错了路。在这个行业里，这是所有人的常态，包括那些看起来什么都懂的人。区别只在于，他们已经学会了这是熬得过去的。</p>
+<p class="en" style="max-width:64ch">You already know how to be careful with a method you don't fully trust, how to check a result before you believe it, and how to write down what you did so someone else can repeat it. Those are the rare skills. The syntax is the easy part.</p>
+<p class="zh" style="max-width:64ch">你早就知道怎么谨慎对待一个还不完全信任的方法、怎么在相信一个结果之前先去核实、怎么把做过的事写下来让别人能复现。这些才是稀缺的能力。语法是最容易的那部分。</p>
+<p style="color:var(--muted); font-size:13px; margin-top:28px; margin-bottom:0"><span class="en">Progress and playground state are not saved between visits — work through a section in one sitting, or keep your own checklist alongside.</span><span class="zh">进度和练习状态不会跨次保存——建议一次做完一个章节，或者自己另外记一份清单。</span></p>
+</div>
+</footer>
+<button aria-label="Back to top" id="totop">↑</button>
+<div class="glow" id="glow"></div>
+<script src="assets/core.js"></script>
+<script src="assets/vibe.js"></script>
+</body>
+</html>

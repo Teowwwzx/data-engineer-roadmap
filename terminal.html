@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The terminal · The Lab Notebook</title>
+<meta name="description" content="A 12-month foundations roadmap for a new Data Engineer. Bilingual, interactive, one chapter at a time.">
+<link rel="stylesheet" href="assets/core.css">
+<link rel="stylesheet" href="assets/themes.css">
+<script>/* set theme + language before first paint, no flash */
+(function(){try{
+ var t=localStorage.getItem('labnotebook-theme');
+ if(t&&t!=='auto')document.documentElement.setAttribute('data-theme',t);
+ var l=localStorage.getItem('labnotebook-lang')||'en';
+ document.documentElement.setAttribute('data-lang',l);
+}catch(e){}})();</script>
+</head>
+<body class="lang-en" data-vibe="pixel" data-chapter="terminal">
+<div class="topbar">
+<div class="wrap">
+<div class="brand"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></div>
+<nav class="navlinks"><a href="index.html"><span class="en">Start</span><span class="zh">开始</span></a>
+<a href="map.html"><span class="en">The map</span><span class="zh">地图</span></a>
+<a href="words.html"><span class="en">Words</span><span class="zh">词汇</span></a>
+<a class="on" href="terminal.html"><span class="en">Terminal</span><span class="zh">终端</span></a>
+<a href="m1.html"><span class="en">1 · IT Basics</span><span class="zh">1 · IT 基础</span></a>
+<a href="m2.html"><span class="en">2 · Tools</span><span class="zh">2 · 工具</span></a>
+<a href="m3.html"><span class="en">3 · AI</span><span class="zh">3 · AI</span></a>
+<a href="m4.html"><span class="en">4 · Data</span><span class="zh">4 · 数据</span></a>
+<a href="m5.html"><span class="en">5 · CS &amp; Cloud</span><span class="zh">5 · 计算机与云</span></a>
+<a href="systems.html"><span class="en">Big systems</span><span class="zh">大系统</span></a>
+<a href="zero.html"><span class="en">0 and 1</span><span class="zh">0 与 1</span></a>
+<a href="finish.html"><span class="en">Finish</span><span class="zh">完成</span></a></nav>
+<div class="langsw">
+<button class="on" data-lang="en">EN</button>
+<button data-lang="zh">中文</button>
+</div>
+</div>
+<div class="pbar"><i id="pbar"></i></div>
+</div>
+
+<section data-scene="crt" id="cli">
+<div class="wrap">
+<div class="sechead"><h2><span class="en">The terminal — how computers actually work</span><span class="zh">终端 —— 电脑其实是怎么运作的</span></h2></div>
+<p style="color:var(--muted); max-width:70ch"><span class="en">This is the single biggest gap between someone who uses a computer and someone who works on one. It is also much simpler than it looks.</span><span class="zh">这是"用电脑的人"和"在电脑上工作的人"之间最大的一道鸿沟。而它其实比看起来简单得多。</span></p>
+<div class="analogy" style="--c:var(--ink-2)">
+<span class="lab"><span class="en">🧪 The instrument has a screen. It also has a keypad.</span><span class="zh">🧪 仪器有屏幕，也有键盘。</span></span>
+<p class="en">Think of a lab instrument with a nice touchscreen: tap <i>Run</i>, tap <i>Export</i>. Lovely for one sample. Now imagine the supervisor says: run all 400 samples overnight, with three different settings, and log every result.</p>
+<p class="en">You cannot tap that. But the same instrument has a command port where you can send it typed instructions — and <i>those</i> can be written down, repeated, scheduled and reviewed. <b>The touchscreen is the GUI. The command port is the CLI.</b> They drive the same machine.</p>
+<p class="zh">想象一台带漂亮触摸屏的实验仪器：点<i>运行</i>、点<i>导出</i>。做一份样本很舒服。现在主管说：今晚把 400 份样本全跑完，用三种不同参数，每个结果都要记录。</p>
+<p class="zh">这个你点不出来。但同一台仪器还有一个命令端口，可以给它发送打字指令——而<i>那些指令</i>是可以被写下来、重复、定时、审阅的。<b>触摸屏就是 GUI，命令端口就是 CLI。</b>它们驱动的是同一台机器。</p>
+</div>
+<div class="lens" style="--c:var(--ink-2)">
+<div class="lens-tabs">
+<button class="on"><span class="en">WHY</span><span class="zh">为什么</span></button>
+<button><span class="en">THEN → NOW</span><span class="zh">以前 → 现在</span></button>
+<button><span class="en">WHAT IS LINUX</span><span class="zh">Linux 是什么</span></button>
+<button><span class="en">WHY AI LOVES CLI</span><span class="zh">为什么 AI 特别擅长 CLI</span></button>
+</div>
+<div class="lens-pane on">
+<div class="kicker"><span class="en">Why is there a black window with text in it?</span><span class="zh">为什么会有一个黑底白字的窗口？</span></div>
+<p class="en">Here is the fact that reframes everything: <b>the graphical interface came second.</b> Computers were text-driven first, for about twenty years, and they still are underneath. The desktop, the icons, the drag-and-drop — all of it is a friendly skin painted on top, added because humans are much better at pointing than at remembering.</p>
+<p class="en">When you drag a file into a folder, something underneath runs the equivalent of <code class="inl">mv report.csv archive/</code>. When you click Install, something runs a package command. <b>The GUI never gained a power the CLI didn't have — it just hid the words.</b></p>
+<p class="en">And it hid them at a price. A click cannot be saved, repeated, emailed, version-controlled, scheduled at 2am, or explained to a colleague. A typed command is all of those things by default, because it is <b>just text</b>. That is the entire reason professionals live in the terminal.</p>
+<p class="zh">有一个事实能把一切重新框住：<b>图形界面是后来才有的。</b>电脑最早的二十来年是纯文字驱动的，而在底层，它到今天仍然是。桌面、图标、拖拽——全都是后来刷在上面的一层友好外皮，因为人类"指"比"记"厉害得多。</p>
+<p class="zh">你把文件拖进文件夹时，底下运行的其实相当于 <code class="inl">mv report.csv archive/</code>。你点"安装"时，底下运行的是一条包管理命令。<b>GUI 从未获得 CLI 没有的能力——它只是把那些字藏起来了。</b></p>
+<p class="zh">而且藏得有代价。一次点击没法保存、没法重复、没法用邮件发给别人、没法进版本控制、没法安排在凌晨两点执行、也没法讲给同事听。一条打出来的命令天生就具备以上所有能力，因为它<b>就是文本</b>。这就是专业人士为什么住在终端里的全部原因。</p>
+</div>
+<div class="lens-pane">
+<div class="evo">
+<div class="evo-col then"><h5><span class="en">Before the GUI (1960s–80s)</span><span class="zh">图形界面之前（1960s–80s）</span></h5>
+<ul class="en"><li>Text was the <b>only</b> interface. You typed a command; the machine printed a reply. That was computing.</li><li>Powerful, but you had to remember every command name — nothing was discoverable.</li><li>Only trained operators could use a computer at all.</li></ul>
+<ul class="zh"><li>文字是<b>唯一</b>的界面。你敲一条命令，机器打印一段回复。计算机就是这样。</li><li>很强大，但每条命令名都得背下来——没有任何东西是"看得见"的。</li><li>只有受过训练的操作员才用得了电脑。</li></ul></div>
+<div class="evo-arrow">→</div>
+<div class="evo-col now"><h5><span class="en">After the GUI — and still now</span><span class="zh">图形界面之后 —— 直到今天</span></h5>
+<ul class="en"><li>Icons made computers usable by everyone. Enormous win. The world changed.</li><li>But the text layer never left. It just moved out of sight, and every server kept it as the <b>primary</b> interface.</li><li>Today: GUI for exploring and deciding. CLI for repeating, automating and proving.</li><li>Nearly every server in the world has <b>no screen at all</b> — you reach it by typing.</li></ul>
+<ul class="zh"><li>图标让所有人都能用电脑。这是巨大的胜利，世界因此改变。</li><li>但文字层从未离开，它只是移到了看不见的地方，而每一台服务器都把它保留为<b>主要</b>界面。</li><li>今天：GUI 用来探索和决定，CLI 用来重复、自动化和留下证据。</li><li>世界上几乎每一台服务器<b>根本没有屏幕</b>——你只能靠打字够到它。</li></ul></div>
+</div>
+<p style="margin-top:14px; font-size:14.5px; color:var(--muted)"><span class="en"><b>The thing to internalise:</b> the CLI is not the "old" way and the GUI the "new" way. They are two doors into the same house, and the text door is the one that leads to every room.</span><span class="zh"><b>需要内化的一点：</b>CLI 不是"旧办法"、GUI 不是"新办法"。它们是通往同一栋房子的两扇门，而文字那扇门通向每一个房间。</span></p>
+</div>
+<div class="lens-pane">
+<p class="en"><b>Linux is an operating system</b> — the same category of thing as Windows or macOS. It is the referee that shares one machine between many programs (floor 08 of the tower at the end of this guide).</p>
+<p class="en">Two things make it different, and both matter to you:</p>
+<p class="en"><b>1. It is free and open.</b> Anyone can read it, run it, copy it, modify it, and put it on a million machines without asking permission or paying a licence.</p>
+<p class="en"><b>2. It does not need a screen.</b> It runs perfectly happily with no monitor, no mouse, no desktop — because it was designed text-first. That is exactly what a server needs.</p>
+<p class="en">Which is why <b>the overwhelming majority of servers on earth run Linux.</b> Every cloud instance you will ever launch, almost every database, almost every container, the machines behind Google, Netflix, Grab, your bank, and the one that served you this page. Your Android phone is Linux underneath too.</p>
+<p class="en" style="margin-bottom:0"><b>What this means practically:</b> when you connect to a server, there is nothing to click. A prompt appears and waits. Learning about twenty commands is what turns that from terrifying into ordinary — and it is genuinely about twenty.</p>
+<p class="zh"><b>Linux 是一个操作系统</b>——和 Windows、macOS 属于同一类东西。它是那个让很多程序共用一台机器的裁判（也就是本指南最后那座塔的第 08 层）。</p>
+<p class="zh">它有两点不同，而这两点对你都很重要：</p>
+<p class="zh"><b>1. 它免费且开放。</b>任何人都能读它、跑它、复制它、改它，装到一百万台机器上也不用申请许可、不用付授权费。</p>
+<p class="zh"><b>2. 它不需要屏幕。</b>没有显示器、没有鼠标、没有桌面，它照样跑得很开心——因为它从设计之初就是文字优先的。而这正是服务器需要的。</p>
+<p class="zh">所以<b>地球上绝大多数服务器跑的都是 Linux。</b>你将来启动的每一个云实例、几乎每一个数据库、几乎每一个容器，谷歌、Netflix、Grab、你的银行背后的机器，以及把这个页面发给你的那台，都是。你的安卓手机底下也是 Linux。</p>
+<p class="zh" style="margin-bottom:0"><b>实际意味着什么：</b>当你连上一台服务器，没有任何东西可以点。一个提示符出现，然后等着你。学会大约二十条命令，就能把"可怕"变成"平常"——而且真的就是二十条左右。</p>
+</div>
+<div class="lens-pane">
+<p class="en">This is worth understanding, because it changes how you should work for the next few years.</p>
+<p class="en"><b>AI models are unusually strong at the command line, and the reason is structural:</b> a model is a text engine, and the CLI is a world made entirely of text. The command is text. The output is text. The error message is text. So the model can read the result of its own action and decide the next one — a loop that simply does not exist when the interface is a button somebody has to click.</p>
+<p class="en">There is a second reason. Commands are <b>composable</b>: small tools that each do one thing, joined with a pipe <code class="inl">|</code> so one tool's output becomes the next one's input. That is a tiny, regular grammar — exactly the kind of structure a language model handles well, and exactly the kind of thing that is tedious for a human to remember.</p>
+<p class="en">So the practical shape of the next few years: <b>you decide what needs to happen and whether the result is right; the model writes the incantation.</b> "Find every CSV in this folder modified in the last 3 days, count the FAIL rows in each, and write a summary" is a sentence you can now say out loud and get a correct command for.</p>
+<p class="en" style="margin-bottom:0"><b>The catch, and it is a real one:</b> commands are irreversible in a way clicking usually isn't. There is no undo and no recycle bin. So the discipline is simple and non-negotiable — <b>read every command before you run it, and never run one you can't explain.</b> Especially anything with <code class="inl">rm</code>, <code class="inl">sudo</code>, or a redirect <code class="inl">&gt;</code> in it.</p>
+<p class="zh">这一点值得理解，因为它会改变你未来几年的工作方式。</p>
+<p class="zh"><b>AI 模型在命令行上强得异常，而原因是结构性的：</b>模型是一台文本引擎，而 CLI 是一个完全由文本构成的世界。命令是文本，输出是文本，报错也是文本。于是模型可以读到自己这一步的结果，再决定下一步——而当界面是"一个需要人去点的按钮"时，这个循环根本不存在。</p>
+<p class="zh">还有第二个原因。命令是<b>可组合的</b>：一堆各自只做一件事的小工具，用管道 <code class="inl">|</code> 串起来，让前一个的输出变成后一个的输入。这是一套极小而规整的语法——恰好是语言模型最擅长的结构，也恰好是人类最懒得背的东西。</p>
+<p class="zh">所以未来几年的实际形态是：<b>你决定要发生什么、以及结果对不对；模型来写那句咒语。</b>"找出这个文件夹里最近 3 天修改过的所有 CSV，数一下每个里面有多少 FAIL 行，写个汇总"——这句话你现在可以直接说出来，然后拿到一条正确的命令。</p>
+<p class="zh" style="margin-bottom:0"><b>但有个真实的代价：</b>命令的不可逆程度是点击通常没有的。没有撤销，也没有回收站。所以纪律很简单，而且没得商量——<b>运行前把每条命令读一遍，永远不要运行你解释不了的命令。</b>尤其是带 <code class="inl">rm</code>、<code class="inl">sudo</code> 或重定向 <code class="inl">&gt;</code> 的。</p>
+</div>
+</div>
+<div class="play" data-play="term" style="--c:var(--ink-2)">
+<div class="play-head">
+<span class="play-badge"><span class="en">▶ Playground</span><span class="zh">▶ 动手玩</span></span>
+<h4><span class="en">A real terminal, and the same folder as a window</span><span class="zh">一个真实的终端，以及同一个文件夹的窗口视图</span></h4>
+<p class="sub2"><span class="en">Both panels show the same folder on the same machine. Type in the terminal and watch the window on the right update. Start by typing <code class="inl">help</code>, or press one of the buttons below. Nothing here can break anything.</span><span class="zh">两边显示的是同一台机器上的同一个文件夹。在终端里输入，右边的窗口会跟着变。先输入 <code class="inl">help</code>，或者点下面任意一个按钮。这里做什么都弄不坏东西。</span></p>
+</div>
+<div class="play-body">
+<div class="prow">
+<button class="pbtn" data-cmd="ls -l">ls -l</button>
+<button class="pbtn" data-cmd="cat samples.csv">cat samples.csv</button>
+<button class="pbtn" data-cmd="grep FAIL samples.csv | wc -l">grep FAIL … | wc -l</button>
+<button class="pbtn" data-cmd="cd data">cd data</button>
+<button class="pbtn" data-cmd="python3 pipeline.py">python3 pipeline.py</button>
+<button class="pbtn" data-cmd="df -h">df -h</button>
+<button class="pbtn ghost" data-cmd="help">help</button>
+</div>
+<div class="cli-cols">
+<div>
+<span class="plabel"><span class="en">CLI — the terminal</span><span class="zh">CLI —— 终端</span></span>
+<div class="term">
+<div class="term-bar"><i style="background:#ef4444"></i><i style="background:#f59e0b"></i><i style="background:#22c55e"></i><span class="t">diao@lab-server: ~</span></div>
+<div class="term-out" id="t-out"></div>
+<div class="term-in"><span id="t-ps">diao@lab-server:~$</span><input autocomplete="off" id="t-in" placeholder="type a command…" spellcheck="false"/></div>
+</div>
+</div>
+<div>
+<span class="plabel"><span class="en">GUI — the same folder, as a window</span><span class="zh">GUI —— 同一个文件夹的窗口</span></span>
+<div class="gui-mock">
+<div class="gui-bar"><i style="background:#ef4444"></i><i style="background:#f59e0b"></i><i style="background:#22c55e"></i><span id="g-path" style="margin-left:8px"></span></div>
+<div class="gui-body" id="g-body"></div>
+</div>
+</div>
+</div>
+<p style="font-size:14px; color:var(--muted); margin:0"><span class="en"><b>Try this one thing:</b> <code class="inl">grep FAIL samples.csv | wc -l</code>. That pipe is the whole philosophy — <i>grep</i> only knows how to find lines, <i>wc</i> only knows how to count them, and neither was written with the other in mind. Joining small tools that each do one thing is how almost every serious data task actually gets done.</span><span class="zh"><b>务必试一下这条：</b><code class="inl">grep FAIL samples.csv | wc -l</code>。那根管道就是整套哲学——<i>grep</i> 只会找行，<i>wc</i> 只会数行，而且两者当初写的时候谁也没考虑过对方。把各自只做一件事的小工具串起来，才是几乎所有正经数据工作真正的完成方式。</span></p>
+</div>
+</div>
+<div class="tblwrap"><table class="tbl">
+<tr><th></th><th><span class="en">GUI — pointing</span><span class="zh">GUI —— 用点的</span></th><th><span class="en">CLI — typing</span><span class="zh">CLI —— 用打的</span></th></tr>
+<tr><td><span class="en">Best for</span><span class="zh">最适合</span></td><td><span class="en">Exploring, deciding, seeing shapes</span><span class="zh">探索、判断、看整体形状</span></td><td><span class="en">Repeating, automating, proving</span><span class="zh">重复、自动化、留下证据</span></td></tr>
+<tr><td><span class="en">Doing it 400 times</span><span class="zh">做 400 次</span></td><td><span class="en">400 clicks, and 3 mistakes</span><span class="zh">点 400 次，错 3 次</span></td><td><span class="en">One line, identical every time</span><span class="zh">一行命令，每次都一样</span></td></tr>
+<tr><td><span class="en">Can you save what you did?</span><span class="zh">做过的能保存吗</span></td><td><span class="en">No — a click leaves no record</span><span class="zh">不能 —— 点击不留痕迹</span></td><td><span class="en">Yes — it is text, so Git keeps it</span><span class="zh">能 —— 它是文本，Git 会留着</span></td></tr>
+<tr><td><span class="en">Can a colleague repeat it?</span><span class="zh">同事能复现吗</span></td><td><span class="en">Only via a screenshot tutorial</span><span class="zh">只能靠截图教程</span></td><td><span class="en">Paste the line. Done.</span><span class="zh">把那行粘过去，完事。</span></td></tr>
+<tr><td><span class="en">Can it run at 2am?</span><span class="zh">能在凌晨两点自己跑吗</span></td><td><span class="en">No</span><span class="zh">不能</span></td><td><span class="en">Yes — that is what a schedule is</span><span class="zh">能 —— 这就是定时任务</span></td></tr>
+<tr><td><span class="en">Can an AI do it for you?</span><span class="zh">AI 能替你做吗</span></td><td><span class="en">Awkwardly — it must simulate clicks</span><span class="zh">很别扭 —— 它得模拟点击</span></td><td><span class="en">Extremely well — it is all text</span><span class="zh">非常擅长 —— 全都是文本</span></td></tr>
+<tr><td><span class="en">Undo</span><span class="zh">撤销</span></td><td><span class="en">Usually yes, recycle bin</span><span class="zh">通常有，还有回收站</span></td><td><span class="en"><b>No.</b> Read before you press Enter.</span><span class="zh"><b>没有。</b>按回车前先读一遍。</span></td></tr>
+</table></div>
+<details class="acc"><summary><span class="en">The ~20 commands that cover almost everything</span><span class="zh">覆盖绝大部分场景的那 20 条命令</span></summary>
+<div class="body">
+<div class="codewrap" style="margin-top:0">
+<div class="tabs"><button class="on"><span class="en">moving around</span><span class="zh">走动</span></button><button><span class="en">looking at files</span><span class="zh">看文件</span></button><button><span class="en">the machine itself</span><span class="zh">机器本身</span></button><button><span class="en">danger zone</span><span class="zh">危险区</span></button></div>
+<div class="pane on"><pre>pwd                 <span class="cm"># where am I? / 我在哪</span>
+ls                  <span class="cm"># what's here / 这里有什么</span>
+ls -l               <span class="cm"># ...with size, date, permissions / 带大小、日期、权限</span>
+ls -la              <span class="cm"># ...including hidden files / 连隐藏文件一起</span>
+cd data             <span class="cm"># go into a folder / 进入文件夹</span>
+cd ..               <span class="cm"># go back up one / 回上一层</span>
+cd ~                <span class="cm"># go home / 回到主目录</span>
+mkdir archive       <span class="cm"># make a folder / 新建文件夹</span></pre></div>
+<div class="pane"><pre>cat notes.md            <span class="cm"># print the whole file / 打印整个文件</span>
+head -n 5 samples.csv   <span class="cm"># first 5 lines / 前 5 行</span>
+tail -n 20 nightly.log  <span class="cm"># last 20 lines — for logs / 最后 20 行，看日志用</span>
+wc -l samples.csv       <span class="cm"># how many lines? / 有多少行</span>
+grep FAIL samples.csv   <span class="cm"># lines containing FAIL / 含 FAIL 的行</span>
+grep -c FAIL file.csv   <span class="cm"># just the count / 只要数量</span>
+grep -i ipoh file.csv   <span class="cm"># ignore capitals / 忽略大小写</span>
+sort | uniq -c          <span class="cm"># count each distinct value / 统计每个值出现几次</span>
+
+<span class="cm"># The pipe is the point / 管道才是重点:</span>
+grep FAIL samples.csv | wc -l</pre></div>
+<div class="pane"><pre>whoami              <span class="cm"># which user am I? / 我是哪个用户</span>
+df -h               <span class="cm"># disk space left / 磁盘还剩多少</span>
+free -h             <span class="cm"># memory in use / 内存用了多少</span>
+top                 <span class="cm"># what's running, live / 实时看什么在跑</span>
+ps aux | grep python<span class="cm"># is my script still alive? / 我的脚本还活着吗</span>
+ssh user@server     <span class="cm"># connect to another machine / 连到另一台机器</span>
+scp file user@srv:  <span class="cm"># copy a file over there / 把文件传过去</span>
+history             <span class="cm"># what did I type before? / 我刚才敲过什么</span></pre></div>
+<div class="pane"><pre><span class="cm"># These have no undo. Read them twice.
+# 这些没有撤销。读两遍再回车。</span>
+
+rm file.csv         <span class="cm"># delete, permanently / 永久删除</span>
+rm -r folder/       <span class="cm"># delete a folder and everything in it / 连同里面全删</span>
+mv a.csv b.csv      <span class="cm"># rename or move — silently overwrites / 改名或移动，会静默覆盖</span>
+&gt; file.csv          <span class="cm"># EMPTIES the file. One character. / 一个字符就清空文件</span>
+sudo &lt;anything&gt;     <span class="cm"># do it as administrator / 以管理员身份执行</span>
+
+<span class="cm"># Rule: if a command contains rm, sudo, or &gt;,
+# say out loud what it will do before pressing Enter.
+# 规矩：命令里出现 rm、sudo 或 &gt; 时，
+# 按回车前先出声说一遍它会做什么。</span></pre></div>
+</div>
+</div>
+</details>
+<div class="rw" style="--c:var(--ink-2)">
+<div class="rwh"><span class="en">◈ Real-world example</span><span class="zh">◈ 真实场景</span></div>
+<p class="scene en">It's 9am. The nightly pipeline didn't produce a file, and three people are waiting on the report.</p>
+<p class="en">There is no screen to look at — the job runs on a Linux server in a data centre you will never visit. You <code class="inl">ssh</code> in. <code class="inl">tail -n 50 nightly.log</code> shows the run started and stopped after 40 seconds. <code class="inl">grep -i error nightly.log</code> gives you one line: <i>no space left on device</i>. <code class="inl">df -h</code> confirms it: the disk is 100% full. <code class="inl">du -sh *</code> shows an old log folder has quietly grown to 400 GB.</p>
+<p class="en"><b>Four commands, ninety seconds, and you know exactly what happened and why.</b> There is no window you could have opened to learn that faster — and this is a completely ordinary Tuesday for a data engineer.</p>
+<p class="scene zh">早上九点。昨晚的管道没产出文件，三个人在等报表。</p>
+<p class="zh">没有屏幕可看——任务跑在一台你永远不会去参观的数据中心里的 Linux 服务器上。你 <code class="inl">ssh</code> 进去，<code class="inl">tail -n 50 nightly.log</code> 显示任务启动后 40 秒就停了。<code class="inl">grep -i error nightly.log</code> 给出一行：<i>no space left on device</i>（磁盘空间不足）。<code class="inl">df -h</code> 证实了：磁盘 100% 满。<code class="inl">du -sh *</code> 显示某个旧日志文件夹已经悄悄长到了 400 GB。</p>
+<p class="zh"><b>四条命令，九十秒，你完全清楚发生了什么、为什么。</b>没有任何一个窗口能让你更快地知道这些——而这对数据工程师来说，只是一个完全普通的周二。</p>
+</div>
+</div>
+</section>
+    <nav class="chapnav">
+    <a class="cn cn-prev" href="words.html"><span class="cn-k"><span class="en">Previous</span><span class="zh">上一章</span></span><span class="cn-t"><span class="en">The words</span><span class="zh">那些词</span></span></a>
+    <a class="cn cn-next" href="m1.html"><span class="cn-k"><span class="en">Next</span><span class="zh">下一章</span></span><span class="cn-t"><span class="en">IT Basics</span><span class="zh">IT 基础</span></span></a>
+    </nav>
+<footer>
+<div class="wrap">
+<h3><span class="en">One last thing</span><span class="zh">最后一件事</span></h3>
+<p class="en" style="max-width:64ch">Feeling lost is not a sign that you chose wrong. It's the normal steady state of this field for everyone, including the people who look like they have it figured out. The difference is that they've learned it's survivable.</p>
+<p class="zh" style="max-width:64ch">感到迷茫不代表你选错了路。在这个行业里，这是所有人的常态，包括那些看起来什么都懂的人。区别只在于，他们已经学会了这是熬得过去的。</p>
+<p class="en" style="max-width:64ch">You already know how to be careful with a method you don't fully trust, how to check a result before you believe it, and how to write down what you did so someone else can repeat it. Those are the rare skills. The syntax is the easy part.</p>
+<p class="zh" style="max-width:64ch">你早就知道怎么谨慎对待一个还不完全信任的方法、怎么在相信一个结果之前先去核实、怎么把做过的事写下来让别人能复现。这些才是稀缺的能力。语法是最容易的那部分。</p>
+<p style="color:var(--muted); font-size:13px; margin-top:28px; margin-bottom:0"><span class="en">Progress and playground state are not saved between visits — work through a section in one sitting, or keep your own checklist alongside.</span><span class="zh">进度和练习状态不会跨次保存——建议一次做完一个章节，或者自己另外记一份清单。</span></p>
+</div>
+</footer>
+<button aria-label="Back to top" id="totop">↑</button>
+<div class="glow" id="glow"></div>
+<script src="assets/core.js"></script>
+<script src="assets/vibe.js"></script>
+</body>
+</html>

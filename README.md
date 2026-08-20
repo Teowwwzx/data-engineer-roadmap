@@ -1,7 +1,8 @@
 # The Lab Notebook · 实验记录本
 
 **A 12-month foundations roadmap for a new Data Engineer with a pure-science background.**
-Bilingual (English / 中文), light + dark, fully interactive, single static HTML file — no build step, no dependencies.
+Bilingual (English / 中文), light + dark, fully interactive. Twelve chapters, twelve pages,
+eight visual themes — still no framework, no dependencies, nothing to install.
 
 **▶ Live: https://teowwwzx.github.io/data-engineer-roadmap/**
 
@@ -53,21 +54,70 @@ at a time — and deliberately ends at the bottom of the stack: a switch that is
 
 Plus 10 animated SVG explainers, 9 self-check quizzes, 5 challenge cards and 34 trackable lab tasks.
 
+
+## Chapters
+
+The guide is twelve pages. Each has its own **vibe** — palette, type, corner language,
+animated background and generative soundtrack — chosen to suit what it's teaching.
+
+| # | Page | Vibe |
+|---|---|---|
+| — | `index.html` — start here, plus the 12-month overview | minimalist |
+| 01 | `map.html` — the whole map, and one request travelling it | futuristic |
+| 02 | `words.html` — the metaphor sheet and the tech stack atlas | chill |
+| 03 | `terminal.html` — why computers are really text-driven | pixel |
+| 04 | `m1.html` — IT Basics | modern |
+| 05 | `m2.html` — Developer Tools | gamify |
+| 06 | `m3.html` — AI Fundamentals | ai |
+| 07 | `m4.html` — Data Engineering Core | natural |
+| 08 | `m5.html` — CS & Cloud Infrastructure | futuristic |
+| 09 | `systems.html` — how Grab, Taobao, Shopee, foodpanda actually work | gamify |
+| 10 | `zero.html` — it all starts from 0 and 1 | pixel |
+| 11 | `finish.html` — month 12, and how this page was built | chill |
+
+### The backgrounds
+Every vibe draws its own canvas scene: a perspective grid and a rotating wireframe cube
+(futuristic), a neural net whose nodes pulse and link (ai), falling pixel blocks (pixel),
+drifting leaves (natural), bokeh (chill), collectibles (gamify), a wireframe octahedron
+(modern), a few drifting rules (minimalist). All plain Canvas 2D with hand-rolled 3D
+projection — no three.js, nothing downloaded.
+
+### The sound
+Each vibe has a **generative** soundtrack, not an audio file: a Web Audio scale, waveform,
+tempo and filter per theme, playing notes that never repeat the same way twice. Zero bytes
+to download and nothing copyrighted. It is **off by default** and starts only when you press
+the speaker in the top bar — browsers block autoplay audio, and so should anyone.
+
+### Building
+`index.html` and the chapter pages are generated. The original single-file version is kept
+at `build/source.html`, and `build/split.py` regenerates every page plus the shared assets:
+
+```bash
+python3 build/split.py
+```
+
+Shared CSS and JS live in `assets/` so the browser caches them once and every later
+chapter is a small page on top.
+
 ## Running it
 
-It's one file. Open `index.html` in any browser, or:
+Open `index.html` in any browser, or serve the folder:
 
 ```bash
 python3 -m http.server 8000
 # then visit http://localhost:8000
 ```
 
-No build, no npm install, no framework. Everything — CSS, JavaScript, SVG — is inline,
-which is itself part of the point the guide is making.
+No npm install, no framework, no runtime dependency. Everything — CSS, JavaScript, SVG,
+the 3D maths and the music — is hand-written and served as plain static files, which is
+itself part of the point the guide is making.
 
 ## Notes
 
-- **Themes** — light, dark, or follow-the-system, from the switch in the top bar. Your choice is remembered.
+- **Themes** — light, dark, or follow-the-system, from the switch in the top bar. Your choice,
+  your language, and your motion/sound preferences are remembered across chapters.
+- **Motion and sound** each have their own toggle in the top bar, and both respect
+  `prefers-reduced-motion`.
 - Every section paints its own background scene — blueprint grid on the map, phosphor scanlines on the
   terminal, a neural field on the AI milestone, falling bits on the last one.
 - The background is five fixed layers; its hue follows whichever milestone you're reading, and the

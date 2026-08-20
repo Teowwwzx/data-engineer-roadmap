@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CS & Cloud · The Lab Notebook</title>
+<meta name="description" content="A 12-month foundations roadmap for a new Data Engineer. Bilingual, interactive, one chapter at a time.">
+<link rel="stylesheet" href="assets/core.css">
+<link rel="stylesheet" href="assets/themes.css">
+<script>/* set theme + language before first paint, no flash */
+(function(){try{
+ var t=localStorage.getItem('labnotebook-theme');
+ if(t&&t!=='auto')document.documentElement.setAttribute('data-theme',t);
+ var l=localStorage.getItem('labnotebook-lang')||'en';
+ document.documentElement.setAttribute('data-lang',l);
+}catch(e){}})();</script>
+</head>
+<body class="lang-en" data-vibe="futuristic" data-chapter="m5">
+<div class="topbar">
+<div class="wrap">
+<div class="brand"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></div>
+<nav class="navlinks"><a href="index.html"><span class="en">Start</span><span class="zh">开始</span></a>
+<a href="map.html"><span class="en">The map</span><span class="zh">地图</span></a>
+<a href="words.html"><span class="en">Words</span><span class="zh">词汇</span></a>
+<a href="terminal.html"><span class="en">Terminal</span><span class="zh">终端</span></a>
+<a href="m1.html"><span class="en">1 · IT Basics</span><span class="zh">1 · IT 基础</span></a>
+<a href="m2.html"><span class="en">2 · Tools</span><span class="zh">2 · 工具</span></a>
+<a href="m3.html"><span class="en">3 · AI</span><span class="zh">3 · AI</span></a>
+<a href="m4.html"><span class="en">4 · Data</span><span class="zh">4 · 数据</span></a>
+<a class="on" href="m5.html"><span class="en">5 · CS &amp; Cloud</span><span class="zh">5 · 计算机与云</span></a>
+<a href="systems.html"><span class="en">Big systems</span><span class="zh">大系统</span></a>
+<a href="zero.html"><span class="en">0 and 1</span><span class="zh">0 与 1</span></a>
+<a href="finish.html"><span class="en">Finish</span><span class="zh">完成</span></a></nav>
+<div class="langsw">
+<button class="on" data-lang="en">EN</button>
+<button data-lang="zh">中文</button>
+</div>
+</div>
+<div class="pbar"><i id="pbar"></i></div>
+</div>
+
+<section data-scene="circuit" id="m5" style="--c:var(--m5)">
+<div class="wrap">
+<div class="ms">
+<div class="mshead">
+<div class="msnum">5</div>
+<div><div class="sub"><span class="en">Months 11–12 · Seeing through the abstraction</span><span class="zh">第 11–12 月 · 看穿抽象层</span></div>
+<h2><span class="en">Computer Science &amp; Cloud Infrastructure</span><span class="zh">计算机原理与云基础设施</span></h2></div>
+</div>
+<p class="en" style="color:var(--muted); max-width:68ch">This is the layer most people skip — and it's the layer that separates someone who can write a script from someone who can explain why it takes four hours and how to make it take four minutes. You don't need a CS degree. You need the mental model.</p>
+<p class="zh" style="color:var(--muted); max-width:68ch">这是大多数人跳过的一层——也正是这一层，区分了"会写脚本的人"和"能解释它为什么跑四小时、以及怎么让它跑四分钟的人"。你不需要计算机学位，你需要的是那个心智模型。</p>
+<div class="tldr"><div class="tl2"><span class="en">In plain English — the whole milestone in 4 lines</span><span class="zh">大白话版 —— 四行讲完这个阶段</span></div><ul class="en"><li><b>CPU is fast, memory is slower, disk is far slower, network is furthest.</b> Almost every slow thing is walking too far, too often.</li><li><b>C is translated once</b> before running. <b>Python is translated line by line</b>, every time — which is why it is slower.</li><li>pandas is fast <b>because underneath it is not Python</b>. "Vectorise it" means: let that faster layer do the work.</li><li>The <b>cloud</b> is renting someone else's computers by the minute. Put your database somewhere the internet cannot reach.</li></ul><ul class="zh"><li><b>CPU 最快，内存慢一点，磁盘慢得多，网络最远。</b>几乎所有"慢"，都是走得太远、走得太频繁。</li><li><b>C 在运行前一次性翻译完</b>；<b>Python 每次都逐行翻译</b> —— 这就是它慢的原因。</li><li>pandas 快，是<b>因为它底下根本不是 Python</b>。"向量化"的意思就是：让底下那层更快的东西去干活。</li><li><b>云</b>就是按分钟租别人的电脑。把你的数据库放在互联网够不到的地方。</li></ul></div>
+<!-- ============ 5.1 HARDWARE ============ -->
+<div class="topic" style="border-top:0">
+<h3><span class="ic">1</span><span class="en">How a computer actually works</span><span class="zh">计算机到底是怎么运转的</span></h3>
+<div class="lens">
+<div class="lens-tabs">
+<button class="on"><span class="en">WHY</span><span class="zh">为什么</span></button>
+<button><span class="en">THEN → NOW</span><span class="zh">以前 → 现在</span></button>
+<button><span class="en">WHAT &amp; HOW</span><span class="zh">是什么 · 怎么做</span></button>
+<button><span class="en">IF YOU SKIP IT</span><span class="zh">不懂会怎样</span></button>
+</div>
+<div class="lens-pane on">
+<div class="kicker"><span class="en">Why should a data person care about hardware?</span><span class="zh">做数据的人为什么要关心硬件？</span></div>
+<p class="en">Because every performance problem you will ever face is the same story in different clothes: <b>something is walking to the cold room too many times.</b></p>
+<p class="en">Without this model, "it's slow" is a mystery and you'll try random fixes — a bigger machine, more threads, a different library. With it, you can reason: is this reading from disk in a loop? Is it shipping data over the network row by row? Is it running out of RAM and swapping? Three questions, and one of them is almost always the answer.</p>
+<p class="zh">因为你将来遇到的每一个性能问题，都是同一个故事换件衣服：<b>有人在反复跑去冷藏室。</b></p>
+<p class="zh">没有这个模型，"它很慢"就是个谜，你只能乱试——换更大的机器、加线程、换个库。有了它，你可以推理：它是不是在循环里反复读磁盘？是不是在逐行走网络？是不是内存不够在换页？三个问题，答案几乎总在其中。</p>
+</div>
+<div class="lens-pane">
+<div class="evo">
+<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎样</span></h5>
+<ul class="en"><li>CPUs got faster every year, so slow code got faster for free. You could wait for hardware to fix you.</li><li>Spinning hard disks — a physical arm moving to a physical track. Random reads were catastrophically slow.</li><li>RAM was scarce and expensive; every byte was budgeted.</li><li>Scaling up meant one bigger, hotter, more expensive machine.</li></ul>
+<ul class="zh"><li>CPU 每年都变快，慢代码会自动变快。等硬件替你解决就行。</li><li>机械硬盘——一条物理磁臂移动到物理磁道。随机读慢得离谱。</li><li>内存又少又贵，每个字节都要精打细算。</li><li>扩容 = 换一台更大、更热、更贵的机器。</li></ul></div>
+<div class="evo-arrow">→</div>
+<div class="evo-col now"><h5><span class="en">How it works now</span><span class="zh">现在是怎样</span></h5>
+<ul class="en"><li>Single-core speed stopped improving much around 2005. Free speedups ended; now you get <b>more cores</b>, and only parallel code benefits.</li><li>SSDs removed the moving parts, but disk is still ~1,000× slower than RAM.</li><li>RAM is plentiful — so "load it all into memory" is often the correct, boring fix.</li><li>Scaling means <b>more machines</b>, which is why distributed tools (Spark, warehouses) exist at all.</li></ul>
+<ul class="zh"><li>单核速度大约在 2005 年后基本停滞。免费提速结束了，现在给你的是<b>更多核</b>，只有并行代码才受益。</li><li>SSD 去掉了机械部件，但磁盘仍然比内存慢约 1000 倍。</li><li>内存变得充裕——所以"全部加载进内存"常常就是那个正确又无聊的解法。</li><li>扩容意味着<b>更多台机器</b>，这也正是分布式工具（Spark、数仓）存在的全部理由。</li></ul></div>
+</div>
+<p class="en" style="margin-top:14px; font-size:14.5px; color:var(--muted)"><b>Why this matters right now:</b> the fact that single-core speed plateaued is <i>the</i> reason your job exists in its current form. If computers had kept doubling in speed, nobody would need distributed data engineering.</p>
+<p class="zh" style="margin-top:14px; font-size:14.5px; color:var(--muted)"><b>为什么这件事现在很重要：</b>单核速度触顶，正是你这份工作以今天这种形态存在的<i>根本</i>原因。如果电脑一直在翻倍变快，就没人需要分布式数据工程了。</p>
+</div>
+<div class="lens-pane">
+<div class="analogy" style="margin-top:0">
+<span class="lab"><span class="en">🧪 The bench, the shelf, and the cold room</span><span class="zh">🧪 实验台、架子、冷藏室</span></span>
+<p class="en">The <b>CPU</b> is you — the only thing that actually does work, and you can only hold one or two tubes at a time. <b>RAM</b> is your benchtop: fast to reach, small, and <b>wiped clean every night</b> (that's why unsaved work vanishes when power is lost). <b>Disk / SSD</b> is the cold room down the corridor: enormous, permanent, and slow — you have to get up and walk there.</p>
+<p class="zh"><b>CPU</b> 是你本人——唯一真正在干活的东西，而且一次只拿得住一两支管。<b>内存</b>是你的操作台：伸手就够到，但小，而且<b>每晚清空</b>（这就是断电后未保存的东西会消失的原因）。<b>磁盘/SSD</b> 是走廊尽头的冷藏室：巨大、永久、但慢——你得站起来走过去。</p>
+</div>
+<div class="two" style="margin-top:14px">
+<div class="mini"><h5><span class="en">Why your script died</span><span class="zh">你的脚本为什么挂了</span></h5>
+<p class="en"><b>MemoryError</b> / process killed = you tried to put more on the benchtop than fits. Fix: process in chunks, or use a tool that streams (Polars, DuckDB).</p>
+<p class="zh"><b>MemoryError</b> / 进程被杀 = 你想往操作台上放的东西超过了它的容量。解法：分块处理，或用支持流式的工具（Polars、DuckDB）。</p></div>
+<div class="mini"><h5><span class="en">Why your script is slow</span><span class="zh">你的脚本为什么慢</span></h5>
+<p class="en">Usually not the CPU. It's reading the same file repeatedly, querying row-by-row inside a loop, or shipping data over the network a thousand times. Do the work in bulk, once.</p>
+<p class="zh">通常不是 CPU 的问题。是反复读同一个文件、在循环里逐行查数据库、或者把数据在网络上来回搬一千次。改成批量、一次搞定。</p></div>
+</div>
+</div>
+<div class="lens-pane">
+<div class="ifnot">
+<p class="en"><b>If you don't have this model:</b> you'll respond to slowness by asking for a bigger machine. Often the machine was never the problem, the money is spent, and the job is still slow — now with a bigger bill attached.</p>
+<p class="en"><b>The classic beginner pattern:</b> a loop that opens a database connection, runs one query, closes it — a million times. That's a million round trips. The same work as one query returning a million rows, done a million times more expensively.</p>
+<p class="en"><b>The cloud version of the mistake:</b> reading a file from object storage inside a loop. Each read crosses a network. Ten thousand small reads can take an hour where one bulk read takes four seconds.</p>
+<p class="zh"><b>没有这个模型：</b>一慢你就去申请更大的机器。而机器往往从来不是问题，钱花了，任务还是慢——只是账单更大了。</p>
+<p class="zh"><b>新手最经典的模式：</b>循环里开一个数据库连接、跑一条查询、关掉——重复一百万次。那是一百万次往返。和"一条查询返回一百万行"做的是同样的事，但代价高一百万倍。</p>
+<p class="zh"><b>这个错误的云版本：</b>在循环里从对象存储读文件。每次读都跨一次网络。一万次小读可能要一小时，而一次批量读只要四秒。</p>
+</div>
+</div>
+</div>
+<div class="stage" data-anim="">
+<div class="cap"><span><span class="en">Animation · the memory hierarchy</span><span class="zh">动画 · 存储层级</span></span><button class="replay"><span class="en">↻ Replay</span><span class="zh">↻ 重播</span></button></div>
+<svg viewbox="0 0 800 260">
+<g class="mem-el me1"><rect class="sv-box" height="52" rx="10" style="fill:color-mix(in srgb, var(--m5) 7%, var(--paper));stroke:var(--m5);stroke-width:2.5" width="300" x="250" y="20"></rect>
+<text class="sv-ttl" style="fill:var(--m5-deep)" text-anchor="middle" x="400" y="42"><tspan class="en">CPU + cache</tspan><tspan class="zh">CPU + 缓存</tspan></text>
+<text class="sv-sm" text-anchor="middle" x="400" y="60"><tspan class="en">tiny · ~1 nanosecond · does all the thinking</tspan><tspan class="zh">极小 · 约 1 纳秒 · 所有计算都在这</tspan></text></g>
+<g class="mem-el me2"><rect class="sv-box" height="52" rx="10" style="fill:color-mix(in srgb, var(--no) 8%, var(--paper));stroke:#fb7185;stroke-width:2" width="440" x="180" y="84"></rect>
+<text class="sv-ttl" text-anchor="middle" x="400" y="106"><tspan class="en">RAM</tspan><tspan class="zh">内存 RAM</tspan></text>
+<text class="sv-sm" text-anchor="middle" x="400" y="124"><tspan class="en">GBs · ~100 ns (100× slower) · erased on power off</tspan><tspan class="zh">GB 级 · 约 100 纳秒（慢 100 倍）· 断电即失</tspan></text></g>
+<g class="mem-el me3"><rect class="sv-box" height="52" rx="10" style="fill:var(--surface-2);stroke:var(--muted-2);stroke-width:2" width="580" x="110" y="148"></rect>
+<text class="sv-ttl" text-anchor="middle" x="400" y="170"><tspan class="en">SSD / DISK</tspan><tspan class="zh">固态硬盘 / 磁盘</tspan></text>
+<text class="sv-sm" text-anchor="middle" x="400" y="188"><tspan class="en">TBs · ~100,000 ns (100,000× slower) · survives reboot</tspan><tspan class="zh">TB 级 · 约 10 万纳秒（慢 10 万倍）· 重启仍在</tspan></text></g>
+<g class="mem-el me4"><rect class="sv-box" height="40" rx="10" style="fill:var(--surface-2);stroke:var(--line-2);stroke-dasharray:5 4" width="720" x="40" y="212"></rect>
+<text class="sv-sm" text-anchor="middle" x="400" y="237"><tspan class="en">NETWORK / object storage (S3, Blob) — effectively unlimited · milliseconds · another building entirely</tspan><tspan class="zh">网络 / 对象存储（S3、Blob）—— 容量几乎无限 · 毫秒级 · 完全是另一栋楼</tspan></text></g>
+<circle class="memdot" cx="740" cy="174" fill="var(--m5)" r="7"></circle>
+</svg>
+<p class="note"><span class="en">If a nanosecond were one second, reading from disk would take about <b>a day and a half</b>. That is why "just load it all into memory" is usually the fix.</span><span class="zh">如果一纳秒等于一秒，那么读一次磁盘大约要<b>一天半</b>。这就是为什么"干脆全加载进内存"通常就是解法。</span></p>
+</div>
+<div class="play" data-play="lat">
+<div class="play-head">
+<span class="play-badge"><span class="en">▶ Playground</span><span class="zh">▶ 动手玩</span></span>
+<h4><span class="en">Latency, at human scale</span><span class="zh">把延迟放大到人能感受的尺度</span></h4>
+<p class="sub2"><span class="en">Real latencies are too small to feel — and too far apart to draw. If the top bar took one second, the bottom one would take <b>five years</b>. So both the bar lengths and the fill times below are <b>logarithmic</b>: each step right is roughly ten times slower than the last. Press play, then read the grey line under each bar — that is the honest, linear comparison.</span><span class="zh">真实延迟小到感受不到——而且差距大到画不下。如果最上面那条要一秒，最下面那条就要<b>五年</b>。所以下面的条长和填充时间都是<b>对数刻度</b>：每往下一格，大约慢十倍。点播放，然后读每条下面那行灰字——那才是诚实的线性对比。</span></p>
+</div>
+<div class="play-body">
+<div class="prow">
+<button class="pbtn active" id="lat-go">▶ <span class="en">Run the race</span><span class="zh">开始比赛</span></button>
+<span class="en" style="font-size:13px; color:var(--muted)">log scale — each step ≈ 10× slower</span>
+<span class="zh" style="font-size:13px; color:var(--muted)">对数刻度 —— 每一格约慢 10 倍</span>
+</div>
+<div class="lat" id="lat-rows"></div>
+<p class="en" style="font-size:13.5px; color:var(--muted); margin:14px 0 0">This is the single most useful intuition in performance work. Anything that crosses a line downward in this chart costs you orders of magnitude — so the goal is always: <b>do it once, in bulk, as high up this list as you can.</b></p>
+<p class="zh" style="font-size:13.5px; color:var(--muted); margin:14px 0 0">这是性能工作里最有用的一个直觉。在这张图里每往下跨一层，代价就上一个数量级——所以目标永远是：<b>一次做完、批量做、尽量在这个列表靠上的位置做。</b></p>
+</div>
+</div>
+<div class="rw">
+<div class="rwh"><span class="en">◈ Real-world example</span><span class="zh">◈ 真实场景</span></div>
+<p class="scene en">A colleague's enrichment script takes 6 hours for 200,000 records. They ask for a bigger server.</p>
+<p class="en">You read the code. Inside the loop, for every record, it opens a connection and runs one <code class="inl">SELECT</code>. That's 200,000 network round trips at roughly 100 ms each — about 5.5 hours of pure waiting, with the CPU idle almost the entire time. A bigger server would change nothing.<br/><b>The fix:</b> one query that fetches all the lookup values into a dictionary, then look up in memory. Runtime drops from 6 hours to about 90 seconds. No new hardware, no new library — just knowing which line in the chart above the code was standing on.</p>
+<p class="scene zh">同事的数据补全脚本处理 20 万条要跑 6 小时。他来申请一台更大的服务器。</p>
+<p class="zh">你读了代码。循环里，每条记录都开一次连接、跑一条 <code class="inl">SELECT</code>。那就是 20 万次网络往返，每次约 100 毫秒——大约 5.5 小时纯等待，而 CPU 几乎全程闲着。换更大的服务器毫无用处。<br/><b>解法：</b>用一条查询把所有对照值取进一个字典，然后在内存里查。运行时间从 6 小时降到约 90 秒。没有新硬件、没有新库——只是知道了这段代码站在上面那张图的哪一层。</p>
+</div>
+</div>
+<!-- ============ 5.2 C vs PYTHON ============ -->
+<div class="topic">
+<h3><span class="ic">2</span><span class="en">Why C is fast and Python is slow</span><span class="zh">为什么 C 快而 Python 慢</span></h3>
+<div class="lens">
+<div class="lens-tabs">
+<button class="on"><span class="en">WHY</span><span class="zh">为什么</span></button>
+<button><span class="en">THEN → NOW</span><span class="zh">以前 → 现在</span></button>
+<button><span class="en">WHAT &amp; HOW</span><span class="zh">是什么 · 怎么做</span></button>
+<button><span class="en">IF YOU SKIP IT</span><span class="zh">不懂会怎样</span></button>
+</div>
+<div class="lens-pane on">
+<div class="kicker"><span class="en">Why does this matter if you'll never write C?</span><span class="zh">你永远不会写 C，为什么还要懂这个？</span></div>
+<p class="en">Because it explains the single most valuable optimisation in data work, and why it feels like magic.</p>
+<p class="en">pandas and NumPy are fast <b>because they aren't really Python</b> — underneath, they're compiled C. <code class="inl">df["a"] * 2</code> is one C operation over a million values. A Python <code class="inl">for</code> loop doing identical arithmetic is a million separate interpreted steps. Same maths, 50–100× difference.</p>
+<p class="en"><b>The purpose in one line:</b> when someone says "vectorise it," they mean <i>stop doing the work in Python and hand the whole array to the C underneath.</i> Now you know why that works.</p>
+<p class="zh">因为它解释了数据工作里最值钱的一项优化，以及为什么它像魔法。</p>
+<p class="zh">pandas 和 NumPy 之所以快，是<b>因为它们其实不是 Python</b>——底下是编译好的 C。<code class="inl">df["a"] * 2</code> 是对一百万个值的一次 C 运算；而做同样算术的 Python <code class="inl">for</code> 循环，是一百万个各自被解释的步骤。同样的数学，差 50–100 倍。</p>
+<p class="zh"><b>一句话说清目的：</b>当有人说"向量化一下"，意思是<i>别在 Python 里做这件事，把整个数组交给底下的 C</i>。现在你知道为什么这管用了。</p>
+</div>
+<div class="lens-pane">
+<div class="evo">
+<div class="evo-col then"><h5><span class="en">The old trade-off</span><span class="zh">以前的权衡</span></h5>
+<ul class="en"><li>Choose one: fast to write (Python, R) <b>or</b> fast to run (C, Fortran).</li><li>Serious numerical work meant writing C and suffering.</li><li>Prototypes were rewritten from scratch in another language for production. Twice the work, two chances to introduce bugs.</li></ul>
+<ul class="zh"><li>二选一：写得快（Python、R）<b>或</b>跑得快（C、Fortran）。</li><li>正经的数值计算意味着写 C 并且忍受它。</li><li>原型上生产时要用另一种语言从头重写。双倍工作量，两次引入 bug 的机会。</li></ul></div>
+<div class="evo-arrow">→</div>
+<div class="evo-col now"><h5><span class="en">How it works now</span><span class="zh">现在是怎样</span></h5>
+<ul class="en"><li>You write Python; the heavy loops run in compiled code you never see (NumPy, pandas, PyTorch).</li><li>New tools go further: <b>Polars</b> and <b>DuckDB</b> are written in Rust/C++ with a Python interface.</li><li>The skill shifted from "write fast code" to <b>"stay out of the interpreter's way"</b>.</li><li>Same source runs on a laptop and on a hundred machines, unchanged.</li></ul>
+<ul class="zh"><li>你写 Python，重循环跑在你看不见的编译代码里（NumPy、pandas、PyTorch）。</li><li>新工具走得更远：<b>Polars</b> 和 <b>DuckDB</b> 用 Rust/C++ 写，外面套 Python 接口。</li><li>技能从"写出快的代码"变成了<b>"别挡着解释器的路"</b>。</li><li>同一份源码，在笔记本上和一百台机器上都能跑，不用改。</li></ul></div>
+</div>
+</div>
+<div class="lens-pane">
+<div class="analogy" style="margin-top:0">
+<span class="lab"><span class="en">🧪 A translated protocol vs a live interpreter</span><span class="zh">🧪 译好的方案 vs 现场翻译</span></span>
+<p class="en"><b>C is compiled.</b> Before you run anything, the whole protocol is translated once into the machine's native language, checked, and optimised. Slow to prepare — then pure speed.</p>
+<p class="en"><b>Python is interpreted.</b> A translator stands beside the bench converting each line as you reach it, every single time, including inside a loop that runs a million times.</p>
+<p class="zh"><b>C 是编译的。</b>运行之前，整份方案先被一次性翻译成机器的母语，检查、优化。准备慢——然后一路飞。</p>
+<p class="zh"><b>Python 是解释的。</b>有个翻译站在台边，你走到哪句他翻哪句，每次都翻，包括在一个跑一百万次的循环里。</p>
+</div>
+<div class="tblwrap"><table class="tbl">
+<tr><th></th><th><span class="en">Compiled (C, Rust, Go)</span><span class="zh">编译型（C、Rust、Go）</span></th><th><span class="en">Interpreted (Python, R, JS)</span><span class="zh">解释型（Python、R、JS）</span></th></tr>
+<tr><td><span class="en">Start-up</span><span class="zh">启动</span></td><td><span class="en">Slow — must build first</span><span class="zh">慢 —— 得先编译</span></td><td><span class="en">Instant</span><span class="zh">立刻</span></td></tr>
+<tr><td><span class="en">Run speed</span><span class="zh">运行速度</span></td><td><span class="en">Very fast</span><span class="zh">非常快</span></td><td><span class="en">10–100× slower for raw loops</span><span class="zh">纯循环慢 10–100 倍</span></td></tr>
+<tr><td><span class="en">Errors found</span><span class="zh">错误何时发现</span></td><td><span class="en">Many caught before it ever runs</span><span class="zh">很多在运行前就被抓住</span></td><td><span class="en">Only when that line executes — possibly at 3am</span><span class="zh">执行到那行才发现 —— 可能是凌晨三点</span></td></tr>
+<tr><td><span class="en">Best for</span><span class="zh">最适合</span></td><td><span class="en">Databases, engines, performance-critical work</span><span class="zh">数据库、引擎、性能关键的部分</span></td><td><span class="en">Analysis, glue, pipelines, iteration speed</span><span class="zh">分析、胶水、管道、快速迭代</span></td></tr>
+</table></div>
+</div>
+<div class="lens-pane">
+<div class="ifnot">
+<p class="en"><b>If you write Python loops over big data:</b> jobs that should take a minute take an hour. It works in testing on 1,000 rows and dies in production on 10 million — the worst possible place to find out.</p>
+<p class="en"><b>If you assume "Python is just slow" and give up:</b> you'll reach for Spark and a cluster for a dataset that DuckDB would handle on your laptop in nine seconds. Distributed systems have real operational cost; reaching for one you don't need is an expensive habit.</p>
+<p class="en"><b>If you never learn what a compiler does:</b> type errors that C would catch before running will reach production in Python. That's the trade you accepted — which is exactly why tests and type hints matter more in Python, not less.</p>
+<p class="zh"><b>如果对大数据写 Python 循环：</b>本该一分钟的任务要跑一小时。在 1000 行的测试里没事，在一千万行的生产环境挂掉——这是最糟的发现地点。</p>
+<p class="zh"><b>如果认定"Python 就是慢"然后放弃：</b>你会为一个 DuckDB 在你笔记本上九秒就能搞定的数据集，去上 Spark 和集群。分布式系统有真实的运维成本，动不动就上一个用不着的，是个昂贵的习惯。</p>
+<p class="zh"><b>如果从不了解编译器做什么：</b>那些 C 在运行前就能抓住的类型错误，在 Python 里会一路跑到生产环境。这就是你接受的那笔交易——也正因如此，测试和类型标注在 Python 里更重要，而不是更不重要。</p>
+</div>
+</div>
+</div>
+<div class="stage" data-anim="">
+<div class="cap"><span><span class="en">Animation · compiled vs interpreted</span><span class="zh">动画 · 编译 vs 解释</span></span><button class="replay"><span class="en">↻ Replay</span><span class="zh">↻ 重播</span></button></div>
+<svg viewbox="0 0 800 200">
+<line class="sv-line" stroke-dasharray="4 4" x1="120" x2="700" y1="60" y2="60"></line>
+<line class="sv-line" stroke-dasharray="4 4" x1="120" x2="700" y1="140" y2="140"></line>
+<text class="sv-ttl" style="fill:var(--m2)" x="20" y="65">C</text>
+<text class="sv-ttl" style="fill:var(--m1)" x="20" y="145">Python</text>
+<g class="compile-box"><rect height="26" rx="6" style="fill:color-mix(in srgb, var(--m2) 16%, var(--paper));stroke:var(--m2)" width="112" x="120" y="26"></rect><text class="sv-sm" style="fill:var(--m2-deep)" text-anchor="middle" x="176" y="44"><tspan class="en">compiling…</tspan><tspan class="zh">编译中…</tspan></text></g>
+<g class="race-c"><circle cx="128" cy="60" fill="var(--m2)" r="10"></circle></g>
+<g class="race-py"><circle cx="128" cy="140" fill="var(--m1)" r="10"></circle></g>
+<g class="py-step"><text class="sv-sm" style="fill:var(--m1)" text-anchor="middle" x="176" y="172"><tspan class="en">translating line 1… line 2… line 3… every single pass</tspan><tspan class="zh">翻译第 1 行… 第 2 行… 第 3 行… 每一轮都翻一遍</tspan></text></g>
+<line stroke="var(--muted-2)" stroke-dasharray="6 6" stroke-width="3" x1="700" x2="700" y1="42" y2="78"></line>
+<line stroke="var(--muted-2)" stroke-dasharray="6 6" stroke-width="3" x1="700" x2="700" y1="122" y2="158"></line>
+<text class="sv-sm" x="716" y="64"><tspan class="en">done</tspan><tspan class="zh">完成</tspan></text>
+<text class="sv-sm" x="716" y="144"><tspan class="en">done</tspan><tspan class="zh">完成</tspan></text>
+<text class="sv-sm" text-anchor="middle" x="400" y="16"><tspan class="en">C pauses to translate once, then sprints. Python leaves immediately and jogs the whole way.</tspan><tspan class="zh">C 先停下来翻译一次，然后冲刺。Python 立刻出发，然后一路慢跑。</tspan></text>
+</svg>
+</div>
+<div class="rw">
+<div class="rwh"><span class="en">◈ Real-world example</span><span class="zh">◈ 真实场景</span></div>
+<p class="scene en">A daily job that scores 2 million rows takes 40 minutes and is starting to overrun into business hours.</p>
+<p class="en">The scoring is a Python <code class="inl">for</code> loop applying four arithmetic rules per row. Rewritten as four vectorised pandas expressions on whole columns, the same job finishes in 25 seconds — a 96× improvement, on identical hardware, from a change of about eight lines.<br/><b>What you actually did:</b> moved the work from the interpreter into the compiled C underneath. <b>What it looked like to your manager:</b> you made something 96× faster in an afternoon. This one insight will pay for the whole of Milestone 5.</p>
+<p class="scene zh">一个每天给 200 万行打分的任务要跑 40 分钟，已经开始拖到上班时间了。</p>
+<p class="zh">打分逻辑是一个 Python <code class="inl">for</code> 循环，对每行应用四条算术规则。改写成四条对整列的向量化 pandas 表达式后，同样的任务 25 秒跑完——同样的硬件上快了 96 倍，改动约八行代码。<br/><b>你实际做的：</b>把计算从解释器搬到了底下编译好的 C 里。<b>在你主管眼里：</b>你一个下午把一个东西提速了 96 倍。仅这一个认知，就够回本整个阶段五。</p>
+</div>
+</div>
+<!-- ============ 5.3 CLOUD ============ -->
+<div class="topic">
+<h3><span class="ic">3</span><span class="en">Cloud platforms — AWS, Azure, networking, security</span><span class="zh">云平台 —— AWS、Azure、网络与安全</span></h3>
+<div class="lens">
+<div class="lens-tabs">
+<button class="on"><span class="en">WHY</span><span class="zh">为什么</span></button>
+<button><span class="en">THEN → NOW</span><span class="zh">以前 → 现在</span></button>
+<button><span class="en">WHAT &amp; HOW</span><span class="zh">是什么 · 怎么做</span></button>
+<button><span class="en">IF YOU SKIP IT</span><span class="zh">不懂会怎样</span></button>
+</div>
+<div class="lens-pane on">
+<div class="kicker"><span class="en">Why rent computers instead of buying them?</span><span class="zh">为什么租电脑而不是买？</span></div>
+<p class="en">Because demand is spiky and hardware is not. Your nightly job needs 64 machines for one hour and zero machines for the other 23. Buying 64 machines means paying for 23 hours of idle metal, plus the room, the cooling, the electricity and the person who replaces failed drives.</p>
+<p class="en">There's a second reason that matters more day to day: <b>time to try things</b>. Testing an idea used to mean a purchase order and six weeks. Now it's four minutes and about a dollar. That changes what's worth attempting.</p>
+<p class="zh">因为需求是尖峰式的，而硬件不是。你的每晚任务需要 64 台机器跑一小时，剩下 23 小时一台都不用。买 64 台意味着为 23 小时的闲置金属付钱，外加机房、制冷、电费，以及换坏硬盘的那个人。</p>
+<p class="zh">还有个日常更重要的理由：<b>试错的时间成本</b>。以前验证一个想法要走采购流程等六周，现在是四分钟、大约一美元。这改变了"什么值得一试"。</p>
+</div>
+<div class="lens-pane">
+<div class="evo">
+<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎样</span></h5>
+<ul class="en"><li>Buy a server. Wait six weeks. Rack it in a room in your building. Hope you sized it right.</li><li>Capacity was a guess made a year in advance, and you paid for the peak all year.</li><li>Disaster recovery meant a second room in a second city that you hoped never to use.</li><li>Security was mostly "it's inside our building, so it's safe."</li></ul>
+<ul class="zh"><li>买一台服务器，等六周，装进自家楼里的机房，祈祷容量估对了。</li><li>容量是提前一年拍脑袋定的，而且全年按峰值付钱。</li><li>灾备意味着在另一个城市再建一个机房，并祈祷永远用不上。</li><li>安全基本上是"它在我们楼里，所以是安全的"。</li></ul></div>
+<div class="evo-arrow">→</div>
+<div class="evo-col now"><h5><span class="en">How it works now</span><span class="zh">现在是怎样</span></h5>
+<ul class="en"><li>Rent by the minute. Need 64 machines for an hour? Have them in four minutes; give them back after.</li><li>Autoscaling matches capacity to actual demand, hour by hour.</li><li>Storage is effectively unlimited and replicated across data centres by default.</li><li>Security is explicit and identity-based: <b>nothing is trusted just for being inside the network.</b></li></ul>
+<ul class="zh"><li>按分钟租。要 64 台跑一小时？四分钟内到位，用完还回去。</li><li>自动伸缩让容量按小时贴合真实需求。</li><li>存储几乎无限，且默认跨数据中心复制。</li><li>安全是显式的、基于身份的：<b>不会因为"在内网里"就被信任。</b></li></ul></div>
+</div>
+<p class="en" style="margin-top:14px; font-size:14.5px; color:var(--muted)"><b>The trap that came with it:</b> the cost moved from a one-time purchase you noticed to a monthly bill you don't. A forgotten test cluster costs nothing to create and thousands over a quarter. Billing alerts are not optional.</p>
+<p class="zh" style="margin-top:14px; font-size:14.5px; color:var(--muted)"><b>随之而来的陷阱：</b>成本从"你会注意到的一次性采购"变成了"你不会注意到的月账单"。一个忘了关的测试集群，创建时不花钱，一个季度下来是几千块。账单告警不是可选项。</p>
+</div>
+<div class="lens-pane">
+<div class="analogy" style="margin-top:0">
+<span class="lab"><span class="en">🧪 Renting a national facility instead of building your own</span><span class="zh">🧪 租用国家级平台，而不是自建</span></span>
+<p class="en">You could buy a mass spectrometer, house it, service it, staff it — and pay for all of that whether you run one sample a month or a thousand. Or you could send samples to a shared facility and pay per run. Same reasoning, same trade-offs.</p>
+<p class="zh">你可以买一台质谱仪，给它腾地方、做保养、配人——不管你一个月跑一份样本还是一千份，这些钱都得花。或者你把样本送到共享平台，按次付费。同样的逻辑，同样的取舍。</p>
+</div>
+<div class="tblwrap"><table class="tbl">
+<tr><th><span class="en">What it does</span><span class="zh">用来做什么</span></th><th>AWS</th><th>Azure</th></tr>
+<tr><td><span class="en">A rented computer</span><span class="zh">一台租来的电脑</span></td><td>EC2</td><td>Virtual Machines</td></tr>
+<tr><td><span class="en">Dump files anywhere, cheaply</span><span class="zh">便宜地丢文件</span></td><td>S3</td><td>Blob Storage</td></tr>
+<tr><td><span class="en">Managed SQL database</span><span class="zh">托管 SQL 数据库</span></td><td>RDS</td><td>Azure SQL</td></tr>
+<tr><td><span class="en">Analytics warehouse</span><span class="zh">分析型数仓</span></td><td>Redshift</td><td>Synapse / Fabric</td></tr>
+<tr><td><span class="en">Run code without a server</span><span class="zh">无服务器运行代码</span></td><td>Lambda</td><td>Functions</td></tr>
+<tr><td><span class="en">Who is allowed to do what</span><span class="zh">谁被允许做什么</span></td><td>IAM</td><td>Entra ID + RBAC</td></tr>
+<tr><td><span class="en">Your private network</span><span class="zh">你的私有网络</span></td><td>VPC</td><td>VNet</td></tr>
+</table></div>
+<details class="acc"><summary><span class="en">Networking, in the five terms you'll actually hear</span><span class="zh">网络：你真正会听到的五个词</span></summary>
+<div class="body">
+<p class="en"><b>IP address</b> — a machine's street address. <b>Port</b> — which door on that building (443 = secure web, 5432 = PostgreSQL).</p>
+<p class="en"><b>DNS</b> — the phone book: turns <code class="inl">lab.example.com</code> into an IP. "It's a DNS issue" is a real and extremely common diagnosis.</p>
+<p class="en"><b>Firewall / security group</b> — the door policy: which addresses may knock on which ports. When something "can't connect" and the code is fine, this is usually why.</p>
+<p class="en"><b>Public vs private subnet</b> — public is reachable from the internet, private is not. Your database belongs in a private subnet. Always.</p>
+<p class="en"><b>TLS / HTTPS</b> — the sealed envelope. Everything in transit should be encrypted, without exception.</p>
+<p class="zh"><b>IP 地址</b>——机器的门牌号。<b>端口</b>——这栋楼的哪扇门（443 = 安全网页，5432 = PostgreSQL）。</p>
+<p class="zh"><b>DNS</b>——电话簿：把 <code class="inl">lab.example.com</code> 翻译成 IP。"这是 DNS 问题"是一个真实且极其常见的诊断。</p>
+<p class="zh"><b>防火墙 / 安全组</b>——门禁策略：哪些地址可以敲哪些端口。当代码没问题却"连不上"时，通常就是它。</p>
+<p class="zh"><b>公有 vs 私有子网</b>——公有可从互联网访问，私有不行。你的数据库属于私有子网。永远。</p>
+<p class="zh"><b>TLS / HTTPS</b>——密封信封。传输中的一切都应该加密，没有例外。</p>
+</div>
+</details>
+<details class="acc"><summary><span class="en">Security habits to build in your first year</span><span class="zh">第一年就该养成的安全习惯</span></summary>
+<div class="body">
+<p class="en"><b>Never put a password or key in your code.</b> Not even temporarily, not even in a branch you'll delete. Git remembers forever, and bots scan public repos within minutes.</p>
+<p class="en"><b>Least privilege, always.</b> If your pipeline only reads, give it read-only credentials. Damage is bounded by permissions granted.</p>
+<p class="en"><b>Separate environments.</b> Dev, staging, production — different credentials. Everyone who has run a <code class="inl">DELETE</code> against the wrong database learned this the same way.</p>
+<p class="en"><b>Know what's sensitive.</b> Personal, health and financial data carry legal obligations. When in doubt, ask before copying it anywhere new — including into an AI prompt.</p>
+<p class="en"><b>Turn off what you're not using</b>, and set a billing alert on day one.</p>
+<p class="zh"><b>绝不要把密码或密钥写进代码。</b>哪怕只是临时，哪怕是在一条你打算删掉的分支上。Git 会永远记得，而机器人几分钟内就会扫到公开仓库。</p>
+<p class="zh"><b>永远最小权限。</b>管道只读，就给只读凭据。损失的上限由你授予的权限决定。</p>
+<p class="zh"><b>环境要分开。</b>开发、预发、生产——用不同的凭据。每一个对着错误的数据库执行过 <code class="inl">DELETE</code> 的人，都是这样学会的。</p>
+<p class="zh"><b>知道什么是敏感数据。</b>个人、健康、财务数据都带法律义务。拿不准就先问，再往新地方复制——包括粘进 AI 的提示词。</p>
+<p class="zh"><b>不用的就关掉</b>，并且第一天就设好账单告警。</p>
+</div>
+</details>
+</div>
+<div class="lens-pane">
+<div class="ifnot">
+<p class="en"><b>If you put a database in a public subnet:</b> automated bots will find it within minutes of it coming online. Not "might" — will. The internet is continuously port-scanned by machines looking for exactly this.</p>
+<p class="en"><b>If you hardcode a credential and push it:</b> assume it is compromised the moment it hits a public repo, even if you delete it in the next commit. Git history keeps it, and scanners are faster than you.</p>
+<p class="en"><b>If you don't set a billing alert:</b> a misconfigured job or a forgotten cluster runs for three weeks. You find out at the end of the month, and the conversation about it is not about engineering.</p>
+<p class="en"><b>If you don't understand subnets and security groups:</b> you'll debug "connection refused" in your code for a whole day when the answer was a firewall rule someone changed on Tuesday.</p>
+<p class="zh"><b>如果把数据库放在公有子网：</b>它上线几分钟内就会被自动化程序发现。不是"可能"，是"一定"。互联网上一直有机器在扫端口，找的就是这个。</p>
+<p class="zh"><b>如果把凭据硬编码然后推上去：</b>就当它在进入公开仓库那一刻已经泄露了，哪怕你下一次提交就删掉。Git 历史会留着，而扫描器比你快。</p>
+<p class="zh"><b>如果不设账单告警：</b>一个配置错的任务或忘关的集群会跑三个星期。你月底才发现，而那场对话谈的不是技术。</p>
+<p class="zh"><b>如果不懂子网和安全组：</b>你会花一整天在代码里查"connection refused"，而答案是周二有人改了一条防火墙规则。</p>
+</div>
+</div>
+</div>
+<div class="stage" data-anim="">
+<div class="cap"><span><span class="en">Animation · the shape of a cloud system</span><span class="zh">动画 · 一个云系统的形状</span></span><button class="replay"><span class="en">↻ Replay</span><span class="zh">↻ 重播</span></button></div>
+<svg viewbox="0 0 800 280">
+<g class="cl-el cl1"><rect class="sv-box" height="52" rx="10" width="110" x="20" y="110"></rect><text class="sv-lbl" text-anchor="middle" x="75" y="132"><tspan class="en">Users</tspan><tspan class="zh">用户</tspan></text><text class="sv-sm" text-anchor="middle" x="75" y="150"><tspan class="en">the internet</tspan><tspan class="zh">互联网</tspan></text></g>
+<g class="cl-el cl2"><g class="cl-shield"><rect class="sv-box" height="68" rx="10" style="stroke:var(--m5);stroke-dasharray:5 4" width="110" x="170" y="102"></rect></g>
+<text class="sv-lbl" style="fill:var(--m5-deep)" text-anchor="middle" x="225" y="126"><tspan class="en">Firewall</tspan><tspan class="zh">防火墙</tspan></text>
+<text class="sv-sm" text-anchor="middle" x="225" y="144"><tspan class="en">+ identity</tspan><tspan class="zh">+ 身份认证</tspan></text>
+<text class="sv-sm" text-anchor="middle" x="225" y="160"><tspan class="en">who may enter?</tspan><tspan class="zh">谁可以进？</tspan></text></g>
+<g class="cl-el cl3"><rect class="sv-box" height="52" rx="10" width="120" x="320" y="110"></rect><text class="sv-lbl" text-anchor="middle" x="380" y="132"><tspan class="en">Load balancer</tspan><tspan class="zh">负载均衡</tspan></text><text class="sv-sm" text-anchor="middle" x="380" y="150"><tspan class="en">shares the queue</tspan><tspan class="zh">分摊请求</tspan></text></g>
+<g class="cl-el cl4"><rect class="sv-box" height="44" rx="9" width="120" x="490" y="40"></rect><text class="sv-lbl" text-anchor="middle" x="550" y="67"><tspan class="en">Server 1</tspan><tspan class="zh">服务器 1</tspan></text></g>
+<g class="cl-el cl4"><rect class="sv-box" height="44" rx="9" width="120" x="490" y="94"></rect><text class="sv-lbl" text-anchor="middle" x="550" y="121"><tspan class="en">Server 2</tspan><tspan class="zh">服务器 2</tspan></text></g>
+<g class="cl-el cl5"><rect class="sv-box" height="44" rx="9" style="stroke:var(--ok);stroke-dasharray:5 4" width="120" x="490" y="148"></rect><text class="sv-lbl" style="fill:var(--ok-deep)" text-anchor="middle" x="550" y="175"><tspan class="en">Server 3 (new)</tspan><tspan class="zh">服务器 3（新增）</tspan></text></g>
+<g class="cl-el cl5"><text class="sv-sm" style="fill:var(--ok-deep)" text-anchor="middle" x="550" y="210"><tspan class="en">auto-scaled: busy → add, quiet → remove</tspan><tspan class="zh">自动伸缩：忙了加，闲了减</tspan></text></g>
+<g class="cl-el cl4"><rect class="sv-box" height="52" rx="10" width="120" x="660" y="40"></rect><text class="sv-lbl" text-anchor="middle" x="720" y="62"><tspan class="en">Database</tspan><tspan class="zh">数据库</tspan></text><text class="sv-sm" text-anchor="middle" x="720" y="80"><tspan class="en">private subnet</tspan><tspan class="zh">私有子网</tspan></text></g>
+<g class="cl-el cl4"><rect class="sv-box" height="52" rx="10" width="120" x="660" y="104"></rect><text class="sv-lbl" text-anchor="middle" x="720" y="126"><tspan class="en">Object store</tspan><tspan class="zh">对象存储</tspan></text><text class="sv-sm" text-anchor="middle" x="720" y="144">S3 / Blob</text></g>
+<line class="sv-line" x1="130" x2="170" y1="136" y2="136"></line>
+<line class="sv-line" x1="280" x2="320" y1="136" y2="136"></line>
+<line class="sv-line" x1="440" x2="490" y1="136" y2="62"></line>
+<line class="sv-line" x1="440" x2="490" y1="136" y2="116"></line>
+<line class="sv-line" x1="440" x2="490" y1="136" y2="170"></line>
+<line class="sv-line" x1="610" x2="660" y1="62" y2="66"></line>
+<line class="sv-line" x1="610" x2="660" y1="116" y2="126"></line>
+<text class="sv-sm" style="fill:var(--m5-deep)" text-anchor="end" x="782" y="180"><tspan class="en">↑ not reachable from the internet</tspan><tspan class="zh">↑ 互联网访问不到</tspan></text>
+<text class="sv-sm" text-anchor="middle" x="400" y="268"><tspan class="en">Every cloud diagram you'll ever see is a variation on this. AWS and Azure just use different product names.</tspan><tspan class="zh">你以后看到的每张云架构图都是这张的变体。AWS 和 Azure 只是产品名不同。</tspan></text>
+</svg>
+</div>
+<div class="play" data-play="scale">
+<div class="play-head">
+<span class="play-badge"><span class="en">▶ Playground</span><span class="zh">▶ 动手玩</span></span>
+<h4><span class="en">Autoscaling and the bill</span><span class="zh">自动伸缩与账单</span></h4>
+<p class="sub2"><span class="en">Drag the traffic slider. Watch servers appear and disappear, response time react, and the monthly cost move. Then turn autoscaling off and drag it again — that's what a fixed-capacity server room felt like.</span><span class="zh">拖动流量滑块。看服务器出现和消失、响应时间变化、月度成本浮动。然后关掉自动伸缩再拖一次——那就是固定容量机房的感觉。</span></p>
+</div>
+<div class="play-body">
+<div class="prow">
+<button class="pbtn active" id="as-toggle"><span class="en">Autoscaling: ON</span><span class="zh">自动伸缩：开</span></button>
+<button class="pbtn ghost" id="as-spike"><span class="en">⚡ Simulate a traffic spike</span><span class="zh">⚡ 模拟流量尖峰</span></button>
+</div>
+<label class="plabel"><span class="en">Traffic — requests per second</span><span class="zh">流量 —— 每秒请求数</span></label>
+<input id="as-traffic" max="1000" min="10" step="10" type="range" value="120"/>
+<div class="servers" id="as-servers"></div>
+<div class="dstat">
+<div><b id="as-rps">—</b><span class="en">requests / sec</span><span class="zh">每秒请求</span></div>
+<div><b id="as-n">—</b><span class="en">servers running</span><span class="zh">运行中的服务器</span></div>
+<div><b id="as-lat">—</b><span class="en">response time</span><span class="zh">响应时间</span></div>
+<div><b id="as-cost">—</b><span class="en">est. monthly cost</span><span class="zh">预估月成本</span></div>
+</div>
+<p id="as-note" style="font-size:13.5px; margin:12px 0 0"></p>
+</div>
+</div>
+<div class="rw">
+<div class="rwh"><span class="en">◈ Real-world example</span><span class="zh">◈ 真实场景</span></div>
+<p class="scene en">Someone spins up a GPU instance to test a model on a Friday afternoon and forgets about it.</p>
+<p class="en">It sits idle all weekend, all month. Nobody notices because it works — nothing is broken, so nothing alerts. At month end the bill is several thousand dollars higher and finance wants an explanation.<br/><b>None of this is a technical failure.</b> It's the direct consequence of a cost model where creating something expensive takes four clicks and forgetting it takes zero. This is why a billing alert on day one is worth more than most optimisations you'll ever write — and why "turn off what you're not using" is a real engineering habit, not housekeeping.</p>
+<p class="scene zh">有人周五下午开了一台 GPU 实例测模型，然后忘了。</p>
+<p class="zh">它整个周末、整个月都闲着。没人发现，因为它"能用"——没坏，所以没有告警。月底账单多出几千美元，财务来要说法。<br/><b>这不是技术故障。</b>它是一种成本模型的直接后果：创建一个昂贵的东西只要四次点击，而忘掉它需要零次操作。这就是为什么"第一天就设账单告警"比你以后写的大多数优化都值钱——也是为什么"不用就关掉"是一个真正的工程习惯，而不是打扫卫生。</p>
+</div>
+</div>
+<div class="chal">
+<div class="chal-head">
+<span class="chal-badge"><span class="en">⚡ Challenge</span><span class="zh">⚡ 挑战</span></span>
+<h4><span class="en">Take something slow and make it embarrassingly fast</span><span class="zh">把一个慢东西，快到令人尴尬</span></h4>
+<span class="diff">★★★</span>
+</div>
+<div class="chal-body">
+<p class="brief en">Write a script that is <b>deliberately, catastrophically badly written</b> — a Python loop over a million rows, opening a file inside the loop, querying row by row. Time it. Then fix it in stages and time it after each one.</p>
+<p class="brief en">Vectorise the arithmetic. Read the file once instead of a million times. Replace the row-by-row query with one bulk fetch into a dictionary. Then try the same job in DuckDB or Polars and time that too. <b>Keep the numbers.</b></p>
+<p class="brief zh">故意写一个<b>差到离谱</b>的脚本——用 Python 循环处理一百万行，在循环里打开文件、逐行查数据库。计时。然后分阶段修复，每修一步计一次时。</p>
+<p class="brief zh">把算术向量化。文件只读一次而不是一百万次。把逐行查询换成一次批量取回到字典里。然后用 DuckDB 或 Polars 做同样的事，也计一次时。<b>把这些数字记下来。</b></p>
+<div class="win"><span class="wl"><span class="en">You've won when</span><span class="zh">达成条件</span></span>
+<span class="en">You have a table of five timings on the same machine, and you can explain each drop by pointing at a specific layer of the memory hierarchy. Not "it got faster" — <i>why</i> it got faster.</span>
+<span class="zh">你有一张同一台机器上的五个耗时数据表，而且每一次下降你都能指着存储层级里的某一层解释清楚。不是"变快了"，而是<i>为什么</i>变快了。</span></div>
+<details class="acc"><summary><span class="en">Show me how to approach it</span><span class="zh">给我一点思路</span></summary>
+<div class="body">
+<p class="en"><b>1.</b> Use <code class="inl">time.perf_counter()</code> around each version, and print the ratio against the first. Ratios are what people remember.</p>
+<p class="en"><b>2.</b> Fix one thing at a time. If you fix three things and it gets 90× faster, you have learned nothing about which one mattered.</p>
+<p class="en"><b>3.</b> Expect the biggest single win to come from removing round trips — the file open or the per-row query — not from the arithmetic. That is the memory hierarchy telling you where it actually hurts.</p>
+<p class="en"><b>4.</b> Then push it further than is reasonable: make the file bigger than your RAM. Watch it die. Fix it with chunking, then with DuckDB streaming, and note that DuckDB barely noticed.</p>
+<p class="en"><b>5.</b> Write the whole thing up in the README with the timing table. This is the single most persuasive artefact a junior engineer can own — it is evidence that you understand what is underneath the code, not just the code.</p>
+<p class="zh"><b>1.</b> 用 <code class="inl">time.perf_counter()</code> 给每个版本计时，并打印相对第一版的倍数。倍数才是别人会记住的东西。</p>
+<p class="zh"><b>2.</b> 一次只改一件事。如果你一口气改了三处、快了 90 倍，你其实完全不知道是哪一处起了作用。</p>
+<p class="zh"><b>3.</b> 预期最大的一次提速来自"消灭往返"——去掉循环里的开文件或逐行查询——而不是来自算术。这就是存储层级在告诉你真正疼的地方在哪。</p>
+<p class="zh"><b>4.</b> 然后往不合理的方向再推一步：把文件弄得比内存还大，看着它挂掉。先用分块修好，再用 DuckDB 流式处理，然后注意到 DuckDB 几乎毫无压力。</p>
+<p class="zh"><b>5.</b> 把整个过程连同耗时表写进 README。这是一个初级工程师能拥有的最有说服力的作品——它证明了你理解代码底下那一层，而不只是代码。</p>
+</div>
+</details>
+<p class="stakes"><span class="en">One focused weekend. Then, the first time a colleague says "we need a bigger server," you will be the person in the room who asks to see the code first.</span><span class="zh">一个专注的周末。之后，当同事第一次说"我们需要更大的服务器"时，你会是屋里那个先要求看代码的人。</span></p>
+</div>
+</div>
+<div class="quiz">
+<div class="qh"><span class="en">Check yourself · Milestone 5</span><span class="zh">自我检验 · 阶段五</span></div>
+<p class="q"><span class="en">Your pandas loop over 2 million rows takes 40 minutes. What's most likely to fix it?</span><span class="zh">你的 pandas 循环处理 200 万行要 40 分钟。最可能的解法是什么？</span></p>
+<button class="opt" data-c="0"><span class="en">Buy a faster CPU</span><span class="zh">买更快的 CPU</span></button>
+<button class="opt" data-c="1"><span class="en">Vectorise it — do the operation on whole columns so the compiled C underneath does the work</span><span class="zh">向量化 —— 对整列做运算，让底层编译好的 C 去干活</span></button>
+<button class="opt" data-c="0"><span class="en">Add more RAM</span><span class="zh">加内存</span></button>
+<div class="fb"><span class="en">Vectorise. The bottleneck is the Python interpreter translating your loop body 2 million times. Handing the entire column to NumPy runs the same arithmetic in compiled C — routinely 50–100× faster on the same hardware.</span><span class="zh">向量化。瓶颈是 Python 解释器把循环体翻译了 200 万次。把整列交给 NumPy，同样的算术在编译好的 C 里跑——同样的硬件上通常快 50–100 倍。</span></div>
+</div>
+<div class="quiz">
+<p class="q"><span class="en">Where should a production database live?</span><span class="zh">生产数据库应该放在哪？</span></p>
+<button class="opt" data-c="0"><span class="en">A public subnet, so the team can connect from anywhere</span><span class="zh">公有子网，方便团队随时随地连</span></button>
+<button class="opt" data-c="1"><span class="en">A private subnet, reachable only from inside the network</span><span class="zh">私有子网，只能从内部网络访问</span></button>
+<button class="opt" data-c="0"><span class="en">On someone's laptop, backed up weekly</span><span class="zh">某人的笔记本上，每周备份</span></button>
+<div class="fb"><span class="en">Private subnet. Anything with a public IP is being port-scanned by automated bots continuously — usually within minutes of coming online. Access it through a bastion host or VPN instead.</span><span class="zh">私有子网。任何有公网 IP 的东西都在被自动化程序持续扫描——通常上线几分钟内就开始。要访问就通过跳板机或 VPN。</span></div>
+</div>
+<div class="checks">
+<h4><span class="en">🔬 Lab tasks</span><span class="zh">🔬 实操任务</span></h4>
+<label class="chk"><input type="checkbox"/><span class="en">Time a Python <code class="inl">for</code> loop against the vectorised NumPy equivalent on a million rows. Write down the ratio — it will surprise you.</span><span class="zh">在一百万行上分别计时 Python <code class="inl">for</code> 循环和向量化 NumPy 的版本。把倍数记下来——会吓你一跳。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Deliberately hit a MemoryError by loading a file bigger than your RAM. Then fix it with chunked reading.</span><span class="zh">故意加载一个比内存还大的文件触发 MemoryError，然后用分块读取修好它。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Write, compile and run a tiny C program (even "hello world"). Feel the compile step. You never need to write C again.</span><span class="zh">写、编译并运行一个极小的 C 程序（"hello world"就行）。亲身感受编译那一步。以后你再也不用写 C 了。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Open a free-tier AWS or Azure account. Launch one small VM, connect to it, then <b>shut it down</b>.</span><span class="zh">注册一个 AWS 或 Azure 免费账号。启动一台小虚拟机、连上去，然后<b>把它关掉</b>。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Upload a file to S3 or Blob Storage and read it back from a Python script.</span><span class="zh">上传一个文件到 S3 或 Blob Storage，再用 Python 脚本读回来。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Set a billing alert at a low amount. Do this before anything else in the account.</span><span class="zh">设一个金额很低的账单告警。在账号里做任何别的事之前先做这个。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Move every credential in your projects out of the code and into environment variables.</span><span class="zh">把你项目里所有凭据从代码中移出来，放进环境变量。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Draw your own team's actual system on one page: where data comes from, where it's stored, who reads it.</span><span class="zh">在一页纸上画出你团队真实的系统：数据从哪来、存在哪、谁在读。</span></label>
+</div>
+</div>
+</div>
+<div class="disc" data-section="m5" id="disc-m5">
+<div class="disc-head">
+<h3><span class="en">Discussion</span><span class="zh">讨论</span></h3>
+<span class="disc-count" data-role="count">···</span>
+</div>
+<p class="disc-sub"><span class="en">Stuck, or got it working a different way? Leave it for the next learner.</span><span class="zh">卡住了，或者用别的方法搞定了？留给下一个学习者看看。</span></p>
+<div class="disc-list" data-role="list"></div>
+<form class="disc-form" data-parent="" data-role="form">
+<div class="disc-row2">
+<input autocomplete="name" data-role="name" maxlength="40" placeholder="Your name / 你的名字" required="" type="text"/>
+<input autocomplete="off" class="disc-hp" data-role="hp" tabindex="-1" type="text"/>
+</div>
+<textarea data-role="text" maxlength="2000" placeholder="Say something about Month 5 / 说点什么…" required=""></textarea>
+<div class="disc-foot">
+<button class="disc-post" type="submit"><span class="en">Post</span><span class="zh">发布</span></button>
+<span class="disc-msg" data-role="msg"></span>
+</div>
+</form>
+</div>
+</section>
+    <nav class="chapnav">
+    <a class="cn cn-prev" href="m4.html"><span class="cn-k"><span class="en">Previous</span><span class="zh">上一章</span></span><span class="cn-t"><span class="en">Data Engineering</span><span class="zh">数据工程</span></span></a>
+    <a class="cn cn-next" href="systems.html"><span class="cn-k"><span class="en">Next</span><span class="zh">下一章</span></span><span class="cn-t"><span class="en">How the big ones work</span><span class="zh">大家伙怎么运转</span></span></a>
+    </nav>
+<footer>
+<div class="wrap">
+<h3><span class="en">One last thing</span><span class="zh">最后一件事</span></h3>
+<p class="en" style="max-width:64ch">Feeling lost is not a sign that you chose wrong. It's the normal steady state of this field for everyone, including the people who look like they have it figured out. The difference is that they've learned it's survivable.</p>
+<p class="zh" style="max-width:64ch">感到迷茫不代表你选错了路。在这个行业里，这是所有人的常态，包括那些看起来什么都懂的人。区别只在于，他们已经学会了这是熬得过去的。</p>
+<p class="en" style="max-width:64ch">You already know how to be careful with a method you don't fully trust, how to check a result before you believe it, and how to write down what you did so someone else can repeat it. Those are the rare skills. The syntax is the easy part.</p>
+<p class="zh" style="max-width:64ch">你早就知道怎么谨慎对待一个还不完全信任的方法、怎么在相信一个结果之前先去核实、怎么把做过的事写下来让别人能复现。这些才是稀缺的能力。语法是最容易的那部分。</p>
+<p style="color:var(--muted); font-size:13px; margin-top:28px; margin-bottom:0"><span class="en">Progress and playground state are not saved between visits — work through a section in one sitting, or keep your own checklist alongside.</span><span class="zh">进度和练习状态不会跨次保存——建议一次做完一个章节，或者自己另外记一份清单。</span></p>
+</div>
+</footer>
+<button aria-label="Back to top" id="totop">↑</button>
+<div class="glow" id="glow"></div>
+<script src="assets/core.js"></script>
+<script src="assets/vibe.js"></script>
+</body>
+</html>
