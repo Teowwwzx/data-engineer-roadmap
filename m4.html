@@ -18,7 +18,7 @@
 <body class="lang-en" data-vibe="natural" data-chapter="m4">
 <div class="topbar">
 <div class="wrap">
-<div class="brand"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></div>
+<a aria-label="The Lab Notebook — home" class="brand" href="index.html"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></a>
 <nav class="navlinks"><a href="index.html"><span class="en">Start</span><span class="zh">开始</span></a>
 <a href="map.html"><span class="en">The map</span><span class="zh">地图</span></a>
 <a href="words.html"><span class="en">Words</span><span class="zh">词汇</span></a>
@@ -35,7 +35,7 @@
 <button class="on" data-lang="en">EN</button>
 <button data-lang="zh">中文</button>
 </div>
-</div>
+<button aria-expanded="false" aria-label="Chapters" class="menubtn" type="button"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"></path></svg></button></div>
 <div class="pbar"><i id="pbar"></i></div>
 </div>
 
@@ -187,7 +187,7 @@ summary &lt;- samples |&gt;
 <p class="scene zh">区域经理升级投诉："怡保的数字比应该的低了 30%，我们是不是在丢样本？"</p>
 <p class="zh">没有丢样本。对 <code class="inl">lab_site</code> 跑一次 <code class="inl">value_counts()</code>：<code class="inl">IPOH</code>（400）、<code class="inl">Ipoh</code>（23）、<code class="inl">"ipoh "</code>（7）——同一个厂区被算成了三个，因为上游两个系统大小写规则不同，还有一个表单字段带了尾随空格。每次分组统计都悄悄把这个厂区拆成三份。<br/><b>修复成本：</b>一行代码。<b>没检查的成本：</b>经理三周不信任看板，外加一场"工厂是不是流程有问题"的会议。</p>
 </div>
-</div>
+<div class="reactbar" data-react-key="m4/0"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
 <!-- ============ 4.2 ETL ============ -->
 <div class="topic">
 <h3><span class="ic">2</span><span class="en">ETL pipelines</span><span class="zh">ETL 数据管道</span></h3>
@@ -309,7 +309,7 @@ summary &lt;- samples |&gt;
 <p class="scene zh">凌晨 2:40 网络抖动导致每晚任务失败。你 9:00 重跑了一次。9:05 收入看板显示的数字翻了一倍。</p>
 <p class="zh">管道是追加而不是替换，所以昨天的数据现在在表里有两份。没有任何报错——数字就是错的，而且已经有三个人看到了。<br/><b>修复方式，按优先级：</b>对受影响的日期区间先删后插，或者按 <code class="inl">(date, site, sample_id)</code> 做 upsert。两者都能让重跑变成"什么都没发生"而不是"翻倍"。<b>教训：</b>在失败之前就为重跑做设计——失败是必然的，而且一定发生在最不方便的时刻。</p>
 </div>
-</div>
+<div class="reactbar" data-react-key="m4/1"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
 <!-- ============ 4.3 DATA MODELLING ============ -->
 <div class="topic">
 <h3><span class="ic">3</span><span class="en">Data modelling</span><span class="zh">数据建模</span></h3>
@@ -396,7 +396,7 @@ summary &lt;- samples |&gt;
 <p class="scene zh">一个客户从槟城搬到怡保。市场部重跑去年的区域报表，发现数字变了。</p>
 <p class="zh">维度表把城市覆盖掉了，于是这个客户历史上所有订单现在都算到怡保头上。去年的报表不再可复现——而如果它曾经报给监管或进过董事会材料，你现在就有了同一年的两个官方版本。<br/><b>解法是一个提前做出的设计决定：</b>为客户的每个版本各存一行，带生效起止日期，按订单日期做连接。它会永久带来一点复杂度，换来的是你能说出"这就是我们当时知道的，以及在什么时候知道的"——当有人来问时，这是唯一站得住脚的答案。</p>
 </div>
-</div>
+<div class="reactbar" data-react-key="m4/2"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
 <div class="chal">
 <div class="chal-head">
 <span class="chal-badge"><span class="en">⚡ Challenge</span><span class="zh">⚡ 挑战</span></span>

@@ -18,7 +18,7 @@
 <body class="lang-en" data-vibe="ai" data-chapter="m3">
 <div class="topbar">
 <div class="wrap">
-<div class="brand"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></div>
+<a aria-label="The Lab Notebook — home" class="brand" href="index.html"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></a>
 <nav class="navlinks"><a href="index.html"><span class="en">Start</span><span class="zh">开始</span></a>
 <a href="map.html"><span class="en">The map</span><span class="zh">地图</span></a>
 <a href="words.html"><span class="en">Words</span><span class="zh">词汇</span></a>
@@ -35,7 +35,7 @@
 <button class="on" data-lang="en">EN</button>
 <button data-lang="zh">中文</button>
 </div>
-</div>
+<button aria-expanded="false" aria-label="Chapters" class="menubtn" type="button"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"></path></svg></button></div>
 <div class="pbar"><i id="pbar"></i></div>
 </div>
 
@@ -138,7 +138,7 @@
 <p class="en" style="margin:0"><b>The rule that will save your career:</b> an LLM produces something <i>plausible</i>, not something <i>verified</i>. Treat every output the way you'd treat a promising result from a single unreplicated run — interesting, worth checking, never publishable on its own. Run the code. Check the number. Read the source.</p>
 <p class="zh" style="margin:0"><b>能保住你职业生涯的一条规矩：</b>大模型产出的是<i>看起来合理</i>的东西，不是<i>已验证</i>的东西。对待每一个输出，就像对待一次未重复实验得到的漂亮结果——有意思、值得查、但绝不能单独发表。跑一遍代码、核一遍数字、读一遍原始出处。</p>
 </div>
-</div>
+<div class="reactbar" data-react-key="m3/0"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
 <!-- ============ 3.2 PROMPTING ============ -->
 <div class="topic">
 <h3><span class="ic">2</span><span class="en">Prompt engineering — writing a good protocol</span><span class="zh">提示词工程 —— 写一份好的操作方案</span></h3>
@@ -255,7 +255,7 @@ list any assumption you had to make."""</span>
 <p class="scene zh">你需要把 4000 条自由文本的维修投诉分成八类。</p>
 <p class="zh">含糊的提示词："帮我分类。"结果你拿到十一个类别、命名不统一、每条答案外面还包着一段话，把你的解析程序搞崩。管道里完全没法用。<br/>真正的提示词：把八个允许的类别原样列出，给两个示例（其中一个是边界情况），指定唯一输出为 <code class="inl">{"id":..., "category":..., "confidence":...}</code>，并加上"如果都不符合，返回 <code class="inl">OTHER</code>——不要自己造类别"。现在它能无人值守跑完 4000 行，而 <code class="inl">confidence</code> 字段会告诉你哪 60 条需要人看。<b>第二版只多花了八分钟去写，却把一个演示变成了一套系统。</b></p>
 </div>
-</div>
+<div class="reactbar" data-react-key="m3/1"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
 <!-- ============ 3.3 AI-ASSISTED DEV ============ -->
 <div class="topic">
 <h3><span class="ic">3</span><span class="en">AI-assisted development — Cursor and friends</span><span class="zh">AI 辅助开发 —— Cursor 之类</span></h3>
@@ -323,7 +323,7 @@ list any assumption you had to make."""</span>
 <p class="scene zh">你接手了一条 1200 行的管道，原作者已经离职。它每晚都在跑，一半的逻辑没人知道是干嘛的。</p>
 <p class="zh">旧办法：两周仔细阅读，读完你还是不敢动它。<br/>新办法：用 AI 编辑器打开，一个函数一个函数地问："这段是做什么的？删掉会坏什么？"然后——这是大多数人跳过的一步——<b>你自己对着代码逐条核实</b>。两天之内，你就有了一份文档化的地图、一组描述现有行为的测试，以及动它的底气。AI 给你的不是理解，而是一份"理解的快速初稿"，然后由你去核。这个区别，就是你这份工作的全部。</p>
 </div>
-</div>
+<div class="reactbar" data-react-key="m3/2"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
 <!-- ============ 3.4 AGENTS & MCP ============ -->
 <div class="topic">
 <h3><span class="ic">4</span><span class="en">Agents, MCP, and custom skills</span><span class="zh">Agent、MCP 与自定义技能</span></h3>
@@ -401,7 +401,7 @@ list any assumption you had to make."""</span>
 <p class="scene zh">每周一都有人花两小时拼同一份运营报表：查三个系统、对数、写总结、发出去。</p>
 <p class="zh">用 MCP，助手被授予这三个系统的<b>只读</b>权限，外加一份写好的技能文件，说明这份报表到底怎么做——用哪些指标、怎么定义、要标注哪些注意事项。周一早上，它九十秒产出初稿，数字是实时拉的，每个来源都标注了。人读一遍，改掉那一处需要判断的地方，发出去。<br/><b>注意留给人的是什么：</b>判断和责任。被拿走的是"拼装"。真正能长期留下来的 AI 应用，基本都是这个形状。</p>
 </div>
-</div>
+<div class="reactbar" data-react-key="m3/3"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
 <div class="chal">
 <div class="chal-head">
 <span class="chal-badge"><span class="en">⚡ Challenge</span><span class="zh">⚡ 挑战</span></span>

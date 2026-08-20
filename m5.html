@@ -18,7 +18,7 @@
 <body class="lang-en" data-vibe="futuristic" data-chapter="m5">
 <div class="topbar">
 <div class="wrap">
-<div class="brand"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></div>
+<a aria-label="The Lab Notebook — home" class="brand" href="index.html"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></a>
 <nav class="navlinks"><a href="index.html"><span class="en">Start</span><span class="zh">开始</span></a>
 <a href="map.html"><span class="en">The map</span><span class="zh">地图</span></a>
 <a href="words.html"><span class="en">Words</span><span class="zh">词汇</span></a>
@@ -35,7 +35,7 @@
 <button class="on" data-lang="en">EN</button>
 <button data-lang="zh">中文</button>
 </div>
-</div>
+<button aria-expanded="false" aria-label="Chapters" class="menubtn" type="button"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"></path></svg></button></div>
 <div class="pbar"><i id="pbar"></i></div>
 </div>
 
@@ -148,7 +148,7 @@
 <p class="scene zh">同事的数据补全脚本处理 20 万条要跑 6 小时。他来申请一台更大的服务器。</p>
 <p class="zh">你读了代码。循环里，每条记录都开一次连接、跑一条 <code class="inl">SELECT</code>。那就是 20 万次网络往返，每次约 100 毫秒——大约 5.5 小时纯等待，而 CPU 几乎全程闲着。换更大的服务器毫无用处。<br/><b>解法：</b>用一条查询把所有对照值取进一个字典，然后在内存里查。运行时间从 6 小时降到约 90 秒。没有新硬件、没有新库——只是知道了这段代码站在上面那张图的哪一层。</p>
 </div>
-</div>
+<div class="reactbar" data-react-key="m5/0"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
 <!-- ============ 5.2 C vs PYTHON ============ -->
 <div class="topic">
 <h3><span class="ic">2</span><span class="en">Why C is fast and Python is slow</span><span class="zh">为什么 C 快而 Python 慢</span></h3>
@@ -231,7 +231,7 @@
 <p class="scene zh">一个每天给 200 万行打分的任务要跑 40 分钟，已经开始拖到上班时间了。</p>
 <p class="zh">打分逻辑是一个 Python <code class="inl">for</code> 循环，对每行应用四条算术规则。改写成四条对整列的向量化 pandas 表达式后，同样的任务 25 秒跑完——同样的硬件上快了 96 倍，改动约八行代码。<br/><b>你实际做的：</b>把计算从解释器搬到了底下编译好的 C 里。<b>在你主管眼里：</b>你一个下午把一个东西提速了 96 倍。仅这一个认知，就够回本整个阶段五。</p>
 </div>
-</div>
+<div class="reactbar" data-react-key="m5/1"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
 <!-- ============ 5.3 CLOUD ============ -->
 <div class="topic">
 <h3><span class="ic">3</span><span class="en">Cloud platforms — AWS, Azure, networking, security</span><span class="zh">云平台 —— AWS、Azure、网络与安全</span></h3>
@@ -376,7 +376,7 @@
 <p class="scene zh">有人周五下午开了一台 GPU 实例测模型，然后忘了。</p>
 <p class="zh">它整个周末、整个月都闲着。没人发现，因为它"能用"——没坏，所以没有告警。月底账单多出几千美元，财务来要说法。<br/><b>这不是技术故障。</b>它是一种成本模型的直接后果：创建一个昂贵的东西只要四次点击，而忘掉它需要零次操作。这就是为什么"第一天就设账单告警"比你以后写的大多数优化都值钱——也是为什么"不用就关掉"是一个真正的工程习惯，而不是打扫卫生。</p>
 </div>
-</div>
+<div class="reactbar" data-react-key="m5/2"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
 <div class="chal">
 <div class="chal-head">
 <span class="chal-badge"><span class="en">⚡ Challenge</span><span class="zh">⚡ 挑战</span></span>

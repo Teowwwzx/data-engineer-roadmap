@@ -18,7 +18,7 @@
 <body class="lang-en" data-vibe="gamify" data-chapter="m2">
 <div class="topbar">
 <div class="wrap">
-<div class="brand"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></div>
+<a aria-label="The Lab Notebook — home" class="brand" href="index.html"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></a>
 <nav class="navlinks"><a href="index.html"><span class="en">Start</span><span class="zh">开始</span></a>
 <a href="map.html"><span class="en">The map</span><span class="zh">地图</span></a>
 <a href="words.html"><span class="en">Words</span><span class="zh">词汇</span></a>
@@ -35,7 +35,7 @@
 <button class="on" data-lang="en">EN</button>
 <button data-lang="zh">中文</button>
 </div>
-</div>
+<button aria-expanded="false" aria-label="Chapters" class="menubtn" type="button"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"></path></svg></button></div>
 <div class="pbar"><i id="pbar"></i></div>
 </div>
 
@@ -151,7 +151,7 @@ samples.<span class="fn">map</span>(s =&gt; &lt;<span class="fn">SampleCard</spa
 <p class="scene zh">质量部门想要一个按厂区显示实时合格率的页面。他们问你要多久。</p>
 <p class="zh">不用框架：两周，而且认证、会话、输入校验都要你一个人负责。用 Flask：午饭前 API 能跑，下午出个粗糙页面，第二天早上就摆在真实用户面前了——而你没写的那些部分，恰恰是审计会挑刺的部分。框架省的不只是时间，它把答案从"下个迭代"变成了"明天"，这就是"大家在用的工具"和"大家已经不等的工具"之间的差别。</p>
 </div>
-</div>
+<div class="reactbar" data-react-key="m2/0"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
 <!-- ============ 2.2 GIT ============ -->
 <div class="topic">
 <h3><span class="ic">2</span><span class="en">Version control — Git and GitHub</span><span class="zh">版本控制 —— Git 与 GitHub</span></h3>
@@ -282,7 +282,7 @@ threshold = 0.95        <span class="cm"># your version / 你的</span>
 <p class="scene zh">某个看板的收入数字一直略有偏差，已经持续了不知道几周，没人知道从什么时候开始的。</p>
 <p class="zh">有 Git，这是二十分钟的活。对那个管道文件敲 <code class="inl">git log</code>，每次改动带日期一目了然。你找到六周前一个叫"简化币种处理"的提交，读 diff，发现有人删掉了一步四舍五入。你立刻知道确切日期、该问谁、该回滚哪一行——而且能向财务证明受影响的是哪几周。<br/>没有 Git，这就是一场没有文物的考古。你只能猜，而且永远没法告诉财务哪些数字可以信。</p>
 </div>
-</div>
+<div class="reactbar" data-react-key="m2/1"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
 <!-- ============ 2.3 OPEN SOURCE ============ -->
 <div class="topic">
 <h3><span class="ic">3</span><span class="en">Open source — libraries and models</span><span class="zh">开源 —— 库与模型</span></h3>
@@ -354,7 +354,7 @@ threshold = 0.95        <span class="cm"># your version / 你的</span>
 <p class="scene zh">法务说客户合同数据不能发给任何外部服务，但管理层仍然想用 AI 做摘要。</p>
 <p class="zh">如果你脑子里只有"AI = 调 API"，这就是死路，项目就没了。如果你知道有开放权重模型，答案就是：在公司内网的一台机器上跑一个中等规模的开源模型。它比前沿模型弱一些、需要 GPU、还得有人维护——但数据不出门，法务签字，项目落地。<b>知道"还有这个选项"，本身就是全部的贡献。</b></p>
 </div>
-</div>
+<div class="reactbar" data-react-key="m2/2"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
 <div class="chal">
 <div class="chal-head">
 <span class="chal-badge"><span class="en">⚡ Challenge</span><span class="zh">⚡ 挑战</span></span>

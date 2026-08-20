@@ -205,6 +205,38 @@ def chapter_index_html():
       '<span class="zh">一章一页 —— 每一章有自己的样子、自己的背景和自己的声音。可以按顺序读，也可以直接跳。</span></p>\n'
       '<div class="chxgrid">' + '\n'.join(cards) + '</div>\n</div>\n</section>')
 
+
+# --------------------------------------------------------------- reactions
+REACTIONS = [('up','\U0001F44D','Helpful','有用'),
+             ('fire','\U0001F525','Love this','太赞了'),
+             ('mind','\U0001F92F','Mind blown','震撼'),
+             ('lost','\U0001F914','Lost me','没看懂')]
+
+def reactbar(key):
+    btns = ''.join(
+        f'<button type="button" class="rx" data-emoji="{e}" '
+        f'title="{en} / {zh}" aria-label="{en}">'
+        f'<span class="rx-g">{g}</span><span class="rx-c">0</span></button>'
+        for e, g, en, zh in REACTIONS)
+    return (f'<div class="reactbar" data-react-key="{key}">'
+            f'<span class="rx-l"><span class="en">Was this bit any good?</span>'
+            f'<span class="zh">这一段怎么样？</span></span>'
+            f'<span class="rx-btns">{btns}</span></div>')
+
+def add_reactions(section_html, chapter, counter):
+    """Attach a reaction bar to every lesson block in this section."""
+    frag = BeautifulSoup(section_html, 'html.parser')
+    topics = frag.find_all('div', class_='topic')
+    if topics:
+        for t in topics:
+            t.append(BeautifulSoup(reactbar(f'{chapter}/{counter[0]}'), 'html.parser'))
+            counter[0] += 1
+    else:
+        host = frag.find('div', class_='wrap') or frag
+        host.append(BeautifulSoup(reactbar(f'{chapter}/{counter[0]}'), 'html.parser'))
+        counter[0] += 1
+    return str(frag)
+
 # ------------------------------------------------------------------ nav html
 def nav_html(current):
     out = []
@@ -239,6 +271,23 @@ def build_topbar(current):
     navel = t.find('nav', class_='navlinks')
     navel.clear()
     navel.append(BeautifulSoup(nav_html(current), 'html.parser'))
+    # the wordmark should go home, like every other site on earth
+    brand = t.find('div', class_='brand')
+    if brand is not None:
+        a = t.new_tag('a', href='index.html')
+        a['class'] = 'brand'
+        a['aria-label'] = 'The Lab Notebook — home'
+        for child in list(brand.contents):
+            a.append(child.extract())
+        brand.replace_with(a)
+    # a real menu button for narrow screens; the drawer is built by vibe.js
+    btn = BeautifulSoup(
+        '<button type="button" class="menubtn" aria-label="Chapters" aria-expanded="false">'
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">'
+        '<path d="M3 6h18M3 12h18M3 18h18"/></svg></button>', 'html.parser')
+    wrap = t.find('div', class_='wrap')
+    if wrap is not None:
+        wrap.append(btn)
     return str(t)
 
 footer_html = str(footer) if footer else ''
@@ -277,8 +326,10 @@ SHELL = '''<!DOCTYPE html>
 
 written = []
 for i, c in enumerate(CH):
+    rcount = [0]
     secs_html = '\n'.join(
-        str(sections[s]) + ''.join('\n' + x for x in extras.get(s, []))
+        add_reactions(str(sections[s]), c['slug'], rcount)
+        + ''.join('\n' + x for x in extras.get(s, []))
         for s in c['secs'] if s in sections)
     missing = [s for s in c['secs'] if s not in sections]
     if missing:

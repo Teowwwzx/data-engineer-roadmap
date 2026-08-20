@@ -8,6 +8,8 @@
 var $  = function(s,r){return (r||document).querySelector(s)};
 var $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
 var body = document.body;
+/* core.js keeps its own bi() inside its IIFE, so vibe.js needs its own */
+var bi = function(en,zh){return '<span class="en">'+en+'</span><span class="zh">'+zh+'</span>'};
 var VIBE = body.getAttribute('data-vibe') || 'modern';
 var CHAP = body.getAttribute('data-chapter') || 'index';
 var reduce = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)').matches : false;
@@ -38,6 +40,68 @@ var CHAPTERS = ['index','map','words','terminal','m1','m2','m3','m4','m5','syste
   }).join('');
   var pbar = $('.pbar', bar);
   (pbar ? pbar.parentNode : bar).insertBefore(rail, pbar || null);
+})();
+
+
+/* ------------------------------------------------------- chapter drawer --- */
+var CHAPTER_META = [
+  ['index','Start here','从这里开始','minimalist'], ['map','The whole map','整张地图','futuristic'],
+  ['words','The words','那些词','chill'],          ['terminal','The terminal','终端','pixel'],
+  ['m1','IT Basics','IT 基础','modern'],           ['m2','Developer Tools','开发工具','gamify'],
+  ['m3','AI Fundamentals','AI 基础','ai'],          ['m4','Data Engineering','数据工程','natural'],
+  ['m5','CS & Cloud','计算机原理与云','futuristic'], ['systems','How the big ones work','大家伙怎么运转','gamify'],
+  ['zero','It all starts from 0 and 1','一切从 0 和 1 开始','pixel'],
+  ['finish','Month 12 and after','第 12 个月之后','chill']
+];
+(function(){
+  var btn = $('.menubtn'); if (!btn) return;
+  var here = CHAPTERS.indexOf(CHAP);
+  var drawer = document.createElement('div');
+  drawer.className = 'drawer';
+  drawer.setAttribute('role','dialog');
+  drawer.setAttribute('aria-label','Chapters');
+  drawer.innerHTML =
+    '<div class="drawer-panel">' +
+      '<div class="drawer-head">' +
+        '<b>' + bi('Chapters','章节') + '</b>' +
+        '<button type="button" class="drawer-x" aria-label="Close">&times;</button>' +
+      '</div>' +
+      '<nav class="drawer-list">' +
+      CHAPTER_META.map(function(c, i){
+        var file = (c[0] === 'index' ? 'index.html' : c[0] + '.html');
+        var state = i < here ? ' done' : (i === here ? ' here' : '');
+        return '<a class="drawer-i' + state + '" href="' + file + '" data-vibe-chip="' + c[3] + '">' +
+               '<span class="drawer-n">' + (i === 0 ? '·' : (i < 10 ? '0' + i : i)) + '</span>' +
+               '<span class="drawer-t">' + bi(c[1], c[2]) + '</span>' +
+               '<span class="drawer-v">' + c[3] + '</span></a>';
+      }).join('') +
+      '</nav>' +
+    '</div><div class="drawer-back"></div>';
+  document.body.appendChild(drawer);
+
+  var lastFocus = null;
+  function open(){
+    lastFocus = document.activeElement;
+    drawer.classList.add('on');
+    btn.setAttribute('aria-expanded','true');
+    document.documentElement.style.overflow = 'hidden';
+    var first = drawer.querySelector('.drawer-i');
+    if (first) first.focus();
+  }
+  function close(){
+    drawer.classList.remove('on');
+    btn.setAttribute('aria-expanded','false');
+    document.documentElement.style.overflow = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  btn.addEventListener('click', function(){
+    drawer.classList.contains('on') ? close() : open();
+  });
+  $('.drawer-x', drawer).addEventListener('click', close);
+  $('.drawer-back', drawer).addEventListener('click', close);
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && drawer.classList.contains('on')) close();
+  });
 })();
 
 /* --------------------------------------------- motion + sound controls --- */
@@ -474,4 +538,76 @@ var Audio_ = (function(){
 
 /* sound never auto-starts: browsers block it and it would be rude anyway */
 if (motionOn && !reduce) startScene();
+
+/* ============================ REACTIONS ================================= */
+/* Optimistic: your tap lands instantly and is remembered locally, then syncs.
+   If the API is unreachable the UI still works — it just does not add to the
+   shared count until the next successful call. */
+(function(){
+  var bars = $$('.reactbar');
+  if (!bars.length) return;
+  var API = 'https://comments.thedzx.site/api';
+  var MINE = 'labnotebook-reactions';
+  var mine = {};
+  try { mine = JSON.parse(localStorage.getItem(MINE) || '{}') } catch(e){ mine = {} }
+  function saveMine(){ try { localStorage.setItem(MINE, JSON.stringify(mine)) } catch(e){} }
+
+  var counts = {};                       /* server truth, per key */
+  function paint(){
+    bars.forEach(function(bar){
+      var key = bar.dataset.reactKey;
+      $$('.rx', bar).forEach(function(btn){
+        var em = btn.dataset.emoji;
+        var server = (counts[key] && counts[key][em]) || 0;
+        var isMine = !!(mine[key] && mine[key][em]);
+        /* if the server has not caught up yet, still show your own tap */
+        var shown = server;
+        if (isMine && server === 0) shown = 1;
+        btn.classList.toggle('on', isMine);
+        $('.rx-c', btn).textContent = shown;
+      });
+    });
+  }
+
+  function load(){
+    fetch(API + '/reactions?chapter=' + encodeURIComponent(CHAP))
+      .then(function(r){ if (!r.ok) throw 0; return r.json() })
+      .then(function(j){ counts = j || {}; paint() })
+      .catch(function(){ paint() });      /* offline: local state still renders */
+  }
+
+  bars.forEach(function(bar){
+    bar.addEventListener('click', function(e){
+      var btn = e.target.closest('.rx'); if (!btn) return;
+      var key = bar.dataset.reactKey, em = btn.dataset.emoji;
+      mine[key] = mine[key] || {};
+      var had = !!mine[key][em];
+      if (had) delete mine[key][em]; else mine[key][em] = 1;
+      saveMine();
+      /* move the local number straight away, do not wait on the network */
+      counts[key] = counts[key] || {};
+      counts[key][em] = Math.max(0, (counts[key][em] || 0) + (had ? -1 : 1));
+      paint();
+      if (!had){
+        var g = $('.rx-g', btn);
+        g.classList.remove('rx-pop'); void g.offsetWidth; g.classList.add('rx-pop');
+      }
+      fetch(API + '/reactions', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({key:key, emoji:em, delta: had ? -1 : 1})
+      }).then(function(r){ return r.ok ? r.json() : null })
+        .then(function(j){ if (j){ counts[j.key] = counts[j.key] || {}; counts[j.key][j.emoji] = j.count; paint(); } })
+        .catch(function(){});
+    });
+  });
+
+  paint();
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){
+      if (es.some(function(e){ return e.isIntersecting })){ io.disconnect(); load(); }
+    }, {rootMargin:'300px 0px'});
+    bars.forEach(function(b){ io.observe(b) });
+  } else load();
+})();
+
 })();

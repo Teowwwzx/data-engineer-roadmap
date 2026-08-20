@@ -18,7 +18,7 @@
 <body class="lang-en" data-vibe="pixel" data-chapter="terminal">
 <div class="topbar">
 <div class="wrap">
-<div class="brand"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></div>
+<a aria-label="The Lab Notebook — home" class="brand" href="index.html"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></a>
 <nav class="navlinks"><a href="index.html"><span class="en">Start</span><span class="zh">开始</span></a>
 <a href="map.html"><span class="en">The map</span><span class="zh">地图</span></a>
 <a href="words.html"><span class="en">Words</span><span class="zh">词汇</span></a>
@@ -35,7 +35,7 @@
 <button class="on" data-lang="en">EN</button>
 <button data-lang="zh">中文</button>
 </div>
-</div>
+<button aria-expanded="false" aria-label="Chapters" class="menubtn" type="button"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"></path></svg></button></div>
 <div class="pbar"><i id="pbar"></i></div>
 </div>
 
@@ -207,7 +207,7 @@ sudo &lt;anything&gt;     <span class="cm"># do it as administrator / 以管理�
 <p class="zh">没有屏幕可看——任务跑在一台你永远不会去参观的数据中心里的 Linux 服务器上。你 <code class="inl">ssh</code> 进去，<code class="inl">tail -n 50 nightly.log</code> 显示任务启动后 40 秒就停了。<code class="inl">grep -i error nightly.log</code> 给出一行：<i>no space left on device</i>（磁盘空间不足）。<code class="inl">df -h</code> 证实了：磁盘 100% 满。<code class="inl">du -sh *</code> 显示某个旧日志文件夹已经悄悄长到了 400 GB。</p>
 <p class="zh"><b>四条命令，九十秒，你完全清楚发生了什么、为什么。</b>没有任何一个窗口能让你更快地知道这些——而这对数据工程师来说，只是一个完全普通的周二。</p>
 </div>
-</div>
+<div class="reactbar" data-react-key="terminal/0"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
 </section>
     <nav class="chapnav">
     <a class="cn cn-prev" href="words.html"><span class="cn-k"><span class="en">Previous</span><span class="zh">上一章</span></span><span class="cn-t"><span class="en">The words</span><span class="zh">那些词</span></span></a>
