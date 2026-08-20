@@ -391,14 +391,14 @@ document.addEventListener('visibilitychange', function(){
 /* ============================ THE MUSIC ================================= */
 /* generative, not a file: a slow pad + sparse plucked notes from a scale */
 var MUSIC = {
-  minimalist:{root:220, scale:[0,3,5,7,10],   wave:'sine',     step:2400, pad:.045, note:.055, cut:1400, dec:2.6},
-  futuristic:{root:110, scale:[0,2,3,7,8,10], wave:'sawtooth', step:520,  pad:.030, note:.032, cut:900,  dec:.9},
-  ai:        {root:174, scale:[0,2,4,6,7,11], wave:'triangle', step:900,  pad:.040, note:.045, cut:1800, dec:1.8},
-  pixel:     {root:262, scale:[0,2,4,7,9],    wave:'square',   step:300,  pad:0,    note:.022, cut:2600, dec:.22},
-  gamify:    {root:330, scale:[0,4,7,9,12],   wave:'triangle', step:420,  pad:.018, note:.040, cut:2400, dec:.5},
-  chill:     {root:196, scale:[0,4,7,11,14],  wave:'sine',     step:1800, pad:.055, note:.050, cut:1100, dec:2.8},
-  natural:   {root:147, scale:[0,2,5,7,9],    wave:'sine',     step:2100, pad:.050, note:.048, cut:800,  dec:3.2},
-  modern:    {root:233, scale:[0,3,5,7,10],   wave:'triangle', step:1300, pad:.035, note:.042, cut:1500, dec:1.6}
+  minimalist:{root:220, scale:[0,3,5,7,10],   wave:'sine',     step:2400, pad:.14, note:.17, cut:1400, dec:2.6},
+  futuristic:{root:110, scale:[0,2,3,7,8,10], wave:'sawtooth', step:520,  pad:.11, note:.13, cut:900,  dec:.9},
+  ai:        {root:174, scale:[0,2,4,6,7,11], wave:'triangle', step:900,  pad:.12, note:.14, cut:1800, dec:1.8},
+  pixel:     {root:262, scale:[0,2,4,7,9],    wave:'square',   step:300,  pad:0,   note:.20, cut:2600, dec:.22},
+  gamify:    {root:330, scale:[0,4,7,9,12],   wave:'triangle', step:420,  pad:.08, note:.17, cut:2400, dec:.5},
+  chill:     {root:196, scale:[0,4,7,11,14],  wave:'sine',     step:1800, pad:.17, note:.15, cut:1100, dec:2.8},
+  natural:   {root:147, scale:[0,2,5,7,9],    wave:'sine',     step:2100, pad:.15, note:.15, cut:800,  dec:3.2},
+  modern:    {root:233, scale:[0,3,5,7,10],   wave:'triangle', step:1300, pad:.11, note:.13, cut:1500, dec:1.6}
 };
 var Audio_ = (function(){
   var actx = null, master = null, padOsc = [], timer = null, cfg = MUSIC[VIBE] || MUSIC.modern, delay = null;
@@ -408,12 +408,17 @@ var Audio_ = (function(){
     if (!AC) return false;
     actx = new AC();
     master = actx.createGain(); master.gain.value = 0;
+    /* safety limiter: notes overlap and the delay tail stacks, so cap the sum
+       rather than trusting the arithmetic to stay under 1.0 */
+    var comp = actx.createDynamicsCompressor();
+    comp.threshold.value = -10; comp.knee.value = 6;
+    comp.ratio.value = 12; comp.attack.value = .003; comp.release.value = .25;
     /* a touch of space, cheap: one delay line fed back gently */
     delay = actx.createDelay(1.2); delay.delayTime.value = .38;
     var fb = actx.createGain(); fb.gain.value = .28;
     var wet = actx.createGain(); wet.gain.value = .3;
     delay.connect(fb); fb.connect(delay); delay.connect(wet); wet.connect(master);
-    master.connect(actx.destination);
+    master.connect(comp); comp.connect(actx.destination);
     return true;
   }
   function note(freq, dur, gain, wave){
@@ -440,7 +445,7 @@ var Audio_ = (function(){
       if (!ensure()) return;
       if (actx.state === 'suspended') actx.resume();
       master.gain.cancelScheduledValues(actx.currentTime);
-      master.gain.linearRampToValueAtTime(0.5, actx.currentTime + 1.2);
+      master.gain.linearRampToValueAtTime(0.55, actx.currentTime + 1.2);
       if (cfg.pad > 0 && !padOsc.length){
         [0, 7].forEach(function(iv, i){
           var o = actx.createOscillator(), g = actx.createGain(), f = actx.createBiquadFilter();
