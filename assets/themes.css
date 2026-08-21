@@ -405,3 +405,119 @@ html,body{max-width:100%; overflow-x:clip}
 @media (prefers-reduced-motion:reduce){
   .rx,.rx-g{transition:none} .rx-pop{animation:none}
 }
+
+/* ============================================================================
+   LAYOUT RHYTHM
+   Blocks had accumulated 15 different vertical gaps, 7 paddings and 3 radii,
+   because each component was styled when it was added rather than against a
+   scale. One scale, applied to every block, so the page reads as one thing.
+   ========================================================================= */
+:root{
+  --s1:8px; --s2:14px; --s3:22px; --s4:34px; --s5:56px;
+  --pad-card:22px; --pad-tight:16px;
+}
+
+/* --- one radius for every card-like surface -------------------------------- */
+.play,.showbox,.lens,.card,.stage,.quiz,.checks,.rw,.mini,.term,.codewrap,
+.disc-form,.pl,.mstat,.tlrow,.devtip,.roledetail,.towerdetail,.rungdetail,
+.yourjob,.warn,.ing,.chal,.evo-col{border-radius:var(--r-card)}
+
+/* --- one vertical rhythm --------------------------------------------------- */
+.analogy,.ifnot,.rw,.lens,.stage,.quiz,.checks,.mini,.two,.codewrap,
+.grid3,.tl,.showbox,.showtabs,.play{margin-block:var(--s3)}
+.brief{margin-block:var(--s3)}
+.topic{margin-top:var(--s5); padding-top:var(--s4)}
+.mshead{margin-bottom:var(--s3)}
+.reactbar{margin-top:var(--s4); margin-bottom:0; padding-top:var(--s3)}
+.disc{margin-top:var(--s5); padding-top:var(--s4)}
+.chapnav{margin-top:var(--s5); padding-top:0; padding-bottom:var(--s2)}
+section > .wrap > .sechead{margin-top:0}
+
+/* --- one padding language -------------------------------------------------- */
+.analogy,.ifnot{padding:var(--pad-card) calc(var(--pad-card) + 2px)}
+.rw,.stage,.quiz,.mini,.checks{padding:var(--pad-card)}
+.lens-pane{padding:var(--pad-card) calc(var(--pad-card) + 2px)}
+.play-body{padding:var(--pad-card)}
+.play-head{padding:var(--pad-tight) var(--pad-card)}
+
+/* ============================================================================
+   DISCUSSION — the form was a 1fr/2fr grid whose second column held a
+   visually-hidden honeypot, so the name field got a third of the row and the
+   rest was dead space next to a full-width textarea. Straightened out.
+   ========================================================================= */
+.disc{border-top:1px solid var(--hair)}
+.disc-head{display:flex; align-items:center; gap:10px; margin-bottom:var(--s1)}
+.disc-head h3{margin:0; font-size:19px; letter-spacing:-.02em}
+.disc-count{
+  font:700 12px var(--mono); color:var(--muted); background:var(--surface-3);
+  border-radius:var(--r-pill); padding:2px 10px; min-width:26px; text-align:center;
+}
+.disc-count[hidden]{display:none}
+.disc-sub{color:var(--muted); font-size:14.5px; margin:0 0 var(--s3)}
+
+.disc-list{display:grid; gap:0; margin-bottom:var(--s3)}
+.disc-list:empty{margin-bottom:0}
+.disc-empty{
+  color:var(--muted); font-size:14px; font-style:normal; margin:0 0 var(--s3);
+  padding:var(--pad-tight) var(--pad-card); border:1px dashed var(--line);
+  border-radius:var(--r-card); background:color-mix(in srgb,var(--ink) 2%,transparent);
+}
+.disc-c{
+  display:grid; grid-template-columns:38px 1fr; gap:2px 14px;
+  padding:var(--s3) 0; border-bottom:1px solid var(--hair);
+}
+.disc-c:first-child{padding-top:0}
+.disc-c:last-child{border-bottom:0}
+.disc-c.reply{margin-left:26px; padding-left:16px; border-left:2px solid var(--line)}
+.disc-av{
+  grid-row:1/4; width:38px; height:38px; border-radius:50%;
+  display:grid; place-items:center; font:800 13px/1 inherit; color:#fff;
+  background:linear-gradient(150deg, color-mix(in srgb,var(--c,var(--m1)) 78%,#fff), var(--c,var(--m1)));
+}
+.disc-row{display:flex; align-items:baseline; gap:9px; flex-wrap:wrap}
+.disc-name-l{font-weight:700; font-size:14.5px}
+.disc-time{font-size:12px; color:var(--muted-2)}
+.disc-text{margin:3px 0 6px; font-size:15px; line-height:1.6; overflow-wrap:anywhere; white-space:pre-wrap}
+.disc-reply-btn{
+  border:0; background:transparent; color:var(--muted); font:700 12px inherit;
+  letter-spacing:.04em; cursor:pointer; padding:2px 0; justify-self:start;
+}
+.disc-reply-btn:hover{color:var(--c,var(--m1))}
+
+.disc-form{
+  display:grid; gap:var(--s2); padding:var(--pad-card);
+  background:var(--surface-2); border:1px solid var(--line);
+}
+.disc-form.reply{margin:var(--s2) 0 var(--s2) 52px}
+.disc-form input.disc-name,.disc-form textarea{
+  width:100%; box-sizing:border-box; display:block;
+  border:1px solid var(--line); border-radius:var(--r-chip);
+  background:var(--paper); color:var(--ink);
+  font:15px/1.5 inherit; padding:11px 13px; resize:vertical;
+}
+.disc-form textarea{min-height:88px}
+.disc-form input.disc-name:focus,.disc-form textarea:focus{
+  outline:none; border-color:color-mix(in srgb,var(--c,var(--m1)) 60%,var(--line));
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--c,var(--m1)) 14%,transparent);
+}
+.disc-hp{position:absolute!important; left:-9999px!important; width:1px!important; height:1px!important; opacity:0!important}
+.disc-foot{display:flex; align-items:center; justify-content:space-between; gap:var(--s2)}
+.disc-msg{font-size:13px; color:var(--muted); min-height:1em}
+.disc-msg.err{color:var(--no)}
+.disc-msg.ok{color:var(--ok)}
+.disc-post{
+  border:0; border-radius:var(--r-chip); padding:11px 22px; margin-left:auto;
+  font:700 14px inherit; color:#fff; cursor:pointer; white-space:nowrap;
+  background:linear-gradient(150deg, color-mix(in srgb,var(--c,var(--m1)) 82%,#fff), var(--c,var(--m1)));
+}
+.disc-post:disabled{opacity:.55; cursor:default}
+
+@media (max-width:760px){
+  :root{--s4:26px; --s5:40px; --pad-card:18px}
+  .disc-c{grid-template-columns:32px 1fr; gap:2px 11px}
+  .disc-av{width:32px; height:32px; font-size:12px}
+  .disc-c.reply{margin-left:0; padding-left:12px}
+  .disc-form.reply{margin-left:0}
+  .disc-foot{flex-wrap:wrap}
+  .disc-post{width:100%; text-align:center}
+}

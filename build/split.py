@@ -15,7 +15,11 @@ soup = BeautifulSoup(src, 'html.parser')
 # ---------------------------------------------------------------- extraction
 head_styles = soup.head.find_all('style')
 body = soup.body
-body_styles = [s for s in body.find_all('style', recursive=False)]
+# every <style> in the body, including ones nested inside a section. Nested ones
+# were previously carried into the page markup, where they landed after the
+# stylesheets and quietly outranked the design system (that is why .play kept
+# its own radius and margin). They all belong in the shared sheet.
+body_styles = body.find_all('style')
 body_scripts = [s for s in body.find_all('script', recursive=False)]
 
 topbar = body.find('div', class_='topbar')
@@ -53,6 +57,8 @@ print('topbar:', bool(topbar), 'hero:', bool(hero), 'footer:', bool(footer), 'to
 css_parts = []
 for s in head_styles + body_styles:
     css_parts.append(s.decode_contents())
+for st in body_styles:
+    st.decompose()
 core_css = '\n\n'.join(css_parts)
 open(ASSETS + 'core.css', 'w', encoding='utf-8').write(core_css)
 print('core.css bytes:', len(core_css))

@@ -2532,9 +2532,10 @@ try{
         e.className = 'disc-empty';
         e.innerHTML = bi('No comments yet — be the first.', '还没有评论 — 第一个说点什么吧。');
         list.appendChild(e);
-        countEl.textContent = '0';
+        countEl.hidden = true;
         return;
       }
+      countEl.hidden = false;
       countEl.textContent = String(items.length);
       var byParent = {};
       items.forEach(function(c){
@@ -2549,7 +2550,7 @@ try{
       row.className = 'disc-c' + (isReply ? ' reply' : '');
       row.innerHTML =
         '<div class="disc-av">' + esc(initials(c.name)) + '</div>' +
-        '<div><div class="disc-row"><span class="disc-name">' + esc(c.name) + '</span>' +
+        '<div><div class="disc-row"><span class="disc-name-l">' + esc(c.name) + '</span>' +
         '<span class="disc-time">' + esc(fmtTime(c.created_at)) + '</span></div>' +
         '<p class="disc-text"></p>' +
         (isReply ? '' : '<button type="button" class="disc-reply-btn" data-role="reply">' + bi('Reply','回复') + '</button>') +
@@ -2579,13 +2580,13 @@ try{
     }
 
     function load(){
-      countEl.textContent = '\u00b7\u00b7\u00b7';
+      countEl.hidden = true;
       fetch(API + '/comments?section=' + encodeURIComponent(section))
         .then(function(r){ if (!r.ok) throw new Error('load failed'); return r.json() })
         .then(renderList)
         .catch(function(){
           list.innerHTML = '<p class="disc-empty">' + bi('Comments are taking a nap — try again shortly.', '评论区暂时打盹 — 稍后再试。') + '</p>';
-          countEl.textContent = '—';
+          countEl.hidden = true;
         });
     }
 

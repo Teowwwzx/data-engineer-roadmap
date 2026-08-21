@@ -626,6 +626,34 @@ body.lang-zh .mtitle, body.lang-zh .msub{font-family:var(--cjk)}
 
 
 
+/* ===== PLAYGROUND component (shared) ===== */
+.play{border:1.5px solid var(--c); border-radius:18px; background:var(--paper); margin:26px 0; overflow:hidden;
+  box-shadow:0 10px 30px color-mix(in srgb,var(--c) 12%,transparent)}
+.play-head{display:flex; align-items:center; gap:12px; padding:16px 22px;
+  background:linear-gradient(90deg,color-mix(in srgb,var(--c) 12%,var(--paper)),color-mix(in srgb,var(--c) 3%,var(--paper)));
+  border-bottom:1px solid color-mix(in srgb,var(--c) 25%,var(--paper)); flex-wrap:wrap}
+.play-badge{font-size:10.5px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--paper);
+  background:var(--c); padding:4px 10px; border-radius:999px; flex:none}
+.play-head h4{margin:0; font-size:16px}
+.play-head .sub2{font-size:13px; color:var(--muted); width:100%; margin:0}
+.play-body{padding:20px 22px}
+.pbtn{border:1.5px solid var(--line); background:var(--paper); color:var(--ink); font:650 13px inherit;
+  padding:7px 14px; border-radius:9px; cursor:pointer; transition:.15s; white-space:nowrap}
+.pbtn:hover{border-color:var(--c); color:var(--c); transform:translateY(-1px)}
+.pbtn.active{background:var(--c); border-color:var(--c); color:var(--paper)}
+.pbtn:disabled{opacity:.4; cursor:not-allowed; transform:none}
+.pbtn.ghost{background:transparent; border-style:dashed}
+.prow{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:14px}
+.sandbox{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+@media(max-width:760px){.sandbox{grid-template-columns:1fr}}
+.sandbox textarea{width:100%; height:230px; border:1px solid #1e293b; border-radius:10px; background:#0f172a;
+  color:var(--ink); font:12.5px/1.6 var(--mono); padding:14px; resize:vertical; outline:none}
+.sandbox textarea:focus{border-color:var(--c)}
+.sandbox iframe{width:100%; height:230px; border:1px solid var(--line); border-radius:10px; background:var(--paper)}
+.plabel{font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:6px; display:block}
+
+
+
 /* ===== Milestone 2 animations ===== */
 .fw-brick{opacity:0}
 .stage.run .fw-brick{animation:fwin .5s cubic-bezier(.2,.8,.3,1.2) both}

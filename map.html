@@ -103,19 +103,17 @@
 <div class="disc" data-section="map" id="disc-map">
 <div class="disc-head">
 <h3><span class="en">Discussion</span><span class="zh">讨论</span></h3>
-<span class="disc-count" data-role="count">···</span>
+<span class="disc-count" data-role="count" hidden=""></span>
 </div>
 <p class="disc-sub"><span class="en">Stuck, or got it working a different way? Leave it for the next learner.</span><span class="zh">卡住了，或者用别的方法搞定了？留给下一个学习者看看。</span></p>
 <div class="disc-list" data-role="list"></div>
 <form class="disc-form" data-parent="" data-role="form">
-<div class="disc-row2">
-<input autocomplete="name" data-role="name" maxlength="40" placeholder="Your name / 你的名字" required="" type="text"/>
-<input autocomplete="off" class="disc-hp" data-role="hp" tabindex="-1" type="text"/>
-</div>
-<textarea data-role="text" maxlength="2000" placeholder="Say something about Month p / 说点什么…" required=""></textarea>
+<input autocomplete="name" class="disc-name" data-role="name" maxlength="40" placeholder="Your name / 你的名字" required="" type="text"/>
+<input aria-hidden="true" autocomplete="off" class="disc-hp" data-role="hp" tabindex="-1" type="text"/>
+<textarea data-role="text" maxlength="2000" placeholder="Add to the discussion / 说点什么…" required="" rows="3"></textarea>
 <div class="disc-foot">
-<button class="disc-post" type="submit"><span class="en">Post</span><span class="zh">发布</span></button>
 <span class="disc-msg" data-role="msg"></span>
+<button class="disc-post" type="submit"><span class="en">Post</span><span class="zh">发布</span></button>
 </div>
 </form>
 </div>

@@ -154,33 +154,6 @@ document.<span class="fn">getElementById</span>(<span class="st">"btn"</span>).<
 <p class="zh">你打开页面，按 F12，切到 Network 标签，看看看板实际发出的请求：<code class="inl">GET /api/qc?site=IPOH</code>。再看返回的 JSON——里面写的是 87%。所以你的管道没问题，API 也没问题，问题出在前端：要么是四舍五入，要么是它在算之前先把不合格样本过滤掉了。二十秒之内，你把一句含糊的抱怨定位到了具体的一个文件，并且能把可复现的那条请求直接交给前端同事。<b>数据工程师学前端，就是为了这一刻。</b></p>
 </div>
 <div class="reactbar" data-react-key="m1/0"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
-<style>
-/* ===== PLAYGROUND component (shared) ===== */
-.play{border:1.5px solid var(--c); border-radius:18px; background:var(--paper); margin:26px 0; overflow:hidden;
-  box-shadow:0 10px 30px color-mix(in srgb,var(--c) 12%,transparent)}
-.play-head{display:flex; align-items:center; gap:12px; padding:16px 22px;
-  background:linear-gradient(90deg,color-mix(in srgb,var(--c) 12%,var(--paper)),color-mix(in srgb,var(--c) 3%,var(--paper)));
-  border-bottom:1px solid color-mix(in srgb,var(--c) 25%,var(--paper)); flex-wrap:wrap}
-.play-badge{font-size:10.5px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--paper);
-  background:var(--c); padding:4px 10px; border-radius:999px; flex:none}
-.play-head h4{margin:0; font-size:16px}
-.play-head .sub2{font-size:13px; color:var(--muted); width:100%; margin:0}
-.play-body{padding:20px 22px}
-.pbtn{border:1.5px solid var(--line); background:var(--paper); color:var(--ink); font:650 13px inherit;
-  padding:7px 14px; border-radius:9px; cursor:pointer; transition:.15s; white-space:nowrap}
-.pbtn:hover{border-color:var(--c); color:var(--c); transform:translateY(-1px)}
-.pbtn.active{background:var(--c); border-color:var(--c); color:var(--paper)}
-.pbtn:disabled{opacity:.4; cursor:not-allowed; transform:none}
-.pbtn.ghost{background:transparent; border-style:dashed}
-.prow{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:14px}
-.sandbox{display:grid; grid-template-columns:1fr 1fr; gap:14px}
-@media(max-width:760px){.sandbox{grid-template-columns:1fr}}
-.sandbox textarea{width:100%; height:230px; border:1px solid #1e293b; border-radius:10px; background:#0f172a;
-  color:var(--ink); font:12.5px/1.6 var(--mono); padding:14px; resize:vertical; outline:none}
-.sandbox textarea:focus{border-color:var(--c)}
-.sandbox iframe{width:100%; height:230px; border:1px solid var(--line); border-radius:10px; background:var(--paper)}
-.plabel{font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:6px; display:block}
-</style>
 <div class="play" data-play="sandbox">
 <div class="play-head">
 <span class="play-badge"><span class="en">▶ Playground</span><span class="zh">▶ 动手玩</span></span>
@@ -622,19 +595,17 @@ resp = requests.<span class="fn">get</span>(
 <div class="disc" data-section="m1" id="disc-m1">
 <div class="disc-head">
 <h3><span class="en">Discussion</span><span class="zh">讨论</span></h3>
-<span class="disc-count" data-role="count">···</span>
+<span class="disc-count" data-role="count" hidden=""></span>
 </div>
 <p class="disc-sub"><span class="en">Stuck, or got it working a different way? Leave it for the next learner.</span><span class="zh">卡住了，或者用别的方法搞定了？留给下一个学习者看看。</span></p>
 <div class="disc-list" data-role="list"></div>
 <form class="disc-form" data-parent="" data-role="form">
-<div class="disc-row2">
-<input autocomplete="name" data-role="name" maxlength="40" placeholder="Your name / 你的名字" required="" type="text"/>
-<input autocomplete="off" class="disc-hp" data-role="hp" tabindex="-1" type="text"/>
-</div>
-<textarea data-role="text" maxlength="2000" placeholder="Say something about Month 1 / 说点什么…" required=""></textarea>
+<input autocomplete="name" class="disc-name" data-role="name" maxlength="40" placeholder="Your name / 你的名字" required="" type="text"/>
+<input aria-hidden="true" autocomplete="off" class="disc-hp" data-role="hp" tabindex="-1" type="text"/>
+<textarea data-role="text" maxlength="2000" placeholder="Add to the discussion / 说点什么…" required="" rows="3"></textarea>
 <div class="disc-foot">
-<button class="disc-post" type="submit"><span class="en">Post</span><span class="zh">发布</span></button>
 <span class="disc-msg" data-role="msg"></span>
+<button class="disc-post" type="submit"><span class="en">Post</span><span class="zh">发布</span></button>
 </div>
 </form>
 </div>

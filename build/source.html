@@ -625,19 +625,17 @@ body.lang-zh .mtitle, body.lang-zh .msub{font-family:var(--cjk)}
       <div class="disc" id="disc-map" data-section="map">
         <div class="disc-head">
           <h3><span class="en">Discussion</span><span class="zh">讨论</span></h3>
-          <span class="disc-count" data-role="count">&middot;&middot;&middot;</span>
+          <span class="disc-count" data-role="count" hidden></span>
         </div>
         <p class="disc-sub"><span class="en">Stuck, or got it working a different way? Leave it for the next learner.</span><span class="zh">卡住了，或者用别的方法搞定了？留给下一个学习者看看。</span></p>
         <div class="disc-list" data-role="list"></div>
         <form class="disc-form" data-role="form" data-parent="">
-          <div class="disc-row2">
-            <input type="text" data-role="name" maxlength="40" placeholder="Your name / 你的名字" autocomplete="name" required>
-            <input type="text" class="disc-hp" data-role="hp" tabindex="-1" autocomplete="off">
-          </div>
-          <textarea data-role="text" maxlength="2000" placeholder="Say something about Month p / 说点什么…" required></textarea>
+          <input type="text" class="disc-name" data-role="name" maxlength="40" placeholder="Your name / 你的名字" autocomplete="name" required>
+          <input type="text" class="disc-hp" data-role="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <textarea data-role="text" rows="3" maxlength="2000" placeholder="Add to the discussion / 说点什么…" required></textarea>
           <div class="disc-foot">
-            <button type="submit" class="disc-post"><span class="en">Post</span><span class="zh">发布</span></button>
             <span class="disc-msg" data-role="msg"></span>
+            <button type="submit" class="disc-post"><span class="en">Post</span><span class="zh">发布</span></button>
           </div>
         </form>
       </div>
@@ -1898,19 +1896,17 @@ resp = requests.<span class="fn">get</span>(
       <div class="disc" id="disc-m1" data-section="m1">
         <div class="disc-head">
           <h3><span class="en">Discussion</span><span class="zh">讨论</span></h3>
-          <span class="disc-count" data-role="count">&middot;&middot;&middot;</span>
+          <span class="disc-count" data-role="count" hidden></span>
         </div>
         <p class="disc-sub"><span class="en">Stuck, or got it working a different way? Leave it for the next learner.</span><span class="zh">卡住了，或者用别的方法搞定了？留给下一个学习者看看。</span></p>
         <div class="disc-list" data-role="list"></div>
         <form class="disc-form" data-role="form" data-parent="">
-          <div class="disc-row2">
-            <input type="text" data-role="name" maxlength="40" placeholder="Your name / 你的名字" autocomplete="name" required>
-            <input type="text" class="disc-hp" data-role="hp" tabindex="-1" autocomplete="off">
-          </div>
-          <textarea data-role="text" maxlength="2000" placeholder="Say something about Month 1 / 说点什么…" required></textarea>
+          <input type="text" class="disc-name" data-role="name" maxlength="40" placeholder="Your name / 你的名字" autocomplete="name" required>
+          <input type="text" class="disc-hp" data-role="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <textarea data-role="text" rows="3" maxlength="2000" placeholder="Add to the discussion / 说点什么…" required></textarea>
           <div class="disc-foot">
-            <button type="submit" class="disc-post"><span class="en">Post</span><span class="zh">发布</span></button>
             <span class="disc-msg" data-role="msg"></span>
+            <button type="submit" class="disc-post"><span class="en">Post</span><span class="zh">发布</span></button>
           </div>
         </form>
       </div>
@@ -2324,19 +2320,17 @@ threshold = 0.95        <span class="cm"># your version / 你的</span>
       <div class="disc" id="disc-m2" data-section="m2">
         <div class="disc-head">
           <h3><span class="en">Discussion</span><span class="zh">讨论</span></h3>
-          <span class="disc-count" data-role="count">&middot;&middot;&middot;</span>
+          <span class="disc-count" data-role="count" hidden></span>
         </div>
         <p class="disc-sub"><span class="en">Stuck, or got it working a different way? Leave it for the next learner.</span><span class="zh">卡住了，或者用别的方法搞定了？留给下一个学习者看看。</span></p>
         <div class="disc-list" data-role="list"></div>
         <form class="disc-form" data-role="form" data-parent="">
-          <div class="disc-row2">
-            <input type="text" data-role="name" maxlength="40" placeholder="Your name / 你的名字" autocomplete="name" required>
-            <input type="text" class="disc-hp" data-role="hp" tabindex="-1" autocomplete="off">
-          </div>
-          <textarea data-role="text" maxlength="2000" placeholder="Say something about Month 2 / 说点什么…" required></textarea>
+          <input type="text" class="disc-name" data-role="name" maxlength="40" placeholder="Your name / 你的名字" autocomplete="name" required>
+          <input type="text" class="disc-hp" data-role="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <textarea data-role="text" rows="3" maxlength="2000" placeholder="Add to the discussion / 说点什么…" required></textarea>
           <div class="disc-foot">
-            <button type="submit" class="disc-post"><span class="en">Post</span><span class="zh">发布</span></button>
             <span class="disc-msg" data-role="msg"></span>
+            <button type="submit" class="disc-post"><span class="en">Post</span><span class="zh">发布</span></button>
           </div>
         </form>
       </div>
@@ -2826,19 +2820,17 @@ list any assumption you had to make."""</span>
       <div class="disc" id="disc-m3" data-section="m3">
         <div class="disc-head">
           <h3><span class="en">Discussion</span><span class="zh">讨论</span></h3>
-          <span class="disc-count" data-role="count">&middot;&middot;&middot;</span>
+          <span class="disc-count" data-role="count" hidden></span>
         </div>
         <p class="disc-sub"><span class="en">Stuck, or got it working a different way? Leave it for the next learner.</span><span class="zh">卡住了，或者用别的方法搞定了？留给下一个学习者看看。</span></p>
         <div class="disc-list" data-role="list"></div>
         <form class="disc-form" data-role="form" data-parent="">
-          <div class="disc-row2">
-            <input type="text" data-role="name" maxlength="40" placeholder="Your name / 你的名字" autocomplete="name" required>
-            <input type="text" class="disc-hp" data-role="hp" tabindex="-1" autocomplete="off">
-          </div>
-          <textarea data-role="text" maxlength="2000" placeholder="Say something about Month 3 / 说点什么…" required></textarea>
+          <input type="text" class="disc-name" data-role="name" maxlength="40" placeholder="Your name / 你的名字" autocomplete="name" required>
+          <input type="text" class="disc-hp" data-role="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <textarea data-role="text" rows="3" maxlength="2000" placeholder="Add to the discussion / 说点什么…" required></textarea>
           <div class="disc-foot">
-            <button type="submit" class="disc-post"><span class="en">Post</span><span class="zh">发布</span></button>
             <span class="disc-msg" data-role="msg"></span>
+            <button type="submit" class="disc-post"><span class="en">Post</span><span class="zh">发布</span></button>
           </div>
         </form>
       </div>
@@ -3326,19 +3318,17 @@ summary &lt;- samples |&gt;
       <div class="disc" id="disc-m4" data-section="m4">
         <div class="disc-head">
           <h3><span class="en">Discussion</span><span class="zh">讨论</span></h3>
-          <span class="disc-count" data-role="count">&middot;&middot;&middot;</span>
+          <span class="disc-count" data-role="count" hidden></span>
         </div>
         <p class="disc-sub"><span class="en">Stuck, or got it working a different way? Leave it for the next learner.</span><span class="zh">卡住了，或者用别的方法搞定了？留给下一个学习者看看。</span></p>
         <div class="disc-list" data-role="list"></div>
         <form class="disc-form" data-role="form" data-parent="">
-          <div class="disc-row2">
-            <input type="text" data-role="name" maxlength="40" placeholder="Your name / 你的名字" autocomplete="name" required>
-            <input type="text" class="disc-hp" data-role="hp" tabindex="-1" autocomplete="off">
-          </div>
-          <textarea data-role="text" maxlength="2000" placeholder="Say something about Month 4 / 说点什么…" required></textarea>
+          <input type="text" class="disc-name" data-role="name" maxlength="40" placeholder="Your name / 你的名字" autocomplete="name" required>
+          <input type="text" class="disc-hp" data-role="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <textarea data-role="text" rows="3" maxlength="2000" placeholder="Add to the discussion / 说点什么…" required></textarea>
           <div class="disc-foot">
-            <button type="submit" class="disc-post"><span class="en">Post</span><span class="zh">发布</span></button>
             <span class="disc-msg" data-role="msg"></span>
+            <button type="submit" class="disc-post"><span class="en">Post</span><span class="zh">发布</span></button>
           </div>
         </form>
       </div>
@@ -3811,19 +3801,17 @@ input[type=range]{width:100%; accent-color:var(--c)}
       <div class="disc" id="disc-m5" data-section="m5">
         <div class="disc-head">
           <h3><span class="en">Discussion</span><span class="zh">讨论</span></h3>
-          <span class="disc-count" data-role="count">&middot;&middot;&middot;</span>
+          <span class="disc-count" data-role="count" hidden></span>
         </div>
         <p class="disc-sub"><span class="en">Stuck, or got it working a different way? Leave it for the next learner.</span><span class="zh">卡住了，或者用别的方法搞定了？留给下一个学习者看看。</span></p>
         <div class="disc-list" data-role="list"></div>
         <form class="disc-form" data-role="form" data-parent="">
-          <div class="disc-row2">
-            <input type="text" data-role="name" maxlength="40" placeholder="Your name / 你的名字" autocomplete="name" required>
-            <input type="text" class="disc-hp" data-role="hp" tabindex="-1" autocomplete="off">
-          </div>
-          <textarea data-role="text" maxlength="2000" placeholder="Say something about Month 5 / 说点什么…" required></textarea>
+          <input type="text" class="disc-name" data-role="name" maxlength="40" placeholder="Your name / 你的名字" autocomplete="name" required>
+          <input type="text" class="disc-hp" data-role="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <textarea data-role="text" rows="3" maxlength="2000" placeholder="Add to the discussion / 说点什么…" required></textarea>
           <div class="disc-foot">
-            <button type="submit" class="disc-post"><span class="en">Post</span><span class="zh">发布</span></button>
             <span class="disc-msg" data-role="msg"></span>
+            <button type="submit" class="disc-post"><span class="en">Post</span><span class="zh">发布</span></button>
           </div>
         </form>
       </div>
@@ -4176,19 +4164,17 @@ input[type=range]{width:100%; accent-color:var(--c)}
       <div class="disc" id="disc-made" data-section="made">
         <div class="disc-head">
           <h3><span class="en">Discussion</span><span class="zh">讨论</span></h3>
-          <span class="disc-count" data-role="count">&middot;&middot;&middot;</span>
+          <span class="disc-count" data-role="count" hidden></span>
         </div>
         <p class="disc-sub"><span class="en">Stuck, or got it working a different way? Leave it for the next learner.</span><span class="zh">卡住了，或者用别的方法搞定了？留给下一个学习者看看。</span></p>
         <div class="disc-list" data-role="list"></div>
         <form class="disc-form" data-role="form" data-parent="">
-          <div class="disc-row2">
-            <input type="text" data-role="name" maxlength="40" placeholder="Your name / 你的名字" autocomplete="name" required>
-            <input type="text" class="disc-hp" data-role="hp" tabindex="-1" autocomplete="off">
-          </div>
-          <textarea data-role="text" maxlength="2000" placeholder="Say something about Month e / 说点什么…" required></textarea>
+          <input type="text" class="disc-name" data-role="name" maxlength="40" placeholder="Your name / 你的名字" autocomplete="name" required>
+          <input type="text" class="disc-hp" data-role="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <textarea data-role="text" rows="3" maxlength="2000" placeholder="Add to the discussion / 说点什么…" required></textarea>
           <div class="disc-foot">
-            <button type="submit" class="disc-post"><span class="en">Post</span><span class="zh">发布</span></button>
             <span class="disc-msg" data-role="msg"></span>
+            <button type="submit" class="disc-post"><span class="en">Post</span><span class="zh">发布</span></button>
           </div>
         </form>
       </div>
@@ -7588,9 +7574,10 @@ window.addEventListener('pointermove', function(e){
         e.className = 'disc-empty';
         e.innerHTML = bi('No comments yet — be the first.', '还没有评论 — 第一个说点什么吧。');
         list.appendChild(e);
-        countEl.textContent = '0';
+        countEl.hidden = true;
         return;
       }
+      countEl.hidden = false;
       countEl.textContent = String(items.length);
       var byParent = {};
       items.forEach(function(c){
@@ -7605,7 +7592,7 @@ window.addEventListener('pointermove', function(e){
       row.className = 'disc-c' + (isReply ? ' reply' : '');
       row.innerHTML =
         '<div class="disc-av">' + esc(initials(c.name)) + '</div>' +
-        '<div><div class="disc-row"><span class="disc-name">' + esc(c.name) + '</span>' +
+        '<div><div class="disc-row"><span class="disc-name-l">' + esc(c.name) + '</span>' +
         '<span class="disc-time">' + esc(fmtTime(c.created_at)) + '</span></div>' +
         '<p class="disc-text"></p>' +
         (isReply ? '' : '<button type="button" class="disc-reply-btn" data-role="reply">' + bi('Reply','回复') + '</button>') +
@@ -7635,13 +7622,13 @@ window.addEventListener('pointermove', function(e){
     }
 
     function load(){
-      countEl.textContent = '\u00b7\u00b7\u00b7';
+      countEl.hidden = true;
       fetch(API + '/comments?section=' + encodeURIComponent(section))
         .then(function(r){ if (!r.ok) throw new Error('load failed'); return r.json() })
         .then(renderList)
         .catch(function(){
           list.innerHTML = '<p class="disc-empty">' + bi('Comments are taking a nap — try again shortly.', '评论区暂时打盹 — 稍后再试。') + '</p>';
-          countEl.textContent = '—';
+          countEl.hidden = true;
         });
     }
 
