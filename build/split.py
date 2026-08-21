@@ -274,9 +274,20 @@ def chapnav_html(i):
 topbar_html = str(topbar)
 def build_topbar(current):
     t = BeautifulSoup(topbar_html, 'html.parser')
+    # twelve inline links never fit; they truncated on desktop and were hidden on
+    # mobile. One control that says where you are and opens the chapter list.
     navel = t.find('nav', class_='navlinks')
-    navel.clear()
-    navel.append(BeautifulSoup(nav_html(current), 'html.parser'))
+    ix = next((k for k, c in enumerate(CH) if c['slug'] == current), 0)
+    cur = CH[ix]
+    chapbtn = BeautifulSoup(
+        '<button type="button" class="chapbtn" aria-expanded="false" aria-haspopup="dialog">'
+        f'<span class="chapbtn-n">{"·" if ix == 0 else f"{ix:02d}"}</span>'
+        f'<span class="chapbtn-t"><span class="en">{cur["tEn"]}</span>'
+        f'<span class="zh">{cur["tZh"]}</span></span>'
+        '<svg class="chapbtn-v" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+        'stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">'
+        '<path d="M6 9l6 6 6-6"/></svg></button>', 'html.parser')
+    navel.replace_with(chapbtn)
     # the wordmark should go home, like every other site on earth
     brand = t.find('div', class_='brand')
     if brand is not None:
@@ -286,14 +297,6 @@ def build_topbar(current):
         for child in list(brand.contents):
             a.append(child.extract())
         brand.replace_with(a)
-    # a real menu button for narrow screens; the drawer is built by vibe.js
-    btn = BeautifulSoup(
-        '<button type="button" class="menubtn" aria-label="Chapters" aria-expanded="false">'
-        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">'
-        '<path d="M3 6h18M3 12h18M3 18h18"/></svg></button>', 'html.parser')
-    wrap = t.find('div', class_='wrap')
-    if wrap is not None:
-        wrap.append(btn)
     return str(t)
 
 footer_html = str(footer) if footer else ''

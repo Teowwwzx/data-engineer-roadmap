@@ -521,3 +521,49 @@ section > .wrap > .sechead{margin-top:0}
   .disc-foot{flex-wrap:wrap}
   .disc-post{width:100%; text-align:center}
 }
+
+/* ============================================================================
+   TOP BAR — it was carrying a wordmark, twelve nav links and seven icon
+   buttons in a 60px row, so nothing had room and most of the nav was cut off.
+   Now: where you are, and the four things you might change.
+   ========================================================================= */
+.topbar .wrap{height:66px; gap:16px}
+.brand{font-size:15.5px; letter-spacing:-.02em; margin-right:2px}
+.brand .dot{width:9px; height:9px}
+
+.chapbtn{
+  display:inline-flex; align-items:center; gap:10px; cursor:pointer;
+  border:1px solid var(--line); background:var(--paper); color:var(--ink);
+  border-radius:var(--r-pill); padding:8px 14px 8px 11px; font:inherit;
+  max-width:min(46vw,320px); transition:border-color .2s ease, background .2s ease;
+}
+.chapbtn:hover{border-color:color-mix(in srgb,var(--vibe-a) 55%,var(--line))}
+.chapbtn-n{
+  font:800 11px/1 var(--mono); letter-spacing:.02em; color:#fff;
+  background:linear-gradient(150deg, color-mix(in srgb,var(--vibe-a) 78%,#fff), var(--vibe-a));
+  border-radius:var(--r-chip); padding:5px 7px; min-width:24px; text-align:center; flex:none;
+}
+.chapbtn-t{font-size:14px; font-weight:650; letter-spacing:-.015em;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.chapbtn-v{width:15px; height:15px; flex:none; color:var(--muted); transition:transform .25s ease}
+.chapbtn[aria-expanded="true"] .chapbtn-v{transform:rotate(180deg)}
+
+/* push the controls to the right and give them air */
+.langsw{margin-left:auto}
+.langsw,.themesw,.vibebar{flex:none}
+.themesw button,.vibebar button{width:34px; height:30px}
+.themesw{padding:3px}
+
+@media (max-width:760px){
+  /* two rows, not three: identity + language above, where-you-are + the
+     playback toggles below */
+  .topbar .wrap{height:auto; padding-top:8px; padding-bottom:6px; row-gap:8px; gap:8px}
+  .brand{order:1; flex:1 1 auto; min-width:0}
+  .langsw{order:2; margin-left:0}
+  .themesw{order:3}
+  .chapbtn{order:4; flex:1 1 auto; min-width:0; max-width:none;
+    justify-content:flex-start; padding:9px 13px}
+  .chapbtn-v{margin-left:auto}
+  .vibebar{order:5}
+  .topbar .wrap::before{content:''; order:3; flex-basis:100%; height:0}
+}

@@ -54,7 +54,7 @@ var CHAPTER_META = [
   ['finish','Month 12 and after','第 12 个月之后','chill']
 ];
 (function(){
-  var btn = $('.menubtn'); if (!btn) return;
+  var btn = $('.chapbtn') || $('.menubtn'); if (!btn) return;
   var here = CHAPTERS.indexOf(CHAP);
   var drawer = document.createElement('div');
   drawer.className = 'drawer';

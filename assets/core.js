@@ -2309,7 +2309,7 @@ try{
     if (mode === 'auto') root.removeAttribute('data-theme');
     else root.setAttribute('data-theme', mode);
     try { localStorage.setItem(KEY, mode) } catch(e){}
-    $$('.themesw button').forEach(function(b){ b.classList.toggle('on', b.dataset.mode === mode) });
+    if (window.__paintThemeCycle) window.__paintThemeCycle();
     if (window.__repaintAccents) window.__repaintAccents();
   }
   function isDark(){
@@ -2325,18 +2325,28 @@ try{
       light:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/></svg>',
       dark: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.4 8.4 0 1 0 10.2 10.2z"/></svg>'
     };
+    var ORDER = ['auto','light','dark'];
+    var LABEL = {auto:'Follow system 跟随系统', light:'Light 浅色', dark:'Dark 深色'};
     var sw = document.createElement('div');
     sw.className = 'themesw';
-    sw.innerHTML = ['auto','light','dark'].map(function(m){
-      var t = {auto:'Follow system 跟随系统', light:'Light 浅色', dark:'Dark 深色'}[m];
-      return '<button type="button" data-mode="'+m+'" title="'+t+'" aria-label="'+t+'">'+ICON[m]+'</button>';
-    }).join('');
+    sw.innerHTML = '<button type="button" data-role="cycle"></button>';
+    var cyc = sw.firstChild;
+    function paintCycle(){
+      var m = stored();
+      cyc.innerHTML = ICON[m];
+      cyc.title = LABEL[m];
+      cyc.setAttribute('aria-label', LABEL[m]);
+      cyc.dataset.mode = m;
+    }
     langsw.parentNode.insertBefore(sw, langsw.nextSibling);
-    sw.addEventListener('click', function(e){
-      var b = e.target.closest('button'); if (b) apply(b.dataset.mode);
+    cyc.addEventListener('click', function(){
+      var next = ORDER[(ORDER.indexOf(stored()) + 1) % ORDER.length];
+      apply(next); paintCycle();
     });
+    window.__paintThemeCycle = paintCycle;
   }
   apply(stored());
+  if (typeof paintCycle === 'function') paintCycle();
   if (mq && mq.addEventListener) mq.addEventListener('change', function(){ if (stored()==='auto') apply('auto') });
 
   /* ---- the five fixed layers ---- */
@@ -2439,7 +2449,7 @@ try{
     new MutationObserver(function(){ run() }).observe(grid, {childList:true, subtree:true});
   }
 })();
-}catch(_e){console.warn("[widget skipped] block@2399:", _e && _e.message)}
+}catch(_e){console.warn("[widget skipped] block@2409:", _e && _e.message)}
 
 /* ---------- accents baked into JS data need the dark ramp too ---------- */
 try{
@@ -2487,7 +2497,7 @@ try{
     if (mq.addEventListener) mq.addEventListener('change', paint);
   }
 })();
-}catch(_e){console.warn("[widget skipped] block@2445:", _e && _e.message)}
+}catch(_e){console.warn("[widget skipped] block@2455:", _e && _e.message)}
 
 /* ================= DISCUSSION / COMMENTS ================= */
 try{

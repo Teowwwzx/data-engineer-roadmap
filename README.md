@@ -114,7 +114,8 @@ itself part of the point the guide is making.
 
 ## Notes
 
-- **Themes** — light, dark, or follow-the-system, from the switch in the top bar. Your choice,
+- **Navigation** — the top bar shows which chapter you are in; tap it for the full chapter list.
+- **Themes** — light, dark, or follow-the-system, cycled from the button in the top bar. Your choice,
   your language, and your motion/sound preferences are remembered across chapters.
 - **Motion and sound** each have their own toggle in the top bar, and both respect
   `prefers-reduced-motion`.
