@@ -7528,13 +7528,46 @@ window.addEventListener('pointermove', function(e){
   }
   window.__repaintAccents = paint;
   paint();
-  /* childList only: paint() writes style attributes itself, and the scrub rail
-     rewrites --t every frame — observing attributes would loop and thrash */
-  var queued = false;
-  new MutationObserver(function(){
-    if (queued) return;
+  /* Only the nodes that were just added need swapping. Re-scanning every
+     [style] element in the document on each mutation meant the terminal, the
+     SQL builder and the data cleaner were triggering a full-document sweep on
+     every keystroke. */
+  function paintNodes(list){
+    list.forEach(function(el){
+      var orig = el.getAttribute('data-lightstyle');
+      if (orig === null){
+        var st = el.getAttribute('style') || '';
+        RE.lastIndex = 0;
+        if (!RE.test(st)) return;
+        RE.lastIndex = 0;
+        orig = st;
+        el.setAttribute('data-lightstyle', orig);
+      }
+      el.setAttribute('style', dark() ? orig.replace(RE, function(m){ return SWAP[m.toLowerCase()] || m }) : orig);
+    });
+    if (window.__inkChips) window.__inkChips();
+  }
+  var queued = false, pending = [];
+  new MutationObserver(function(records){
+    for (var r = 0; r < records.length; r++){
+      var added = records[r].addedNodes;
+      for (var i = 0; i < added.length; i++){
+        var n = added[i];
+        if (n.nodeType !== 1) continue;
+        if (n.hasAttribute && n.hasAttribute('style')) pending.push(n);
+        if (n.querySelectorAll){
+          var inner = n.querySelectorAll('[style]');
+          for (var k = 0; k < inner.length; k++) pending.push(inner[k]);
+        }
+      }
+    }
+    if (!pending.length || queued) return;
     queued = true;
-    requestAnimationFrame(function(){ queued = false; paint() });
+    requestAnimationFrame(function(){
+      queued = false;
+      var batch = pending; pending = [];
+      paintNodes(batch);
+    });
   }).observe(document.body, {childList:true, subtree:true});
   if (window.matchMedia){
     var mq = matchMedia('(prefers-color-scheme: dark)');

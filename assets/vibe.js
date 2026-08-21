@@ -139,14 +139,23 @@ var ICON = {
 })();
 
 /* ============================== THE SCENES ============================== */
-var cv, ctx, W = 0, H = 0, DPR = 1, raf = null, t0 = 0, scene = null;
+var cv, ctx, W = 0, H = 0, DPR = 1, raf = null, t0 = 0, scene = null, lastFrame = 0;
+
+/* core.js still builds the original seven-layer #bgfx from the single-page
+   design. vibe.js replaced it, but nothing ever removed it — so both were
+   compositing full-viewport animated layers every frame. Retire it and keep a
+   single static wash for the colour. */
+(function(){
+  var old = document.getElementById('bgfx');
+  if (old) old.remove();
+})();
 
 function css(v, fallback){
   var s = getComputedStyle(document.documentElement).getPropertyValue(v).trim();
   return s || fallback;
 }
 function sizeCanvas(){
-  DPR = Math.min(window.devicePixelRatio || 1, 2);
+  DPR = Math.min(window.devicePixelRatio || 1, 1.5);
   W = innerWidth; H = innerHeight;
   cv.width = Math.floor(W * DPR); cv.height = Math.floor(H * DPR);
   cv.style.width = W + 'px'; cv.style.height = H + 'px';
@@ -201,18 +210,20 @@ var SCENES = {
         var a = css('--vibe-a','#22d3ee'), b = css('--vibe-b','#a78bfa');
         var hz = H*0.62;
         ctx.strokeStyle = a; ctx.lineWidth = 1;
-        /* receding floor */
+        /* receding floor — one path for all of it, not one per line */
         ctx.globalAlpha = .16;
+        ctx.beginPath();
         for (var i=1;i<=16;i++){
           var p = i/16, y = hz + Math.pow(p,2.1)*(H-hz)*1.5;
           if (y > H) break;
-          ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke();
+          ctx.moveTo(0,y); ctx.lineTo(W,y);
         }
         var off = (t*0.00004) % 1;
         for (var k=-14;k<=14;k++){
           var xs = W/2 + (k+off)*(W/13);
-          ctx.beginPath(); ctx.moveTo(W/2 + (k+off)*22, hz); ctx.lineTo(xs, H); ctx.stroke();
+          ctx.moveTo(W/2 + (k+off)*22, hz); ctx.lineTo(xs, H);
         }
+        ctx.stroke();
         /* scan sweep */
         var sy = (t*0.06) % (H+200) - 100;
         var g = ctx.createLinearGradient(0, sy-70, 0, sy+70);
@@ -249,16 +260,26 @@ var SCENES = {
           if (p.x < -20) p.x = W+20; if (p.x > W+20) p.x = -20;
           if (p.y < -20) p.y = H+20; if (p.y > H+20) p.y = -20;
         });
-        ctx.lineWidth = 1;
+        /* one path per alpha band, so this is 3 stroke calls a frame rather
+           than one per pair — same look, a fraction of the cost */
+        ctx.lineWidth = 1; ctx.strokeStyle = a;
+        var band = [[], [], []];
         for (var i=0;i<N.length;i++){
           for (var j=i+1;j<N.length;j++){
             var dx = N[i].x-N[j].x, dy = N[i].y-N[j].y, d2 = dx*dx+dy*dy;
-            if (d2 < 26000){
-              var al = (1 - d2/26000) * .30;
-              ctx.globalAlpha = al; ctx.strokeStyle = a;
-              ctx.beginPath(); ctx.moveTo(N[i].x,N[i].y); ctx.lineTo(N[j].x,N[j].y); ctx.stroke();
-            }
+            if (d2 < 26000) band[(d2 / 26000 * 3) | 0].push(i, j);
           }
+        }
+        for (var bnd=0; bnd<3; bnd++){
+          var list = band[bnd];
+          if (!list.length) continue;
+          ctx.globalAlpha = .28 - bnd * .09;
+          ctx.beginPath();
+          for (var k=0;k<list.length;k+=2){
+            ctx.moveTo(N[list[k]].x, N[list[k]].y);
+            ctx.lineTo(N[list[k+1]].x, N[list[k+1]].y);
+          }
+          ctx.stroke();
         }
         N.forEach(function(p){
           var pulse = .55 + .45*Math.sin(t*0.0015 + p.ph);
@@ -281,14 +302,25 @@ var SCENES = {
       draw: function(t){
         ctx.clearRect(0,0,W,H);
         var a = css('--vibe-a','#22c55e'), b = css('--vibe-b','#eab308');
+        /* group by colour and opacity step so this is a handful of fills */
+        var buckets = {};
         drops.forEach(function(d,i){
           d.y += d.v;
           if (d.y > H + d.len*G){ d.y = -d.len*G; d.c = Math.floor(rnd(0,cols)); d.v = rnd(.5,2.2) }
+          var col = (i % 4 === 0) ? b : a;
           for (var k=0;k<d.len;k++){
-            ctx.globalAlpha = .30 * (1 - k/d.len);
-            ctx.fillStyle = (i % 4 === 0) ? b : a;
-            ctx.fillRect(d.c*G, Math.floor((d.y - k*G)/G)*G, G-2, G-2);
+            var step = Math.round((1 - k/d.len) * 4);      /* 5 opacity steps */
+            var key = col + '|' + step;
+            (buckets[key] = buckets[key] || []).push(d.c*G, Math.floor((d.y - k*G)/G)*G);
           }
+        });
+        Object.keys(buckets).forEach(function(key){
+          var parts = key.split('|'), pts = buckets[key];
+          ctx.fillStyle = parts[0];
+          ctx.globalAlpha = .30 * (+parts[1] / 4);
+          ctx.beginPath();
+          for (var q=0;q<pts.length;q+=2) ctx.rect(pts[q], pts[q+1], G-2, G-2);
+          ctx.fill();
         });
         ctx.globalAlpha = 1;
       }
@@ -331,7 +363,18 @@ var SCENES = {
   },
   /* ---- big soft bokeh, very slow ---- */
   chill: function(){
-    var B = [];
+    var B = [], sprites = {};
+    function sprite(col){
+      if (sprites[col]) return sprites[col];
+      var c = document.createElement('canvas'), S = 128;
+      c.width = c.height = S;
+      var g2 = c.getContext('2d');
+      var gr = g2.createRadialGradient(S/2, S/2, 0, S/2, S/2, S/2);
+      gr.addColorStop(0, col); gr.addColorStop(1, 'transparent');
+      g2.fillStyle = gr; g2.fillRect(0, 0, S, S);
+      sprites[col] = c;
+      return c;
+    }
     return {
       resize: function(){
         B = [];
@@ -346,10 +389,11 @@ var SCENES = {
           if (p.x < -p.r) p.x = W+p.r; if (p.x > W+p.r) p.x = -p.r;
           if (p.y < -p.r) p.y = H+p.r; if (p.y > H+p.r) p.y = -p.r;
           var br = p.r * (1 + .10*Math.sin(t*0.0006 + p.ph));
-          var g = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,br);
-          g.addColorStop(0, (i%2?b:a)); g.addColorStop(1,'transparent');
-          ctx.globalAlpha = .16; ctx.fillStyle = g;
-          ctx.beginPath(); ctx.arc(p.x,p.y,br,0,6.2832); ctx.fill();
+          /* pre-rendered blob, scaled — building a gradient per blob per frame
+             was allocating a dozen gradient objects every frame */
+          var sp = sprite(i % 2 ? b : a);
+          ctx.globalAlpha = .16;
+          ctx.drawImage(sp, p.x - br, p.y - br, br * 2, br * 2);
         });
         ctx.globalAlpha = 1;
       }
@@ -439,6 +483,8 @@ function startScene(){
   (function loop(now){
     raf = requestAnimationFrame(loop);
     if (document.hidden) return;
+    if (now - lastFrame < 32) return;      /* ~30fps: it is a background */
+    lastFrame = now;
     scene.draw(now - t0);
   })(t0);
 }
