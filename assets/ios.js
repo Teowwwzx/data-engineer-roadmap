@@ -172,6 +172,17 @@ var CHAP = body.getAttribute('data-chapter') || 'index';
       SOUND_KEY='labnotebook-sound', MOTION_KEY='labnotebook-motion';
   function get(k,d){ try { return localStorage.getItem(k) || d } catch(e){ return d } }
   function set(k,v){ try { localStorage.setItem(k,v) } catch(e){} }
+  function applyTheme(v, persist){
+    if (persist) set(THEME_KEY, v);
+    if (v === 'auto') document.documentElement.removeAttribute('data-theme');
+    else document.documentElement.setAttribute('data-theme', v);
+    // keep the browser chrome in step with an explicit choice
+    var dark = v === 'dark' || (v === 'auto' &&
+      window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches);
+    var mt = document.querySelector('meta[name="theme-color"]:not([media])');
+    if (!mt){ mt = document.createElement('meta'); mt.name = 'theme-color'; document.head.appendChild(mt); }
+    mt.setAttribute('content', dark ? '#000000' : '#f2f2f7');
+  }
   var IC = {
     lang:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18"/></svg>',
     theme:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><path d="M12 4v16" /></svg>',
@@ -182,7 +193,7 @@ var CHAP = body.getAttribute('data-chapter') || 'index';
   function label(){
     var lang = get(LANG_KEY,'en') === 'zh' ? '中文' : 'English';
     var th = get(THEME_KEY,'auto');
-    return {lang:lang, theme: th.charAt(0).toUpperCase()+th.slice(1),
+    return {lang:lang, themeRaw: th, theme: th.charAt(0).toUpperCase()+th.slice(1),
             sound: get(SOUND_KEY,'off') === 'on' ? 'On' : 'Off',
             motion: get(MOTION_KEY,'on') === 'off' ? 'Off' : 'On'};
   }
@@ -191,7 +202,16 @@ var CHAP = body.getAttribute('data-chapter') || 'index';
     menu.innerHTML =
       '<a class="ios-menu-row" href="index.html">'+IC.list+'All chapters</a>' +
       '<button class="ios-menu-row" data-act="lang">'+IC.lang+'Language<span class="v">'+L.lang+'</span></button>' +
-      '<button class="ios-menu-row" data-act="theme">'+IC.theme+'Appearance<span class="v">'+L.theme+'</span></button>' +
+      '<div class="ios-menu-seg-wrap">' +
+        '<span class="ios-menu-seg-lab">'+IC.theme+'Appearance</span>' +
+        '<div class="ios-seg" role="group" aria-label="Appearance">' +
+          ['auto','light','dark'].map(function(v){
+            return '<button type="button" class="ios-seg-b'+(L.themeRaw===v?' on':'')+
+                   '" data-theme-set="'+v+'" aria-pressed="'+(L.themeRaw===v)+'">'+
+                   v.charAt(0).toUpperCase()+v.slice(1)+'</button>';
+          }).join('') +
+        '</div>' +
+      '</div>' +
       '<button class="ios-menu-row" data-act="motion">'+IC.motion+'Motion<span class="v">'+L.motion+'</span></button>' +
       '<button class="ios-menu-row" data-act="sound">'+IC.sound+'Sound<span class="v">'+L.sound+'</span></button>';
   }
@@ -207,6 +227,13 @@ var CHAP = body.getAttribute('data-chapter') || 'index';
     if (menu.classList.contains('on') && !menu.contains(e.target)) menu.classList.remove('on');
   });
   menu.addEventListener('click', function(e){
+    var seg = e.target.closest('[data-theme-set]');
+    if (seg){
+      e.stopPropagation();
+      applyTheme(seg.getAttribute('data-theme-set'), true);
+      render();
+      return;
+    }
     var row = e.target.closest('[data-act]'); if (!row) return;
     var act = row.dataset.act;
     if (act === 'lang'){
@@ -215,13 +242,7 @@ var CHAP = body.getAttribute('data-chapter') || 'index';
       body.className = body.className.replace(/lang-\w+/, 'lang-' + next);
       document.documentElement.lang = next === 'zh' ? 'zh-CN' : 'en';
     }
-    if (act === 'theme'){
-      var order = ['auto','light','dark'];
-      var nx = order[(order.indexOf(get(THEME_KEY,'auto')) + 1) % 3];
-      set(THEME_KEY, nx);
-      if (nx === 'auto') document.documentElement.removeAttribute('data-theme');
-      else document.documentElement.setAttribute('data-theme', nx);
-    }
+
     if (act === 'sound'){
       var s = get(SOUND_KEY,'off') === 'on' ? 'off' : 'on';
       set(SOUND_KEY, s);

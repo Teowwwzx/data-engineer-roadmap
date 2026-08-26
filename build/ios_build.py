@@ -103,18 +103,18 @@ open(ASSETS + 'core.js', 'w', encoding='utf-8').write(patch_js(core_js))
 
 # --------------------------------------------------------------- chapters --
 CH = [
- dict(slug='index',    tEn='Start here',            tZh='从这里开始',  secs=['start','howto','months'], vibe='minimalist'),
- dict(slug='map',      tEn='The whole map',         tZh='整张地图',    secs=['map','flow'],             vibe='futuristic'),
- dict(slug='words',    tEn='The words',             tZh='那些词',      secs=['words','stack'],          vibe='chill'),
- dict(slug='terminal', tEn='The terminal',          tZh='终端',        secs=['cli'],                    vibe='pixel'),
- dict(slug='m1',       tEn='IT Basics',             tZh='IT 基础',     secs=['m1'],                     vibe='modern'),
- dict(slug='m2',       tEn='Developer Tools',       tZh='开发工具',    secs=['m2'],                     vibe='gamify'),
- dict(slug='m3',       tEn='AI Fundamentals',       tZh='AI 基础',     secs=['m3'],                     vibe='ai'),
- dict(slug='m4',       tEn='Data Engineering',      tZh='数据工程',    secs=['m4'],                     vibe='natural'),
- dict(slug='m5',       tEn='CS & Cloud',            tZh='计算机与云',  secs=['m5'],                     vibe='futuristic'),
- dict(slug='systems',  tEn='How the big ones work', tZh='大家伙怎么运转', secs=['scale'],               vibe='gamify'),
- dict(slug='zero',     tEn='It starts at 0 and 1',  tZh='从 0 和 1 开始', secs=['zero'],                vibe='pixel'),
- dict(slug='finish',   tEn='Month 12 and after',    tZh='第 12 个月之后', secs=['finish','made'],       vibe='chill'),
+ dict(slug='index',    tEn='Start here',            tZh='从这里开始', sEn='', sZh='',  secs=['start','howto','months'], vibe='minimalist'),
+ dict(slug='map',      tEn='The whole map',         tZh='整张地图', sEn='The entire landscape, one picture', sZh='整个版图，一张图看完',    secs=['map','flow'],             vibe='futuristic'),
+ dict(slug='words',    tEn='The words',             tZh='那些词', sEn='Every term, in plain language', sZh='所有术语，大白话解释',      secs=['words','stack'],          vibe='chill'),
+ dict(slug='terminal', tEn='The terminal',          tZh='终端', sEn='Typing to a computer, not clicking', sZh='用打字操作电脑，而不是点击',        secs=['cli'],                    vibe='pixel'),
+ dict(slug='m1',       tEn='IT Basics',             tZh='IT 基础', sEn='Months 1–3 · The vocabulary phase', sZh='第 1–3 个月 · 打好词汇基础',     secs=['m1'],                     vibe='modern'),
+ dict(slug='m2',       tEn='Developer Tools',       tZh='开发工具', sEn='Months 4–5 · Stop rebuilding the bench', sZh='第 4–5 个月 · 别再重造轮子',    secs=['m2'],                     vibe='gamify'),
+ dict(slug='m3',       tEn='AI Fundamentals',       tZh='AI 基础', sEn="Months 6–7 · Judge AI, don't just accept", sZh='第 6–7 个月 · 学会判断 AI 的输出',     secs=['m3'],                     vibe='ai'),
+ dict(slug='m4',       tEn='Data Engineering',      tZh='数据工程', sEn='Months 8–10 · The actual job', sZh='第 8–10 个月 · 真正的工作内容',    secs=['m4'],                     vibe='natural'),
+ dict(slug='m5',       tEn='CS & Cloud',            tZh='计算机与云', sEn='Months 11–12 · Under the abstraction', sZh='第 11–12 个月 · 看穿抽象层',  secs=['m5'],                     vibe='futuristic'),
+ dict(slug='systems',  tEn='How the big ones work', tZh='大家伙怎么运转', sEn='Where an app lives once it is live', sZh='应用上线后到底跑在哪里', secs=['scale'],               vibe='gamify'),
+ dict(slug='zero',     tEn='It starts at 0 and 1',  tZh='从 0 和 1 开始', sEn='Why all of it is just 0 and 1', sZh='为什么一切都只是 0 和 1', secs=['zero'],                vibe='pixel'),
+ dict(slug='finish',   tEn='Month 12 and after',    tZh='第 12 个月之后', sEn="How this site was built, and what's next", sZh='这个网站怎么做的，接下来做什么', secs=['finish','made'],       vibe='chill'),
 ]
 for c in CH:
     c['file'] = 'index.html' if c['slug'] == 'index' else c['slug'] + '.html'
@@ -255,7 +255,6 @@ SHELL = '''<!DOCTYPE html>
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <title>{title}</title>
 <link rel="stylesheet" href="assets/core.css">
-<link rel="stylesheet" href="assets/themes.css">
 <link rel="stylesheet" href="assets/ios.css">
 <script>(function(){{try{{
  var t=localStorage.getItem('labnotebook-theme');
@@ -419,7 +418,7 @@ def build_chapter(ix, c):
               '<span class="ios-row-ic">%02d</span>'
               '<span class="ios-row-t">%s<small>%s</small></span>%s</a>'
               % (ch['file'], j, bi(ch['tEn'], ch['tZh']),
-                 bi(ch['vibe'], ch['vibe']), CHEV))
+                 bi(ch['sEn'], ch['sZh']), CHEV))
         groups.insert(0,
           '<section class="ios-group" id="s-chapters">'
           '<h2 class="ios-group-h">%s</h2><div class="ios-list">%s</div>'
