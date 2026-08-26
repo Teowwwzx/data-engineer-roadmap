@@ -11,8 +11,11 @@
   --ios-fill:#ffffff;          /* rows and cards       */
   --ios-fill-2:#f7f7fa;
   --ios-label:#000000;
-  --ios-label-2:rgba(60,60,67,.78);   /* 5.3:1 on the grouped bg  */
-  --ios-label-3:rgba(60,60,67,.62);   /* 3.5:1 — large/decorative only */
+  /* Solved for APCA: label-2 hits Lc 75 (body-text floor) and label-3 Lc 60
+     (label floor) against --ios-bg. WCAG alone passed these at .62/.78 while
+     APCA scored them ~50 — WCAG over-rates exactly this kind of pair. */
+  --ios-label-2:rgba(60,60,67,.825);  /* Lc 75.4 · WCAG 5.96 */
+  --ios-label-3:rgba(60,60,67,.64);   /* Lc 60.3 — labels only */
   --ios-sep:rgba(60,60,67,.26);
   /* Tint is deliberately NOT --vibe-a: the vibe hues are decorative and several
      of them fail contrast as text. This one clears 4.5:1 on fill and on bg. */
@@ -32,17 +35,17 @@
 }
 :root[data-theme="dark"]{
     --ios-bg:#000000; --ios-fill:#1c1c1e; --ios-fill-2:#2c2c2e;
-    --ios-label:#ffffff; --ios-label-2:rgba(235,235,245,.68); --ios-label-3:rgba(235,235,245,.55);
+    --ios-label:#ffffff; --ios-label-2:rgba(235,235,245,.865); --ios-label-3:rgba(235,235,245,.755);
     --ios-sep:rgba(84,84,88,.6);
-    --ios-tint:#5ea9ff; --ios-accent-bg:#0a6fd8; --ios-accent-fg:#ffffff;
+    --ios-tint:#8fc4ff; --ios-accent-bg:#0a6fd8; --ios-accent-fg:#ffffff;
     --ios-pill:#1c1c1e; --ios-pill-line:rgba(235,235,245,.16);
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     --ios-bg:#000000; --ios-fill:#1c1c1e; --ios-fill-2:#2c2c2e;
-    --ios-label:#ffffff; --ios-label-2:rgba(235,235,245,.68); --ios-label-3:rgba(235,235,245,.55);
+    --ios-label:#ffffff; --ios-label-2:rgba(235,235,245,.865); --ios-label-3:rgba(235,235,245,.755);
     --ios-sep:rgba(84,84,88,.6);
-    --ios-tint:#5ea9ff; --ios-accent-bg:#0a6fd8; --ios-accent-fg:#ffffff;
+    --ios-tint:#8fc4ff; --ios-accent-bg:#0a6fd8; --ios-accent-fg:#ffffff;
     --ios-pill:#1c1c1e; --ios-pill-line:rgba(235,235,245,.16);
   }
 }
@@ -359,24 +362,24 @@ body.ios{
 /* Brand hues, kept distinct for diagrams but pinned to values that stay legible
    as text in both appearances. */
 body.ios{
-  --m1:#1f6feb; --m2:#0f766e; --m3:#7c3aed; --m4:#a04a08; --m5:#be123c;
-  --m1-deep:#1a5fca; --m2-deep:#0d5f59; --m3-deep:#6d28d9;
+  --m1:#6d28d9; --m2:#0f766e; --m3:#7c3aed; --m4:#8f4108; --m5:#be123c;
+  --m1-deep:#5b21b6; --m2-deep:#0d5f59; --m3-deep:#6d28d9;
   --m4-deep:#8f4108; --m5-deep:#a3103a; --info-deep:#1f6feb;
   --ok-deep:#0a6b45; --no-deep:#a01515;
   --ok:#15803d; --no:#b91c1c; --t:var(--ios-label-2); --k:var(--ios-label);
 }
 :root[data-theme="dark"] body.ios,
 :root:not([data-theme="light"]) body.ios{
-  --m1:#6ea8ff; --m2:#4dd4c4; --m3:#c4a2ff; --m4:#f0b45e; --m5:#ff8fa8;
-  --m1-deep:#6ea8ff; --m2-deep:#4dd4c4; --m3-deep:#c4a2ff;
-  --m4-deep:#f0b45e; --m5-deep:#ff8fa8; --info-deep:#6ea8ff;
+  --m1:#cdb8ff; --m2:#6ee0d2; --m3:#d4b8ff; --m4:#f7cf9b; --m5:#ffa8bd;
+  --m1-deep:#cdb8ff; --m2-deep:#6ee0d2; --m3-deep:#d4b8ff;
+  --m4-deep:#f7cf9b; --m5-deep:#ffa8bd; --info-deep:#6ea8ff;
   --ok-deep:#5ddb8b; --no-deep:#ff8f8f;
   --ok:#5ddb8b; --no:#ff8f8f;
 }
 @media (prefers-color-scheme:light){
   :root:not([data-theme="dark"]) body.ios{
-    --m1:#1f6feb; --m2:#0f766e; --m3:#7c3aed; --m4:#a04a08; --m5:#be123c;
-    --m1-deep:#1a5fca; --m2-deep:#0d5f59; --m3-deep:#6d28d9;
+    --m1:#6d28d9; --m2:#0f766e; --m3:#7c3aed; --m4:#8f4108; --m5:#be123c;
+    --m1-deep:#5b21b6; --m2-deep:#0d5f59; --m3-deep:#6d28d9;
     --m4-deep:#8f4108; --m5-deep:#a3103a; --info-deep:#1f6feb;
     --ok-deep:#0a6b45; --no-deep:#a01515;
     --ok:#15803d; --no:#b91c1c;
@@ -463,3 +466,162 @@ body.ios [style*="0f172a"] pre, body.ios [style*="1e293b"] pre{
   color:#e2e8f0;
 }
 body.ios .sandbox textarea{color:#e2e8f0; caret-color:#e2e8f0}
+
+
+/* ------------------------------------------------------------ focus ring --
+   core.css ships `:focus-visible{outline:2.5px solid var(--ring)}`, but --ring
+   resolves at :root — before the token remap below reaches it — so it stayed
+   the old vibe indigo at 45% alpha. Measured 2.02:1 in light and 2.13:1 in
+   dark against the surfaces it crosses, where WCAG 1.4.11 wants 3:1 for a
+   non-text indicator. Solid tint clears it in both: 5.7:1 and 6.6:1. */
+body.ios{ --ring:var(--ios-tint) }
+body.ios :focus-visible{
+  outline:2.5px solid var(--ios-tint);
+  outline-offset:2px;
+  border-radius:8px;
+}
+/* the row fills its list cell, so an offset ring would be clipped by overflow */
+body.ios .ios-row:focus-visible{ outline-offset:-2.5px; border-radius:0 }
+body.ios .ios-seg-b:focus-visible{ outline-offset:-2px }
+
+/* ---------------------------------------------------------- type details --
+   Headings were not descending: the section h2 renders at 13px while content
+   h4 renders at 16px, so a child heading outweighed its parent. */
+body.ios .ios-sheet-body h3{ font-size:19px; font-weight:700; letter-spacing:-.018em; margin:22px 0 6px }
+body.ios .ios-sheet-body h4{ font-size:16.5px; font-weight:650; letter-spacing:-.01em; margin:18px 0 5px }
+body.ios .ios-sheet-body h5{ font-size:14px; font-weight:650; margin:16px 0 4px }
+
+/* Wrapping: balance short display text, keep orphans off descriptions. */
+body.ios .ios-title,
+body.ios .ios-sheet-title,
+body.ios h2,body.ios h3,body.ios h4{ text-wrap:balance }
+body.ios .ios-sub,
+body.ios .ios-group-note,
+body.ios .ios-row-t small{ text-wrap:pretty }
+body.ios .ios-row-t,
+body.ios .ios-nav-title,
+body.ios .ios-steps li{ overflow-wrap:break-word }
+
+/* Counters change value, so hold their digit widths steady. */
+body.ios .ios-group-h span,
+body.ios .ios-steps .n,
+body.ios .ios-progress-label,
+body.ios .pct,body.ios .score{ font-variant-numeric:tabular-nums }
+
+/* --------------------------------------------------------- touch targets --
+   WCAG 2.5.8 wants 24x24 minimum; these render at 17x17. Grow the control
+   itself rather than a pseudo-element, so the label stays clear of it. */
+body.ios input[type="checkbox"],
+body.ios input[type="radio"]{ width:22px; height:22px; flex:none; accent-color:var(--ios-tint) }
+body.ios label:has(> input[type="checkbox"]),
+body.ios label:has(> input[type="radio"]){ min-height:32px; display:flex; align-items:center; gap:10px }
+
+/* iOS Safari zooms the page when a text field renders under 16px. */
+body.ios input[type="text"],
+body.ios input[type="email"],
+body.ios input[type="search"],
+body.ios textarea{ font-size:16px }
+
+/* SQL/code keyword colour measured Lc 49.6 on the slate plate, under the
+   Lc 60 floor for non-body text. */
+body.ios .kw{ color:#c9a2ff }
+body.ios .str{ color:#9ae6b4 }
+body.ios .num{ color:#f6c177 }
+
+/* Skip link: off-screen until focused, then a normal iOS pill in the corner. */
+.ios-skip{
+  position:fixed; top:8px; left:8px; z-index:300;
+  transform:translateY(-160%); transition:transform .18s var(--ios-ease);
+  background:var(--ios-accent-bg); color:var(--ios-accent-fg);
+  font:600 15px/1 var(--ios-font); text-decoration:none;
+  padding:12px 16px; border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,.28);
+}
+.ios-skip:focus{ transform:none }
+main#ios-main:focus{ outline:none }
+
+/* --------------------------------------------- accent text vs accent tint --
+   --ios-tint means "interactive": back links, buttons, the segmented control.
+   It was also being borrowed for static labels — eyebrows, callout kickers —
+   which both fails APCA at label sizes in dark (Lc ~51 against a 60 floor)
+   and tells the reader a static label is clickable. Split the roles.
+
+   --ios-accent-text is for static accent labels only, solved to clear Lc 60
+   on the surfaces those labels actually sit on. */
+body.ios{ --ios-accent-text:#0b63ce }        /* Lc 68.8 on the light callout */
+:root[data-theme="dark"] body.ios{ --ios-accent-text:#8fc4ff }   /* Lc 67.0 */
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) body.ios{ --ios-accent-text:#8fc4ff }
+}
+
+/* The eyebrow is page metadata, not a link — it goes neutral. */
+body.ios .ios-eyebrow{
+  color:var(--ios-label-2);
+  font-weight:650; letter-spacing:.07em; text-transform:uppercase;
+}
+/* Callout kickers keep a hue, but the readable one. */
+body.ios .ios-callout .k,
+body.ios .ios-callout .bl,
+body.ios .lens-tabs button.on,
+body.ios .idea .il,
+body.ios .tag2{ color:var(--ios-accent-text) }
+
+/* WCAG 2.5.8 floor is 24x24; 22 was still short. */
+body.ios input[type="checkbox"],
+body.ios input[type="radio"]{ width:24px; height:24px }
+
+/* --c is the per-section accent, used by ~47 rules as text and ~38 as a fill.
+   In dark the tint is readable as a fill but lands around Lc 51 as small
+   label text, under the Lc 60 floor. Point --c at the text-safe variant in
+   dark (in light the two are the same value, so nothing shifts), then hand
+   the four fills that carry white text the darker button blue back. */
+:root[data-theme="dark"] body.ios,
+:root:not([data-theme="light"]) body.ios{ --c:var(--ios-accent-text) }
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]) body.ios{ --c:var(--ios-tint) }
+}
+body.ios .pbtn.active,
+body.ios .bit .sw2.on,
+body.ios .showtab.on,
+body.ios .tlmonth,
+body.ios .play-badge,
+body.ios .chal-badge{
+  background:var(--ios-accent-bg); color:var(--ios-accent-fg);
+}
+
+
+/* Bold inside running prose was drawn in the accent, which both reads as a
+   link and has to clear the body-text floor rather than the label one.
+   Emphasis here is the weight's job; the colour goes back to the body. */
+body.ios .chal-body .brief b,
+body.ios .tldr li b,
+body.ios .analogy b{ color:inherit }
+
+
+/* Zone chips draw their text from --zc, a dark indigo, on a dark tint of the
+   same hue. Mixing 68% of a dark hue into white still lands near Lc 40 in
+   dark; the text needs to be a light tint of the hue, not a dark one. */
+:root[data-theme="dark"] body.ios .zchip,
+:root:not([data-theme="light"]) body.ios .zchip,
+:root[data-theme="dark"] body.ios .cathead .where,
+:root:not([data-theme="light"]) body.ios .cathead .where{
+  color:color-mix(in srgb, var(--ck, var(--zc)) 32%, var(--ios-label));
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]) body.ios .zchip{ color:color-mix(in srgb, var(--zc) 55%, var(--ios-label)) }
+  :root:not([data-theme="dark"]) body.ios .cathead .where{ color:color-mix(in srgb, var(--ck) 50%, var(--ios-label)) }
+}
+
+/* Same rule as the other prose bolds: emphasis is the weight's job. */
+body.ios .warn b, body.ios .warn strong{ color:inherit }
+
+/* core.css deepens these accent labels with `color-mix(var(--c) 74%, #fff)`
+   in dark, which lands at Lc 56-58 against the panel — just under the Lc 60
+   label floor. Lighten the mix until they clear it. */
+:root[data-theme="dark"] body.ios .showbox .tag2,
+:root[data-theme="dark"] body.ios .showbox .stat b,
+:root[data-theme="dark"] body.ios .showbox .idea .il,
+:root:not([data-theme="light"]) body.ios .showbox .tag2,
+:root:not([data-theme="light"]) body.ios .showbox .stat b,
+:root:not([data-theme="light"]) body.ios .showbox .idea .il{
+  color:color-mix(in srgb, var(--c) 48%, #ffffff);
+}

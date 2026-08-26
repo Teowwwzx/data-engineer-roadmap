@@ -14,6 +14,7 @@
 }catch(e){}})();</script>
 </head>
 <body class="ios lang-en" data-chapter="m3" data-vibe="ai">
+<a class="ios-skip" href="#ios-main">Skip to content</a>
 <div class="ios-phone">
   <nav class="ios-nav">
     <a class="ios-back" href="m2.html"><svg viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2 2.5 10 10 18"/></svg><span>Developer Tools</span></a>
@@ -24,6 +25,7 @@
   </nav>
   <div class="ios-progress"><i></i></div>
 
+  <main id="ios-main" tabindex="-1">
   <header class="ios-hero">
     <p class="ios-eyebrow"><span class="en">Months 6–7 · Your fastest, most confident colleague</span><span class="zh">第 6–7 月 · 你最快、也最自信的同事</span></p>
     <h1 class="ios-title"><span class="en">AI Fundamentals</span><span class="zh">AI 基础</span></h1>
@@ -66,7 +68,7 @@
 <section class="ios-group" id="s-check"><h2 class="ios-group-h"><span class="en">Check yourself</span><span class="zh">检查一下</span></h2><div class="ios-embed" style="margin-top:10px"><div class="chal">
 <div class="chal-head">
 <span class="chal-badge"><span class="en">⚡ Challenge</span><span class="zh">⚡ 挑战</span></span>
-<h4><span class="en">Make an AI do a week of someone's work — correctly</span><span class="zh">让 AI 做完某人一周的活 —— 而且做对</span></h4>
+<h3><span class="en">Make an AI do a week of someone's work — correctly</span><span class="zh">让 AI 做完某人一周的活 —— 而且做对</span></h3>
 <span class="diff">★★☆</span>
 </div>
 <div class="chal-body">
@@ -122,6 +124,7 @@
   <div class="ios-continue">
     <a class="ios-btn" href="m4.html"><span class="en">Next: Data Engineering</span><span class="zh">下一章：数据工程</span></a>
   </div>
+  </main>
 </div>
 <div class="ios-sheet" id="sh-m3-1" aria-hidden="true" role="dialog" aria-modal="true"><div class="ios-sheet-back"></div><div class="ios-sheet-card"><div class="ios-grabber"></div><div class="ios-sheet-nav"><span></span><b><span class="en">What an LLM actually is</span><span class="zh">大模型到底是什么</span></b><button type="button" class="ios-sheet-done">Done</button></div><div class="ios-sheet-body"><div class="ios-hero"><p class="ios-eyebrow">Lesson 1</p><h2 class="ios-title" style="font-size:26px"><span class="en">What an LLM actually is</span><span class="zh">大模型到底是什么</span></h2></div>
 
@@ -143,11 +146,11 @@
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">How software used to be built</span><span class="zh">以前软件是怎么造的</span></h5>
+<div class="evo-col then"><h3><span class="en">How software used to be built</span><span class="zh">以前软件是怎么造的</span></h3>
 <ul class="en"><li>Every behaviour had to be written as an explicit rule by a human. "If purity &lt; 0.95 then fail."</li><li>Anything fuzzy — reading a messy address, summarising a document — was effectively impossible.</li><li>Adding a language, a format or an edge case meant a new project.</li><li>Search meant matching keywords. If you used a different word, you found nothing.</li></ul>
 <ul class="zh"><li>每一种行为都得由人写成明确的规则。"如果纯度 &lt; 0.95 就判不合格。"</li><li>任何模糊的事——读一个乱写的地址、给文档做摘要——基本不可能。</li><li>多支持一种语言、一种格式、一个边缘情况，就是一个新项目。</li><li>搜索靠关键词匹配。换个说法就什么都搜不到。</li></ul></div>
 <div class="evo-arrow">→</div>
-<div class="evo-col now"><h5><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h5>
+<div class="evo-col now"><h4><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h4>
 <ul class="en"><li>You describe the outcome in plain language and the model produces a first attempt.</li><li>Fuzzy tasks became routine: extract fields from a scanned invoice, summarise 200 tickets, translate a script from R to Python.</li><li>The bottleneck moved from <b>writing</b> code to <b>verifying</b> it — which is where your judgment now earns its keep.</li><li>Search works by meaning, not by matching characters.</li></ul>
 <ul class="zh"><li>你用大白话描述想要的结果，模型给出第一版尝试。</li><li>模糊任务变成了日常：从扫描发票里抽字段、给 200 张工单做摘要、把 R 脚本翻译成 Python。</li><li>瓶颈从<b>写</b>代码变成了<b>验</b>代码——而这正是你的判断力开始值钱的地方。</li><li>搜索按含义匹配，而不是按字符匹配。</li></ul></div>
 </div>
@@ -205,11 +208,11 @@
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">Early prompting (2022–23)</span><span class="zh">早期的提示词（2022–23）</span></h5>
+<div class="evo-col then"><h3><span class="en">Early prompting (2022–23)</span><span class="zh">早期的提示词（2022–23）</span></h3>
 <ul class="en"><li>Magic phrases and superstition — "you are a world-class expert," "I will tip you $200."</li><li>Tiny context windows, so you had to compress everything and hope.</li><li>Chained tricks to get JSON out reliably; often it came back malformed.</li><li>Prompts were personal folklore, passed around as screenshots.</li></ul>
 <ul class="zh"><li>咒语和迷信——"你是世界顶级专家""我会给你 200 美元小费"。</li><li>上下文窗口很小，什么都得压缩，然后祈祷。</li><li>要靠一连串技巧才能稳定拿到 JSON，而且常常格式还是坏的。</li><li>提示词是个人经验，靠截图在群里流传。</li></ul></div>
 <div class="evo-arrow">→</div>
-<div class="evo-col now"><h5><span class="en">Prompting now</span><span class="zh">现在的提示词</span></h5>
+<div class="evo-col now"><h4><span class="en">Prompting now</span><span class="zh">现在的提示词</span></h4>
 <ul class="en"><li>Plain, specific, structured instructions. The superstition mostly stopped working and stopped being needed.</li><li>Long context: paste the whole schema, the whole error, the whole file.</li><li>Structured output is a first-class feature — you define the shape, you get that shape.</li><li>Good prompts live in Git as reusable files, reviewed like code.</li></ul>
 <ul class="zh"><li>朴素、具体、有结构的指令。咒语基本失效，也不再需要。</li><li>长上下文：整个表结构、整段报错、整个文件，直接贴进去。</li><li>结构化输出成了一等功能——你定义形状，就得到那个形状。</li><li>好的提示词像代码一样存进 Git、可复用、可评审。</li></ul></div>
 </div>
@@ -321,11 +324,11 @@ list any assumption you had to make."""</span>
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">How coding used to go</span><span class="zh">以前写代码是怎样</span></h5>
+<div class="evo-col then"><h3><span class="en">How coding used to go</span><span class="zh">以前写代码是怎样</span></h3>
 <ul class="en"><li>Hit an unfamiliar error → search → open nine tabs → find a 2016 answer for an older version.</li><li>Boilerplate typed by hand, every time, with typos.</li><li>Tests written last, badly, or not at all.</li><li>Understanding a stranger's 800-line file took a full day.</li></ul>
 <ul class="zh"><li>遇到陌生报错 → 搜索 → 开九个标签页 → 找到一个 2016 年针对旧版本的答案。</li><li>样板代码每次都手敲，每次都有拼写错误。</li><li>测试最后写、写得差，或者干脆不写。</li><li>看懂别人写的 800 行文件要花一整天。</li></ul></div>
 <div class="evo-arrow">→</div>
-<div class="evo-col now"><h5><span class="en">How it goes now</span><span class="zh">现在是怎样</span></h5>
+<div class="evo-col now"><h4><span class="en">How it goes now</span><span class="zh">现在是怎样</span></h4>
 <ul class="en"><li>Paste the error <i>with</i> the file — get an explanation grounded in your actual code.</li><li>Boilerplate is generated in seconds; you review instead of type.</li><li>Tests get written because the cost of writing them collapsed.</li><li>That 800-line file gets explained function by function in ten minutes.</li></ul>
 <ul class="zh"><li>把报错<i>连同文件</i>一起给它——得到基于你真实代码的解释。</li><li>样板代码几秒生成，你从"敲"变成"审"。</li><li>测试终于写了，因为写测试的成本塌下来了。</li><li>那个 800 行的文件，十分钟就能被逐个函数讲清楚。</li></ul></div>
 </div>
@@ -390,11 +393,11 @@ list any assumption you had to make."""</span>
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">How integration used to work</span><span class="zh">以前的集成是怎么做的</span></h5>
+<div class="evo-col then"><h3><span class="en">How integration used to work</span><span class="zh">以前的集成是怎么做的</span></h3>
 <ul class="en"><li>Every AI tool needed a bespoke integration with every data source. N tools × M systems = N×M pieces of glue code.</li><li>Permissions were whatever each integration's author happened to implement.</li><li>You copied data out by hand and pasted it into a chat window — including things you shouldn't have.</li><li>Nothing was auditable. No log of what the AI actually touched.</li></ul>
 <ul class="zh"><li>每个 AI 工具都要为每个数据源写专门的集成。N 个工具 × M 个系统 = N×M 段胶水代码。</li><li>权限完全取决于写那个集成的人当时实现了什么。</li><li>你手动把数据复制出来粘进聊天框——包括那些本不该复制的。</li><li>完全无法审计。AI 到底碰了什么，没有日志。</li></ul></div>
 <div class="evo-arrow">→</div>
-<div class="evo-col now"><h5><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h5>
+<div class="evo-col now"><h4><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h4>
 <ul class="en"><li>One standard socket. Write an MCP server for your warehouse <b>once</b>; every MCP-compatible client can use it.</li><li>Permissions live in one place, at the socket — not scattered across integrations.</li><li>The AI queries live data itself, so nobody pastes a customer list into a chat box.</li><li>Every tool call is logged. You can answer "what did it touch, and when?"</li></ul>
 <ul class="zh"><li>一个标准插口。为你的数仓写<b>一次</b> MCP 服务，所有兼容 MCP 的客户端都能用。</li><li>权限集中在插口这一处——不再散落在各个集成里。</li><li>AI 自己去查实时数据，没人再把客户名单粘进聊天框。</li><li>每次工具调用都有日志。"它碰了什么、什么时候碰的"，你答得上来。</li></ul></div>
 </div>

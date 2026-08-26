@@ -14,6 +14,7 @@
 }catch(e){}})();</script>
 </head>
 <body class="ios lang-en" data-chapter="m1" data-vibe="modern">
+<a class="ios-skip" href="#ios-main">Skip to content</a>
 <div class="ios-phone">
   <nav class="ios-nav">
     <a class="ios-back" href="terminal.html"><svg viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2 2.5 10 10 18"/></svg><span>The terminal</span></a>
@@ -24,6 +25,7 @@
   </nav>
   <div class="ios-progress"><i></i></div>
 
+  <main id="ios-main" tabindex="-1">
   <header class="ios-hero">
     <p class="ios-eyebrow"><span class="en">Months 1–3 · The vocabulary phase</span><span class="zh">第 1–3 月 · 补词汇的阶段</span></p>
     <h1 class="ios-title"><span class="en">IT Basics</span><span class="zh">IT 基础</span></h1>
@@ -66,7 +68,7 @@
 <div class="ios-embed" style="margin-top:10px"><div class="play" data-play="sandbox">
 <div class="play-head">
 <span class="play-badge"><span class="en">▶ Playground</span><span class="zh">▶ 动手玩</span></span>
-<h4><span class="en">Write real frontend code, right here</span><span class="zh">就在这里写真正的前端代码</span></h4>
+<h3><span class="en">Write real frontend code, right here</span><span class="zh">就在这里写真正的前端代码</span></h3>
 <p class="sub2"><span class="en">Edit the code on the left — the page on the right updates as you type. Nothing to install. Try changing a colour, then a number, then break something on purpose.</span><span class="zh">改左边的代码，右边的页面会随着你输入实时变化。什么都不用装。先改个颜色，再改个数字，然后故意弄坏一次看看。</span></p>
 </div>
 <div class="play-body">
@@ -89,7 +91,7 @@
 <section class="ios-group" id="s-check"><h2 class="ios-group-h"><span class="en">Check yourself</span><span class="zh">检查一下</span></h2><div class="ios-embed" style="margin-top:10px"><div class="chal">
 <div class="chal-head">
 <span class="chal-badge"><span class="en">⚡ Challenge</span><span class="zh">⚡ 挑战</span></span>
-<h4><span class="en">Build the thing that proves where a wrong number came from</span><span class="zh">做一个能证明"错数字从哪来"的东西</span></h4>
+<h3><span class="en">Build the thing that proves where a wrong number came from</span><span class="zh">做一个能证明"错数字从哪来"的东西</span></h3>
 <span class="diff">★☆☆</span>
 </div>
 <div class="chal-body">
@@ -145,6 +147,7 @@
   <div class="ios-continue">
     <a class="ios-btn" href="m2.html"><span class="en">Next: Developer Tools</span><span class="zh">下一章：开发工具</span></a>
   </div>
+  </main>
 </div>
 <div class="ios-sheet" id="sh-m1-1" aria-hidden="true" role="dialog" aria-modal="true"><div class="ios-sheet-back"></div><div class="ios-sheet-card"><div class="ios-grabber"></div><div class="ios-sheet-nav"><span></span><b><span class="en">Frontend fundamentals</span><span class="zh">前端基础</span></b><button type="button" class="ios-sheet-done">Done</button></div><div class="ios-sheet-body"><div class="ios-hero"><p class="ios-eyebrow">Lesson 1</p><h2 class="ios-title" style="font-size:26px"><span class="en">Frontend fundamentals</span><span class="zh">前端基础</span></h2><p class="ios-sub"><span class="en">HTML, CSS, JavaScript</span><span class="zh">— HTML、CSS、JavaScript</span></p></div>
 
@@ -164,11 +167,11 @@
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h5>
+<div class="evo-col then"><h3><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h3>
 <ul class="en"><li>Every click sent a request to the server, which sent back a <b>whole new page</b>. The screen went white and reloaded.</li><li>HTML, styling and behaviour were tangled in one file — <code class="inl">&lt;font color="red"&gt;</code> sat right in the content.</li><li>A different page had to be hand-written for every combination of data.</li></ul>
 <ul class="zh"><li>每点一次，浏览器就向服务器要一整个<b>新页面</b>，屏幕闪白、整页刷新。</li><li>结构、样式、行为全混在一个文件里——<code class="inl">&lt;font color="red"&gt;</code> 直接写在内容中间。</li><li>数据有多少种组合，就得手写多少个页面。</li></ul></div>
 <div class="evo-arrow">→</div>
-<div class="evo-col now"><h5><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h5>
+<div class="evo-col now"><h4><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h4>
 <ul class="en"><li>The page loads once. JavaScript fetches only the <b>data</b> that changed and redraws just that part.</li><li>Strict separation: HTML = structure, CSS = appearance, JS = behaviour. Change the colour scheme without touching the content.</li><li>One template + data renders a thousand different views.</li></ul>
 <ul class="zh"><li>页面只加载一次，JavaScript 只去取<b>变化的数据</b>，然后局部重绘那一小块。</li><li>严格分工：HTML 管结构，CSS 管外观，JS 管行为。改配色不用碰内容。</li><li>一套模板加上数据，就能渲染出上千种不同的视图。</li></ul></div>
 </div>
@@ -242,11 +245,11 @@ document.<span class="fn">getElementById</span>(<span class="st">"btn"</span>).<
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h5>
+<div class="evo-col then"><h3><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h3>
 <ul class="en"><li>One giant program did everything — UI, logic and data access welded together. Change one line, retest the world.</li><li>It ran on <b>one specific server in one specific room</b>. If that machine died, so did the product.</li><li>Deploying meant a person copying files over FTP at 2am and hoping.</li><li>Scaling meant buying a bigger machine (and waiting six weeks for it to arrive).</li></ul>
 <ul class="zh"><li>一个巨大的程序包办一切——界面、逻辑、数据访问焊死在一起。改一行，就得把整个系统重测一遍。</li><li>它跑在<b>某个机房里的某一台特定服务器</b>上。那台机器一挂，产品就没了。</li><li>发布 = 有个人凌晨两点用 FTP 把文件拷上去，然后祈祷。</li><li>扩容 = 买一台更大的机器（然后等六周才到货）。</li></ul></div>
 <div class="evo-arrow">→</div>
-<div class="evo-col now"><h5><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h5>
+<div class="evo-col now"><h4><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h4>
 <ul class="en"><li>Small independent services, each with one job, talking over APIs. Change one without touching the rest.</li><li>It runs in a <b>container</b> — a sealed box that behaves identically on your laptop and in the cloud.</li><li>Deploying is automatic: push to Git, tests run, it ships itself.</li><li>Scaling is a number in a config file. Ten copies for the busy hour, one for the night.</li></ul>
 <ul class="zh"><li>拆成一个个小服务，每个只干一件事，之间用 API 对话。改一个不用动其他的。</li><li>它跑在<b>容器</b>里——一个密封的盒子，在你笔记本上和在云上表现完全一致。</li><li>发布是自动的：推到 Git、自动跑测试、自己上线。</li><li>扩容只是配置文件里的一个数字。高峰期开十个副本，夜里留一个。</li></ul></div>
 </div>
@@ -335,11 +338,11 @@ S-003 → FAIL   <span class="cm"># volume too low / 体积不够</span>
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h5>
+<div class="evo-col then"><h3><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h3>
 <ul class="en"><li>Data lived in <b>flat files</b>, one giant file per topic, with everything repeated on every line.</li><li>To answer a question you wrote a whole program that read the file top to bottom.</li><li>Two people writing at once corrupted the file. There was no such thing as a safe concurrent update.</li><li>Changing the format meant rewriting every program that read it.</li></ul>
 <ul class="zh"><li>数据存在<b>平面文件</b>里，一个主题一个大文件，每一行都把所有信息重复一遍。</li><li>想回答一个问题，就得写一整个程序把文件从头读到尾。</li><li>两个人同时写就会把文件写坏。当时根本没有"安全并发更新"这回事。</li><li>格式一改，所有读它的程序都得重写。</li></ul></div>
 <div class="evo-arrow">→</div>
-<div class="evo-col now"><h5><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h5>
+<div class="evo-col now"><h4><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h4>
 <ul class="en"><li>Data lives in <b>related tables</b>. Each fact once; keys point between them.</li><li>You describe <i>what</i> you want in SQL. The database figures out <i>how</i> to get it — and it's better at that than you are.</li><li>Thousands of people write at once safely. Transactions guarantee all-or-nothing.</li><li>Add a column without breaking a single existing query.</li></ul>
 <ul class="zh"><li>数据存在<b>互相关联的表</b>里。每个事实只存一次，靠"键"互相指向。</li><li>你用 SQL 描述<i>要什么</i>，数据库自己决定<i>怎么取</i>——而且它比你更擅长这件事。</li><li>成千上万人同时写也安全。事务保证要么全成、要么全不成。</li><li>加一列，不会弄坏任何一条已有的查询。</li></ul></div>
 </div>
@@ -472,11 +475,11 @@ S-003 → FAIL   <span class="cm"># volume too low / 体积不够</span>
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h5>
+<div class="evo-col then"><h3><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h3>
 <ul class="en"><li>Systems integrated by <b>dropping a CSV on a shared drive</b> at midnight and hoping the other side picked it up.</li><li>Or by connecting straight to each other's database with a shared password.</li><li>Formats were agreed in a Word document that went out of date immediately.</li><li>If the file didn't arrive, nobody found out until someone complained the next morning.</li></ul>
 <ul class="zh"><li>系统之间靠<b>半夜往共享盘上丢一个 CSV</b>来集成，然后祈祷对方会去取。</li><li>或者干脆用一个共享密码直连对方的数据库。</li><li>格式约定写在一份 Word 文档里，而那份文档立刻就过期了。</li><li>文件没送到的话，要等第二天早上有人抱怨才会发现。</li></ul></div>
 <div class="evo-arrow">→</div>
-<div class="evo-col now"><h5><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h5>
+<div class="evo-col now"><h4><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h4>
 <ul class="en"><li>Systems ask each other <b>live, over HTTP</b>, and get an answer in milliseconds.</li><li>Every caller identifies itself with a token that can be revoked in one click.</li><li>The format is <b>machine-readable and self-documenting</b> (OpenAPI) — the docs cannot silently drift from reality.</li><li>Failure is immediate and explicit: a status code, logged, alertable.</li></ul>
 <ul class="zh"><li>系统之间<b>通过 HTTP 实时互问</b>，毫秒级拿到答案。</li><li>每个调用方都用令牌表明身份，一键就能吊销。</li><li>格式是<b>机器可读、自带文档的</b>（OpenAPI）——文档不可能悄悄和现实脱节。</li><li>出错是立刻且明确的：一个状态码，有日志，可以告警。</li></ul></div>
 </div>

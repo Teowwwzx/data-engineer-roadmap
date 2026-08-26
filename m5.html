@@ -14,6 +14,7 @@
 }catch(e){}})();</script>
 </head>
 <body class="ios lang-en" data-chapter="m5" data-vibe="futuristic">
+<a class="ios-skip" href="#ios-main">Skip to content</a>
 <div class="ios-phone">
   <nav class="ios-nav">
     <a class="ios-back" href="m4.html"><svg viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2 2.5 10 10 18"/></svg><span>Data Engineering</span></a>
@@ -24,6 +25,7 @@
   </nav>
   <div class="ios-progress"><i></i></div>
 
+  <main id="ios-main" tabindex="-1">
   <header class="ios-hero">
     <p class="ios-eyebrow"><span class="en">Months 11–12 · Seeing through the abstraction</span><span class="zh">第 11–12 月 · 看穿抽象层</span></p>
     <h1 class="ios-title"><span class="en">CS & Cloud</span><span class="zh">计算机与云</span></h1>
@@ -37,7 +39,7 @@
 <section class="ios-group" id="s-try"><h2 class="ios-group-h"><span class="en">Try it</span><span class="zh">动手试试</span></h2><p class="ios-group-note"><span class="en">Poke at this before you read anything else.</span><span class="zh">先动手玩，再读文字。</span></p><div class="ios-embed" style="margin-top:10px"><div class="play" data-play="lat">
 <div class="play-head">
 <span class="play-badge"><span class="en">▶ Playground</span><span class="zh">▶ 动手玩</span></span>
-<h4><span class="en">Latency, at human scale</span><span class="zh">把延迟放大到人能感受的尺度</span></h4>
+<h3><span class="en">Latency, at human scale</span><span class="zh">把延迟放大到人能感受的尺度</span></h3>
 <p class="sub2"><span class="en">Real latencies are too small to feel — and too far apart to draw. If the top bar took one second, the bottom one would take <b>five years</b>. So both the bar lengths and the fill times below are <b>logarithmic</b>: each step right is roughly ten times slower than the last. Press play, then read the grey line under each bar — that is the honest, linear comparison.</span><span class="zh">真实延迟小到感受不到——而且差距大到画不下。如果最上面那条要一秒，最下面那条就要<b>五年</b>。所以下面的条长和填充时间都是<b>对数刻度</b>：每往下一格，大约慢十倍。点播放，然后读每条下面那行灰字——那才是诚实的线性对比。</span></p>
 </div>
 <div class="play-body">
@@ -57,7 +59,7 @@
 <section class="ios-group" id="s-check"><h2 class="ios-group-h"><span class="en">Check yourself</span><span class="zh">检查一下</span></h2><div class="ios-embed" style="margin-top:10px"><div class="chal">
 <div class="chal-head">
 <span class="chal-badge"><span class="en">⚡ Challenge</span><span class="zh">⚡ 挑战</span></span>
-<h4><span class="en">Take something slow and make it embarrassingly fast</span><span class="zh">把一个慢东西，快到令人尴尬</span></h4>
+<h3><span class="en">Take something slow and make it embarrassingly fast</span><span class="zh">把一个慢东西，快到令人尴尬</span></h3>
 <span class="diff">★★★</span>
 </div>
 <div class="chal-body">
@@ -114,6 +116,7 @@
   <div class="ios-continue">
     <a class="ios-btn" href="systems.html"><span class="en">Next: How the big ones work</span><span class="zh">下一章：大家伙怎么运转</span></a>
   </div>
+  </main>
 </div>
 <div class="ios-sheet" id="sh-m5-1" aria-hidden="true" role="dialog" aria-modal="true"><div class="ios-sheet-back"></div><div class="ios-sheet-card"><div class="ios-grabber"></div><div class="ios-sheet-nav"><span></span><b><span class="en">How a computer actually works</span><span class="zh">计算机到底是怎么运转的</span></b><button type="button" class="ios-sheet-done">Done</button></div><div class="ios-sheet-body"><div class="ios-hero"><p class="ios-eyebrow">Lesson 1</p><h2 class="ios-title" style="font-size:26px"><span class="en">How a computer actually works</span><span class="zh">计算机到底是怎么运转的</span></h2></div>
 
@@ -133,11 +136,11 @@
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎样</span></h5>
+<div class="evo-col then"><h3><span class="en">How it used to work</span><span class="zh">以前是怎样</span></h3>
 <ul class="en"><li>CPUs got faster every year, so slow code got faster for free. You could wait for hardware to fix you.</li><li>Spinning hard disks — a physical arm moving to a physical track. Random reads were catastrophically slow.</li><li>RAM was scarce and expensive; every byte was budgeted.</li><li>Scaling up meant one bigger, hotter, more expensive machine.</li></ul>
 <ul class="zh"><li>CPU 每年都变快，慢代码会自动变快。等硬件替你解决就行。</li><li>机械硬盘——一条物理磁臂移动到物理磁道。随机读慢得离谱。</li><li>内存又少又贵，每个字节都要精打细算。</li><li>扩容 = 换一台更大、更热、更贵的机器。</li></ul></div>
 <div class="evo-arrow">→</div>
-<div class="evo-col now"><h5><span class="en">How it works now</span><span class="zh">现在是怎样</span></h5>
+<div class="evo-col now"><h4><span class="en">How it works now</span><span class="zh">现在是怎样</span></h4>
 <ul class="en"><li>Single-core speed stopped improving much around 2005. Free speedups ended; now you get <b>more cores</b>, and only parallel code benefits.</li><li>SSDs removed the moving parts, but disk is still ~1,000× slower than RAM.</li><li>RAM is plentiful — so "load it all into memory" is often the correct, boring fix.</li><li>Scaling means <b>more machines</b>, which is why distributed tools (Spark, warehouses) exist at all.</li></ul>
 <ul class="zh"><li>单核速度大约在 2005 年后基本停滞。免费提速结束了，现在给你的是<b>更多核</b>，只有并行代码才受益。</li><li>SSD 去掉了机械部件，但磁盘仍然比内存慢约 1000 倍。</li><li>内存变得充裕——所以"全部加载进内存"常常就是那个正确又无聊的解法。</li><li>扩容意味着<b>更多台机器</b>，这也正是分布式工具（Spark、数仓）存在的全部理由。</li></ul></div>
 </div>
@@ -217,11 +220,11 @@
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">The old trade-off</span><span class="zh">以前的权衡</span></h5>
+<div class="evo-col then"><h3><span class="en">The old trade-off</span><span class="zh">以前的权衡</span></h3>
 <ul class="en"><li>Choose one: fast to write (Python, R) <b>or</b> fast to run (C, Fortran).</li><li>Serious numerical work meant writing C and suffering.</li><li>Prototypes were rewritten from scratch in another language for production. Twice the work, two chances to introduce bugs.</li></ul>
 <ul class="zh"><li>二选一：写得快（Python、R）<b>或</b>跑得快（C、Fortran）。</li><li>正经的数值计算意味着写 C 并且忍受它。</li><li>原型上生产时要用另一种语言从头重写。双倍工作量，两次引入 bug 的机会。</li></ul></div>
 <div class="evo-arrow">→</div>
-<div class="evo-col now"><h5><span class="en">How it works now</span><span class="zh">现在是怎样</span></h5>
+<div class="evo-col now"><h4><span class="en">How it works now</span><span class="zh">现在是怎样</span></h4>
 <ul class="en"><li>You write Python; the heavy loops run in compiled code you never see (NumPy, pandas, PyTorch).</li><li>New tools go further: <b>Polars</b> and <b>DuckDB</b> are written in Rust/C++ with a Python interface.</li><li>The skill shifted from "write fast code" to <b>"stay out of the interpreter's way"</b>.</li><li>Same source runs on a laptop and on a hundred machines, unchanged.</li></ul>
 <ul class="zh"><li>你写 Python，重循环跑在你看不见的编译代码里（NumPy、pandas、PyTorch）。</li><li>新工具走得更远：<b>Polars</b> 和 <b>DuckDB</b> 用 Rust/C++ 写，外面套 Python 接口。</li><li>技能从"写出快的代码"变成了<b>"别挡着解释器的路"</b>。</li><li>同一份源码，在笔记本上和一百台机器上都能跑，不用改。</li></ul></div>
 </div>
@@ -297,11 +300,11 @@
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎样</span></h5>
+<div class="evo-col then"><h3><span class="en">How it used to work</span><span class="zh">以前是怎样</span></h3>
 <ul class="en"><li>Buy a server. Wait six weeks. Rack it in a room in your building. Hope you sized it right.</li><li>Capacity was a guess made a year in advance, and you paid for the peak all year.</li><li>Disaster recovery meant a second room in a second city that you hoped never to use.</li><li>Security was mostly "it's inside our building, so it's safe."</li></ul>
 <ul class="zh"><li>买一台服务器，等六周，装进自家楼里的机房，祈祷容量估对了。</li><li>容量是提前一年拍脑袋定的，而且全年按峰值付钱。</li><li>灾备意味着在另一个城市再建一个机房，并祈祷永远用不上。</li><li>安全基本上是"它在我们楼里，所以是安全的"。</li></ul></div>
 <div class="evo-arrow">→</div>
-<div class="evo-col now"><h5><span class="en">How it works now</span><span class="zh">现在是怎样</span></h5>
+<div class="evo-col now"><h4><span class="en">How it works now</span><span class="zh">现在是怎样</span></h4>
 <ul class="en"><li>Rent by the minute. Need 64 machines for an hour? Have them in four minutes; give them back after.</li><li>Autoscaling matches capacity to actual demand, hour by hour.</li><li>Storage is effectively unlimited and replicated across data centres by default.</li><li>Security is explicit and identity-based: <b>nothing is trusted just for being inside the network.</b></li></ul>
 <ul class="zh"><li>按分钟租。要 64 台跑一小时？四分钟内到位，用完还回去。</li><li>自动伸缩让容量按小时贴合真实需求。</li><li>存储几乎无限，且默认跨数据中心复制。</li><li>安全是显式的、基于身份的：<b>不会因为"在内网里"就被信任。</b></li></ul></div>
 </div>

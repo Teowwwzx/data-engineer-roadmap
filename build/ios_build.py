@@ -262,6 +262,7 @@ SHELL = '''<!DOCTYPE html>
 }}catch(e){{}}}})();</script>
 </head>
 <body class="ios lang-en" data-chapter="{slug}" data-vibe="{vibe}">
+<a class="ios-skip" href="#ios-main">Skip to content</a>
 <div class="ios-phone">
   <nav class="ios-nav">
     {back_html}
@@ -272,6 +273,7 @@ SHELL = '''<!DOCTYPE html>
   </nav>
   <div class="ios-progress"><i></i></div>
 
+  <main id="ios-main" tabindex="-1">
   <header class="ios-hero">
     {eyebrow}
     <h1 class="ios-title">{h1}</h1>
@@ -282,6 +284,7 @@ SHELL = '''<!DOCTYPE html>
   <div class="ios-continue">
     {continue_btn}
   </div>
+  </main>
 </div>
 {sheets}
 <script src="assets/core.js"></script>
@@ -459,11 +462,44 @@ def build_chapter(ix, c):
         sheets='\n'.join(sheets),
     )
 
+
+def fix_heading_levels(html):
+    """Keep the heading outline contiguous.
+
+    The shell owns h1 (page title) and h2 (section headings); the imported
+    lesson content brings its own h4/h5, so the outline jumped h2 -> h4 and
+    h2 -> h5. Screen-reader users navigating by heading read those jumps as a
+    missing level. Walk the document in order and clamp each heading to at
+    most one deeper than the one before it, preserving relative nesting.
+    """
+    import re as _re
+    heads = list(_re.finditer(r'<(/?)h([1-6])\b', html))
+    if not heads:
+        return html
+    out, last_end, prev = [], 0, 0
+    remap = {}          # original level -> emitted level, per open element
+    stack = []
+    for m in heads:
+        closing, lvl = m.group(1) == '/', int(m.group(2))
+        if closing:
+            new = stack.pop() if stack else lvl
+        else:
+            new = min(lvl, prev + 1) if prev else lvl
+            new = max(1, new)
+            stack.append(new)
+            prev = new
+        out.append(html[last_end:m.start()])
+        out.append('<%sh%d' % ('/' if closing else '', new))
+        last_end = m.end()
+    out.append(html[last_end:])
+    return ''.join(out)
+
 print('building iOS chapters...')
 written = []
 for ix, c in enumerate(CH):
     page = build_chapter(ix, c)
     if not page: continue
+    page = fix_heading_levels(page)
     open(ROOT + c['file'], 'w', encoding='utf-8').write(page)
     written.append((c['file'], len(page), c['vibe']))
 

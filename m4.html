@@ -14,6 +14,7 @@
 }catch(e){}})();</script>
 </head>
 <body class="ios lang-en" data-chapter="m4" data-vibe="natural">
+<a class="ios-skip" href="#ios-main">Skip to content</a>
 <div class="ios-phone">
   <nav class="ios-nav">
     <a class="ios-back" href="m3.html"><svg viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2 2.5 10 10 18"/></svg><span>AI Fundamentals</span></a>
@@ -24,6 +25,7 @@
   </nav>
   <div class="ios-progress"><i></i></div>
 
+  <main id="ios-main" tabindex="-1">
   <header class="ios-hero">
     <p class="ios-eyebrow"><span class="en">Months 8–10 · The actual job</span><span class="zh">第 8–10 月 · 真正的工作本身</span></p>
     <h1 class="ios-title"><span class="en">Data Engineering</span><span class="zh">数据工程</span></h1>
@@ -42,7 +44,7 @@
 <section class="ios-group" id="s-try"><h2 class="ios-group-h"><span class="en">Try it</span><span class="zh">动手试试</span></h2><p class="ios-group-note"><span class="en">Poke at this before you read anything else.</span><span class="zh">先动手玩，再读文字。</span></p><div class="ios-embed" style="margin-top:10px"><div class="play" data-play="clean">
 <div class="play-head">
 <span class="play-badge"><span class="en">▶ Playground</span><span class="zh">▶ 动手玩</span></span>
-<h4><span class="en">Clean a genuinely messy dataset, one operation at a time</span><span class="zh">一步一步清洗一份真正脏的数据</span></h4>
+<h3><span class="en">Clean a genuinely messy dataset, one operation at a time</span><span class="zh">一步一步清洗一份真正脏的数据</span></h3>
 <p class="sub2"><span class="en">This is real messiness of the kind you'll meet on your first day: inconsistent casing, stray whitespace, three date formats, missing IDs, a duplicated key and an impossible value. Apply each fix and watch the rows change. The counters at the bottom are what you'd report.</span><span class="zh">这是你上班第一天就会遇到的那种真实的脏：大小写不一致、多余空格、三种日期格式、缺失 ID、重复主键、还有一个不可能的数值。逐个应用修复，看行怎么变。下面的计数就是你要汇报的东西。</span></p>
 </div>
 <div class="play-body">
@@ -70,7 +72,7 @@
 <section class="ios-group" id="s-check"><h2 class="ios-group-h"><span class="en">Check yourself</span><span class="zh">检查一下</span></h2><div class="ios-embed" style="margin-top:10px"><div class="chal">
 <div class="chal-head">
 <span class="chal-badge"><span class="en">⚡ Challenge</span><span class="zh">⚡ 挑战</span></span>
-<h4><span class="en">Build something that runs every night without you</span><span class="zh">做一个每晚自己跑、不用你在场的东西</span></h4>
+<h3><span class="en">Build something that runs every night without you</span><span class="zh">做一个每晚自己跑、不用你在场的东西</span></h3>
 <span class="diff">★★★</span>
 </div>
 <div class="chal-body">
@@ -126,6 +128,7 @@
   <div class="ios-continue">
     <a class="ios-btn" href="m5.html"><span class="en">Next: CS & Cloud</span><span class="zh">下一章：计算机与云</span></a>
   </div>
+  </main>
 </div>
 <div class="ios-sheet" id="sh-m4-1" aria-hidden="true" role="dialog" aria-modal="true"><div class="ios-sheet-back"></div><div class="ios-sheet-card"><div class="ios-grabber"></div><div class="ios-sheet-nav"><span></span><b><span class="en">Data manipulation</span><span class="zh">数据处理</span></b><button type="button" class="ios-sheet-done">Done</button></div><div class="ios-sheet-body"><div class="ios-hero"><p class="ios-eyebrow">Lesson 1</p><h2 class="ios-title" style="font-size:26px"><span class="en">Data manipulation</span><span class="zh">数据处理</span></h2><p class="ios-sub"><span class="en">Python (and a little R)</span><span class="zh">— Python（外加一点 R）</span></p></div>
 
@@ -145,11 +148,11 @@
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h5>
+<div class="evo-col then"><h3><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h3>
 <ul class="en"><li>Download a CSV, open it, sort, filter, delete some rows, save as <code class="inl">_clean_v3.xlsx</code>.</li><li>Charts made by hand, pasted into slides that go stale the moment they're sent.</li><li>Everything capped by what fits in memory on one laptop.</li><li>The knowledge of "how we calculate this" lived in one person's head.</li></ul>
 <ul class="zh"><li>下载一个 CSV，打开、排序、筛选、删几行，另存为 <code class="inl">_clean_v3.xlsx</code>。</li><li>图表手工做好粘进幻灯片，发出去那一刻就已经过期。</li><li>一切受限于一台笔记本内存装得下多少。</li><li>"这个指标我们是怎么算的"，只存在某个人脑子里。</li></ul></div>
 <div class="evo-arrow">→</div>
-<div class="evo-col now"><h5><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h5>
+<div class="evo-col now"><h4><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h4>
 <ul class="en"><li>A script reads the raw file, applies named transformations, and writes a clean table — same result every run.</li><li>Charts regenerate from live data; nothing is ever "as of last Tuesday" by accident.</li><li>Bigger than memory? Polars or DuckDB stream it, or the warehouse does the work in place.</li><li>The calculation is in Git, reviewed, and survives the person who wrote it.</li></ul>
 <ul class="zh"><li>脚本读原始文件、施加一系列命名好的转换、写出一张干净的表——每次跑结果都一样。</li><li>图表从实时数据重新生成，不会莫名其妙"截止到上周二"。</li><li>数据比内存大？用 Polars 或 DuckDB 流式处理，或者让数仓原地算。</li><li>算法存在 Git 里、被评审过，而且比写它的人活得久。</li></ul></div>
 </div>
@@ -259,11 +262,11 @@ summary &lt;- samples |&gt;
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">Classic ETL (1990s–2010s)</span><span class="zh">经典 ETL（1990s–2010s）</span></h5>
+<div class="evo-col then"><h3><span class="en">Classic ETL (1990s–2010s)</span><span class="zh">经典 ETL（1990s–2010s）</span></h3>
 <ul class="en"><li><b>Extract → Transform → Load.</b> Transform <i>before</i> loading, because warehouse storage was expensive.</li><li>Raw data was thrown away after transformation. Got the logic wrong? The original is gone.</li><li>Built by dragging boxes in a proprietary GUI tool. Not reviewable, not in version control.</li><li>Ran overnight; you found out about failures the next morning, from a user.</li></ul>
 <ul class="zh"><li><b>抽取 → 转换 → 加载。</b>先转换<i>再</i>入库，因为数仓存储很贵。</li><li>转换完原始数据就丢了。逻辑写错了？原件已经没了。</li><li>用商业 GUI 工具拖框搭出来，不可评审，不进版本控制。</li><li>半夜跑，出问题第二天早上从用户那里才知道。</li></ul></div>
 <div class="evo-arrow">→</div>
-<div class="evo-col now"><h5><span class="en">Modern ELT</span><span class="zh">现代 ELT</span></h5>
+<div class="evo-col now"><h4><span class="en">Modern ELT</span><span class="zh">现代 ELT</span></h4>
 <ul class="en"><li><b>Extract → Load → Transform.</b> Land the raw data first; transform inside the warehouse. Storage got cheap.</li><li>Raw is kept forever, so you can rebuild everything when a definition changes — and you will.</li><li>Transformations are SQL files in Git, reviewed in pull requests, tested (dbt).</li><li>Orchestrators (Airflow, Dagster, Prefect) retry, alert, and show you exactly which step failed.</li></ul>
 <ul class="zh"><li><b>抽取 → 加载 → 转换。</b>先把原始数据落地，再在数仓里转换。因为存储变便宜了。</li><li>原始数据永久保留，定义一变就能全量重建——而定义一定会变。</li><li>转换逻辑是 Git 里的 SQL 文件，走 PR 评审，有测试（dbt）。</li><li>调度器（Airflow、Dagster、Prefect）会重试、告警，并明确告诉你哪一步失败了。</li></ul></div>
 </div>
@@ -376,11 +379,11 @@ summary &lt;- samples |&gt;
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h5>
+<div class="evo-col then"><h3><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h3>
 <ul class="en"><li>One enormous "reporting table" with 180 columns, most of them empty for most rows.</li><li>New question → add three more columns. Nobody dared remove any.</li><li>Historical values overwritten, so last year's report changed every time someone updated a record.</li><li>Every analyst wrote their own definition of "active customer." There were nine.</li></ul>
 <ul class="zh"><li>一张巨大的"报表宽表"，180 列，其中大部分对大部分行都是空的。</li><li>来一个新问题就再加三列，而且没人敢删任何一列。</li><li>历史值被覆盖，所以每次有人更新一条记录，去年的报表就跟着变。</li><li>每个分析师都自己定义"活跃客户"。总共有九种定义。</li></ul></div>
 <div class="evo-arrow">→</div>
-<div class="evo-col now"><h5><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h5>
+<div class="evo-col now"><h4><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h4>
 <ul class="en"><li><b>Star schema:</b> a narrow fact table of events, surrounded by small descriptive dimension tables.</li><li>New question → usually a new join, not a new column.</li><li>History is preserved deliberately (slowly changing dimensions), so old reports still reproduce.</li><li>Definitions live in one modelled layer that everyone queries. One definition, agreed once.</li></ul>
 <ul class="zh"><li><b>星型模型：</b>一张窄的事实表记录发生的事件，周围环绕若干小的描述性维度表。</li><li>来一个新问题，通常是加一次连接，而不是加一列。</li><li>历史被刻意保留（缓慢变化维），所以旧报表依然能复现。</li><li>定义集中在一个建模层里，所有人都查它。一个定义，一次达成一致。</li></ul></div>
 </div>
