@@ -1,0 +1,15 @@
+{
+  "name": "The Lab Notebook",
+  "short_name": "Lab Notebook",
+  "description": "A twelve-month path from zero to data engineering, in plain language.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#f2f2f7",
+  "theme_color": "#0b63ce",
+  "icons": [
+    { "src": "assets/icon/favicon-32.png",      "sizes": "32x32",   "type": "image/png" },
+    { "src": "assets/icon/icon-192.png",        "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icon/apple-touch-icon.png","sizes": "180x180", "type": "image/png" },
+    { "src": "assets/icon/favicon.svg",         "sizes": "any",     "type": "image/svg+xml" }
+  ]
+}
