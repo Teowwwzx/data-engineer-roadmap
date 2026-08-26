@@ -2,44 +2,79 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <title>The terminal · The Lab Notebook</title>
-<meta name="description" content="A 12-month foundations roadmap for a new Data Engineer. Bilingual, interactive, one chapter at a time.">
 <link rel="stylesheet" href="assets/core.css">
 <link rel="stylesheet" href="assets/themes.css">
-<script>/* set theme + language before first paint, no flash */
-(function(){try{
+<link rel="stylesheet" href="assets/ios.css">
+<script>(function(){try{
  var t=localStorage.getItem('labnotebook-theme');
  if(t&&t!=='auto')document.documentElement.setAttribute('data-theme',t);
- var l=localStorage.getItem('labnotebook-lang')||'en';
- document.documentElement.setAttribute('data-lang',l);
 }catch(e){}})();</script>
 </head>
-<body class="lang-en" data-vibe="pixel" data-chapter="terminal">
-<div class="topbar">
-<div class="wrap">
-<a aria-label="The Lab Notebook — home" class="brand" href="index.html"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></a>
-<button aria-expanded="false" aria-haspopup="dialog" class="chapbtn" type="button"><span class="chapbtn-n">03</span><span class="chapbtn-t"><span class="en">The terminal</span><span class="zh">终端</span></span><svg class="chapbtn-v" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></button>
-<div class="langsw">
-<button class="on" data-lang="en">EN</button>
-<button data-lang="zh">中文</button>
-</div>
-</div>
-<div class="pbar"><i id="pbar"></i></div>
-</div>
+<body class="ios lang-en" data-chapter="terminal" data-vibe="pixel">
+<div class="ios-phone">
+  <nav class="ios-nav">
+    <a class="ios-back" href="words.html"><svg viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2 2.5 10 10 18"/></svg><span>The words</span></a>
+    <span class="ios-nav-title">The terminal</span>
+    <button type="button" class="ios-more" aria-label="More" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+    </button>
+  </nav>
+  <div class="ios-progress"><i></i></div>
 
-<section data-scene="crt" id="cli">
-<div class="wrap">
-<div class="sechead"><h2><span class="en">The terminal — how computers actually work</span><span class="zh">终端 —— 电脑其实是怎么运作的</span></h2></div>
-<p style="color:var(--muted); max-width:70ch"><span class="en">This is the single biggest gap between someone who uses a computer and someone who works on one. It is also much simpler than it looks.</span><span class="zh">这是"用电脑的人"和"在电脑上工作的人"之间最大的一道鸿沟。而它其实比看起来简单得多。</span></p>
-<div class="analogy" style="--c:var(--ink-2)">
-<span class="lab"><span class="en">🧪 The instrument has a screen. It also has a keypad.</span><span class="zh">🧪 仪器有屏幕，也有键盘。</span></span>
+  <header class="ios-hero">
+    
+    <h1 class="ios-title"><span class="en">The terminal</span><span class="zh">终端</span></h1>
+    <p class="ios-sub"><span class="en"><span class="en">This is the single biggest gap between someone who uses a computer and someone who works on one. It is also much simpler than it looks.</span><span class="zh">这是"用电脑的人"和"在电脑上工作的人"之间最大的一道鸿沟。而它其实比看起来简单得多。</span></span></p>
+  </header>
+  <ol class="ios-steps"><li data-step="s-intro"><span class="n">1</span><span class="en">Start</span><span class="zh">开始</span></li><li data-step="s-try"><span class="n">2</span><span class="en">Try</span><span class="zh">动手</span></li><li data-step="s-read"><span class="n">3</span><span class="en">Detail</span><span class="zh">细节</span></li></ol>
+<section class="ios-group" id="s-intro"><h2 class="ios-group-h"><span class="en">The short version</span><span class="zh">一句话版本</span></h2><div class="ios-callout" style="margin-top:12px"><span class="k"><span class="en">🧪 The instrument has a screen. It also has a keypad.</span><span class="zh">🧪 仪器有屏幕，也有键盘。</span></span>
+
 <p class="en">Think of a lab instrument with a nice touchscreen: tap <i>Run</i>, tap <i>Export</i>. Lovely for one sample. Now imagine the supervisor says: run all 400 samples overnight, with three different settings, and log every result.</p>
 <p class="en">You cannot tap that. But the same instrument has a command port where you can send it typed instructions — and <i>those</i> can be written down, repeated, scheduled and reviewed. <b>The touchscreen is the GUI. The command port is the CLI.</b> They drive the same machine.</p>
 <p class="zh">想象一台带漂亮触摸屏的实验仪器：点<i>运行</i>、点<i>导出</i>。做一份样本很舒服。现在主管说：今晚把 400 份样本全跑完，用三种不同参数，每个结果都要记录。</p>
 <p class="zh">这个你点不出来。但同一台仪器还有一个命令端口，可以给它发送打字指令——而<i>那些指令</i>是可以被写下来、重复、定时、审阅的。<b>触摸屏就是 GUI，命令端口就是 CLI。</b>它们驱动的是同一台机器。</p>
+</div></section>
+<section class="ios-group" id="s-try"><h2 class="ios-group-h"><span class="en">Try it</span><span class="zh">动手试试</span></h2><p class="ios-group-note"><span class="en">Poke at this before you read anything else.</span><span class="zh">先动手玩，再读文字。</span></p><div class="ios-embed" style="margin-top:10px"><div class="play" data-play="term" style="--c:var(--ink-2)">
+<div class="play-head">
+<span class="play-badge"><span class="en">▶ Playground</span><span class="zh">▶ 动手玩</span></span>
+<h4><span class="en">A real terminal, and the same folder as a window</span><span class="zh">一个真实的终端，以及同一个文件夹的窗口视图</span></h4>
+<p class="sub2"><span class="en">Both panels show the same folder on the same machine. Type in the terminal and watch the window on the right update. Start by typing <code class="inl">help</code>, or press one of the buttons below. Nothing here can break anything.</span><span class="zh">两边显示的是同一台机器上的同一个文件夹。在终端里输入，右边的窗口会跟着变。先输入 <code class="inl">help</code>，或者点下面任意一个按钮。这里做什么都弄不坏东西。</span></p>
 </div>
-<div class="lens" style="--c:var(--ink-2)">
+<div class="play-body">
+<div class="prow">
+<button class="pbtn" data-cmd="ls -l">ls -l</button>
+<button class="pbtn" data-cmd="cat samples.csv">cat samples.csv</button>
+<button class="pbtn" data-cmd="grep FAIL samples.csv | wc -l">grep FAIL … | wc -l</button>
+<button class="pbtn" data-cmd="cd data">cd data</button>
+<button class="pbtn" data-cmd="python3 pipeline.py">python3 pipeline.py</button>
+<button class="pbtn" data-cmd="df -h">df -h</button>
+<button class="pbtn ghost" data-cmd="help">help</button>
+</div>
+<div class="cli-cols">
+<div>
+<span class="plabel"><span class="en">CLI — the terminal</span><span class="zh">CLI —— 终端</span></span>
+<div class="term">
+<div class="term-bar"><i style="background:#ef4444"></i><i style="background:#f59e0b"></i><i style="background:#22c55e"></i><span class="t">diao@lab-server: ~</span></div>
+<div class="term-out" id="t-out"></div>
+<div class="term-in"><span id="t-ps">diao@lab-server:~$</span><input autocomplete="off" id="t-in" placeholder="type a command…" spellcheck="false"/></div>
+</div>
+</div>
+<div>
+<span class="plabel"><span class="en">GUI — the same folder, as a window</span><span class="zh">GUI —— 同一个文件夹的窗口</span></span>
+<div class="gui-mock">
+<div class="gui-bar"><i style="background:#ef4444"></i><i style="background:#f59e0b"></i><i style="background:#22c55e"></i><span id="g-path" style="margin-left:8px"></span></div>
+<div class="gui-body" id="g-body"></div>
+</div>
+</div>
+</div>
+<p style="font-size:14px; color:var(--muted); margin:0"><span class="en"><b>Try this one thing:</b> <code class="inl">grep FAIL samples.csv | wc -l</code>. That pipe is the whole philosophy — <i>grep</i> only knows how to find lines, <i>wc</i> only knows how to count them, and neither was written with the other in mind. Joining small tools that each do one thing is how almost every serious data task actually gets done.</span><span class="zh"><b>务必试一下这条：</b><code class="inl">grep FAIL samples.csv | wc -l</code>。那根管道就是整套哲学——<i>grep</i> 只会找行，<i>wc</i> 只会数行，而且两者当初写的时候谁也没考虑过对方。把各自只做一件事的小工具串起来，才是几乎所有正经数据工作真正的完成方式。</span></p>
+</div>
+</div></div></section>
+<section class="ios-group" id="s-read"><h2 class="ios-group-h"><span class="en">If you want the detail</span><span class="zh">想看细节的话</span></h2><details class="ios-disc"><summary><span class="en">More detail</span><span class="zh">更多细节</span><svg class="ios-chev" viewBox="0 0 9 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 7 7.5 1.5 13.5"/></svg></summary><div class="ios-disc-body"><div class="lens" style="--c:var(--ink-2)">
 <div class="lens-tabs">
 <button class="on"><span class="en">WHY</span><span class="zh">为什么</span></button>
 <button><span class="en">THEN → NOW</span><span class="zh">以前 → 现在</span></button>
@@ -93,44 +128,8 @@
 <p class="zh">所以未来几年的实际形态是：<b>你决定要发生什么、以及结果对不对；模型来写那句咒语。</b>"找出这个文件夹里最近 3 天修改过的所有 CSV，数一下每个里面有多少 FAIL 行，写个汇总"——这句话你现在可以直接说出来，然后拿到一条正确的命令。</p>
 <p class="zh" style="margin-bottom:0"><b>但有个真实的代价：</b>命令的不可逆程度是点击通常没有的。没有撤销，也没有回收站。所以纪律很简单，而且没得商量——<b>运行前把每条命令读一遍，永远不要运行你解释不了的命令。</b>尤其是带 <code class="inl">rm</code>、<code class="inl">sudo</code> 或重定向 <code class="inl">&gt;</code> 的。</p>
 </div>
-</div>
-<div class="play" data-play="term" style="--c:var(--ink-2)">
-<div class="play-head">
-<span class="play-badge"><span class="en">▶ Playground</span><span class="zh">▶ 动手玩</span></span>
-<h4><span class="en">A real terminal, and the same folder as a window</span><span class="zh">一个真实的终端，以及同一个文件夹的窗口视图</span></h4>
-<p class="sub2"><span class="en">Both panels show the same folder on the same machine. Type in the terminal and watch the window on the right update. Start by typing <code class="inl">help</code>, or press one of the buttons below. Nothing here can break anything.</span><span class="zh">两边显示的是同一台机器上的同一个文件夹。在终端里输入，右边的窗口会跟着变。先输入 <code class="inl">help</code>，或者点下面任意一个按钮。这里做什么都弄不坏东西。</span></p>
-</div>
-<div class="play-body">
-<div class="prow">
-<button class="pbtn" data-cmd="ls -l">ls -l</button>
-<button class="pbtn" data-cmd="cat samples.csv">cat samples.csv</button>
-<button class="pbtn" data-cmd="grep FAIL samples.csv | wc -l">grep FAIL … | wc -l</button>
-<button class="pbtn" data-cmd="cd data">cd data</button>
-<button class="pbtn" data-cmd="python3 pipeline.py">python3 pipeline.py</button>
-<button class="pbtn" data-cmd="df -h">df -h</button>
-<button class="pbtn ghost" data-cmd="help">help</button>
-</div>
-<div class="cli-cols">
-<div>
-<span class="plabel"><span class="en">CLI — the terminal</span><span class="zh">CLI —— 终端</span></span>
-<div class="term">
-<div class="term-bar"><i style="background:#ef4444"></i><i style="background:#f59e0b"></i><i style="background:#22c55e"></i><span class="t">diao@lab-server: ~</span></div>
-<div class="term-out" id="t-out"></div>
-<div class="term-in"><span id="t-ps">diao@lab-server:~$</span><input autocomplete="off" id="t-in" placeholder="type a command…" spellcheck="false"/></div>
-</div>
-</div>
-<div>
-<span class="plabel"><span class="en">GUI — the same folder, as a window</span><span class="zh">GUI —— 同一个文件夹的窗口</span></span>
-<div class="gui-mock">
-<div class="gui-bar"><i style="background:#ef4444"></i><i style="background:#f59e0b"></i><i style="background:#22c55e"></i><span id="g-path" style="margin-left:8px"></span></div>
-<div class="gui-body" id="g-body"></div>
-</div>
-</div>
-</div>
-<p style="font-size:14px; color:var(--muted); margin:0"><span class="en"><b>Try this one thing:</b> <code class="inl">grep FAIL samples.csv | wc -l</code>. That pipe is the whole philosophy — <i>grep</i> only knows how to find lines, <i>wc</i> only knows how to count them, and neither was written with the other in mind. Joining small tools that each do one thing is how almost every serious data task actually gets done.</span><span class="zh"><b>务必试一下这条：</b><code class="inl">grep FAIL samples.csv | wc -l</code>。那根管道就是整套哲学——<i>grep</i> 只会找行，<i>wc</i> 只会数行，而且两者当初写的时候谁也没考虑过对方。把各自只做一件事的小工具串起来，才是几乎所有正经数据工作真正的完成方式。</span></p>
-</div>
-</div>
-<div class="tblwrap"><table class="tbl">
+</div></div></details>
+<details class="ios-disc"><summary><span class="en">More detail</span><span class="zh">更多细节</span><svg class="ios-chev" viewBox="0 0 9 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 7 7.5 1.5 13.5"/></svg></summary><div class="ios-disc-body"><div class="tblwrap"><table class="tbl">
 <tr><th></th><th><span class="en">GUI — pointing</span><span class="zh">GUI —— 用点的</span></th><th><span class="en">CLI — typing</span><span class="zh">CLI —— 用打的</span></th></tr>
 <tr><td><span class="en">Best for</span><span class="zh">最适合</span></td><td><span class="en">Exploring, deciding, seeing shapes</span><span class="zh">探索、判断、看整体形状</span></td><td><span class="en">Repeating, automating, proving</span><span class="zh">重复、自动化、留下证据</span></td></tr>
 <tr><td><span class="en">Doing it 400 times</span><span class="zh">做 400 次</span></td><td><span class="en">400 clicks, and 3 mistakes</span><span class="zh">点 400 次，错 3 次</span></td><td><span class="en">One line, identical every time</span><span class="zh">一行命令，每次都一样</span></td></tr>
@@ -195,26 +194,13 @@ sudo &lt;anything&gt;     <span class="cm"># do it as administrator / 以管理�
 <p class="scene zh">早上九点。昨晚的管道没产出文件，三个人在等报表。</p>
 <p class="zh">没有屏幕可看——任务跑在一台你永远不会去参观的数据中心里的 Linux 服务器上。你 <code class="inl">ssh</code> 进去，<code class="inl">tail -n 50 nightly.log</code> 显示任务启动后 40 秒就停了。<code class="inl">grep -i error nightly.log</code> 给出一行：<i>no space left on device</i>（磁盘空间不足）。<code class="inl">df -h</code> 证实了：磁盘 100% 满。<code class="inl">du -sh *</code> 显示某个旧日志文件夹已经悄悄长到了 400 GB。</p>
 <p class="zh"><b>四条命令，九十秒，你完全清楚发生了什么、为什么。</b>没有任何一个窗口能让你更快地知道这些——而这对数据工程师来说，只是一个完全普通的周二。</p>
+</div></div></details></section>
+  <div class="ios-continue">
+    <a class="ios-btn" href="m1.html"><span class="en">Next: IT Basics</span><span class="zh">下一章：IT 基础</span></a>
+  </div>
 </div>
-<div class="reactbar" data-react-key="terminal/0"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
-</section>
-    <nav class="chapnav">
-    <a class="cn cn-prev" href="words.html"><span class="cn-k"><span class="en">Previous</span><span class="zh">上一章</span></span><span class="cn-t"><span class="en">The words</span><span class="zh">那些词</span></span></a>
-    <a class="cn cn-next" href="m1.html"><span class="cn-k"><span class="en">Next</span><span class="zh">下一章</span></span><span class="cn-t"><span class="en">IT Basics</span><span class="zh">IT 基础</span></span></a>
-    </nav>
-<footer>
-<div class="wrap">
-<h3><span class="en">One last thing</span><span class="zh">最后一件事</span></h3>
-<p class="en" style="max-width:64ch">Feeling lost is not a sign that you chose wrong. It's the normal steady state of this field for everyone, including the people who look like they have it figured out. The difference is that they've learned it's survivable.</p>
-<p class="zh" style="max-width:64ch">感到迷茫不代表你选错了路。在这个行业里，这是所有人的常态，包括那些看起来什么都懂的人。区别只在于，他们已经学会了这是熬得过去的。</p>
-<p class="en" style="max-width:64ch">You already know how to be careful with a method you don't fully trust, how to check a result before you believe it, and how to write down what you did so someone else can repeat it. Those are the rare skills. The syntax is the easy part.</p>
-<p class="zh" style="max-width:64ch">你早就知道怎么谨慎对待一个还不完全信任的方法、怎么在相信一个结果之前先去核实、怎么把做过的事写下来让别人能复现。这些才是稀缺的能力。语法是最容易的那部分。</p>
-<p style="color:var(--muted); font-size:13px; margin-top:28px; margin-bottom:0"><span class="en">Progress and playground state are not saved between visits — work through a section in one sitting, or keep your own checklist alongside.</span><span class="zh">进度和练习状态不会跨次保存——建议一次做完一个章节，或者自己另外记一份清单。</span></p>
-</div>
-</footer>
-<button aria-label="Back to top" id="totop">↑</button>
-<div class="glow" id="glow"></div>
+
 <script src="assets/core.js"></script>
-<script src="assets/vibe.js"></script>
+<script src="assets/ios.js"></script>
 </body>
 </html>

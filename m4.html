@@ -2,51 +2,134 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <title>Data Engineering · The Lab Notebook</title>
-<meta name="description" content="A 12-month foundations roadmap for a new Data Engineer. Bilingual, interactive, one chapter at a time.">
 <link rel="stylesheet" href="assets/core.css">
 <link rel="stylesheet" href="assets/themes.css">
-<script>/* set theme + language before first paint, no flash */
-(function(){try{
+<link rel="stylesheet" href="assets/ios.css">
+<script>(function(){try{
  var t=localStorage.getItem('labnotebook-theme');
  if(t&&t!=='auto')document.documentElement.setAttribute('data-theme',t);
- var l=localStorage.getItem('labnotebook-lang')||'en';
- document.documentElement.setAttribute('data-lang',l);
 }catch(e){}})();</script>
 </head>
-<body class="lang-en" data-vibe="natural" data-chapter="m4">
-<div class="topbar">
-<div class="wrap">
-<a aria-label="The Lab Notebook — home" class="brand" href="index.html"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></a>
-<button aria-expanded="false" aria-haspopup="dialog" class="chapbtn" type="button"><span class="chapbtn-n">07</span><span class="chapbtn-t"><span class="en">Data Engineering</span><span class="zh">数据工程</span></span><svg class="chapbtn-v" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></button>
-<div class="langsw">
-<button class="on" data-lang="en">EN</button>
-<button data-lang="zh">中文</button>
-</div>
-</div>
-<div class="pbar"><i id="pbar"></i></div>
-</div>
+<body class="ios lang-en" data-chapter="m4" data-vibe="natural">
+<div class="ios-phone">
+  <nav class="ios-nav">
+    <a class="ios-back" href="m3.html"><svg viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2 2.5 10 10 18"/></svg><span>AI Fundamentals</span></a>
+    <span class="ios-nav-title">Data Engineering</span>
+    <button type="button" class="ios-more" aria-label="More" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+    </button>
+  </nav>
+  <div class="ios-progress"><i></i></div>
 
-<section data-scene="flow" id="m4" style="--c:var(--m4)">
-<div class="wrap">
-<div class="ms">
-<div class="mshead">
-<div class="msnum">4</div>
-<div><div class="sub"><span class="en">Months 8–10 · The actual job</span><span class="zh">第 8–10 月 · 真正的工作本身</span></div>
-<h2><span class="en">Data Engineering Core</span><span class="zh">数据工程核心</span></h2></div>
-</div>
-<p class="en" style="color:var(--muted); max-width:68ch">Everything so far was foundation. This is the work itself: taking data that arrives messy, incomplete and inconsistent, and turning it into something a scientist or an executive can trust without asking you first.</p>
-<p class="zh" style="color:var(--muted); max-width:68ch">前面全是打地基。这一段是工作本身：把脏的、不全的、前后不一致的数据，变成科学家或高管不用先问你就敢信的东西。</p>
-<div class="tldr"><div class="tl2"><span class="en">In plain English — the whole milestone in 4 lines</span><span class="zh">大白话版 —— 四行讲完这个阶段</span></div><ul class="en"><li><b>Data always arrives dirty.</b> Six quick checks catch the errors that never throw an error.</li><li>A <b>pipeline</b> is a scheduled script that collects, cleans and stores — the same way every night.</li><li>It must survive being <b>run twice</b>, and it must <b>fail loudly</b> rather than load garbage quietly.</li><li><b>Modelling</b> is deciding what one row means, before you have ten million of them.</li></ul><ul class="zh"><li><b>数据到手时永远是脏的。</b>六项快速检查，专抓那些不会报错的错误。</li><li><b>管道</b>就是一个定时脚本：采集、清洗、入库 —— 每晚都用同一种方式。</li><li>它必须<b>跑两遍也没事</b>，而且要<b>大声失败</b>，而不是悄悄写进垃圾数据。</li><li><b>建模</b>就是在你还没有一千万行之前，先想清楚"一行代表什么"。</li></ul></div>
-<div class="analogy">
-<span class="lab"><span class="en">🧪 You are running the sample prep, not the assay</span><span class="zh">🧪 你做的是样本前处理，不是检测本身</span></span>
+  <header class="ios-hero">
+    <p class="ios-eyebrow"><span class="en">Months 8–10 · The actual job</span><span class="zh">第 8–10 月 · 真正的工作本身</span></p>
+    <h1 class="ios-title"><span class="en">Data Engineering</span><span class="zh">数据工程</span></h1>
+    <p class="ios-sub"><span class="en">Everything so far was foundation. This is the work itself: taking data that arrives messy, incomplete and inconsistent, and turning it into something a scientist or an executive can trust without asking you first.</span><span class="zh">前面全是打地基。这一段是工作本身：把脏的、不全的、前后不一致的数据，变成科学家或高管不用先问你就敢信的东西。</span></p>
+  </header>
+  <ol class="ios-steps"><li data-step="s-intro"><span class="n">1</span><span class="en">Start</span><span class="zh">开始</span></li><li data-step="s-try"><span class="n">2</span><span class="en">Try</span><span class="zh">动手</span></li><li data-step="s-learn"><span class="n">3</span><span class="en">Lessons</span><span class="zh">课程</span></li><li data-step="s-check"><span class="n">4</span><span class="en">Check</span><span class="zh">自测</span></li></ol>
+<section class="ios-group" id="s-intro"><h2 class="ios-group-h"><span class="en">The short version</span><span class="zh">一句话版本</span></h2><div class="ios-list"><div class="ios-row" style="cursor:default"><span class="ios-row-ic">1</span><span class="ios-row-t"><span class="en"><b>Data always arrives dirty.</b> Six quick checks catch the errors that never throw an error.</span><span class="zh"><b>数据到手时永远是脏的。</b>六项快速检查，专抓那些不会报错的错误。</span></span></div>
+<div class="ios-row" style="cursor:default"><span class="ios-row-ic">2</span><span class="ios-row-t"><span class="en">A <b>pipeline</b> is a scheduled script that collects, cleans and stores — the same way every night.</span><span class="zh"><b>管道</b>就是一个定时脚本：采集、清洗、入库 —— 每晚都用同一种方式。</span></span></div>
+<div class="ios-row" style="cursor:default"><span class="ios-row-ic">3</span><span class="ios-row-t"><span class="en">It must survive being <b>run twice</b>, and it must <b>fail loudly</b> rather than load garbage quietly.</span><span class="zh">它必须<b>跑两遍也没事</b>，而且要<b>大声失败</b>，而不是悄悄写进垃圾数据。</span></span></div>
+<div class="ios-row" style="cursor:default"><span class="ios-row-ic">4</span><span class="ios-row-t"><span class="en"><b>Modelling</b> is deciding what one row means, before you have ten million of them.</span><span class="zh"><b>建模</b>就是在你还没有一千万行之前，先想清楚"一行代表什么"。</span></span></div></div>
+<div class="ios-callout" style="margin-top:12px"><span class="k"><span class="en">🧪 You are running the sample prep, not the assay</span><span class="zh">🧪 你做的是样本前处理，不是检测本身</span></span>
+
 <p class="en">In the lab, the analysis is only as good as the prep. If the sample is contaminated, mislabelled, or degraded, the most elegant instrument in the building gives you a beautiful wrong number. Data engineering is sample prep at industrial scale — and the analysts downstream trust your output the way you trust a clean sample. That trust is your entire product.</p>
 <p class="zh">在实验室里，分析的上限取决于前处理。样本被污染、贴错标签、降解了，楼里最精密的仪器也只会给你一个漂亮的错数。数据工程就是工业规模的样本前处理——下游的分析师信任你的输出，就像你信任一份干净的样本。这份信任，就是你的全部产品。</p>
+</div></section>
+<section class="ios-group" id="s-try"><h2 class="ios-group-h"><span class="en">Try it</span><span class="zh">动手试试</span></h2><p class="ios-group-note"><span class="en">Poke at this before you read anything else.</span><span class="zh">先动手玩，再读文字。</span></p><div class="ios-embed" style="margin-top:10px"><div class="play" data-play="clean">
+<div class="play-head">
+<span class="play-badge"><span class="en">▶ Playground</span><span class="zh">▶ 动手玩</span></span>
+<h4><span class="en">Clean a genuinely messy dataset, one operation at a time</span><span class="zh">一步一步清洗一份真正脏的数据</span></h4>
+<p class="sub2"><span class="en">This is real messiness of the kind you'll meet on your first day: inconsistent casing, stray whitespace, three date formats, missing IDs, a duplicated key and an impossible value. Apply each fix and watch the rows change. The counters at the bottom are what you'd report.</span><span class="zh">这是你上班第一天就会遇到的那种真实的脏：大小写不一致、多余空格、三种日期格式、缺失 ID、重复主键、还有一个不可能的数值。逐个应用修复，看行怎么变。下面的计数就是你要汇报的东西。</span></p>
 </div>
-<!-- ============ 4.1 DATA MANIPULATION ============ -->
-<div class="topic" style="border-top:0">
-<h3><span class="ic">1</span><span class="en">Data manipulation — Python (and a little R)</span><span class="zh">数据处理 —— Python（外加一点 R）</span></h3>
+<div class="play-body">
+<div class="prow">
+<button class="pbtn" data-clean="trim">.str.strip().str.upper()</button>
+<button class="pbtn" data-clean="dates">parse_dates</button>
+<button class="pbtn" data-clean="nulls">dropna(subset=["id"])</button>
+<button class="pbtn" data-clean="dupes">drop_duplicates()</button>
+<button class="pbtn" data-clean="range"><span class="en">range check</span><span class="zh">范围校验</span></button>
+<button class="pbtn ghost" data-clean="reset"><span class="en">reset</span><span class="zh">重来</span></button>
+</div>
+<div class="dwrap"><table class="dtbl" id="clean-tbl"></table></div>
+<div class="dstat">
+<div><b id="c-rows">—</b><span class="en">rows remaining</span><span class="zh">剩余行数</span></div>
+<div><b id="c-sites">—</b><span class="en">distinct lab sites</span><span class="zh">不同厂区数</span></div>
+<div><b id="c-issues">—</b><span class="en">issues left</span><span class="zh">剩余问题</span></div>
+<div><b id="c-pass">—</b><span class="en">pass rate</span><span class="zh">合格率</span></div>
+</div>
+<p id="clean-note" style="font-size:13.5px; color:var(--muted); margin:12px 0 0"></p>
+</div>
+</div></div></section>
+<section class="ios-group" id="s-learn"><h2 class="ios-group-h"><span class="en">Lessons</span><span class="zh">课程</span> <span data-role="lesson-count"></span></h2><div class="ios-list"><button type="button" class="ios-row" data-sheet="sh-m4-1"><span class="ios-row-ic">1</span><span class="ios-row-t"><span class="en">Data manipulation</span><span class="zh">数据处理</span><small><span class="en">Python (and a little R)</span><span class="zh">— Python（外加一点 R）</span></small></span><svg class="ios-chev" viewBox="0 0 9 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 7 7.5 1.5 13.5"/></svg></button>
+<button type="button" class="ios-row" data-sheet="sh-m4-2"><span class="ios-row-ic">2</span><span class="ios-row-t"><span class="en">ETL pipelines</span><span class="zh">ETL 数据管道</span></span><svg class="ios-chev" viewBox="0 0 9 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 7 7.5 1.5 13.5"/></svg></button>
+<button type="button" class="ios-row" data-sheet="sh-m4-3"><span class="ios-row-ic">3</span><span class="ios-row-t"><span class="en">Data modelling</span><span class="zh">数据建模</span></span><svg class="ios-chev" viewBox="0 0 9 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 7 7.5 1.5 13.5"/></svg></button></div><p class="ios-group-note"><span class="en">Each opens on its own screen. Nothing to scroll past.</span><span class="zh">每一课单独一屏，不用一直往下滚。</span></p></section>
+<section class="ios-group" id="s-check"><h2 class="ios-group-h"><span class="en">Check yourself</span><span class="zh">检查一下</span></h2><div class="ios-embed" style="margin-top:10px"><div class="chal">
+<div class="chal-head">
+<span class="chal-badge"><span class="en">⚡ Challenge</span><span class="zh">⚡ 挑战</span></span>
+<h4><span class="en">Build something that runs every night without you</span><span class="zh">做一个每晚自己跑、不用你在场的东西</span></h4>
+<span class="diff">★★★</span>
+</div>
+<div class="chal-body">
+<p class="brief en">Pick a public data source that changes daily — air quality, exchange rates, transit delays, weather, your country's open-data portal. Build the full pipeline: <b>pull it, clean it, store it, and let history accumulate.</b></p>
+<p class="brief en">Then earn the hard part. Make it <b>survive being run twice</b>. Make it <b>refuse to load garbage</b> — assert the row count is in range and key columns have no nulls, and fail loudly if not. Make it <b>tell you what it did</b> in a log line you could read half asleep. Schedule it. Leave it alone for two weeks.</p>
+<p class="brief zh">挑一个每天都在变的公开数据源——空气质量、汇率、交通延误、天气、你所在国家的开放数据门户。搭一条完整的管道：<b>拉取、清洗、入库，并让历史数据一天天累积起来。</b></p>
+<p class="brief zh">然后去挣那个难的部分。让它<b>跑两遍也不出错</b>。让它<b>拒绝写入垃圾</b>——断言行数在合理范围、关键列没有空值，不满足就大声失败。让它<b>把做了什么告诉你</b>，一行你半睡半醒也读得懂的日志。设成定时任务，然后两周别管它。</p>
+<div class="win"><span class="wl"><span class="en">You've won when</span><span class="zh">达成条件</span></span>
+<span class="en">Two weeks later you open the database and there are fourteen days of clean history you never touched — and on the day the source was down, the log says so instead of the table containing zeros.</span>
+<span class="zh">两周后你打开数据库，里面有十四天你从没碰过的干净历史——而在数据源挂掉的那一天，日志会明说，而不是表里静静躺着一堆 0。</span></div>
+<details class="acc"><summary><span class="en">Show me how to approach it</span><span class="zh">给我一点思路</span></summary>
+<div class="body">
+<p class="en"><b>1.</b> Land the raw response first, untouched, with a timestamp — before any cleaning. When you get the transformation wrong (you will), you can rebuild from raw instead of re-downloading history you can no longer get.</p>
+<p class="en"><b>2.</b> Decide the grain out loud: "one row is one reading, from one station, at one hour." Write it in a comment at the top of the file.</p>
+<p class="en"><b>3.</b> Idempotency: delete the rows for the date you're loading, then insert. Now running it five times is identical to running it once. Test that by actually running it five times.</p>
+<p class="en"><b>4.</b> Validation before load, not after: <code class="inl">assert 20 &lt; len(df) &lt; 5000</code>, <code class="inl">assert df["station_id"].notna().all()</code>. Then break it on purpose — point it at a bad URL and confirm it screams instead of writing nothing quietly.</p>
+<p class="en"><b>5.</b> Log one line per run: rows in, rows written, seconds taken. Two weeks later that log is how you'll know it never silently skipped a day.</p>
+<p class="zh"><b>1.</b> 先把原始响应原封不动落地，带时间戳——在任何清洗之前。等你把转换逻辑写错的时候（一定会），你能从原始数据重建，而不是去重新下载一段已经拿不回来的历史。</p>
+<p class="zh"><b>2.</b> 把粒度说出声："一行 = 一个站点、一个小时的一次读数。"把它写在文件开头的注释里。</p>
+<p class="zh"><b>3.</b> 幂等：先删掉本次要加载那一天的行，再插入。这样跑五次和跑一次结果完全一样。而且要真的跑五次来验证。</p>
+<p class="zh"><b>4.</b> 校验放在加载之前，不是之后：<code class="inl">assert 20 &lt; len(df) &lt; 5000</code>、<code class="inl">assert df["station_id"].notna().all()</code>。然后故意弄坏它——把地址指向一个错的 URL，确认它会尖叫，而不是安静地什么都不写。</p>
+<p class="zh"><b>5.</b> 每次运行记一行日志：读入多少行、写入多少行、耗时多少秒。两周后，正是这份日志能让你确认它从没悄悄漏掉过一天。</p>
+</div>
+</details>
+<p class="stakes"><span class="en">Three or four weekends. This is the first thing on your CV that is unambiguously data engineering — not analysis, not scripting. A system that runs without you.</span><span class="zh">三到四个周末。这是你简历上第一件明确属于"数据工程"的东西——不是分析，也不是写脚本，而是一套没有你也能运转的系统。</span></p>
+</div>
+</div></div>
+<div class="ios-embed" style="margin-top:10px"><div class="quiz">
+<div class="qh"><span class="en">Check yourself · Milestone 4</span><span class="zh">自我检验 · 阶段四</span></div>
+<p class="q"><span class="en">Your nightly pipeline failed halfway through and you re-ran it. Revenue in the dashboard is now double. What was missing?</span><span class="zh">你的每晚管道跑到一半失败，你重跑了一次。现在看板上的收入翻倍了。缺的是什么？</span></p>
+<button class="opt" data-c="0"><span class="en">More logging</span><span class="zh">更多日志</span></button>
+<button class="opt" data-c="1"><span class="en">Idempotency — a re-run should replace, not append</span><span class="zh">幂等性 —— 重跑应该是替换而不是追加</span></button>
+<button class="opt" data-c="0"><span class="en">A faster machine</span><span class="zh">更快的机器</span></button>
+<div class="fb"><span class="en">Idempotency. The pipeline appended the same rows a second time. Usual fixes: delete-then-insert for the affected range, or an upsert on a unique key. Design for the re-run <b>before</b> the failure, because the failure is guaranteed.</span><span class="zh">幂等性。管道把同样的行又追加了一遍。常见修法：对受影响区间先删后插，或按唯一键 upsert。在失败<b>之前</b>就为重跑做设计，因为失败是必然的。</span></div>
+</div></div>
+<div class="ios-embed" style="margin-top:10px"><div class="quiz">
+<p class="q"><span class="en"><code class="inl">value_counts()</code> on your <code class="inl">lab_site</code> column returns: IPOH (400), Ipoh (23), "ipoh " (7). What is this?</span><span class="zh">对 <code class="inl">lab_site</code> 列跑 <code class="inl">value_counts()</code> 得到：IPOH（400）、Ipoh（23）、"ipoh "（7）。这是什么情况？</span></p>
+<button class="opt" data-c="1"><span class="en">One site that will be reported as three unless you standardise it</span><span class="zh">同一个厂区，不标准化就会被统计成三个</span></button>
+<button class="opt" data-c="0"><span class="en">Three genuinely different sites</span><span class="zh">三个真的不同的厂区</span></button>
+<button class="opt" data-c="0"><span class="en">A pandas display bug</span><span class="zh">pandas 的显示 bug</span></button>
+<div class="fb"><span class="en">One site, three spellings — exactly why check #6 exists. Left alone, every group-by silently splits Ipoh into three, and nobody notices until a regional manager asks why their numbers look low.</span><span class="zh">一个厂区，三种写法——这正是第 6 项检查存在的理由。放着不管，每次分组都会悄悄把怡保拆成三份，直到区域经理来问"为什么我的数字这么低"才有人发现。</span></div>
+</div></div>
+<div class="ios-embed" style="margin-top:10px"><div class="checks">
+<h4><span class="en">🔬 Lab tasks</span><span class="zh">🔬 实操任务</span></h4>
+<label class="chk"><input type="checkbox"/><span class="en">Take a genuinely messy real CSV (government open-data portals are full of them) and run all six QC checks on it.</span><span class="zh">找一份真正脏的真实 CSV（政府开放数据门户上一抓一大把），跑一遍那六项检查。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Clean that file with pandas: fix inconsistent categories, parse dates properly, handle nulls with a documented decision for each column.</span><span class="zh">用 pandas 清洗它：统一分类值、正确解析日期、对每一列的空值处理都写下明确决定。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Build a small ETL script: pull from a public API → transform → load into SQLite. Run it twice and prove the row count doesn't change.</span><span class="zh">写一个小 ETL 脚本：从公开 API 拉取 → 转换 → 写入 SQLite。跑两次，证明行数不变。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Add validation to it: assert the row count is in an expected range and key columns have no nulls. Make it fail loudly on purpose.</span><span class="zh">给它加校验：断言行数在预期范围内、关键列无空值。故意让它大声失败一次。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Design a star schema on paper for something you know — a lab, a warehouse, a construction project. Write the grain sentence for the fact table.</span><span class="zh">给你熟悉的东西在纸上设计一个星型模型——实验室、仓库、工程项目都行。为事实表写出那句"粒度"。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Schedule your pipeline to run daily (cron, or a free Airflow/Prefect tier) and check the logs for a week.</span><span class="zh">把你的管道设成每天运行（cron，或 Airflow/Prefect 的免费额度），连着看一周日志。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Rewrite one of your pandas transformations as pure SQL. Notice which one is easier to read six weeks later.</span><span class="zh">把你的一段 pandas 转换用纯 SQL 重写一遍。六周后再看，注意哪一个更好读。</span></label>
+</div></div></section>
+  <div class="ios-continue">
+    <a class="ios-btn" href="m5.html"><span class="en">Next: CS & Cloud</span><span class="zh">下一章：计算机与云</span></a>
+  </div>
+</div>
+<div class="ios-sheet" id="sh-m4-1" aria-hidden="true" role="dialog" aria-modal="true"><div class="ios-sheet-back"></div><div class="ios-sheet-card"><div class="ios-grabber"></div><div class="ios-sheet-nav"><span></span><b><span class="en">Data manipulation</span><span class="zh">数据处理</span></b><button type="button" class="ios-sheet-done">Done</button></div><div class="ios-sheet-body"><div class="ios-hero"><p class="ios-eyebrow">Lesson 1</p><h2 class="ios-title" style="font-size:26px"><span class="en">Data manipulation</span><span class="zh">数据处理</span></h2><p class="ios-sub"><span class="en">Python (and a little R)</span><span class="zh">— Python（外加一点 R）</span></p></div>
+
 <div class="lens">
 <div class="lens-tabs">
 <button class="on"><span class="en">WHY</span><span class="zh">为什么</span></button>
@@ -144,31 +227,7 @@ summary &lt;- samples |&gt;
 </div>
 </div>
 </div>
-<div class="play" data-play="clean">
-<div class="play-head">
-<span class="play-badge"><span class="en">▶ Playground</span><span class="zh">▶ 动手玩</span></span>
-<h4><span class="en">Clean a genuinely messy dataset, one operation at a time</span><span class="zh">一步一步清洗一份真正脏的数据</span></h4>
-<p class="sub2"><span class="en">This is real messiness of the kind you'll meet on your first day: inconsistent casing, stray whitespace, three date formats, missing IDs, a duplicated key and an impossible value. Apply each fix and watch the rows change. The counters at the bottom are what you'd report.</span><span class="zh">这是你上班第一天就会遇到的那种真实的脏：大小写不一致、多余空格、三种日期格式、缺失 ID、重复主键、还有一个不可能的数值。逐个应用修复，看行怎么变。下面的计数就是你要汇报的东西。</span></p>
-</div>
-<div class="play-body">
-<div class="prow">
-<button class="pbtn" data-clean="trim">.str.strip().str.upper()</button>
-<button class="pbtn" data-clean="dates">parse_dates</button>
-<button class="pbtn" data-clean="nulls">dropna(subset=["id"])</button>
-<button class="pbtn" data-clean="dupes">drop_duplicates()</button>
-<button class="pbtn" data-clean="range"><span class="en">range check</span><span class="zh">范围校验</span></button>
-<button class="pbtn ghost" data-clean="reset"><span class="en">reset</span><span class="zh">重来</span></button>
-</div>
-<div class="dwrap"><table class="dtbl" id="clean-tbl"></table></div>
-<div class="dstat">
-<div><b id="c-rows">—</b><span class="en">rows remaining</span><span class="zh">剩余行数</span></div>
-<div><b id="c-sites">—</b><span class="en">distinct lab sites</span><span class="zh">不同厂区数</span></div>
-<div><b id="c-issues">—</b><span class="en">issues left</span><span class="zh">剩余问题</span></div>
-<div><b id="c-pass">—</b><span class="en">pass rate</span><span class="zh">合格率</span></div>
-</div>
-<p id="clean-note" style="font-size:13.5px; color:var(--muted); margin:12px 0 0"></p>
-</div>
-</div>
+
 <div class="rw">
 <div class="rwh"><span class="en">◈ Real-world example</span><span class="zh">◈ 真实场景</span></div>
 <p class="scene en">A regional manager escalates: "Ipoh's numbers look 30% lower than they should. Are we losing samples?"</p>
@@ -176,10 +235,9 @@ summary &lt;- samples |&gt;
 <p class="scene zh">区域经理升级投诉："怡保的数字比应该的低了 30%，我们是不是在丢样本？"</p>
 <p class="zh">没有丢样本。对 <code class="inl">lab_site</code> 跑一次 <code class="inl">value_counts()</code>：<code class="inl">IPOH</code>（400）、<code class="inl">Ipoh</code>（23）、<code class="inl">"ipoh "</code>（7）——同一个厂区被算成了三个，因为上游两个系统大小写规则不同，还有一个表单字段带了尾随空格。每次分组统计都悄悄把这个厂区拆成三份。<br/><b>修复成本：</b>一行代码。<b>没检查的成本：</b>经理三周不信任看板，外加一场"工厂是不是流程有问题"的会议。</p>
 </div>
-<div class="reactbar" data-react-key="m4/0"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
-<!-- ============ 4.2 ETL ============ -->
-<div class="topic">
-<h3><span class="ic">2</span><span class="en">ETL pipelines</span><span class="zh">ETL 数据管道</span></h3>
+</div></div></div>
+<div class="ios-sheet" id="sh-m4-2" aria-hidden="true" role="dialog" aria-modal="true"><div class="ios-sheet-back"></div><div class="ios-sheet-card"><div class="ios-grabber"></div><div class="ios-sheet-nav"><span></span><b><span class="en">ETL pipelines</span><span class="zh">ETL 数据管道</span></b><button type="button" class="ios-sheet-done">Done</button></div><div class="ios-sheet-body"><div class="ios-hero"><p class="ios-eyebrow">Lesson 2</p><h2 class="ios-title" style="font-size:26px"><span class="en">ETL pipelines</span><span class="zh">ETL 数据管道</span></h2></div>
+
 <div class="lens">
 <div class="lens-tabs">
 <button class="on"><span class="en">WHY</span><span class="zh">为什么</span></button>
@@ -298,10 +356,9 @@ summary &lt;- samples |&gt;
 <p class="scene zh">凌晨 2:40 网络抖动导致每晚任务失败。你 9:00 重跑了一次。9:05 收入看板显示的数字翻了一倍。</p>
 <p class="zh">管道是追加而不是替换，所以昨天的数据现在在表里有两份。没有任何报错——数字就是错的，而且已经有三个人看到了。<br/><b>修复方式，按优先级：</b>对受影响的日期区间先删后插，或者按 <code class="inl">(date, site, sample_id)</code> 做 upsert。两者都能让重跑变成"什么都没发生"而不是"翻倍"。<b>教训：</b>在失败之前就为重跑做设计——失败是必然的，而且一定发生在最不方便的时刻。</p>
 </div>
-<div class="reactbar" data-react-key="m4/1"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
-<!-- ============ 4.3 DATA MODELLING ============ -->
-<div class="topic">
-<h3><span class="ic">3</span><span class="en">Data modelling</span><span class="zh">数据建模</span></h3>
+</div></div></div>
+<div class="ios-sheet" id="sh-m4-3" aria-hidden="true" role="dialog" aria-modal="true"><div class="ios-sheet-back"></div><div class="ios-sheet-card"><div class="ios-grabber"></div><div class="ios-sheet-nav"><span></span><b><span class="en">Data modelling</span><span class="zh">数据建模</span></b><button type="button" class="ios-sheet-done">Done</button></div><div class="ios-sheet-body"><div class="ios-hero"><p class="ios-eyebrow">Lesson 3</p><h2 class="ios-title" style="font-size:26px"><span class="en">Data modelling</span><span class="zh">数据建模</span></h2></div>
+
 <div class="lens">
 <div class="lens-tabs">
 <button class="on"><span class="en">WHY</span><span class="zh">为什么</span></button>
@@ -385,99 +442,8 @@ summary &lt;- samples |&gt;
 <p class="scene zh">一个客户从槟城搬到怡保。市场部重跑去年的区域报表，发现数字变了。</p>
 <p class="zh">维度表把城市覆盖掉了，于是这个客户历史上所有订单现在都算到怡保头上。去年的报表不再可复现——而如果它曾经报给监管或进过董事会材料，你现在就有了同一年的两个官方版本。<br/><b>解法是一个提前做出的设计决定：</b>为客户的每个版本各存一行，带生效起止日期，按订单日期做连接。它会永久带来一点复杂度，换来的是你能说出"这就是我们当时知道的，以及在什么时候知道的"——当有人来问时，这是唯一站得住脚的答案。</p>
 </div>
-<div class="reactbar" data-react-key="m4/2"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
-<div class="chal">
-<div class="chal-head">
-<span class="chal-badge"><span class="en">⚡ Challenge</span><span class="zh">⚡ 挑战</span></span>
-<h4><span class="en">Build something that runs every night without you</span><span class="zh">做一个每晚自己跑、不用你在场的东西</span></h4>
-<span class="diff">★★★</span>
-</div>
-<div class="chal-body">
-<p class="brief en">Pick a public data source that changes daily — air quality, exchange rates, transit delays, weather, your country's open-data portal. Build the full pipeline: <b>pull it, clean it, store it, and let history accumulate.</b></p>
-<p class="brief en">Then earn the hard part. Make it <b>survive being run twice</b>. Make it <b>refuse to load garbage</b> — assert the row count is in range and key columns have no nulls, and fail loudly if not. Make it <b>tell you what it did</b> in a log line you could read half asleep. Schedule it. Leave it alone for two weeks.</p>
-<p class="brief zh">挑一个每天都在变的公开数据源——空气质量、汇率、交通延误、天气、你所在国家的开放数据门户。搭一条完整的管道：<b>拉取、清洗、入库，并让历史数据一天天累积起来。</b></p>
-<p class="brief zh">然后去挣那个难的部分。让它<b>跑两遍也不出错</b>。让它<b>拒绝写入垃圾</b>——断言行数在合理范围、关键列没有空值，不满足就大声失败。让它<b>把做了什么告诉你</b>，一行你半睡半醒也读得懂的日志。设成定时任务，然后两周别管它。</p>
-<div class="win"><span class="wl"><span class="en">You've won when</span><span class="zh">达成条件</span></span>
-<span class="en">Two weeks later you open the database and there are fourteen days of clean history you never touched — and on the day the source was down, the log says so instead of the table containing zeros.</span>
-<span class="zh">两周后你打开数据库，里面有十四天你从没碰过的干净历史——而在数据源挂掉的那一天，日志会明说，而不是表里静静躺着一堆 0。</span></div>
-<details class="acc"><summary><span class="en">Show me how to approach it</span><span class="zh">给我一点思路</span></summary>
-<div class="body">
-<p class="en"><b>1.</b> Land the raw response first, untouched, with a timestamp — before any cleaning. When you get the transformation wrong (you will), you can rebuild from raw instead of re-downloading history you can no longer get.</p>
-<p class="en"><b>2.</b> Decide the grain out loud: "one row is one reading, from one station, at one hour." Write it in a comment at the top of the file.</p>
-<p class="en"><b>3.</b> Idempotency: delete the rows for the date you're loading, then insert. Now running it five times is identical to running it once. Test that by actually running it five times.</p>
-<p class="en"><b>4.</b> Validation before load, not after: <code class="inl">assert 20 &lt; len(df) &lt; 5000</code>, <code class="inl">assert df["station_id"].notna().all()</code>. Then break it on purpose — point it at a bad URL and confirm it screams instead of writing nothing quietly.</p>
-<p class="en"><b>5.</b> Log one line per run: rows in, rows written, seconds taken. Two weeks later that log is how you'll know it never silently skipped a day.</p>
-<p class="zh"><b>1.</b> 先把原始响应原封不动落地，带时间戳——在任何清洗之前。等你把转换逻辑写错的时候（一定会），你能从原始数据重建，而不是去重新下载一段已经拿不回来的历史。</p>
-<p class="zh"><b>2.</b> 把粒度说出声："一行 = 一个站点、一个小时的一次读数。"把它写在文件开头的注释里。</p>
-<p class="zh"><b>3.</b> 幂等：先删掉本次要加载那一天的行，再插入。这样跑五次和跑一次结果完全一样。而且要真的跑五次来验证。</p>
-<p class="zh"><b>4.</b> 校验放在加载之前，不是之后：<code class="inl">assert 20 &lt; len(df) &lt; 5000</code>、<code class="inl">assert df["station_id"].notna().all()</code>。然后故意弄坏它——把地址指向一个错的 URL，确认它会尖叫，而不是安静地什么都不写。</p>
-<p class="zh"><b>5.</b> 每次运行记一行日志：读入多少行、写入多少行、耗时多少秒。两周后，正是这份日志能让你确认它从没悄悄漏掉过一天。</p>
-</div>
-</details>
-<p class="stakes"><span class="en">Three or four weekends. This is the first thing on your CV that is unambiguously data engineering — not analysis, not scripting. A system that runs without you.</span><span class="zh">三到四个周末。这是你简历上第一件明确属于"数据工程"的东西——不是分析，也不是写脚本，而是一套没有你也能运转的系统。</span></p>
-</div>
-</div>
-<div class="quiz">
-<div class="qh"><span class="en">Check yourself · Milestone 4</span><span class="zh">自我检验 · 阶段四</span></div>
-<p class="q"><span class="en">Your nightly pipeline failed halfway through and you re-ran it. Revenue in the dashboard is now double. What was missing?</span><span class="zh">你的每晚管道跑到一半失败，你重跑了一次。现在看板上的收入翻倍了。缺的是什么？</span></p>
-<button class="opt" data-c="0"><span class="en">More logging</span><span class="zh">更多日志</span></button>
-<button class="opt" data-c="1"><span class="en">Idempotency — a re-run should replace, not append</span><span class="zh">幂等性 —— 重跑应该是替换而不是追加</span></button>
-<button class="opt" data-c="0"><span class="en">A faster machine</span><span class="zh">更快的机器</span></button>
-<div class="fb"><span class="en">Idempotency. The pipeline appended the same rows a second time. Usual fixes: delete-then-insert for the affected range, or an upsert on a unique key. Design for the re-run <b>before</b> the failure, because the failure is guaranteed.</span><span class="zh">幂等性。管道把同样的行又追加了一遍。常见修法：对受影响区间先删后插，或按唯一键 upsert。在失败<b>之前</b>就为重跑做设计，因为失败是必然的。</span></div>
-</div>
-<div class="quiz">
-<p class="q"><span class="en"><code class="inl">value_counts()</code> on your <code class="inl">lab_site</code> column returns: IPOH (400), Ipoh (23), "ipoh " (7). What is this?</span><span class="zh">对 <code class="inl">lab_site</code> 列跑 <code class="inl">value_counts()</code> 得到：IPOH（400）、Ipoh（23）、"ipoh "（7）。这是什么情况？</span></p>
-<button class="opt" data-c="1"><span class="en">One site that will be reported as three unless you standardise it</span><span class="zh">同一个厂区，不标准化就会被统计成三个</span></button>
-<button class="opt" data-c="0"><span class="en">Three genuinely different sites</span><span class="zh">三个真的不同的厂区</span></button>
-<button class="opt" data-c="0"><span class="en">A pandas display bug</span><span class="zh">pandas 的显示 bug</span></button>
-<div class="fb"><span class="en">One site, three spellings — exactly why check #6 exists. Left alone, every group-by silently splits Ipoh into three, and nobody notices until a regional manager asks why their numbers look low.</span><span class="zh">一个厂区，三种写法——这正是第 6 项检查存在的理由。放着不管，每次分组都会悄悄把怡保拆成三份，直到区域经理来问"为什么我的数字这么低"才有人发现。</span></div>
-</div>
-<div class="checks">
-<h4><span class="en">🔬 Lab tasks</span><span class="zh">🔬 实操任务</span></h4>
-<label class="chk"><input type="checkbox"/><span class="en">Take a genuinely messy real CSV (government open-data portals are full of them) and run all six QC checks on it.</span><span class="zh">找一份真正脏的真实 CSV（政府开放数据门户上一抓一大把），跑一遍那六项检查。</span></label>
-<label class="chk"><input type="checkbox"/><span class="en">Clean that file with pandas: fix inconsistent categories, parse dates properly, handle nulls with a documented decision for each column.</span><span class="zh">用 pandas 清洗它：统一分类值、正确解析日期、对每一列的空值处理都写下明确决定。</span></label>
-<label class="chk"><input type="checkbox"/><span class="en">Build a small ETL script: pull from a public API → transform → load into SQLite. Run it twice and prove the row count doesn't change.</span><span class="zh">写一个小 ETL 脚本：从公开 API 拉取 → 转换 → 写入 SQLite。跑两次，证明行数不变。</span></label>
-<label class="chk"><input type="checkbox"/><span class="en">Add validation to it: assert the row count is in an expected range and key columns have no nulls. Make it fail loudly on purpose.</span><span class="zh">给它加校验：断言行数在预期范围内、关键列无空值。故意让它大声失败一次。</span></label>
-<label class="chk"><input type="checkbox"/><span class="en">Design a star schema on paper for something you know — a lab, a warehouse, a construction project. Write the grain sentence for the fact table.</span><span class="zh">给你熟悉的东西在纸上设计一个星型模型——实验室、仓库、工程项目都行。为事实表写出那句"粒度"。</span></label>
-<label class="chk"><input type="checkbox"/><span class="en">Schedule your pipeline to run daily (cron, or a free Airflow/Prefect tier) and check the logs for a week.</span><span class="zh">把你的管道设成每天运行（cron，或 Airflow/Prefect 的免费额度），连着看一周日志。</span></label>
-<label class="chk"><input type="checkbox"/><span class="en">Rewrite one of your pandas transformations as pure SQL. Notice which one is easier to read six weeks later.</span><span class="zh">把你的一段 pandas 转换用纯 SQL 重写一遍。六周后再看，注意哪一个更好读。</span></label>
-</div>
-</div>
-<div class="disc" data-section="m4" id="disc-m4">
-<div class="disc-head">
-<h3><span class="en">Discussion</span><span class="zh">讨论</span></h3>
-<span class="disc-count" data-role="count" hidden=""></span>
-</div>
-<p class="disc-sub"><span class="en">Stuck, or got it working a different way? Leave it for the next learner.</span><span class="zh">卡住了，或者用别的方法搞定了？留给下一个学习者看看。</span></p>
-<div class="disc-list" data-role="list"></div>
-<form class="disc-form" data-parent="" data-role="form">
-<input autocomplete="name" class="disc-name" data-role="name" maxlength="40" placeholder="Your name / 你的名字" required="" type="text"/>
-<input aria-hidden="true" autocomplete="off" class="disc-hp" data-role="hp" tabindex="-1" type="text"/>
-<textarea data-role="text" maxlength="2000" placeholder="Add to the discussion / 说点什么…" required="" rows="3"></textarea>
-<div class="disc-foot">
-<span class="disc-msg" data-role="msg"></span>
-<button class="disc-post" type="submit"><span class="en">Post</span><span class="zh">发布</span></button>
-</div>
-</form>
-</div></div>
-</section>
-    <nav class="chapnav">
-    <a class="cn cn-prev" href="m3.html"><span class="cn-k"><span class="en">Previous</span><span class="zh">上一章</span></span><span class="cn-t"><span class="en">AI Fundamentals</span><span class="zh">AI 基础</span></span></a>
-    <a class="cn cn-next" href="m5.html"><span class="cn-k"><span class="en">Next</span><span class="zh">下一章</span></span><span class="cn-t"><span class="en">CS & Cloud</span><span class="zh">计算机原理与云</span></span></a>
-    </nav>
-<footer>
-<div class="wrap">
-<h3><span class="en">One last thing</span><span class="zh">最后一件事</span></h3>
-<p class="en" style="max-width:64ch">Feeling lost is not a sign that you chose wrong. It's the normal steady state of this field for everyone, including the people who look like they have it figured out. The difference is that they've learned it's survivable.</p>
-<p class="zh" style="max-width:64ch">感到迷茫不代表你选错了路。在这个行业里，这是所有人的常态，包括那些看起来什么都懂的人。区别只在于，他们已经学会了这是熬得过去的。</p>
-<p class="en" style="max-width:64ch">You already know how to be careful with a method you don't fully trust, how to check a result before you believe it, and how to write down what you did so someone else can repeat it. Those are the rare skills. The syntax is the easy part.</p>
-<p class="zh" style="max-width:64ch">你早就知道怎么谨慎对待一个还不完全信任的方法、怎么在相信一个结果之前先去核实、怎么把做过的事写下来让别人能复现。这些才是稀缺的能力。语法是最容易的那部分。</p>
-<p style="color:var(--muted); font-size:13px; margin-top:28px; margin-bottom:0"><span class="en">Progress and playground state are not saved between visits — work through a section in one sitting, or keep your own checklist alongside.</span><span class="zh">进度和练习状态不会跨次保存——建议一次做完一个章节，或者自己另外记一份清单。</span></p>
-</div>
-</footer>
-<button aria-label="Back to top" id="totop">↑</button>
-<div class="glow" id="glow"></div>
+</div></div></div>
 <script src="assets/core.js"></script>
-<script src="assets/vibe.js"></script>
+<script src="assets/ios.js"></script>
 </body>
 </html>

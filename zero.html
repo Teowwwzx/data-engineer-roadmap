@@ -2,40 +2,37 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>It all starts from 0 and 1 · The Lab Notebook</title>
-<meta name="description" content="A 12-month foundations roadmap for a new Data Engineer. Bilingual, interactive, one chapter at a time.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<title>It starts at 0 and 1 · The Lab Notebook</title>
 <link rel="stylesheet" href="assets/core.css">
 <link rel="stylesheet" href="assets/themes.css">
-<script>/* set theme + language before first paint, no flash */
-(function(){try{
+<link rel="stylesheet" href="assets/ios.css">
+<script>(function(){try{
  var t=localStorage.getItem('labnotebook-theme');
  if(t&&t!=='auto')document.documentElement.setAttribute('data-theme',t);
- var l=localStorage.getItem('labnotebook-lang')||'en';
- document.documentElement.setAttribute('data-lang',l);
 }catch(e){}})();</script>
 </head>
-<body class="lang-en" data-vibe="pixel" data-chapter="zero">
-<div class="topbar">
-<div class="wrap">
-<a aria-label="The Lab Notebook — home" class="brand" href="index.html"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></a>
-<button aria-expanded="false" aria-haspopup="dialog" class="chapbtn" type="button"><span class="chapbtn-n">10</span><span class="chapbtn-t"><span class="en">It all starts from 0 and 1</span><span class="zh">一切从 0 和 1 开始</span></span><svg class="chapbtn-v" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></button>
-<div class="langsw">
-<button class="on" data-lang="en">EN</button>
-<button data-lang="zh">中文</button>
-</div>
-</div>
-<div class="pbar"><i id="pbar"></i></div>
-</div>
+<body class="ios lang-en" data-chapter="zero" data-vibe="pixel">
+<div class="ios-phone">
+  <nav class="ios-nav">
+    <a class="ios-back" href="systems.html"><svg viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2 2.5 10 10 18"/></svg><span>How the big ones work</span></a>
+    <span class="ios-nav-title">It starts at 0 and 1</span>
+    <button type="button" class="ios-more" aria-label="More" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+    </button>
+  </nav>
+  <div class="ios-progress"><i></i></div>
 
-<section data-scene="bits" id="zero">
-<div class="wrap">
-<div class="sechead"><h2><span class="en">Why is IT full of alien words? Because it all starts from 0 and 1.</span><span class="zh">为什么 IT 里全是外星词？因为一切都从 0 和 1 开始。</span></h2></div>
-<p class="essay" style="color:var(--muted)"><span class="en">Here is the thing that makes all of it make sense at once. At the very bottom of every computer, every phone, every server, every AI model in the world, there is exactly one physical fact: <b>a tiny switch that is either off or on.</b> Nothing else. No numbers, no letters, no pictures, no code — just a switch.</span>
-<span class="zh">有一件事，能让前面所有内容瞬间讲得通。在世界上每一台电脑、每一部手机、每一台服务器、每一个 AI 模型的最底层，只存在一个物理事实：<b>一个要么关、要么开的小开关。</b>没有别的。没有数字、没有字母、没有图像、没有代码——只有开关。</span></p>
-<p class="essay" style="color:var(--muted)"><span class="en">Everything above that — every single word in this guide — is a name somebody had to invent for a clever way of stacking those switches. That is the whole reason the vocabulary sounds alien: these things had never existed before, so there were no words for them.</span>
-<span class="zh">而在它之上的一切——这份指南里的每一个词——都是有人为"某种巧妙的开关堆叠方式"发明出来的名字。这就是这套词汇听起来像外星语的全部原因：这些东西以前从没存在过，所以世上原本没有对应的词。</span></p>
-<div class="play" data-play="bits" style="--c:var(--m2-deep)">
+  <header class="ios-hero">
+    
+    <h1 class="ios-title"><span class="en">It starts at 0 and 1</span><span class="zh">从 0 和 1 开始</span></h1>
+    <p class="ios-sub"><span class="en"><span class="en">Here is the thing that makes all of it make sense at once. At the very bottom of every computer, every phone, every server, every AI model in the world, there is exactly one physical fact: <b>a tiny switch that is either off or on.</b> Nothing else. No numbers, no letters, no pictures, no code — just a switch.</span>
+<span class="zh">有一件事，能让前面所有内容瞬间讲得通。在世界上每一台电脑、每一部手机、每一台服务器、每一个 AI 模型的最底层，只存在一个物理事实：<b>一个要么关、要么开的小开关。</b>没有别的。没有数字、没有字母、没有图像、没有代码——只有开关。</span></span></p>
+  </header>
+  <ol class="ios-steps"><li data-step="s-try"><span class="n">1</span><span class="en">Try</span><span class="zh">动手</span></li><li data-step="s-read"><span class="n">2</span><span class="en">Detail</span><span class="zh">细节</span></li></ol>
+<section class="ios-group" id="s-try"><h2 class="ios-group-h"><span class="en">Try it</span><span class="zh">动手试试</span></h2><p class="ios-group-note"><span class="en">Poke at this before you read anything else.</span><span class="zh">先动手玩，再读文字。</span></p><div class="ios-embed" style="margin-top:10px"><div class="play" data-play="bits" style="--c:var(--m2-deep)">
 <div class="play-head">
 <span class="play-badge"><span class="en">▶ Playground</span><span class="zh">▶ 动手玩</span></span>
 <h4><span class="en">Eight switches. That's a letter.</span><span class="zh">八个开关，就是一个字母。</span></h4>
@@ -62,9 +59,10 @@
 <input id="b-text" maxlength="12" style="width:100%; max-width:340px; padding:10px 14px; border:1.5px solid var(--line); border-radius:10px; font:15px inherit; outline:none" type="text" value="Hi"/>
 <div class="nameout"><pre id="b-textout"></pre></div>
 </div>
-</div>
-<div class="sechead" style="margin-top:36px"><h2 style="font-size:22px"><span class="en">The tower — every floor is built from the one below it</span><span class="zh">这座塔 —— 每一层都建在下面那一层上</span></h2></div>
-<p style="color:var(--muted); max-width:70ch"><span class="en">Read it from the bottom up. Click any floor. Notice that nothing here is magic — each level is just a useful lie told about the level beneath it, so that humans can stop thinking about that level forever.</span><span class="zh">从下往上读，点击任意一层。你会发现这里没有任何魔法——每一层都只是关于下一层的一个"有用的谎言"，好让人类可以永远不用再去想那一层。</span></p>
+</div></div></section>
+<section class="ios-group" id="s-read"><h2 class="ios-group-h"><span class="en">If you want the detail</span><span class="zh">想看细节的话</span></h2><details class="ios-disc"><summary><span class="en">More detail</span><span class="zh">更多细节</span><svg class="ios-chev" viewBox="0 0 9 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 7 7.5 1.5 13.5"/></svg></summary><div class="ios-disc-body"><p class="essay" style="color:var(--muted)"><span class="en">Everything above that — every single word in this guide — is a name somebody had to invent for a clever way of stacking those switches. That is the whole reason the vocabulary sounds alien: these things had never existed before, so there were no words for them.</span>
+<span class="zh">而在它之上的一切——这份指南里的每一个词——都是有人为"某种巧妙的开关堆叠方式"发明出来的名字。这就是这套词汇听起来像外星语的全部原因：这些东西以前从没存在过，所以世上原本没有对应的词。</span></p></div></details>
+<details class="ios-disc"><summary><span class="en">More detail</span><span class="zh">更多细节</span><svg class="ios-chev" viewBox="0 0 9 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 7 7.5 1.5 13.5"/></svg></summary><div class="ios-disc-body"><p style="color:var(--muted); max-width:70ch"><span class="en">Read it from the bottom up. Click any floor. Notice that nothing here is magic — each level is just a useful lie told about the level beneath it, so that humans can stop thinking about that level forever.</span><span class="zh">从下往上读，点击任意一层。你会发现这里没有任何魔法——每一层都只是关于下一层的一个"有用的谎言"，好让人类可以永远不用再去想那一层。</span></p>
 <div class="tower" id="tower"></div>
 <div class="towerdetail" id="towerdetail"></div>
 <div class="essay">
@@ -92,26 +90,13 @@
 <p class="bigq"><span class="en">Everyone can use the top floor. The people who get paid, promoted and trusted are the ones who can go down one floor when it breaks.</span><span class="zh">顶层谁都会用。而拿到报酬、升职、被信任的，是那些在东西坏掉时能往下走一层的人。</span></p>
 <p class="en">You spent a year walking down that staircase on purpose: from a web page, to a server, to a database, to a pipeline, to memory, to a compiler, to a switch that is either off or on. Almost nobody does that. It is the entire reason this roadmap exists — and it is why, whatever the job title says next year, you will be fine.</p>
 <p class="zh">这一年，你是有意识地一级一级走下这道楼梯的：从一个网页，到服务器，到数据库，到数据管道，到内存，到编译器，最后到那个要么关、要么开的开关。几乎没有人会这么做。这正是这份路线图存在的全部理由——也是为什么，无论明年那个岗位名称写的是什么，你都不会有问题。</p>
+</div></div></details></section>
+  <div class="ios-continue">
+    <a class="ios-btn" href="finish.html"><span class="en">Next: Month 12 and after</span><span class="zh">下一章：第 12 个月之后</span></a>
+  </div>
 </div>
-<div class="reactbar" data-react-key="zero/0"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
-</section>
-    <nav class="chapnav">
-    <a class="cn cn-prev" href="systems.html"><span class="cn-k"><span class="en">Previous</span><span class="zh">上一章</span></span><span class="cn-t"><span class="en">How the big ones work</span><span class="zh">大家伙怎么运转</span></span></a>
-    <a class="cn cn-next" href="finish.html"><span class="cn-k"><span class="en">Next</span><span class="zh">下一章</span></span><span class="cn-t"><span class="en">Month 12 and after</span><span class="zh">第 12 个月之后</span></span></a>
-    </nav>
-<footer>
-<div class="wrap">
-<h3><span class="en">One last thing</span><span class="zh">最后一件事</span></h3>
-<p class="en" style="max-width:64ch">Feeling lost is not a sign that you chose wrong. It's the normal steady state of this field for everyone, including the people who look like they have it figured out. The difference is that they've learned it's survivable.</p>
-<p class="zh" style="max-width:64ch">感到迷茫不代表你选错了路。在这个行业里，这是所有人的常态，包括那些看起来什么都懂的人。区别只在于，他们已经学会了这是熬得过去的。</p>
-<p class="en" style="max-width:64ch">You already know how to be careful with a method you don't fully trust, how to check a result before you believe it, and how to write down what you did so someone else can repeat it. Those are the rare skills. The syntax is the easy part.</p>
-<p class="zh" style="max-width:64ch">你早就知道怎么谨慎对待一个还不完全信任的方法、怎么在相信一个结果之前先去核实、怎么把做过的事写下来让别人能复现。这些才是稀缺的能力。语法是最容易的那部分。</p>
-<p style="color:var(--muted); font-size:13px; margin-top:28px; margin-bottom:0"><span class="en">Progress and playground state are not saved between visits — work through a section in one sitting, or keep your own checklist alongside.</span><span class="zh">进度和练习状态不会跨次保存——建议一次做完一个章节，或者自己另外记一份清单。</span></p>
-</div>
-</footer>
-<button aria-label="Back to top" id="totop">↑</button>
-<div class="glow" id="glow"></div>
+
 <script src="assets/core.js"></script>
-<script src="assets/vibe.js"></script>
+<script src="assets/ios.js"></script>
 </body>
 </html>
