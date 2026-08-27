@@ -2,136 +2,46 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI Fundamentals · The Lab Notebook</title>
-<link rel="icon" href="favicon.ico" sizes="32x32">
-<link rel="icon" href="assets/icon/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="assets/icon/apple-touch-icon.png">
-<link rel="manifest" href="site.webmanifest">
+<meta name="description" content="A 12-month foundations roadmap for a new Data Engineer. Bilingual, interactive, one chapter at a time.">
 <link rel="stylesheet" href="assets/core.css">
-<link rel="stylesheet" href="assets/ios.css">
-<script>(function(){try{
+<link rel="stylesheet" href="assets/themes.css">
+<script>/* set theme + language before first paint, no flash */
+(function(){try{
  var t=localStorage.getItem('labnotebook-theme');
  if(t&&t!=='auto')document.documentElement.setAttribute('data-theme',t);
+ var l=localStorage.getItem('labnotebook-lang')||'en';
+ document.documentElement.setAttribute('data-lang',l);
 }catch(e){}})();</script>
 </head>
-<body class="ios lang-en" data-chapter="m3" data-vibe="ai">
-<a class="ios-skip" href="#ios-main">Skip to content</a>
-<div class="ios-phone">
-  <nav class="ios-nav">
-    <a class="ios-back" href="m2.html"><svg viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2 2.5 10 10 18"/></svg><span>Developer Tools</span></a>
-    <span class="ios-nav-title">AI Fundamentals</span>
-    <button type="button" class="ios-more" aria-label="More" aria-expanded="false">
-      <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
-    </button>
-  </nav>
-  <div class="ios-progress"><i></i></div>
+<body class="lang-en" data-vibe="ai" data-chapter="m3">
+<div class="topbar">
+<div class="wrap">
+<a aria-label="The Lab Notebook — home" class="brand" href="index.html"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></a>
+<button aria-expanded="false" aria-haspopup="dialog" class="chapbtn" type="button"><span class="chapbtn-n">06</span><span class="chapbtn-t"><span class="en">AI Fundamentals</span><span class="zh">AI 基础</span></span><svg class="chapbtn-v" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></button>
+<div class="langsw">
+<button class="on" data-lang="en">EN</button>
+<button data-lang="zh">中文</button>
+</div>
+</div>
+<div class="pbar"><i id="pbar"></i></div>
+</div>
 
-  <main id="ios-main" tabindex="-1">
-  <header class="ios-hero">
-    <p class="ios-eyebrow"><span class="en">Months 6–7 · Your fastest, most confident colleague</span><span class="zh">第 6–7 月 · 你最快、也最自信的同事</span></p>
-    <h1 class="ios-title"><span class="en">AI Fundamentals</span><span class="zh">AI 基础</span></h1>
-    <p class="ios-sub"><span class="en">Six months in, you know enough to judge AI output instead of just accepting it. That order matters — Milestones 1 and 2 come first for a reason. Now you learn to work <i>with</i> the tools that are reshaping how everyone builds.</span><span class="zh">走到第六个月，你已经有能力判断 AI 的输出，而不只是照单全收。这个顺序很重要——阶段一和阶段二排在前面是有原因的。现在，学着和这些正在重塑一切的工具<i>一起</i>工作。</span></p>
-  </header>
-  <ol class="ios-steps"><li data-step="s-intro"><span class="n">1</span><span class="en">Start</span><span class="zh">开始</span></li><li data-step="s-try"><span class="n">2</span><span class="en">Try</span><span class="zh">动手</span></li><li data-step="s-learn"><span class="n">3</span><span class="en">Lessons</span><span class="zh">课程</span></li><li data-step="s-check"><span class="n">4</span><span class="en">Check</span><span class="zh">自测</span></li></ol>
-<section class="ios-group" id="s-intro"><h2 class="ios-group-h"><span class="en">The short version</span><span class="zh">一句话版本</span></h2><div class="ios-list"><div class="ios-row" style="cursor:default"><span class="ios-row-ic">1</span><span class="ios-row-t"><span class="en">An <b>LLM</b> predicts the most likely next words. It is often right, and it never knows when it is wrong.</span><span class="zh"><b>大模型</b>预测最可能的下一段文字。它经常是对的，而且永远不知道自己什么时候错了。</span></span></div>
-<div class="ios-row" style="cursor:default"><span class="ios-row-ic">2</span><span class="ios-row-t"><span class="en">A <b>prompt</b> is a briefing. Vague briefing, vague answer — that is almost always the real problem.</span><span class="zh"><b>提示词</b>是一份任务简报。简报含糊，答案就含糊 —— 这几乎永远才是真正的问题。</span></span></div>
-<div class="ios-row" style="cursor:default"><span class="ios-row-ic">3</span><span class="ios-row-t"><span class="en"><b>AI in your editor</b> writes the boring parts fast. You still have to read every line.</span><span class="zh"><b>编辑器里的 AI</b> 能飞快写完无聊的部分，但每一行你还是得读。</span></span></div>
-<div class="ios-row" style="cursor:default"><span class="ios-row-ic">4</span><span class="ios-row-t"><span class="en"><b>Agents and MCP</b> let AI actually run things — which is why you give it the narrowest keys that work.</span><span class="zh"><b>Agent 和 MCP</b> 让 AI 真的能动手做事 —— 所以要给它刚好够用的最小钥匙。</span></span></div></div></section>
-<section class="ios-group" id="s-try"><h2 class="ios-group-h"><span class="en">Try it</span><span class="zh">动手试试</span></h2><p class="ios-group-note"><span class="en">Poke at this before you read anything else.</span><span class="zh">先动手玩，再读文字。</span></p><div class="ios-embed" style="margin-top:10px"><div class="stage" data-anim="">
-<div class="cap"><span><span class="en">Animation · next-token prediction, one step at a time</span><span class="zh">动画 · 逐个 token 的预测过程</span></span><button class="replay"><span class="en">↻ Replay</span><span class="zh">↻ 重播</span></button></div>
-<svg viewbox="0 0 800 250">
-<text class="sv-sm" style="font-size:12px" x="40" y="34"><tspan class="en">Your prompt →</tspan><tspan class="zh">你的提示词 →</tspan></text>
-<rect class="sv-box" height="34" rx="8" style="fill:color-mix(in srgb, var(--m3) 7%, var(--paper));stroke:var(--m3)" width="300" x="40" y="46"></rect>
-<text class="sv-lbl keepmono" x="56" y="68">The QC threshold for purity</text>
-<g class="tok tk1"><rect height="34" rx="7" style="fill:color-mix(in srgb, var(--m3) 12%, var(--paper));stroke:var(--m3)" width="52" x="352" y="46"></rect><text class="sv-lbl keepmono" text-anchor="middle" x="378" y="68">was</text></g>
-<g class="tok tk2"><rect height="34" rx="7" style="fill:color-mix(in srgb, var(--m3) 12%, var(--paper));stroke:var(--m3)" width="72" x="410" y="46"></rect><text class="sv-lbl keepmono" text-anchor="middle" x="446" y="68">raised</text></g>
-<g class="tok tk3"><rect height="34" rx="7" style="fill:color-mix(in srgb, var(--m3) 12%, var(--paper));stroke:var(--m3)" width="42" x="488" y="46"></rect><text class="sv-lbl keepmono" text-anchor="middle" x="509" y="68">to</text></g>
-<g class="tok tk4"><rect height="34" rx="7" style="fill:color-mix(in srgb, var(--m3) 12%, var(--paper));stroke:var(--m3)" width="60" x="536" y="46"></rect><text class="sv-lbl keepmono" text-anchor="middle" x="566" y="68">0.95</text></g>
-<g class="tok tk5"><rect height="34" rx="7" style="fill:color-mix(in srgb, var(--m3) 12%, var(--paper));stroke:var(--m3)" width="34" x="602" y="46"></rect><text class="sv-lbl keepmono" text-anchor="middle" x="619" y="68">in</text></g>
-<g class="tok tk6"><rect height="34" rx="7" style="fill:color-mix(in srgb, var(--m3) 12%, var(--paper));stroke:var(--m3)" width="62" x="642" y="46"></rect><text class="sv-lbl keepmono" text-anchor="middle" x="673" y="68">March</text></g>
-<g class="probg"><text class="sv-sm" style="font-size:12px" x="40" y="126"><tspan class="en">At each step it is really choosing between candidates:</tspan><tspan class="zh">每一步，它其实是在候选词之间做选择：</tspan></text></g>
-<g class="probg"><text class="sv-lbl keepmono" x="40" y="158">"March"</text></g>
-<rect class="pbarr pb1" fill="var(--m3)" height="16" rx="4" width="380" x="130" y="145"></rect>
-<g class="probg"><text class="sv-sm" x="524" y="158">62%</text></g>
-<g class="probg"><text class="sv-lbl keepmono" x="40" y="186">"April"</text></g>
-<rect class="pbarr pb2" fill="#c084fc" height="16" rx="4" width="150" x="130" y="173"></rect>
-<g class="probg"><text class="sv-sm" x="294" y="186">24%</text></g>
-<g class="probg"><text class="sv-lbl keepmono" x="40" y="214">"2019"</text></g>
-<rect class="pbarr pb3" fill="color-mix(in srgb, var(--m1) 20%, var(--paper))" height="16" rx="4" width="70" x="130" y="201"></rect>
-<g class="probg"><text class="sv-sm" x="214" y="214">9%</text></g>
-<g class="probg"><text class="sv-sm" style="fill:var(--m4-deep)" x="40" y="240"><tspan class="en">It picked the most likely word — not the true one. It has no idea which is which.</tspan><tspan class="zh">它选的是最可能的词，不是真实的词。而且它分不清这两者。</tspan></text></g>
-</svg>
-</div></div></section>
-<section class="ios-group" id="s-learn"><h2 class="ios-group-h"><span class="en">Lessons</span><span class="zh">课程</span> <span data-role="lesson-count"></span></h2><div class="ios-list"><button type="button" class="ios-row" data-sheet="sh-m3-1"><span class="ios-row-ic">1</span><span class="ios-row-t"><span class="en">What an LLM actually is</span><span class="zh">大模型到底是什么</span></span><svg class="ios-chev" viewBox="0 0 9 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 7 7.5 1.5 13.5"/></svg></button>
-<button type="button" class="ios-row" data-sheet="sh-m3-2"><span class="ios-row-ic">2</span><span class="ios-row-t"><span class="en">Prompt engineering</span><span class="zh">提示词工程</span><small><span class="en">writing a good protocol</span><span class="zh">— 写一份好的操作方案</span></small></span><svg class="ios-chev" viewBox="0 0 9 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 7 7.5 1.5 13.5"/></svg></button>
-<button type="button" class="ios-row" data-sheet="sh-m3-3"><span class="ios-row-ic">3</span><span class="ios-row-t"><span class="en">AI-assisted development</span><span class="zh">AI 辅助开发</span><small><span class="en">Cursor and friends</span><span class="zh">— Cursor 之类</span></small></span><svg class="ios-chev" viewBox="0 0 9 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 7 7.5 1.5 13.5"/></svg></button>
-<button type="button" class="ios-row" data-sheet="sh-m3-4"><span class="ios-row-ic">4</span><span class="ios-row-t"><span class="en">Agents, MCP, and custom skills</span><span class="zh">Agent、MCP 与自定义技能</span></span><svg class="ios-chev" viewBox="0 0 9 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 7 7.5 1.5 13.5"/></svg></button></div><p class="ios-group-note"><span class="en">Each opens on its own screen. Nothing to scroll past.</span><span class="zh">每一课单独一屏，不用一直往下滚。</span></p></section>
-<section class="ios-group" id="s-check"><h2 class="ios-group-h"><span class="en">Check yourself</span><span class="zh">检查一下</span></h2><div class="ios-embed" style="margin-top:10px"><div class="chal">
-<div class="chal-head">
-<span class="chal-badge"><span class="en">⚡ Challenge</span><span class="zh">⚡ 挑战</span></span>
-<h3><span class="en">Make an AI do a week of someone's work — correctly</span><span class="zh">让 AI 做完某人一周的活 —— 而且做对</span></h3>
-<span class="diff">★★☆</span>
+<section data-scene="neural" id="m3" style="--c:var(--m3)">
+<div class="wrap">
+<div class="ms">
+<div class="mshead">
+<div class="msnum">3</div>
+<div><div class="sub"><span class="en">Months 6–7 · Your fastest, most confident colleague</span><span class="zh">第 6–7 月 · 你最快、也最自信的同事</span></div>
+<h2><span class="en">AI Fundamentals &amp; Modern Workflows</span><span class="zh">AI 基础与现代工作流</span></h2></div>
 </div>
-<div class="chal-body">
-<p class="brief en">Find a pile of free text nobody has time to read: support tickets, survey comments, maintenance notes, product reviews. Two hundred rows minimum. Somebody in your company would love these summarised and has quietly given up.</p>
-<p class="brief en">Build a script that classifies every row into <b>categories you defined in advance</b>, returns strict JSON with a confidence score, and runs unattended. Then do the part everyone skips: <b>hand-label 30 rows yourself first</b>, and measure how often the model agrees with you.</p>
-<p class="brief zh">找一堆没人有时间读的自由文本：客服工单、问卷留言、维修记录、产品评价。至少两百行。公司里一定有人很想要这些东西的汇总，只是已经默默放弃了。</p>
-<p class="brief zh">写一个脚本，把每一行分类到<b>你事先定义好的类别</b>里，返回带置信度的严格 JSON，并且能无人值守运行。然后做那个所有人都跳过的步骤：<b>先自己手工标注 30 行</b>，再测量模型和你的一致率。</p>
-<div class="win"><span class="wl"><span class="en">You've won when</span><span class="zh">达成条件</span></span>
-<span class="en">You can state a number: "it agrees with me on 27 of 30, and the 3 it got wrong all had confidence below 0.6." That sentence is what turns a demo into something a manager can act on.</span>
-<span class="zh">你能说出一个数字："30 条里它和我一致 27 条，而错的那 3 条置信度都低于 0.6。"就是这句话，把一个演示变成了管理者敢用的东西。</span></div>
-<details class="acc"><summary><span class="en">Show me how to approach it</span><span class="zh">给我一点思路</span></summary>
-<div class="body">
-<p class="en"><b>1.</b> Define the categories <i>before</i> you look at the model's output. If you let the model invent them, you get eleven overlapping ones and no way to compare runs.</p>
-<p class="en"><b>2.</b> Label 30 rows by hand, in a spreadsheet, before writing any prompt. This is your ground truth. It is tedious and it is the whole value of the project.</p>
-<p class="en"><b>3.</b> Write the prompt using the Prompt Lab above: list the categories verbatim, give two worked examples including one ambiguous case, demand JSON only, and add <i>"if it fits none, return OTHER — do not invent a category."</i></p>
-<p class="en"><b>4.</b> Run it on your 30. Compare. Where it disagrees, ask honestly: was the model wrong, or was your category definition ambiguous? Usually the second. Fix the definition and run again.</p>
-<p class="en"><b>5.</b> Only now run all 200. Sort by confidence ascending, and read the bottom 10% yourself — that is where the interesting cases live.</p>
-<p class="zh"><b>1.</b> 在看模型输出<i>之前</i>就把类别定好。让模型自己发明类别，你会得到十一个互相重叠的类，而且两次运行没法比较。</p>
-<p class="zh"><b>2.</b> 在写任何提示词之前，先在表格里手工标注 30 行。这是你的标准答案。枯燥，但它就是这个项目的全部价值所在。</p>
-<p class="zh"><b>3.</b> 用上面那个提示词实验室来写提示词：把类别原样列出、给两个示例（其中一个是边界情况）、只要 JSON，并加上<i>"如果都不符合就返回 OTHER——不要自己造类别"</i>。</p>
-<p class="zh"><b>4.</b> 先跑那 30 条，对比。不一致的地方，诚实地问一句：是模型错了，还是你的类别定义本身有歧义？通常是后者。改定义，再跑一遍。</p>
-<p class="zh"><b>5.</b> 到这一步才跑完整的 200 条。按置信度升序排列，亲自读最低的 10%——有意思的案例都在那里。</p>
-</div>
-</details>
-<p class="stakes"><span class="en">A week of evenings. This is the project that gets shown in a meeting — and the measurement step is why nobody can dismiss it.</span><span class="zh">大概一周的晚上。这是那种会被拿到会上展示的项目——而"测量"那一步，正是没人能轻易否定它的原因。</span></p>
-</div>
-</div></div>
-<div class="ios-embed" style="margin-top:10px"><div class="quiz">
-<div class="qh"><span class="en">Check yourself · Milestone 3</span><span class="zh">自我检验 · 阶段三</span></div>
-<p class="q"><span class="en">An LLM gives you a SQL query that looks perfect and cites a column called <code class="inl">sample_purity_pct</code>. What's your next move?</span><span class="zh">大模型给了你一条看起来完美的 SQL，里面用到一个叫 <code class="inl">sample_purity_pct</code> 的列。你下一步做什么？</span></p>
-<button class="opt" data-c="0"><span class="en">Run it in production — it clearly understands the schema</span><span class="zh">直接在生产环境跑 —— 它显然懂表结构</span></button>
-<button class="opt" data-c="1"><span class="en">Check that the column actually exists, then run it against a limited/test dataset first</span><span class="zh">先确认这个列真的存在，再在测试或受限数据集上跑一次</span></button>
-<button class="opt" data-c="0"><span class="en">Ask it "are you sure?" and trust the answer</span><span class="zh">问它"你确定吗？"然后相信它的回答</span></button>
-<div class="fb"><span class="en">Verify, then test small. Models invent plausible column names constantly — and asking "are you sure?" is worthless, because confidence is generated the same way the content is. It may well have been right; the point is you found out rather than assumed.</span><span class="zh">先核实，再小规模测试。模型经常编出看起来很合理的列名——而问"你确定吗"毫无意义，因为"确定"和内容是同一套机制生成的。它当然可能是对的；关键在于你是查出来的，不是假设出来的。</span></div>
-</div></div>
-<div class="ios-embed" style="margin-top:10px"><div class="quiz">
-<p class="q"><span class="en">What problem does MCP actually solve?</span><span class="zh">MCP 到底解决了什么问题？</span></p>
-<button class="opt" data-c="0"><span class="en">It makes the model smarter</span><span class="zh">它让模型更聪明</span></button>
-<button class="opt" data-c="1"><span class="en">It gives AI tools one standard, permissioned way to connect to real systems</span><span class="zh">它给 AI 工具提供了一种标准的、带权限控制的方式去连接真实系统</span></button>
-<button class="opt" data-c="0"><span class="en">It compresses prompts so they cost less</span><span class="zh">它压缩提示词以降低成本</span></button>
-<div class="fb"><span class="en">It's a connection standard, not an intelligence upgrade. Before it, every tool needed a bespoke integration with every data source. MCP is the universal connector — plus the place where you scope what the agent may touch.</span><span class="zh">它是连接标准，不是智力升级。在它之前，每个工具都要为每个数据源写专门的集成。MCP 是那个通用接口——同时也是你划定 Agent 能碰什么的地方。</span></div>
-</div></div>
-<div class="ios-embed" style="margin-top:10px"><div class="checks">
-<h4><span class="en">🔬 Lab tasks</span><span class="zh">🔬 实操任务</span></h4>
-<label class="chk"><input type="checkbox"/><span class="en">Ask the same question to two different models. Compare where they disagree — that gap is where you need to verify.</span><span class="zh">把同一个问题问两个不同的模型，比较它们分歧的地方——那就是你需要去核实的地方。</span></label>
-<label class="chk"><input type="checkbox"/><span class="en">Deliberately catch a model being confidently wrong. Ask about something obscure you actually know well. Save the example.</span><span class="zh">故意抓一次模型"自信地说错"。挑一个你自己很懂的冷门话题去问。把这个例子存下来。</span></label>
-<label class="chk"><input type="checkbox"/><span class="en">Take one weak prompt you wrote and rewrite it with schema, role, output format, and an edge case. Compare the two answers side by side.</span><span class="zh">把你写过的一个弱提示词，补上表结构、角色、输出格式和一个边界情况重写一遍，把两个答案并排比较。</span></label>
-<label class="chk"><input type="checkbox"/><span class="en">Install Cursor (or a similar AI editor) and use it to explain an unfamiliar file in your team's codebase line by line.</span><span class="zh">装一个 Cursor（或类似的 AI 编辑器），用它逐行讲解团队代码库里一个你不熟的文件。</span></label>
-<label class="chk"><input type="checkbox"/><span class="en">Have an AI write tests for your Milestone 2 Flask API — then read every test and check it's actually testing something meaningful.</span><span class="zh">让 AI 给你阶段二的 Flask API 写测试——然后逐条读一遍，确认它真的测到了有意义的东西。</span></label>
-<label class="chk"><input type="checkbox"/><span class="en">Read the MCP documentation and connect one MCP server (a filesystem or SQLite one is easiest) to an AI client.</span><span class="zh">读一遍 MCP 文档，把一个 MCP 服务（文件系统或 SQLite 的最简单）接到一个 AI 客户端上。</span></label>
-<label class="chk"><input type="checkbox"/><span class="en">Write a one-page "skill" describing a repetitive task on your team precisely enough that someone new could follow it.</span><span class="zh">写一页"技能文件"，把团队里一件重复性的任务描述到新人照着就能做的程度。</span></label>
-</div></div></section>
-  <div class="ios-continue">
-    <a class="ios-btn" href="m4.html"><span class="en">Next: Data Engineering</span><span class="zh">下一章：数据工程</span></a>
-  </div>
-  </main>
-</div>
-<div class="ios-sheet" id="sh-m3-1" aria-hidden="true" role="dialog" aria-modal="true"><div class="ios-sheet-back"></div><div class="ios-sheet-card"><div class="ios-grabber"></div><div class="ios-sheet-nav"><span></span><b><span class="en">What an LLM actually is</span><span class="zh">大模型到底是什么</span></b><button type="button" class="ios-sheet-done">Done</button></div><div class="ios-sheet-body"><div class="ios-hero"><p class="ios-eyebrow">Lesson 1</p><h2 class="ios-title" style="font-size:26px"><span class="en">What an LLM actually is</span><span class="zh">大模型到底是什么</span></h2></div>
-
+<p class="en" style="color:var(--muted); max-width:68ch">Six months in, you know enough to judge AI output instead of just accepting it. That order matters — Milestones 1 and 2 come first for a reason. Now you learn to work <i>with</i> the tools that are reshaping how everyone builds.</p>
+<p class="zh" style="color:var(--muted); max-width:68ch">走到第六个月，你已经有能力判断 AI 的输出，而不只是照单全收。这个顺序很重要——阶段一和阶段二排在前面是有原因的。现在，学着和这些正在重塑一切的工具<i>一起</i>工作。</p>
+<div class="tldr"><div class="tl2"><span class="en">In plain English — the whole milestone in 4 lines</span><span class="zh">大白话版 —— 四行讲完这个阶段</span></div><ul class="en"><li>An <b>LLM</b> predicts the most likely next words. It is often right, and it never knows when it is wrong.</li><li>A <b>prompt</b> is a briefing. Vague briefing, vague answer — that is almost always the real problem.</li><li><b>AI in your editor</b> writes the boring parts fast. You still have to read every line.</li><li><b>Agents and MCP</b> let AI actually run things — which is why you give it the narrowest keys that work.</li></ul><ul class="zh"><li><b>大模型</b>预测最可能的下一段文字。它经常是对的，而且永远不知道自己什么时候错了。</li><li><b>提示词</b>是一份任务简报。简报含糊，答案就含糊 —— 这几乎永远才是真正的问题。</li><li><b>编辑器里的 AI</b> 能飞快写完无聊的部分，但每一行你还是得读。</li><li><b>Agent 和 MCP</b> 让 AI 真的能动手做事 —— 所以要给它刚好够用的最小钥匙。</li></ul></div>
+<!-- ============ 3.1 WHAT AN LLM IS ============ -->
+<div class="topic" style="border-top:0; padding-top:0">
+<h3><span class="ic">1</span><span class="en">What an LLM actually is</span><span class="zh">大模型到底是什么</span></h3>
 <div class="lens">
 <div class="lens-tabs">
 <button class="on"><span class="en">WHY</span><span class="zh">为什么</span></button>
@@ -150,11 +60,11 @@
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h3><span class="en">How software used to be built</span><span class="zh">以前软件是怎么造的</span></h3>
+<div class="evo-col then"><h5><span class="en">How software used to be built</span><span class="zh">以前软件是怎么造的</span></h5>
 <ul class="en"><li>Every behaviour had to be written as an explicit rule by a human. "If purity &lt; 0.95 then fail."</li><li>Anything fuzzy — reading a messy address, summarising a document — was effectively impossible.</li><li>Adding a language, a format or an edge case meant a new project.</li><li>Search meant matching keywords. If you used a different word, you found nothing.</li></ul>
 <ul class="zh"><li>每一种行为都得由人写成明确的规则。"如果纯度 &lt; 0.95 就判不合格。"</li><li>任何模糊的事——读一个乱写的地址、给文档做摘要——基本不可能。</li><li>多支持一种语言、一种格式、一个边缘情况，就是一个新项目。</li><li>搜索靠关键词匹配。换个说法就什么都搜不到。</li></ul></div>
 <div class="evo-arrow">→</div>
-<div class="evo-col now"><h4><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h4>
+<div class="evo-col now"><h5><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h5>
 <ul class="en"><li>You describe the outcome in plain language and the model produces a first attempt.</li><li>Fuzzy tasks became routine: extract fields from a scanned invoice, summarise 200 tickets, translate a script from R to Python.</li><li>The bottleneck moved from <b>writing</b> code to <b>verifying</b> it — which is where your judgment now earns its keep.</li><li>Search works by meaning, not by matching characters.</li></ul>
 <ul class="zh"><li>你用大白话描述想要的结果，模型给出第一版尝试。</li><li>模糊任务变成了日常：从扫描发票里抽字段、给 200 张工单做摘要、把 R 脚本翻译成 Python。</li><li>瓶颈从<b>写</b>代码变成了<b>验</b>代码——而这正是你的判断力开始值钱的地方。</li><li>搜索按含义匹配，而不是按字符匹配。</li></ul></div>
 </div>
@@ -188,14 +98,39 @@
 </div>
 </div>
 </div>
-
+<div class="stage" data-anim="">
+<div class="cap"><span><span class="en">Animation · next-token prediction, one step at a time</span><span class="zh">动画 · 逐个 token 的预测过程</span></span><button class="replay"><span class="en">↻ Replay</span><span class="zh">↻ 重播</span></button></div>
+<svg viewbox="0 0 800 250">
+<text class="sv-sm" style="font-size:12px" x="40" y="34"><tspan class="en">Your prompt →</tspan><tspan class="zh">你的提示词 →</tspan></text>
+<rect class="sv-box" height="34" rx="8" style="fill:color-mix(in srgb, var(--m3) 7%, var(--paper));stroke:var(--m3)" width="300" x="40" y="46"></rect>
+<text class="sv-lbl keepmono" x="56" y="68">The QC threshold for purity</text>
+<g class="tok tk1"><rect height="34" rx="7" style="fill:color-mix(in srgb, var(--m3) 12%, var(--paper));stroke:var(--m3)" width="52" x="352" y="46"></rect><text class="sv-lbl keepmono" text-anchor="middle" x="378" y="68">was</text></g>
+<g class="tok tk2"><rect height="34" rx="7" style="fill:color-mix(in srgb, var(--m3) 12%, var(--paper));stroke:var(--m3)" width="72" x="410" y="46"></rect><text class="sv-lbl keepmono" text-anchor="middle" x="446" y="68">raised</text></g>
+<g class="tok tk3"><rect height="34" rx="7" style="fill:color-mix(in srgb, var(--m3) 12%, var(--paper));stroke:var(--m3)" width="42" x="488" y="46"></rect><text class="sv-lbl keepmono" text-anchor="middle" x="509" y="68">to</text></g>
+<g class="tok tk4"><rect height="34" rx="7" style="fill:color-mix(in srgb, var(--m3) 12%, var(--paper));stroke:var(--m3)" width="60" x="536" y="46"></rect><text class="sv-lbl keepmono" text-anchor="middle" x="566" y="68">0.95</text></g>
+<g class="tok tk5"><rect height="34" rx="7" style="fill:color-mix(in srgb, var(--m3) 12%, var(--paper));stroke:var(--m3)" width="34" x="602" y="46"></rect><text class="sv-lbl keepmono" text-anchor="middle" x="619" y="68">in</text></g>
+<g class="tok tk6"><rect height="34" rx="7" style="fill:color-mix(in srgb, var(--m3) 12%, var(--paper));stroke:var(--m3)" width="62" x="642" y="46"></rect><text class="sv-lbl keepmono" text-anchor="middle" x="673" y="68">March</text></g>
+<g class="probg"><text class="sv-sm" style="font-size:12px" x="40" y="126"><tspan class="en">At each step it is really choosing between candidates:</tspan><tspan class="zh">每一步，它其实是在候选词之间做选择：</tspan></text></g>
+<g class="probg"><text class="sv-lbl keepmono" x="40" y="158">"March"</text></g>
+<rect class="pbarr pb1" fill="var(--m3)" height="16" rx="4" width="380" x="130" y="145"></rect>
+<g class="probg"><text class="sv-sm" x="524" y="158">62%</text></g>
+<g class="probg"><text class="sv-lbl keepmono" x="40" y="186">"April"</text></g>
+<rect class="pbarr pb2" fill="#c084fc" height="16" rx="4" width="150" x="130" y="173"></rect>
+<g class="probg"><text class="sv-sm" x="294" y="186">24%</text></g>
+<g class="probg"><text class="sv-lbl keepmono" x="40" y="214">"2019"</text></g>
+<rect class="pbarr pb3" fill="color-mix(in srgb, var(--m1) 20%, var(--paper))" height="16" rx="4" width="70" x="130" y="201"></rect>
+<g class="probg"><text class="sv-sm" x="214" y="214">9%</text></g>
+<g class="probg"><text class="sv-sm" style="fill:var(--m4-deep)" x="40" y="240"><tspan class="en">It picked the most likely word — not the true one. It has no idea which is which.</tspan><tspan class="zh">它选的是最可能的词，不是真实的词。而且它分不清这两者。</tspan></text></g>
+</svg>
+</div>
 <div class="warn">
 <p class="en" style="margin:0"><b>The rule that will save your career:</b> an LLM produces something <i>plausible</i>, not something <i>verified</i>. Treat every output the way you'd treat a promising result from a single unreplicated run — interesting, worth checking, never publishable on its own. Run the code. Check the number. Read the source.</p>
 <p class="zh" style="margin:0"><b>能保住你职业生涯的一条规矩：</b>大模型产出的是<i>看起来合理</i>的东西，不是<i>已验证</i>的东西。对待每一个输出，就像对待一次未重复实验得到的漂亮结果——有意思、值得查、但绝不能单独发表。跑一遍代码、核一遍数字、读一遍原始出处。</p>
 </div>
-</div></div></div>
-<div class="ios-sheet" id="sh-m3-2" aria-hidden="true" role="dialog" aria-modal="true"><div class="ios-sheet-back"></div><div class="ios-sheet-card"><div class="ios-grabber"></div><div class="ios-sheet-nav"><span></span><b><span class="en">Prompt engineering</span><span class="zh">提示词工程</span></b><button type="button" class="ios-sheet-done">Done</button></div><div class="ios-sheet-body"><div class="ios-hero"><p class="ios-eyebrow">Lesson 2</p><h2 class="ios-title" style="font-size:26px"><span class="en">Prompt engineering</span><span class="zh">提示词工程</span></h2><p class="ios-sub"><span class="en">writing a good protocol</span><span class="zh">— 写一份好的操作方案</span></p></div>
-
+<div class="reactbar" data-react-key="m3/0"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
+<!-- ============ 3.2 PROMPTING ============ -->
+<div class="topic">
+<h3><span class="ic">2</span><span class="en">Prompt engineering — writing a good protocol</span><span class="zh">提示词工程 —— 写一份好的操作方案</span></h3>
 <div class="lens">
 <div class="lens-tabs">
 <button class="on"><span class="en">WHY</span><span class="zh">为什么</span></button>
@@ -212,11 +147,11 @@
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h3><span class="en">Early prompting (2022–23)</span><span class="zh">早期的提示词（2022–23）</span></h3>
+<div class="evo-col then"><h5><span class="en">Early prompting (2022–23)</span><span class="zh">早期的提示词（2022–23）</span></h5>
 <ul class="en"><li>Magic phrases and superstition — "you are a world-class expert," "I will tip you $200."</li><li>Tiny context windows, so you had to compress everything and hope.</li><li>Chained tricks to get JSON out reliably; often it came back malformed.</li><li>Prompts were personal folklore, passed around as screenshots.</li></ul>
 <ul class="zh"><li>咒语和迷信——"你是世界顶级专家""我会给你 200 美元小费"。</li><li>上下文窗口很小，什么都得压缩，然后祈祷。</li><li>要靠一连串技巧才能稳定拿到 JSON，而且常常格式还是坏的。</li><li>提示词是个人经验，靠截图在群里流传。</li></ul></div>
 <div class="evo-arrow">→</div>
-<div class="evo-col now"><h4><span class="en">Prompting now</span><span class="zh">现在的提示词</span></h4>
+<div class="evo-col now"><h5><span class="en">Prompting now</span><span class="zh">现在的提示词</span></h5>
 <ul class="en"><li>Plain, specific, structured instructions. The superstition mostly stopped working and stopped being needed.</li><li>Long context: paste the whole schema, the whole error, the whole file.</li><li>Structured output is a first-class feature — you define the shape, you get that shape.</li><li>Good prompts live in Git as reusable files, reviewed like code.</li></ul>
 <ul class="zh"><li>朴素、具体、有结构的指令。咒语基本失效，也不再需要。</li><li>长上下文：整个表结构、整段报错、整个文件，直接贴进去。</li><li>结构化输出成了一等功能——你定义形状，就得到那个形状。</li><li>好的提示词像代码一样存进 Git、可复用、可评审。</li></ul></div>
 </div>
@@ -309,9 +244,10 @@ list any assumption you had to make."""</span>
 <p class="scene zh">你需要把 4000 条自由文本的维修投诉分成八类。</p>
 <p class="zh">含糊的提示词："帮我分类。"结果你拿到十一个类别、命名不统一、每条答案外面还包着一段话，把你的解析程序搞崩。管道里完全没法用。<br/>真正的提示词：把八个允许的类别原样列出，给两个示例（其中一个是边界情况），指定唯一输出为 <code class="inl">{"id":..., "category":..., "confidence":...}</code>，并加上"如果都不符合，返回 <code class="inl">OTHER</code>——不要自己造类别"。现在它能无人值守跑完 4000 行，而 <code class="inl">confidence</code> 字段会告诉你哪 60 条需要人看。<b>第二版只多花了八分钟去写，却把一个演示变成了一套系统。</b></p>
 </div>
-</div></div></div>
-<div class="ios-sheet" id="sh-m3-3" aria-hidden="true" role="dialog" aria-modal="true"><div class="ios-sheet-back"></div><div class="ios-sheet-card"><div class="ios-grabber"></div><div class="ios-sheet-nav"><span></span><b><span class="en">AI-assisted development</span><span class="zh">AI 辅助开发</span></b><button type="button" class="ios-sheet-done">Done</button></div><div class="ios-sheet-body"><div class="ios-hero"><p class="ios-eyebrow">Lesson 3</p><h2 class="ios-title" style="font-size:26px"><span class="en">AI-assisted development</span><span class="zh">AI 辅助开发</span></h2><p class="ios-sub"><span class="en">Cursor and friends</span><span class="zh">— Cursor 之类</span></p></div>
-
+<div class="reactbar" data-react-key="m3/1"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
+<!-- ============ 3.3 AI-ASSISTED DEV ============ -->
+<div class="topic">
+<h3><span class="ic">3</span><span class="en">AI-assisted development — Cursor and friends</span><span class="zh">AI 辅助开发 —— Cursor 之类</span></h3>
 <div class="lens">
 <div class="lens-tabs">
 <button class="on"><span class="en">WHY</span><span class="zh">为什么</span></button>
@@ -328,11 +264,11 @@ list any assumption you had to make."""</span>
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h3><span class="en">How coding used to go</span><span class="zh">以前写代码是怎样</span></h3>
+<div class="evo-col then"><h5><span class="en">How coding used to go</span><span class="zh">以前写代码是怎样</span></h5>
 <ul class="en"><li>Hit an unfamiliar error → search → open nine tabs → find a 2016 answer for an older version.</li><li>Boilerplate typed by hand, every time, with typos.</li><li>Tests written last, badly, or not at all.</li><li>Understanding a stranger's 800-line file took a full day.</li></ul>
 <ul class="zh"><li>遇到陌生报错 → 搜索 → 开九个标签页 → 找到一个 2016 年针对旧版本的答案。</li><li>样板代码每次都手敲，每次都有拼写错误。</li><li>测试最后写、写得差，或者干脆不写。</li><li>看懂别人写的 800 行文件要花一整天。</li></ul></div>
 <div class="evo-arrow">→</div>
-<div class="evo-col now"><h4><span class="en">How it goes now</span><span class="zh">现在是怎样</span></h4>
+<div class="evo-col now"><h5><span class="en">How it goes now</span><span class="zh">现在是怎样</span></h5>
 <ul class="en"><li>Paste the error <i>with</i> the file — get an explanation grounded in your actual code.</li><li>Boilerplate is generated in seconds; you review instead of type.</li><li>Tests get written because the cost of writing them collapsed.</li><li>That 800-line file gets explained function by function in ten minutes.</li></ul>
 <ul class="zh"><li>把报错<i>连同文件</i>一起给它——得到基于你真实代码的解释。</li><li>样板代码几秒生成，你从"敲"变成"审"。</li><li>测试终于写了，因为写测试的成本塌下来了。</li><li>那个 800 行的文件，十分钟就能被逐个函数讲清楚。</li></ul></div>
 </div>
@@ -376,9 +312,10 @@ list any assumption you had to make."""</span>
 <p class="scene zh">你接手了一条 1200 行的管道，原作者已经离职。它每晚都在跑，一半的逻辑没人知道是干嘛的。</p>
 <p class="zh">旧办法：两周仔细阅读，读完你还是不敢动它。<br/>新办法：用 AI 编辑器打开，一个函数一个函数地问："这段是做什么的？删掉会坏什么？"然后——这是大多数人跳过的一步——<b>你自己对着代码逐条核实</b>。两天之内，你就有了一份文档化的地图、一组描述现有行为的测试，以及动它的底气。AI 给你的不是理解，而是一份"理解的快速初稿"，然后由你去核。这个区别，就是你这份工作的全部。</p>
 </div>
-</div></div></div>
-<div class="ios-sheet" id="sh-m3-4" aria-hidden="true" role="dialog" aria-modal="true"><div class="ios-sheet-back"></div><div class="ios-sheet-card"><div class="ios-grabber"></div><div class="ios-sheet-nav"><span></span><b><span class="en">Agents, MCP, and custom skills</span><span class="zh">Agent、MCP 与自定义技能</span></b><button type="button" class="ios-sheet-done">Done</button></div><div class="ios-sheet-body"><div class="ios-hero"><p class="ios-eyebrow">Lesson 4</p><h2 class="ios-title" style="font-size:26px"><span class="en">Agents, MCP, and custom skills</span><span class="zh">Agent、MCP 与自定义技能</span></h2></div>
-
+<div class="reactbar" data-react-key="m3/2"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
+<!-- ============ 3.4 AGENTS & MCP ============ -->
+<div class="topic">
+<h3><span class="ic">4</span><span class="en">Agents, MCP, and custom skills</span><span class="zh">Agent、MCP 与自定义技能</span></h3>
 <div class="lens">
 <div class="lens-tabs">
 <button class="on"><span class="en">WHY</span><span class="zh">为什么</span></button>
@@ -397,11 +334,11 @@ list any assumption you had to make."""</span>
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h3><span class="en">How integration used to work</span><span class="zh">以前的集成是怎么做的</span></h3>
+<div class="evo-col then"><h5><span class="en">How integration used to work</span><span class="zh">以前的集成是怎么做的</span></h5>
 <ul class="en"><li>Every AI tool needed a bespoke integration with every data source. N tools × M systems = N×M pieces of glue code.</li><li>Permissions were whatever each integration's author happened to implement.</li><li>You copied data out by hand and pasted it into a chat window — including things you shouldn't have.</li><li>Nothing was auditable. No log of what the AI actually touched.</li></ul>
 <ul class="zh"><li>每个 AI 工具都要为每个数据源写专门的集成。N 个工具 × M 个系统 = N×M 段胶水代码。</li><li>权限完全取决于写那个集成的人当时实现了什么。</li><li>你手动把数据复制出来粘进聊天框——包括那些本不该复制的。</li><li>完全无法审计。AI 到底碰了什么，没有日志。</li></ul></div>
 <div class="evo-arrow">→</div>
-<div class="evo-col now"><h4><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h4>
+<div class="evo-col now"><h5><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h5>
 <ul class="en"><li>One standard socket. Write an MCP server for your warehouse <b>once</b>; every MCP-compatible client can use it.</li><li>Permissions live in one place, at the socket — not scattered across integrations.</li><li>The AI queries live data itself, so nobody pastes a customer list into a chat box.</li><li>Every tool call is logged. You can answer "what did it touch, and when?"</li></ul>
 <ul class="zh"><li>一个标准插口。为你的数仓写<b>一次</b> MCP 服务，所有兼容 MCP 的客户端都能用。</li><li>权限集中在插口这一处——不再散落在各个集成里。</li><li>AI 自己去查实时数据，没人再把客户名单粘进聊天框。</li><li>每次工具调用都有日志。"它碰了什么、什么时候碰的"，你答得上来。</li></ul></div>
 </div>
@@ -453,8 +390,99 @@ list any assumption you had to make."""</span>
 <p class="scene zh">每周一都有人花两小时拼同一份运营报表：查三个系统、对数、写总结、发出去。</p>
 <p class="zh">用 MCP，助手被授予这三个系统的<b>只读</b>权限，外加一份写好的技能文件，说明这份报表到底怎么做——用哪些指标、怎么定义、要标注哪些注意事项。周一早上，它九十秒产出初稿，数字是实时拉的，每个来源都标注了。人读一遍，改掉那一处需要判断的地方，发出去。<br/><b>注意留给人的是什么：</b>判断和责任。被拿走的是"拼装"。真正能长期留下来的 AI 应用，基本都是这个形状。</p>
 </div>
-</div></div></div>
+<div class="reactbar" data-react-key="m3/3"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
+<div class="chal">
+<div class="chal-head">
+<span class="chal-badge"><span class="en">⚡ Challenge</span><span class="zh">⚡ 挑战</span></span>
+<h4><span class="en">Make an AI do a week of someone's work — correctly</span><span class="zh">让 AI 做完某人一周的活 —— 而且做对</span></h4>
+<span class="diff">★★☆</span>
+</div>
+<div class="chal-body">
+<p class="brief en">Find a pile of free text nobody has time to read: support tickets, survey comments, maintenance notes, product reviews. Two hundred rows minimum. Somebody in your company would love these summarised and has quietly given up.</p>
+<p class="brief en">Build a script that classifies every row into <b>categories you defined in advance</b>, returns strict JSON with a confidence score, and runs unattended. Then do the part everyone skips: <b>hand-label 30 rows yourself first</b>, and measure how often the model agrees with you.</p>
+<p class="brief zh">找一堆没人有时间读的自由文本：客服工单、问卷留言、维修记录、产品评价。至少两百行。公司里一定有人很想要这些东西的汇总，只是已经默默放弃了。</p>
+<p class="brief zh">写一个脚本，把每一行分类到<b>你事先定义好的类别</b>里，返回带置信度的严格 JSON，并且能无人值守运行。然后做那个所有人都跳过的步骤：<b>先自己手工标注 30 行</b>，再测量模型和你的一致率。</p>
+<div class="win"><span class="wl"><span class="en">You've won when</span><span class="zh">达成条件</span></span>
+<span class="en">You can state a number: "it agrees with me on 27 of 30, and the 3 it got wrong all had confidence below 0.6." That sentence is what turns a demo into something a manager can act on.</span>
+<span class="zh">你能说出一个数字："30 条里它和我一致 27 条，而错的那 3 条置信度都低于 0.6。"就是这句话，把一个演示变成了管理者敢用的东西。</span></div>
+<details class="acc"><summary><span class="en">Show me how to approach it</span><span class="zh">给我一点思路</span></summary>
+<div class="body">
+<p class="en"><b>1.</b> Define the categories <i>before</i> you look at the model's output. If you let the model invent them, you get eleven overlapping ones and no way to compare runs.</p>
+<p class="en"><b>2.</b> Label 30 rows by hand, in a spreadsheet, before writing any prompt. This is your ground truth. It is tedious and it is the whole value of the project.</p>
+<p class="en"><b>3.</b> Write the prompt using the Prompt Lab above: list the categories verbatim, give two worked examples including one ambiguous case, demand JSON only, and add <i>"if it fits none, return OTHER — do not invent a category."</i></p>
+<p class="en"><b>4.</b> Run it on your 30. Compare. Where it disagrees, ask honestly: was the model wrong, or was your category definition ambiguous? Usually the second. Fix the definition and run again.</p>
+<p class="en"><b>5.</b> Only now run all 200. Sort by confidence ascending, and read the bottom 10% yourself — that is where the interesting cases live.</p>
+<p class="zh"><b>1.</b> 在看模型输出<i>之前</i>就把类别定好。让模型自己发明类别，你会得到十一个互相重叠的类，而且两次运行没法比较。</p>
+<p class="zh"><b>2.</b> 在写任何提示词之前，先在表格里手工标注 30 行。这是你的标准答案。枯燥，但它就是这个项目的全部价值所在。</p>
+<p class="zh"><b>3.</b> 用上面那个提示词实验室来写提示词：把类别原样列出、给两个示例（其中一个是边界情况）、只要 JSON，并加上<i>"如果都不符合就返回 OTHER——不要自己造类别"</i>。</p>
+<p class="zh"><b>4.</b> 先跑那 30 条，对比。不一致的地方，诚实地问一句：是模型错了，还是你的类别定义本身有歧义？通常是后者。改定义，再跑一遍。</p>
+<p class="zh"><b>5.</b> 到这一步才跑完整的 200 条。按置信度升序排列，亲自读最低的 10%——有意思的案例都在那里。</p>
+</div>
+</details>
+<p class="stakes"><span class="en">A week of evenings. This is the project that gets shown in a meeting — and the measurement step is why nobody can dismiss it.</span><span class="zh">大概一周的晚上。这是那种会被拿到会上展示的项目——而"测量"那一步，正是没人能轻易否定它的原因。</span></p>
+</div>
+</div>
+<div class="quiz">
+<div class="qh"><span class="en">Check yourself · Milestone 3</span><span class="zh">自我检验 · 阶段三</span></div>
+<p class="q"><span class="en">An LLM gives you a SQL query that looks perfect and cites a column called <code class="inl">sample_purity_pct</code>. What's your next move?</span><span class="zh">大模型给了你一条看起来完美的 SQL，里面用到一个叫 <code class="inl">sample_purity_pct</code> 的列。你下一步做什么？</span></p>
+<button class="opt" data-c="0"><span class="en">Run it in production — it clearly understands the schema</span><span class="zh">直接在生产环境跑 —— 它显然懂表结构</span></button>
+<button class="opt" data-c="1"><span class="en">Check that the column actually exists, then run it against a limited/test dataset first</span><span class="zh">先确认这个列真的存在，再在测试或受限数据集上跑一次</span></button>
+<button class="opt" data-c="0"><span class="en">Ask it "are you sure?" and trust the answer</span><span class="zh">问它"你确定吗？"然后相信它的回答</span></button>
+<div class="fb"><span class="en">Verify, then test small. Models invent plausible column names constantly — and asking "are you sure?" is worthless, because confidence is generated the same way the content is. It may well have been right; the point is you found out rather than assumed.</span><span class="zh">先核实，再小规模测试。模型经常编出看起来很合理的列名——而问"你确定吗"毫无意义，因为"确定"和内容是同一套机制生成的。它当然可能是对的；关键在于你是查出来的，不是假设出来的。</span></div>
+</div>
+<div class="quiz">
+<p class="q"><span class="en">What problem does MCP actually solve?</span><span class="zh">MCP 到底解决了什么问题？</span></p>
+<button class="opt" data-c="0"><span class="en">It makes the model smarter</span><span class="zh">它让模型更聪明</span></button>
+<button class="opt" data-c="1"><span class="en">It gives AI tools one standard, permissioned way to connect to real systems</span><span class="zh">它给 AI 工具提供了一种标准的、带权限控制的方式去连接真实系统</span></button>
+<button class="opt" data-c="0"><span class="en">It compresses prompts so they cost less</span><span class="zh">它压缩提示词以降低成本</span></button>
+<div class="fb"><span class="en">It's a connection standard, not an intelligence upgrade. Before it, every tool needed a bespoke integration with every data source. MCP is the universal connector — plus the place where you scope what the agent may touch.</span><span class="zh">它是连接标准，不是智力升级。在它之前，每个工具都要为每个数据源写专门的集成。MCP 是那个通用接口——同时也是你划定 Agent 能碰什么的地方。</span></div>
+</div>
+<div class="checks">
+<h4><span class="en">🔬 Lab tasks</span><span class="zh">🔬 实操任务</span></h4>
+<label class="chk"><input type="checkbox"/><span class="en">Ask the same question to two different models. Compare where they disagree — that gap is where you need to verify.</span><span class="zh">把同一个问题问两个不同的模型，比较它们分歧的地方——那就是你需要去核实的地方。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Deliberately catch a model being confidently wrong. Ask about something obscure you actually know well. Save the example.</span><span class="zh">故意抓一次模型"自信地说错"。挑一个你自己很懂的冷门话题去问。把这个例子存下来。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Take one weak prompt you wrote and rewrite it with schema, role, output format, and an edge case. Compare the two answers side by side.</span><span class="zh">把你写过的一个弱提示词，补上表结构、角色、输出格式和一个边界情况重写一遍，把两个答案并排比较。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Install Cursor (or a similar AI editor) and use it to explain an unfamiliar file in your team's codebase line by line.</span><span class="zh">装一个 Cursor（或类似的 AI 编辑器），用它逐行讲解团队代码库里一个你不熟的文件。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Have an AI write tests for your Milestone 2 Flask API — then read every test and check it's actually testing something meaningful.</span><span class="zh">让 AI 给你阶段二的 Flask API 写测试——然后逐条读一遍，确认它真的测到了有意义的东西。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Read the MCP documentation and connect one MCP server (a filesystem or SQLite one is easiest) to an AI client.</span><span class="zh">读一遍 MCP 文档，把一个 MCP 服务（文件系统或 SQLite 的最简单）接到一个 AI 客户端上。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Write a one-page "skill" describing a repetitive task on your team precisely enough that someone new could follow it.</span><span class="zh">写一页"技能文件"，把团队里一件重复性的任务描述到新人照着就能做的程度。</span></label>
+</div>
+</div>
+<div class="disc" data-section="m3" id="disc-m3">
+<div class="disc-head">
+<h3><span class="en">Discussion</span><span class="zh">讨论</span></h3>
+<span class="disc-count" data-role="count" hidden=""></span>
+</div>
+<p class="disc-sub"><span class="en">Stuck, or got it working a different way? Leave it for the next learner.</span><span class="zh">卡住了，或者用别的方法搞定了？留给下一个学习者看看。</span></p>
+<div class="disc-list" data-role="list"></div>
+<form class="disc-form" data-parent="" data-role="form">
+<input autocomplete="name" class="disc-name" data-role="name" maxlength="40" placeholder="Your name / 你的名字" required="" type="text"/>
+<input aria-hidden="true" autocomplete="off" class="disc-hp" data-role="hp" tabindex="-1" type="text"/>
+<textarea data-role="text" maxlength="2000" placeholder="Add to the discussion / 说点什么…" required="" rows="3"></textarea>
+<div class="disc-foot">
+<span class="disc-msg" data-role="msg"></span>
+<button class="disc-post" type="submit"><span class="en">Post</span><span class="zh">发布</span></button>
+</div>
+</form>
+</div></div>
+</section>
+    <nav class="chapnav">
+    <a class="cn cn-prev" href="m2.html"><span class="cn-k"><span class="en">Previous</span><span class="zh">上一章</span></span><span class="cn-t"><span class="en">Developer Tools</span><span class="zh">开发工具</span></span></a>
+    <a class="cn cn-next" href="m4.html"><span class="cn-k"><span class="en">Next</span><span class="zh">下一章</span></span><span class="cn-t"><span class="en">Data Engineering</span><span class="zh">数据工程</span></span></a>
+    </nav>
+<footer>
+<div class="wrap">
+<h3><span class="en">One last thing</span><span class="zh">最后一件事</span></h3>
+<p class="en" style="max-width:64ch">Feeling lost is not a sign that you chose wrong. It's the normal steady state of this field for everyone, including the people who look like they have it figured out. The difference is that they've learned it's survivable.</p>
+<p class="zh" style="max-width:64ch">感到迷茫不代表你选错了路。在这个行业里，这是所有人的常态，包括那些看起来什么都懂的人。区别只在于，他们已经学会了这是熬得过去的。</p>
+<p class="en" style="max-width:64ch">You already know how to be careful with a method you don't fully trust, how to check a result before you believe it, and how to write down what you did so someone else can repeat it. Those are the rare skills. The syntax is the easy part.</p>
+<p class="zh" style="max-width:64ch">你早就知道怎么谨慎对待一个还不完全信任的方法、怎么在相信一个结果之前先去核实、怎么把做过的事写下来让别人能复现。这些才是稀缺的能力。语法是最容易的那部分。</p>
+<p style="color:var(--muted); font-size:13px; margin-top:28px; margin-bottom:0"><span class="en">Progress and playground state are not saved between visits — work through a section in one sitting, or keep your own checklist alongside.</span><span class="zh">进度和练习状态不会跨次保存——建议一次做完一个章节，或者自己另外记一份清单。</span></p>
+</div>
+</footer>
+<button aria-label="Back to top" id="totop">↑</button>
+<div class="glow" id="glow"></div>
 <script src="assets/core.js"></script>
-<script src="assets/ios.js"></script>
+<script src="assets/vibe.js"></script>
 </body>
 </html>

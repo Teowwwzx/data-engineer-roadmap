@@ -99,7 +99,7 @@ $$('.replay').forEach(function(btn){
 var links = $$('.navlinks a');
 var targets = links.map(function(l){
   var h = l.getAttribute('href') || '';
-  if (h.charAt(0) !== '#') return null;
+  if (h.charAt(0) !== '#') return null;           /* cross-page link, not an anchor */
   var el = $(h); return el ? {link:l, el:el} : null;
 }).filter(Boolean);
 var totop = $('#totop');
@@ -2292,7 +2292,7 @@ try{
   }, {passive:true});
   upd();
 })();
-}catch(_e){console.warn("[widget skipped] block:", _e && _e.message)}
+}catch(_e){console.warn("[widget skipped] block@2256:", _e && _e.message)}
 
 
 /* ================= THEME + BACKGROUND FX ================= */
@@ -2449,7 +2449,7 @@ try{
     new MutationObserver(function(){ run() }).observe(grid, {childList:true, subtree:true});
   }
 })();
-}catch(_e){console.warn("[widget skipped] block:", _e && _e.message)}
+}catch(_e){console.warn("[widget skipped] block@2409:", _e && _e.message)}
 
 /* ---------- accents baked into JS data need the dark ramp too ---------- */
 try{
@@ -2530,7 +2530,7 @@ try{
     if (mq.addEventListener) mq.addEventListener('change', paint);
   }
 })();
-}catch(_e){console.warn("[widget skipped] block:", _e && _e.message)}
+}catch(_e){console.warn("[widget skipped] block@2488:", _e && _e.message)}
 
 /* ================= DISCUSSION / COMMENTS ================= */
 try{

@@ -2,61 +2,35 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Month 12 and after · The Lab Notebook</title>
-<link rel="icon" href="favicon.ico" sizes="32x32">
-<link rel="icon" href="assets/icon/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="assets/icon/apple-touch-icon.png">
-<link rel="manifest" href="site.webmanifest">
+<meta name="description" content="A 12-month foundations roadmap for a new Data Engineer. Bilingual, interactive, one chapter at a time.">
 <link rel="stylesheet" href="assets/core.css">
-<link rel="stylesheet" href="assets/ios.css">
-<script>(function(){try{
+<link rel="stylesheet" href="assets/themes.css">
+<script>/* set theme + language before first paint, no flash */
+(function(){try{
  var t=localStorage.getItem('labnotebook-theme');
  if(t&&t!=='auto')document.documentElement.setAttribute('data-theme',t);
+ var l=localStorage.getItem('labnotebook-lang')||'en';
+ document.documentElement.setAttribute('data-lang',l);
 }catch(e){}})();</script>
 </head>
-<body class="ios lang-en" data-chapter="finish" data-vibe="chill">
-<a class="ios-skip" href="#ios-main">Skip to content</a>
-<div class="ios-phone">
-  <nav class="ios-nav">
-    <a class="ios-back" href="zero.html"><svg viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2 2.5 10 10 18"/></svg><span>It starts at 0 and 1</span></a>
-    <span class="ios-nav-title">Month 12 and after</span>
-    <button type="button" class="ios-more" aria-label="More" aria-expanded="false">
-      <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
-    </button>
-  </nav>
-  <div class="ios-progress"><i></i></div>
+<body class="lang-en" data-vibe="chill" data-chapter="finish">
+<div class="topbar">
+<div class="wrap">
+<a aria-label="The Lab Notebook — home" class="brand" href="index.html"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></a>
+<button aria-expanded="false" aria-haspopup="dialog" class="chapbtn" type="button"><span class="chapbtn-n">11</span><span class="chapbtn-t"><span class="en">Month 12 and after</span><span class="zh">第 12 个月之后</span></span><svg class="chapbtn-v" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></button>
+<div class="langsw">
+<button class="on" data-lang="en">EN</button>
+<button data-lang="zh">中文</button>
+</div>
+</div>
+<div class="pbar"><i id="pbar"></i></div>
+</div>
 
-  <main id="ios-main" tabindex="-1">
-  <header class="ios-hero">
-    
-    <h1 class="ios-title"><span class="en">Month 12 and after</span><span class="zh">第 12 个月之后</span></h1>
-    <p class="ios-sub"><span class="en">
-<span class="en">Nothing here was drawn in Figma, cut into components, or handed to a front-end team.
-      It arrived as one HTML file in a zip, and every change after that was a sentence typed into an AI coding
-      agent. Below is the entire conversation — every prompt, unedited, typos and all.</span>
-<span class="zh">这里没有任何东西是在 Figma 里画出来、切成组件、再交给前端团队的。
-      它一开始只是压缩包里的一个 HTML 文件，之后的每一次改动，都是敲给 AI 编程助手的一句话。
-      下面是完整的对话 —— 每一句提示词，原样保留，错别字也没改。</span>
-</span></p>
-  </header>
-  <ol class="ios-steps"><li data-step="s-intro"><span class="n">1</span><span class="en">Start</span><span class="zh">开始</span></li><li data-step="s-read"><span class="n">2</span><span class="en">Detail</span><span class="zh">细节</span></li></ol>
-<section class="ios-group" id="s-intro"><h2 class="ios-group-h"><span class="en">The short version</span><span class="zh">一句话版本</span></h2><div class="ios-callout" style="margin-top:12px"><span class="k"><span class="en">The part that is easy to miss</span><span class="zh">最容易被忽略的一点</span></span>
-
-<p class="en">The model chose the component, wrote the migration script, found the bug where the background
-      layers were painting <i>behind</i> the page instead of on it, and measured every contrast ratio. But somebody
-      still had to look at the result and say <b>“the old column is now too faint to read.”</b>
-      That sentence is not a technical skill. It is judgement — knowing what <i>right</i> looks like — and it is the
-      one thing in this whole guide that does not get automated. The tools got faster. The person who can tell
-      whether the answer is correct got <b>more</b> valuable, not less.</p>
-<p class="zh">模型挑了组件、写了迁移脚本、找出了背景层被画在页面<i>后面</i>而不是上面的那个 bug、
-      并且量了每一处对比度。但仍然得有人看着结果说一句：<b>「旧的那一栏现在太淡了，读不清。」</b>
-      这句话不是技术能力，而是判断力 —— 知道「对」应该长什么样。而这恰恰是整份指南里唯一不会被自动化掉的东西。
-      工具变快了；能判断答案对不对的那个人，因此变得<b>更</b>值钱，而不是更不值钱。</p>
-</div></section>
-<section class="ios-group" id="s-read"><h2 class="ios-group-h"><span class="en">If you want the detail</span><span class="zh">想看细节的话</span></h2><details class="ios-disc"><summary><span class="en">More detail</span><span class="zh">更多细节</span><svg class="ios-chev" viewBox="0 0 9 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 7 7.5 1.5 13.5"/></svg></summary><div class="ios-disc-body"><div class="philo">
+<section data-scene="neural" id="finish">
+<div class="wrap">
+<div class="philo">
 <h2><span class="en">Month 12 and everything after</span><span class="zh">第 12 个月，以及之后的一切</span></h2>
 <p class="en">By now you can read a system diagram, write a pipeline that survives a re-run, argue about a data model, judge what an AI hands you, and explain why something is slow. That is not "junior with potential." That is a working engineer.</p>
 <p class="zh">到这时，你能读懂架构图、能写出经得起重跑的管道、能就数据模型跟人争论、能判断 AI 交给你的东西、能解释某个东西为什么慢。这已经不是"有潜力的新人"了，这是一个能干活的工程师。</p>
@@ -77,17 +51,32 @@
 <p class="zh" style="margin-top:22px; margin-bottom:0">先挑你实际工作最需要的那一个。这永远是对的顺序。</p>
 </div>
 <div class="grid3" style="margin-top:26px">
-<div class="mini"><h3><span class="en">When you get stuck</span><span class="zh">卡住的时候</span></h3>
+<div class="mini"><h5><span class="en">When you get stuck</span><span class="zh">卡住的时候</span></h5>
 <p class="en">Read the <b>whole</b> error message — the answer is usually literally in it. Then search the exact text. Then ask an AI with full context. Then ask a human, showing all three things you already tried.</p>
 <p class="zh">把报错<b>完整</b>读一遍——答案通常就明明白白写在里面。然后按原文搜索。然后带上完整上下文问 AI。最后问人，并展示你已经试过的那三步。</p></div>
-<div class="mini"><h4><span class="en">The habit that compounds</span><span class="zh">会复利的习惯</span></h4>
+<div class="mini"><h5><span class="en">The habit that compounds</span><span class="zh">会复利的习惯</span></h5>
 <p class="en">Keep a running document of every problem you solved and how. In a year it becomes the thing your team relies on — and the thing that gets you promoted.</p>
 <p class="zh">持续记录你解决过的每一个问题和解法。一年后它会变成团队依赖的东西——也是让你升职的东西。</p></div>
 <div class="mini"><h5><span class="en">What "senior" means</span><span class="zh">"资深"是什么意思</span></h5>
 <p class="en">Not knowing more syntax. It's knowing what will break, roughly when, and what it will cost. That only comes from breaking things — so break things early, where it's cheap.</p>
 <p class="zh">不是记得更多语法，而是知道什么会坏、大概什么时候坏、坏了要付什么代价。这只能从把东西弄坏中获得——所以趁代价还低，早点去弄坏它。</p></div>
-</div></div></details>
-<details class="ios-disc"><summary><span class="en">More detail</span><span class="zh">更多细节</span><svg class="ios-chev" viewBox="0 0 9 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 7 7.5 1.5 13.5"/></svg></summary><div class="ios-disc-body"><ol class="promptlog">
+</div>
+<div class="reactbar" data-react-key="finish/0"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
+</section>
+<section data-scene="neural" id="made" style="--c:var(--m3)">
+<div class="wrap">
+<div class="sechead">
+<h2><span class="en">How this page was built</span><span class="zh">这一页是怎么做出来的</span></h2>
+</div>
+<p class="lede" style="max-width:70ch">
+<span class="en">Nothing here was drawn in Figma, cut into components, or handed to a front-end team.
+      It arrived as one HTML file in a zip, and every change after that was a sentence typed into an AI coding
+      agent. Below is the entire conversation — every prompt, unedited, typos and all.</span>
+<span class="zh">这里没有任何东西是在 Figma 里画出来、切成组件、再交给前端团队的。
+      它一开始只是压缩包里的一个 HTML 文件，之后的每一次改动，都是敲给 AI 编程助手的一句话。
+      下面是完整的对话 —— 每一句提示词，原样保留，错别字也没改。</span>
+</p>
+<ol class="promptlog">
 <li class="pl">
 <div class="pl-n">01</div>
 <div>
@@ -133,7 +122,7 @@
 <span class="en">What that used to take</span><span class="zh">这些以前要花多少功夫</span>
 </h3>
 <div class="evo">
-<div class="evo-col then"><h4><span class="en">The usual way</span><span class="zh">通常的做法</span></h4>
+<div class="evo-col then"><h5><span class="en">The usual way</span><span class="zh">通常的做法</span></h5>
 <ul class="en"><li>A designer in Figma, a front-end developer, and somebody to check accessibility. Three people, three handoffs, three chances to lose the thread.</li><li>Dark mode meant finding every hardcoded colour by hand. This page had <b>566</b> of them, spread over 20 stylesheets, inline attributes and SVG fills.</li><li>Contrast was checked by eye, or with a plugin, one screen at a time — so in practice it mostly wasn't.</li><li>Every change was a ticket, a branch, a review and a deploy. The gap between “this feels sleepy” and seeing it fixed was measured in days.</li></ul>
 <ul class="zh"><li>一个在 Figma 里的设计师、一个前端开发、外加一个查无障碍的人。三个人、三次交接、三次把事情跑偏的机会。</li><li>做深色模式意味着手动找出每一处写死的颜色。这一页有 <b>566</b> 处，散落在 20 段样式、行内属性和 SVG 填充里。</li><li>对比度靠肉眼看，或者靠插件一屏一屏地查 —— 所以实际上大多时候根本没查。</li><li>每一个改动都是一张工单、一条分支、一次评审、一次部署。从「这里读着犯困」到真的看见它被修好，中间隔着好几天。</li></ul></div>
 <div class="evo-arrow">→</div>
@@ -146,8 +135,21 @@
 <div class="mstat"><b>4</b><span class="en">commits</span><span class="zh">次提交</span></div>
 <div class="mstat"><b>1</b><span class="en">file, no build step</span><span class="zh">个文件，无构建</span></div>
 <div class="mstat"><b>0</b><span class="en">dark-mode AA failures</span><span class="zh">深色模式 AA 失败</span></div>
-</div></div></details></section>
-<section class="ios-group" id="s-talk"><div class="disc" data-section="made" id="disc-made">
+</div>
+<div class="analogy" style="margin-top:26px">
+<span class="lab"><span class="en">The part that is easy to miss</span><span class="zh">最容易被忽略的一点</span></span>
+<p class="en">The model chose the component, wrote the migration script, found the bug where the background
+      layers were painting <i>behind</i> the page instead of on it, and measured every contrast ratio. But somebody
+      still had to look at the result and say <b>“the old column is now too faint to read.”</b>
+      That sentence is not a technical skill. It is judgement — knowing what <i>right</i> looks like — and it is the
+      one thing in this whole guide that does not get automated. The tools got faster. The person who can tell
+      whether the answer is correct got <b>more</b> valuable, not less.</p>
+<p class="zh">模型挑了组件、写了迁移脚本、找出了背景层被画在页面<i>后面</i>而不是上面的那个 bug、
+      并且量了每一处对比度。但仍然得有人看着结果说一句：<b>「旧的那一栏现在太淡了，读不清。」</b>
+      这句话不是技术能力，而是判断力 —— 知道「对」应该长什么样。而这恰恰是整份指南里唯一不会被自动化掉的东西。
+      工具变快了；能判断答案对不对的那个人，因此变得<b>更</b>值钱，而不是更不值钱。</p>
+</div>
+<div class="disc" data-section="made" id="disc-made">
 <div class="disc-head">
 <h3><span class="en">Discussion</span><span class="zh">讨论</span></h3>
 <span class="disc-count" data-role="count" hidden=""></span>
@@ -163,14 +165,25 @@
 <button class="disc-post" type="submit"><span class="en">Post</span><span class="zh">发布</span></button>
 </div>
 </form>
-</div></section>
-  <div class="ios-continue">
-    <a class="ios-btn secondary" href="index.html"><span class="en">Back to the start</span><span class="zh">回到开头</span></a>
-  </div>
-  </main>
+</div><div class="reactbar" data-react-key="finish/1"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
+</section>
+    <nav class="chapnav">
+    <a class="cn cn-prev" href="zero.html"><span class="cn-k"><span class="en">Previous</span><span class="zh">上一章</span></span><span class="cn-t"><span class="en">It all starts from 0 and 1</span><span class="zh">一切从 0 和 1 开始</span></span></a>
+    <span class="cn cn-ghost"></span>
+    </nav>
+<footer>
+<div class="wrap">
+<h3><span class="en">One last thing</span><span class="zh">最后一件事</span></h3>
+<p class="en" style="max-width:64ch">Feeling lost is not a sign that you chose wrong. It's the normal steady state of this field for everyone, including the people who look like they have it figured out. The difference is that they've learned it's survivable.</p>
+<p class="zh" style="max-width:64ch">感到迷茫不代表你选错了路。在这个行业里，这是所有人的常态，包括那些看起来什么都懂的人。区别只在于，他们已经学会了这是熬得过去的。</p>
+<p class="en" style="max-width:64ch">You already know how to be careful with a method you don't fully trust, how to check a result before you believe it, and how to write down what you did so someone else can repeat it. Those are the rare skills. The syntax is the easy part.</p>
+<p class="zh" style="max-width:64ch">你早就知道怎么谨慎对待一个还不完全信任的方法、怎么在相信一个结果之前先去核实、怎么把做过的事写下来让别人能复现。这些才是稀缺的能力。语法是最容易的那部分。</p>
+<p style="color:var(--muted); font-size:13px; margin-top:28px; margin-bottom:0"><span class="en">Progress and playground state are not saved between visits — work through a section in one sitting, or keep your own checklist alongside.</span><span class="zh">进度和练习状态不会跨次保存——建议一次做完一个章节，或者自己另外记一份清单。</span></p>
 </div>
-
+</footer>
+<button aria-label="Back to top" id="totop">↑</button>
+<div class="glow" id="glow"></div>
 <script src="assets/core.js"></script>
-<script src="assets/ios.js"></script>
+<script src="assets/vibe.js"></script>
 </body>
 </html>

@@ -2,50 +2,49 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>IT Basics · The Lab Notebook</title>
-<link rel="icon" href="favicon.ico" sizes="32x32">
-<link rel="icon" href="assets/icon/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="assets/icon/apple-touch-icon.png">
-<link rel="manifest" href="site.webmanifest">
+<meta name="description" content="A 12-month foundations roadmap for a new Data Engineer. Bilingual, interactive, one chapter at a time.">
 <link rel="stylesheet" href="assets/core.css">
-<link rel="stylesheet" href="assets/ios.css">
-<script>(function(){try{
+<link rel="stylesheet" href="assets/themes.css">
+<script>/* set theme + language before first paint, no flash */
+(function(){try{
  var t=localStorage.getItem('labnotebook-theme');
  if(t&&t!=='auto')document.documentElement.setAttribute('data-theme',t);
+ var l=localStorage.getItem('labnotebook-lang')||'en';
+ document.documentElement.setAttribute('data-lang',l);
 }catch(e){}})();</script>
 </head>
-<body class="ios lang-en" data-chapter="m1" data-vibe="modern">
-<a class="ios-skip" href="#ios-main">Skip to content</a>
-<div class="ios-phone">
-  <nav class="ios-nav">
-    <a class="ios-back" href="terminal.html"><svg viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2 2.5 10 10 18"/></svg><span>The terminal</span></a>
-    <span class="ios-nav-title">IT Basics</span>
-    <button type="button" class="ios-more" aria-label="More" aria-expanded="false">
-      <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
-    </button>
-  </nav>
-  <div class="ios-progress"><i></i></div>
+<body class="lang-en" data-vibe="modern" data-chapter="m1">
+<div class="topbar">
+<div class="wrap">
+<a aria-label="The Lab Notebook — home" class="brand" href="index.html"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></a>
+<button aria-expanded="false" aria-haspopup="dialog" class="chapbtn" type="button"><span class="chapbtn-n">04</span><span class="chapbtn-t"><span class="en">IT Basics</span><span class="zh">IT 基础</span></span><svg class="chapbtn-v" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></button>
+<div class="langsw">
+<button class="on" data-lang="en">EN</button>
+<button data-lang="zh">中文</button>
+</div>
+</div>
+<div class="pbar"><i id="pbar"></i></div>
+</div>
 
-  <main id="ios-main" tabindex="-1">
-  <header class="ios-hero">
-    <p class="ios-eyebrow"><span class="en">Months 1–3 · The vocabulary phase</span><span class="zh">第 1–3 月 · 补词汇的阶段</span></p>
-    <h1 class="ios-title"><span class="en">IT Basics</span><span class="zh">IT 基础</span></h1>
-    <p class="ios-sub"><span class="en">Goal for these three months: stop feeling lost when people talk. You are not trying to become a web developer. You are learning the four words every single conversation in this building is built from — <b>frontend, backend, database, API</b>.</span><span class="zh">这三个月的目标只有一个：别人开会讲话时，你不再一脸茫然。你不是要变成前端工程师，你是在学这栋楼里每一场对话都建立其上的四个词——<b>前端、后端、数据库、API</b>。</span></p>
-  </header>
-  <ol class="ios-steps"><li data-step="s-intro"><span class="n">1</span><span class="en">Start</span><span class="zh">开始</span></li><li data-step="s-try"><span class="n">2</span><span class="en">Try</span><span class="zh">动手</span></li><li data-step="s-learn"><span class="n">3</span><span class="en">Lessons</span><span class="zh">课程</span></li><li data-step="s-check"><span class="n">4</span><span class="en">Check</span><span class="zh">自测</span></li></ol>
-<section class="ios-group" id="s-intro"><h2 class="ios-group-h"><span class="en">The short version</span><span class="zh">一句话版本</span></h2><div class="ios-list"><div class="ios-row" style="cursor:default"><span class="ios-row-ic">1</span><span class="ios-row-t"><span class="en"><b>Frontend</b> is the part you can see. It runs on your own computer, inside the browser.</span><span class="zh"><b>前端</b>是你看得见的那部分，跑在你自己的电脑上、浏览器里。</span></span></div>
-<div class="ios-row" style="cursor:default"><span class="ios-row-ic">2</span><span class="ios-row-t"><span class="en"><b>Backend</b> is the part you cannot see. It runs on someone else's computer and holds the rules.</span><span class="zh"><b>后端</b>是你看不见的那部分，跑在别人的电脑上，规则都在它手里。</span></span></div>
-<div class="ios-row" style="cursor:default"><span class="ios-row-ic">3</span><span class="ios-row-t"><span class="en"><b>Database</b> is where the facts are kept, in tables, so nothing gets lost or duplicated.</span><span class="zh"><b>数据库</b>是事实存放的地方，存成表，这样东西不会丢也不会重。</span></span></div>
-<div class="ios-row" style="cursor:default"><span class="ios-row-ic">4</span><span class="ios-row-t"><span class="en"><b>API</b> is the standard form these three use to talk to each other. HTTP is the post office that carries it.</span><span class="zh"><b>API</b> 是这三者互相说话时用的标准表单，而 HTTP 是负责送这张表的邮局。</span></span></div></div>
-<div class="ios-callout" style="margin-top:12px"><span class="k"><span class="en">🧪 The lab analogy</span><span class="zh">🧪 实验室类比</span></span>
-
+<section data-scene="grid" id="m1" style="--c:var(--m1)">
+<div class="wrap">
+<div class="ms">
+<div class="mshead">
+<div class="msnum">1</div>
+<div><div class="sub"><span class="en">Months 1–3 · The vocabulary phase</span><span class="zh">第 1–3 月 · 补词汇的阶段</span></div>
+<h2><span class="en">IT Basics</span><span class="zh">IT 基础</span></h2></div>
+</div>
+<p class="en" style="color:var(--muted); max-width:68ch">Goal for these three months: stop feeling lost when people talk. You are not trying to become a web developer. You are learning the four words every single conversation in this building is built from — <b>frontend, backend, database, API</b>.</p>
+<p class="zh" style="color:var(--muted); max-width:68ch">这三个月的目标只有一个：别人开会讲话时，你不再一脸茫然。你不是要变成前端工程师，你是在学这栋楼里每一场对话都建立其上的四个词——<b>前端、后端、数据库、API</b>。</p>
+<div class="tldr"><div class="tl2"><span class="en">In plain English — the whole milestone in 4 lines</span><span class="zh">大白话版 —— 四行讲完这个阶段</span></div><ul class="en"><li><b>Frontend</b> is the part you can see. It runs on your own computer, inside the browser.</li><li><b>Backend</b> is the part you cannot see. It runs on someone else's computer and holds the rules.</li><li><b>Database</b> is where the facts are kept, in tables, so nothing gets lost or duplicated.</li><li><b>API</b> is the standard form these three use to talk to each other. HTTP is the post office that carries it.</li></ul><ul class="zh"><li><b>前端</b>是你看得见的那部分，跑在你自己的电脑上、浏览器里。</li><li><b>后端</b>是你看不见的那部分，跑在别人的电脑上，规则都在它手里。</li><li><b>数据库</b>是事实存放的地方，存成表，这样东西不会丢也不会重。</li><li><b>API</b> 是这三者互相说话时用的标准表单，而 HTTP 是负责送这张表的邮局。</li></ul></div>
+<div class="analogy">
+<span class="lab"><span class="en">🧪 The lab analogy</span><span class="zh">🧪 实验室类比</span></span>
 <p class="en">Think of a diagnostic lab that patients walk into. The <b>frontend</b> is the reception desk — the only part the patient sees, where they fill in a form. The <b>backend</b> is the lab bench behind the door — where the actual analysis happens, following a protocol. The <b>database</b> is the sample freezer and the record archive — everything stored, labelled, and retrievable. And the <b>API</b> is the request slip that travels between them: a standard form saying "run test X on sample Y," so reception and the bench never have to guess what the other means.</p>
 <p class="zh">想象一间病人会走进来的检验科。<b>前端</b>是前台——病人唯一看得见的部分，在那里填表。<b>后端</b>是门后面的实验台——按标准流程真正做分析的地方。<b>数据库</b>是样本冷冻柜和档案室——所有东西都存好、贴好标签、随时能取出来。而 <b>API</b> 就是在它们之间来回传递的申请单：一张格式固定的表，写着"对 Y 号样本做 X 项检测"，这样前台和实验台永远不用猜对方是什么意思。</p>
-</div></section>
-<section class="ios-group" id="s-try"><h2 class="ios-group-h"><span class="en">Try it</span><span class="zh">动手试试</span></h2><p class="ios-group-note"><span class="en">Poke at this before you read anything else.</span><span class="zh">先动手玩，再读文字。</span></p><div class="ios-embed" style="margin-top:10px"><div class="stage" data-anim="">
+</div>
+<div class="stage" data-anim="">
 <div class="cap"><span><span class="en">Animation · the three layers of any system</span><span class="zh">动画 · 任何系统的三层结构</span></span><button class="replay"><span class="en">↻ Replay</span><span class="zh">↻ 重播</span></button></div>
 <svg viewbox="0 0 800 210">
 <line class="sv-line" stroke-dasharray="5 5" x1="200" x2="600" y1="105" y2="105"></line>
@@ -68,93 +67,10 @@
 <text class="sv-sm a1-cap a1-c4" style="font-size:12px;fill:var(--m2)" text-anchor="middle" x="400" y="30"><tspan class="en">4 · Backend formats them, frontend draws the table</tspan><tspan class="zh">4 · 后端整理格式，前端把表画出来</tspan></text>
 </svg>
 <p class="note"><span class="en">Every app you will ever touch is this picture. Only the box sizes change.</span><span class="zh">你以后接触的每一个系统都是这张图。变的只是每个框的大小。</span></p>
-</div></div>
-<div class="ios-embed" style="margin-top:10px"><div class="play" data-play="sandbox">
-<div class="play-head">
-<span class="play-badge"><span class="en">▶ Playground</span><span class="zh">▶ 动手玩</span></span>
-<h3><span class="en">Write real frontend code, right here</span><span class="zh">就在这里写真正的前端代码</span></h3>
-<p class="sub2"><span class="en">Edit the code on the left — the page on the right updates as you type. Nothing to install. Try changing a colour, then a number, then break something on purpose.</span><span class="zh">改左边的代码，右边的页面会随着你输入实时变化。什么都不用装。先改个颜色，再改个数字，然后故意弄坏一次看看。</span></p>
 </div>
-<div class="play-body">
-<div class="prow">
-<button class="pbtn active" data-preset="0"><span class="en">Basic page</span><span class="zh">基础页面</span></button>
-<button class="pbtn" data-preset="1"><span class="en">Add styling</span><span class="zh">加上样式</span></button>
-<button class="pbtn" data-preset="2"><span class="en">Add behaviour</span><span class="zh">加上行为</span></button>
-<button class="pbtn" data-preset="3"><span class="en">Render data</span><span class="zh">渲染数据</span></button>
-</div>
-<div class="sandbox">
-<div><span class="plabel"><span class="en">Your code</span><span class="zh">你的代码</span></span><textarea id="sb-code" spellcheck="false"></textarea></div>
-<div><span class="plabel"><span class="en">Live result</span><span class="zh">实时结果</span></span><iframe id="sb-out" sandbox="allow-scripts"></iframe></div>
-</div>
-</div>
-</div></div></section>
-<section class="ios-group" id="s-learn"><h2 class="ios-group-h"><span class="en">Lessons</span><span class="zh">课程</span> <span data-role="lesson-count"></span></h2><div class="ios-list"><button type="button" class="ios-row" data-sheet="sh-m1-1"><span class="ios-row-ic">1</span><span class="ios-row-t"><span class="en">Frontend fundamentals</span><span class="zh">前端基础</span><small><span class="en">HTML, CSS, JavaScript</span><span class="zh">— HTML、CSS、JavaScript</span></small></span><svg class="ios-chev" viewBox="0 0 9 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 7 7.5 1.5 13.5"/></svg></button>
-<button type="button" class="ios-row" data-sheet="sh-m1-2"><span class="ios-row-ic">2</span><span class="ios-row-t"><span class="en">Backend</span><span class="zh">后端</span><small><span class="en">Python, your primary instrument</span><span class="zh">— Python，你最主要的仪器</span></small></span><svg class="ios-chev" viewBox="0 0 9 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 7 7.5 1.5 13.5"/></svg></button>
-<button type="button" class="ios-row" data-sheet="sh-m1-3"><span class="ios-row-ic">3</span><span class="ios-row-t"><span class="en">Databases</span><span class="zh">数据库</span><small><span class="en">SQL and relational tables</span><span class="zh">— SQL 与关系表</span></small></span><svg class="ios-chev" viewBox="0 0 9 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 7 7.5 1.5 13.5"/></svg></button>
-<button type="button" class="ios-row" data-sheet="sh-m1-4"><span class="ios-row-ic">4</span><span class="ios-row-t"><span class="en">Web communication</span><span class="zh">网络通信</span><small><span class="en">HTTP and REST APIs</span><span class="zh">— HTTP 与 REST API</span></small></span><svg class="ios-chev" viewBox="0 0 9 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5 7 7.5 1.5 13.5"/></svg></button></div><p class="ios-group-note"><span class="en">Each opens on its own screen. Nothing to scroll past.</span><span class="zh">每一课单独一屏，不用一直往下滚。</span></p></section>
-<section class="ios-group" id="s-check"><h2 class="ios-group-h"><span class="en">Check yourself</span><span class="zh">检查一下</span></h2><div class="ios-embed" style="margin-top:10px"><div class="chal">
-<div class="chal-head">
-<span class="chal-badge"><span class="en">⚡ Challenge</span><span class="zh">⚡ 挑战</span></span>
-<h3><span class="en">Build the thing that proves where a wrong number came from</span><span class="zh">做一个能证明"错数字从哪来"的东西</span></h3>
-<span class="diff">★☆☆</span>
-</div>
-<div class="chal-body">
-<p class="brief en">Pick any public API — GitHub users, a weather service, a country database, currency rates. Build <b>one HTML page</b> that asks the user for something, calls that API live, and draws the result as a table. No framework, no build step, one file you can open by double-clicking.</p>
-<p class="brief en">Then break it on purpose: search for something that doesn't exist, and make the page say <i>"404 — that doesn't exist"</i> instead of silently showing an empty table.</p>
-<p class="brief zh">随便挑一个公开 API —— GitHub 用户、天气服务、国家信息库、汇率都行。做<b>一个 HTML 页面</b>：让用户输入点什么、实时调用那个 API、把结果画成一张表。不用框架、不用构建，就一个双击就能打开的文件。</p>
-<p class="brief zh">然后故意把它弄坏：搜一个不存在的东西，让页面显示 <i>"404 —— 这个不存在"</i>，而不是无声地给出一张空表。</p>
-<div class="win"><span class="wl"><span class="en">You've won when</span><span class="zh">达成条件</span></span>
-<span class="en">You can hand the file to someone with no instructions, they double-click it, type something in, and it works — including the case where it doesn't.</span>
-<span class="zh">你可以把这个文件直接给别人、不附任何说明，他双击打开、输入点东西，它就能用——包括"用不了"的那种情况也处理得体面。</span></div>
-<details class="acc"><summary><span class="en">Show me how to approach it</span><span class="zh">给我一点思路</span></summary>
-<div class="body">
-<p class="en"><b>1.</b> Start with the skeleton only: an <code class="inl">&lt;input&gt;</code>, a <code class="inl">&lt;button&gt;</code>, an empty <code class="inl">&lt;div id="out"&gt;</code>. Open it. It's ugly. Good — that's HTML doing its job.</p>
-<p class="en"><b>2.</b> Add the nervous system: on click, <code class="inl">fetch(url)</code>, then <code class="inl">.then(r =&gt; r.json())</code>. Before you draw anything, check <code class="inl">r.ok</code> — that one line is the whole difference between a tool and a trap.</p>
-<p class="en"><b>3.</b> Build the table by mapping your data to HTML strings, the way the fourth sandbox preset above does.</p>
-<p class="en"><b>4.</b> Only now add the clothes. Colour, spacing, a rounded card. Notice that you changed nothing about how it works.</p>
-<p class="en"><b>5.</b> Open DevTools → Network and watch your own request go out. That is your page behaving exactly like every other page on the internet.</p>
-<p class="zh"><b>1.</b> 先只搭骨架：一个 <code class="inl">&lt;input&gt;</code>、一个 <code class="inl">&lt;button&gt;</code>、一个空的 <code class="inl">&lt;div id="out"&gt;</code>。打开看看，很丑。很好——这说明 HTML 正在尽它的本分。</p>
-<p class="zh"><b>2.</b> 装上神经系统：点击时 <code class="inl">fetch(url)</code>，然后 <code class="inl">.then(r =&gt; r.json())</code>。在画任何东西之前，先检查 <code class="inl">r.ok</code>——就这一行，决定了它是个工具还是个陷阱。</p>
-<p class="zh"><b>3.</b> 把数据映射成 HTML 字符串来生成表格，就像上面沙盒的第四个预设那样。</p>
-<p class="zh"><b>4.</b> 到这一步才穿衣服。颜色、间距、圆角卡片。注意：你完全没有改变它的工作方式。</p>
-<p class="zh"><b>5.</b> 打开开发者工具 → Network，看着你自己的请求发出去。这一刻，你的页面和互联网上其他每一个页面的行为一模一样。</p>
-</div>
-</details>
-<p class="stakes"><span class="en">Roughly one weekend. When it works, you will have built the exact debugging instrument described in the real-world example above.</span><span class="zh">大约一个周末。做完之后，你手上就有了上面那个真实场景里描述的那件排查工具。</span></p>
-</div>
-</div></div>
-<div class="ios-embed" style="margin-top:10px"><div class="quiz">
-<div class="qh"><span class="en">Check yourself · Milestone 1</span><span class="zh">自我检验 · 阶段一</span></div>
-<p class="q"><span class="en">A colleague says "the endpoint is returning a 500." Whose problem is it, most likely?</span><span class="zh">同事说"那个接口返回 500 了"。这最可能是谁的问题？</span></p>
-<button class="opt" data-c="0"><span class="en">Yours — you sent a malformed request</span><span class="zh">你的 —— 你发的请求格式不对</span></button>
-<button class="opt" data-c="1"><span class="en">Theirs — something crashed on the server side</span><span class="zh">对方的 —— 服务端出错了</span></button>
-<button class="opt" data-c="0"><span class="en">Nobody's — 500 means success</span><span class="zh">谁都不是 —— 500 表示成功</span></button>
-<div class="fb"><span class="en">Correct: <b>theirs</b>. Any 5xx means the server failed while handling an otherwise valid request. A malformed request gets a 4xx instead. Knowing this saves hours of debugging the wrong side.</span><span class="zh">正确答案：<b>对方的</b>。任何 5xx 都表示服务器在处理一个本身合法的请求时出错了。请求格式不对会返回 4xx。知道这一点能省下好几小时——不至于一直查错边。</span></div>
-</div></div>
-<div class="ios-embed" style="margin-top:10px"><div class="quiz">
-<p class="q"><span class="en">Why store the patient's name in a <code class="inl">patients</code> table instead of repeating it in every row of <code class="inl">tests</code>?</span><span class="zh">为什么把病人姓名放在 <code class="inl">patients</code> 表里，而不是在 <code class="inl">tests</code> 每一行都重复一遍？</span></p>
-<button class="opt" data-c="0"><span class="en">It makes queries run faster</span><span class="zh">这样查询更快</span></button>
-<button class="opt" data-c="1"><span class="en">So a fact is stored once and can't end up contradicting itself</span><span class="zh">这样一个事实只存一次，不会自相矛盾</span></button>
-<button class="opt" data-c="0"><span class="en">Because SQL forbids repeated text</span><span class="zh">因为 SQL 不允许重复的文本</span></button>
-<div class="fb"><span class="en">Right. It's about <b>consistency, not speed</b> — a JOIN actually costs a little time. But if the name lives in one place, correcting a spelling fixes it everywhere at once. Duplicated data always drifts apart eventually.</span><span class="zh">对。这关乎<b>一致性，而不是速度</b>——JOIN 其实还要花点时间。但名字只存一处，改一次拼写就全部改对了。重复的数据最后一定会互相分叉。</span></div>
-</div></div>
-<div class="ios-embed" style="margin-top:10px"><div class="checks">
-<h4><span class="en">🔬 Lab tasks — do these before moving on</span><span class="zh">🔬 实操任务 —— 做完再往下走</span></h4>
-<p class="hint"><span class="en">Nothing here needs anything installed beyond Python and a browser.</span><span class="zh">除了 Python 和浏览器，不需要装任何东西。</span></p>
-<label class="chk"><input type="checkbox"/><span class="en">Build a one-page HTML file with a heading, a button, and a counter that goes up when clicked. Open it in your browser.</span><span class="zh">写一个单页 HTML：一个标题、一个按钮、一个点一下就加一的计数器。用浏览器打开它。</span></label>
-<label class="chk"><input type="checkbox"/><span class="en">Write a Python script that reads a CSV of 50 fake samples and prints how many passed QC.</span><span class="zh">写一个 Python 脚本，读入 50 条假样本的 CSV，打印出有多少条通过 QC。</span></label>
-<label class="chk"><input type="checkbox"/><span class="en">Install SQLite (or use an online SQL playground). Create <code class="inl">patients</code> and <code class="inl">tests</code> tables, insert 5 rows each, and write a JOIN.</span><span class="zh">装一个 SQLite（或用在线 SQL 练习站）。建 <code class="inl">patients</code> 和 <code class="inl">tests</code> 两张表，各插 5 行，写一条 JOIN。</span></label>
-<label class="chk"><input type="checkbox"/><span class="en">Write a GROUP BY query with a HAVING clause, and explain out loud why WHERE couldn't have done the same job.</span><span class="zh">写一条带 HAVING 的 GROUP BY 查询，然后出声解释一遍：为什么 WHERE 做不到同样的事。</span></label>
-<label class="chk"><input type="checkbox"/><span class="en">Call a free public API (try <code class="inl">https://api.github.com/users/octocat</code>) with Python's <code class="inl">requests</code> and print three fields from the JSON.</span><span class="zh">用 Python 的 <code class="inl">requests</code> 调一个免费公开 API（试试 <code class="inl">https://api.github.com/users/octocat</code>），打印 JSON 里的三个字段。</span></label>
-<label class="chk"><input type="checkbox"/><span class="en">Open your browser's DevTools → Network tab on any website. Watch the real requests fly past. Find one that returned a 4xx.</span><span class="zh">在任意网站打开浏览器开发者工具 → Network 标签，看真实请求刷过去。找出一个返回 4xx 的。</span></label>
-</div></div></section>
-  <div class="ios-continue">
-    <a class="ios-btn" href="m2.html"><span class="en">Next: Developer Tools</span><span class="zh">下一章：开发工具</span></a>
-  </div>
-  </main>
-</div>
-<div class="ios-sheet" id="sh-m1-1" aria-hidden="true" role="dialog" aria-modal="true"><div class="ios-sheet-back"></div><div class="ios-sheet-card"><div class="ios-grabber"></div><div class="ios-sheet-nav"><span></span><b><span class="en">Frontend fundamentals</span><span class="zh">前端基础</span></b><button type="button" class="ios-sheet-done">Done</button></div><div class="ios-sheet-body"><div class="ios-hero"><p class="ios-eyebrow">Lesson 1</p><h2 class="ios-title" style="font-size:26px"><span class="en">Frontend fundamentals</span><span class="zh">前端基础</span></h2><p class="ios-sub"><span class="en">HTML, CSS, JavaScript</span><span class="zh">— HTML、CSS、JavaScript</span></p></div>
-
+<!-- ============ 1.1 FRONTEND ============ -->
+<div class="topic">
+<h3><span class="ic">1</span><span class="en">Frontend fundamentals — HTML, CSS, JavaScript</span><span class="zh">前端基础 —— HTML、CSS、JavaScript</span></h3>
 <div class="lens">
 <div class="lens-tabs">
 <button class="on"><span class="en">WHY</span><span class="zh">为什么</span></button>
@@ -171,11 +87,11 @@
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h3><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h3>
+<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h5>
 <ul class="en"><li>Every click sent a request to the server, which sent back a <b>whole new page</b>. The screen went white and reloaded.</li><li>HTML, styling and behaviour were tangled in one file — <code class="inl">&lt;font color="red"&gt;</code> sat right in the content.</li><li>A different page had to be hand-written for every combination of data.</li></ul>
 <ul class="zh"><li>每点一次，浏览器就向服务器要一整个<b>新页面</b>，屏幕闪白、整页刷新。</li><li>结构、样式、行为全混在一个文件里——<code class="inl">&lt;font color="red"&gt;</code> 直接写在内容中间。</li><li>数据有多少种组合，就得手写多少个页面。</li></ul></div>
 <div class="evo-arrow">→</div>
-<div class="evo-col now"><h4><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h4>
+<div class="evo-col now"><h5><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h5>
 <ul class="en"><li>The page loads once. JavaScript fetches only the <b>data</b> that changed and redraws just that part.</li><li>Strict separation: HTML = structure, CSS = appearance, JS = behaviour. Change the colour scheme without touching the content.</li><li>One template + data renders a thousand different views.</li></ul>
 <ul class="zh"><li>页面只加载一次，JavaScript 只去取<b>变化的数据</b>，然后局部重绘那一小块。</li><li>严格分工：HTML 管结构，CSS 管外观，JS 管行为。改配色不用碰内容。</li><li>一套模板加上数据，就能渲染出上千种不同的视图。</li></ul></div>
 </div>
@@ -226,9 +142,29 @@ document.<span class="fn">getElementById</span>(<span class="st">"btn"</span>).<
 <p class="scene zh">下午四点，生产主管发消息给你："QC 看板显示合格率 92%，但我从原始导出里数出来是 87%。"</p>
 <p class="zh">你打开页面，按 F12，切到 Network 标签，看看看板实际发出的请求：<code class="inl">GET /api/qc?site=IPOH</code>。再看返回的 JSON——里面写的是 87%。所以你的管道没问题，API 也没问题，问题出在前端：要么是四舍五入，要么是它在算之前先把不合格样本过滤掉了。二十秒之内，你把一句含糊的抱怨定位到了具体的一个文件，并且能把可复现的那条请求直接交给前端同事。<b>数据工程师学前端，就是为了这一刻。</b></p>
 </div>
-</div></div></div>
-<div class="ios-sheet" id="sh-m1-2" aria-hidden="true" role="dialog" aria-modal="true"><div class="ios-sheet-back"></div><div class="ios-sheet-card"><div class="ios-grabber"></div><div class="ios-sheet-nav"><span></span><b><span class="en">Backend</span><span class="zh">后端</span></b><button type="button" class="ios-sheet-done">Done</button></div><div class="ios-sheet-body"><div class="ios-hero"><p class="ios-eyebrow">Lesson 2</p><h2 class="ios-title" style="font-size:26px"><span class="en">Backend</span><span class="zh">后端</span></h2><p class="ios-sub"><span class="en">Python, your primary instrument</span><span class="zh">— Python，你最主要的仪器</span></p></div>
-
+<div class="reactbar" data-react-key="m1/0"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
+<div class="play" data-play="sandbox">
+<div class="play-head">
+<span class="play-badge"><span class="en">▶ Playground</span><span class="zh">▶ 动手玩</span></span>
+<h4><span class="en">Write real frontend code, right here</span><span class="zh">就在这里写真正的前端代码</span></h4>
+<p class="sub2"><span class="en">Edit the code on the left — the page on the right updates as you type. Nothing to install. Try changing a colour, then a number, then break something on purpose.</span><span class="zh">改左边的代码，右边的页面会随着你输入实时变化。什么都不用装。先改个颜色，再改个数字，然后故意弄坏一次看看。</span></p>
+</div>
+<div class="play-body">
+<div class="prow">
+<button class="pbtn active" data-preset="0"><span class="en">Basic page</span><span class="zh">基础页面</span></button>
+<button class="pbtn" data-preset="1"><span class="en">Add styling</span><span class="zh">加上样式</span></button>
+<button class="pbtn" data-preset="2"><span class="en">Add behaviour</span><span class="zh">加上行为</span></button>
+<button class="pbtn" data-preset="3"><span class="en">Render data</span><span class="zh">渲染数据</span></button>
+</div>
+<div class="sandbox">
+<div><span class="plabel"><span class="en">Your code</span><span class="zh">你的代码</span></span><textarea id="sb-code" spellcheck="false"></textarea></div>
+<div><span class="plabel"><span class="en">Live result</span><span class="zh">实时结果</span></span><iframe id="sb-out" sandbox="allow-scripts"></iframe></div>
+</div>
+</div>
+</div>
+<!-- ============ 1.2 BACKEND / PYTHON ============ -->
+<div class="topic">
+<h3><span class="ic">2</span><span class="en">Backend — Python, your primary instrument</span><span class="zh">后端 —— Python，你最主要的仪器</span></h3>
 <div class="lens">
 <div class="lens-tabs">
 <button class="on"><span class="en">WHY</span><span class="zh">为什么</span></button>
@@ -249,11 +185,11 @@ document.<span class="fn">getElementById</span>(<span class="st">"btn"</span>).<
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h3><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h3>
+<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h5>
 <ul class="en"><li>One giant program did everything — UI, logic and data access welded together. Change one line, retest the world.</li><li>It ran on <b>one specific server in one specific room</b>. If that machine died, so did the product.</li><li>Deploying meant a person copying files over FTP at 2am and hoping.</li><li>Scaling meant buying a bigger machine (and waiting six weeks for it to arrive).</li></ul>
 <ul class="zh"><li>一个巨大的程序包办一切——界面、逻辑、数据访问焊死在一起。改一行，就得把整个系统重测一遍。</li><li>它跑在<b>某个机房里的某一台特定服务器</b>上。那台机器一挂，产品就没了。</li><li>发布 = 有个人凌晨两点用 FTP 把文件拷上去，然后祈祷。</li><li>扩容 = 买一台更大的机器（然后等六周才到货）。</li></ul></div>
 <div class="evo-arrow">→</div>
-<div class="evo-col now"><h4><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h4>
+<div class="evo-col now"><h5><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h5>
 <ul class="en"><li>Small independent services, each with one job, talking over APIs. Change one without touching the rest.</li><li>It runs in a <b>container</b> — a sealed box that behaves identically on your laptop and in the cloud.</li><li>Deploying is automatic: push to Git, tests run, it ships itself.</li><li>Scaling is a number in a config file. Ten copies for the busy hour, one for the night.</li></ul>
 <ul class="zh"><li>拆成一个个小服务，每个只干一件事，之间用 API 对话。改一个不用动其他的。</li><li>它跑在<b>容器</b>里——一个密封的盒子，在你笔记本上和在云上表现完全一致。</li><li>发布是自动的：推到 Git、自动跑测试、自己上线。</li><li>扩容只是配置文件里的一个数字。高峰期开十个副本，夜里留一个。</li></ul></div>
 </div>
@@ -319,9 +255,10 @@ S-003 → FAIL   <span class="cm"># volume too low / 体积不够</span>
 <p class="scene zh">实验室把纯度阈值从 0.90 改成 0.95，即刻生效。</p>
 <p class="zh">如果这条规则写在表格公式里，就得有人去十四个文件里找出来改掉，而且一定会漏掉两个。如果它是后端的一个 Python 函数，你只改一个数字，提交时写清楚为什么改，几分钟内全公司每一块屏幕、每一份报表都是对的——包括明年监管来问的那一份，因为 Git 能准确证明规则是什么时候改的、谁改的。</p>
 </div>
-</div></div></div>
-<div class="ios-sheet" id="sh-m1-3" aria-hidden="true" role="dialog" aria-modal="true"><div class="ios-sheet-back"></div><div class="ios-sheet-card"><div class="ios-grabber"></div><div class="ios-sheet-nav"><span></span><b><span class="en">Databases</span><span class="zh">数据库</span></b><button type="button" class="ios-sheet-done">Done</button></div><div class="ios-sheet-body"><div class="ios-hero"><p class="ios-eyebrow">Lesson 3</p><h2 class="ios-title" style="font-size:26px"><span class="en">Databases</span><span class="zh">数据库</span></h2><p class="ios-sub"><span class="en">SQL and relational tables</span><span class="zh">— SQL 与关系表</span></p></div>
-
+<div class="reactbar" data-react-key="m1/1"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
+<!-- ============ 1.3 DATABASES ============ -->
+<div class="topic">
+<h3><span class="ic">3</span><span class="en">Databases — SQL and relational tables</span><span class="zh">数据库 —— SQL 与关系表</span></h3>
 <p class="en">This is the single most valuable skill in your job. If you learn only one thing exceptionally well this year, make it SQL.</p>
 <p class="zh">这是你这份工作里最值钱的一项技能。如果这一年只能把一件事学到出类拔萃，就选 SQL。</p>
 <div class="lens">
@@ -342,11 +279,11 @@ S-003 → FAIL   <span class="cm"># volume too low / 体积不够</span>
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h3><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h3>
+<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h5>
 <ul class="en"><li>Data lived in <b>flat files</b>, one giant file per topic, with everything repeated on every line.</li><li>To answer a question you wrote a whole program that read the file top to bottom.</li><li>Two people writing at once corrupted the file. There was no such thing as a safe concurrent update.</li><li>Changing the format meant rewriting every program that read it.</li></ul>
 <ul class="zh"><li>数据存在<b>平面文件</b>里，一个主题一个大文件，每一行都把所有信息重复一遍。</li><li>想回答一个问题，就得写一整个程序把文件从头读到尾。</li><li>两个人同时写就会把文件写坏。当时根本没有"安全并发更新"这回事。</li><li>格式一改，所有读它的程序都得重写。</li></ul></div>
 <div class="evo-arrow">→</div>
-<div class="evo-col now"><h4><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h4>
+<div class="evo-col now"><h5><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h5>
 <ul class="en"><li>Data lives in <b>related tables</b>. Each fact once; keys point between them.</li><li>You describe <i>what</i> you want in SQL. The database figures out <i>how</i> to get it — and it's better at that than you are.</li><li>Thousands of people write at once safely. Transactions guarantee all-or-nothing.</li><li>Add a column without breaking a single existing query.</li></ul>
 <ul class="zh"><li>数据存在<b>互相关联的表</b>里。每个事实只存一次，靠"键"互相指向。</li><li>你用 SQL 描述<i>要什么</i>，数据库自己决定<i>怎么取</i>——而且它比你更擅长这件事。</li><li>成千上万人同时写也安全。事务保证要么全成、要么全不成。</li><li>加一列，不会弄坏任何一条已有的查询。</li></ul></div>
 </div>
@@ -458,9 +395,10 @@ S-003 → FAIL   <span class="cm"># volume too low / 体积不够</span>
 <p class="scene zh">财务问："哪些客户一月份下过单，之后再也没回来过？"</p>
 <p class="zh">用表格做，这是一下午的 VLOOKUP，而且结果没人完全放心。用 SQL，这就是从"一月订单"到"之后所有订单"的一次 <code class="inl">LEFT JOIN</code>，只保留右边为空的那些行——大概六行代码，一秒内跑完，而且不管谁跑、跑多少次，答案都一样。差别不在打字快慢，而在于 SQL 版本是<b>对这个问题的一份定义</b>：可以被审阅、被更正、被定时执行、被信任。表格版本是一次性的，没人能审计。</p>
 </div>
-</div></div></div>
-<div class="ios-sheet" id="sh-m1-4" aria-hidden="true" role="dialog" aria-modal="true"><div class="ios-sheet-back"></div><div class="ios-sheet-card"><div class="ios-grabber"></div><div class="ios-sheet-nav"><span></span><b><span class="en">Web communication</span><span class="zh">网络通信</span></b><button type="button" class="ios-sheet-done">Done</button></div><div class="ios-sheet-body"><div class="ios-hero"><p class="ios-eyebrow">Lesson 4</p><h2 class="ios-title" style="font-size:26px"><span class="en">Web communication</span><span class="zh">网络通信</span></h2><p class="ios-sub"><span class="en">HTTP and REST APIs</span><span class="zh">— HTTP 与 REST API</span></p></div>
-
+<div class="reactbar" data-react-key="m1/2"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
+<!-- ============ 1.4 APIs ============ -->
+<div class="topic">
+<h3><span class="ic">4</span><span class="en">Web communication — HTTP and REST APIs</span><span class="zh">网络通信 —— HTTP 与 REST API</span></h3>
 <div class="lens">
 <div class="lens-tabs">
 <button class="on"><span class="en">WHY</span><span class="zh">为什么</span></button>
@@ -479,11 +417,11 @@ S-003 → FAIL   <span class="cm"># volume too low / 体积不够</span>
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h3><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h3>
+<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h5>
 <ul class="en"><li>Systems integrated by <b>dropping a CSV on a shared drive</b> at midnight and hoping the other side picked it up.</li><li>Or by connecting straight to each other's database with a shared password.</li><li>Formats were agreed in a Word document that went out of date immediately.</li><li>If the file didn't arrive, nobody found out until someone complained the next morning.</li></ul>
 <ul class="zh"><li>系统之间靠<b>半夜往共享盘上丢一个 CSV</b>来集成，然后祈祷对方会去取。</li><li>或者干脆用一个共享密码直连对方的数据库。</li><li>格式约定写在一份 Word 文档里，而那份文档立刻就过期了。</li><li>文件没送到的话，要等第二天早上有人抱怨才会发现。</li></ul></div>
 <div class="evo-arrow">→</div>
-<div class="evo-col now"><h4><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h4>
+<div class="evo-col now"><h5><span class="en">How it works now</span><span class="zh">现在是怎么做的</span></h5>
 <ul class="en"><li>Systems ask each other <b>live, over HTTP</b>, and get an answer in milliseconds.</li><li>Every caller identifies itself with a token that can be revoked in one click.</li><li>The format is <b>machine-readable and self-documenting</b> (OpenAPI) — the docs cannot silently drift from reality.</li><li>Failure is immediate and explicit: a status code, logged, alertable.</li></ul>
 <ul class="zh"><li>系统之间<b>通过 HTTP 实时互问</b>，毫秒级拿到答案。</li><li>每个调用方都用令牌表明身份，一键就能吊销。</li><li>格式是<b>机器可读、自带文档的</b>（OpenAPI）——文档不可能悄悄和现实脱节。</li><li>出错是立刻且明确的：一个状态码，有日志，可以告警。</li></ul></div>
 </div>
@@ -584,8 +522,99 @@ resp = requests.<span class="fn">get</span>(
 <p class="scene zh">你的每晚管道从供应商 API 取汇率。某天早上，财务报表里每个数字都是 0。</p>
 <p class="zh">你查日志：凌晨 2:14 供应商返回了 <code class="inl">429 请求过多</code>——你的重试循环一直在猛敲人家。你的代码没有检查状态码，于是把错误内容当数据解析，没找到汇率，就写了 0。程序没崩，没有告警，报表照常发给了 CFO。<br/><b>修复只要三行：</b>检查状态码、遇到 429 就指数退避、拿不到数据就大声失败而不是随便写个值。这三个习惯，都来自"理解 HTTP"而不只是"会调 HTTP"。</p>
 </div>
-</div></div></div>
+<div class="reactbar" data-react-key="m1/3"><span class="rx-l"><span class="en">Was this bit any good?</span><span class="zh">这一段怎么样？</span></span><span class="rx-btns"><button aria-label="Helpful" class="rx" data-emoji="up" title="Helpful / 有用" type="button"><span class="rx-g">👍</span><span class="rx-c">0</span></button><button aria-label="Love this" class="rx" data-emoji="fire" title="Love this / 太赞了" type="button"><span class="rx-g">🔥</span><span class="rx-c">0</span></button><button aria-label="Mind blown" class="rx" data-emoji="mind" title="Mind blown / 震撼" type="button"><span class="rx-g">🤯</span><span class="rx-c">0</span></button><button aria-label="Lost me" class="rx" data-emoji="lost" title="Lost me / 没看懂" type="button"><span class="rx-g">🤔</span><span class="rx-c">0</span></button></span></div></div>
+<div class="chal">
+<div class="chal-head">
+<span class="chal-badge"><span class="en">⚡ Challenge</span><span class="zh">⚡ 挑战</span></span>
+<h4><span class="en">Build the thing that proves where a wrong number came from</span><span class="zh">做一个能证明"错数字从哪来"的东西</span></h4>
+<span class="diff">★☆☆</span>
+</div>
+<div class="chal-body">
+<p class="brief en">Pick any public API — GitHub users, a weather service, a country database, currency rates. Build <b>one HTML page</b> that asks the user for something, calls that API live, and draws the result as a table. No framework, no build step, one file you can open by double-clicking.</p>
+<p class="brief en">Then break it on purpose: search for something that doesn't exist, and make the page say <i>"404 — that doesn't exist"</i> instead of silently showing an empty table.</p>
+<p class="brief zh">随便挑一个公开 API —— GitHub 用户、天气服务、国家信息库、汇率都行。做<b>一个 HTML 页面</b>：让用户输入点什么、实时调用那个 API、把结果画成一张表。不用框架、不用构建，就一个双击就能打开的文件。</p>
+<p class="brief zh">然后故意把它弄坏：搜一个不存在的东西，让页面显示 <i>"404 —— 这个不存在"</i>，而不是无声地给出一张空表。</p>
+<div class="win"><span class="wl"><span class="en">You've won when</span><span class="zh">达成条件</span></span>
+<span class="en">You can hand the file to someone with no instructions, they double-click it, type something in, and it works — including the case where it doesn't.</span>
+<span class="zh">你可以把这个文件直接给别人、不附任何说明，他双击打开、输入点东西，它就能用——包括"用不了"的那种情况也处理得体面。</span></div>
+<details class="acc"><summary><span class="en">Show me how to approach it</span><span class="zh">给我一点思路</span></summary>
+<div class="body">
+<p class="en"><b>1.</b> Start with the skeleton only: an <code class="inl">&lt;input&gt;</code>, a <code class="inl">&lt;button&gt;</code>, an empty <code class="inl">&lt;div id="out"&gt;</code>. Open it. It's ugly. Good — that's HTML doing its job.</p>
+<p class="en"><b>2.</b> Add the nervous system: on click, <code class="inl">fetch(url)</code>, then <code class="inl">.then(r =&gt; r.json())</code>. Before you draw anything, check <code class="inl">r.ok</code> — that one line is the whole difference between a tool and a trap.</p>
+<p class="en"><b>3.</b> Build the table by mapping your data to HTML strings, the way the fourth sandbox preset above does.</p>
+<p class="en"><b>4.</b> Only now add the clothes. Colour, spacing, a rounded card. Notice that you changed nothing about how it works.</p>
+<p class="en"><b>5.</b> Open DevTools → Network and watch your own request go out. That is your page behaving exactly like every other page on the internet.</p>
+<p class="zh"><b>1.</b> 先只搭骨架：一个 <code class="inl">&lt;input&gt;</code>、一个 <code class="inl">&lt;button&gt;</code>、一个空的 <code class="inl">&lt;div id="out"&gt;</code>。打开看看，很丑。很好——这说明 HTML 正在尽它的本分。</p>
+<p class="zh"><b>2.</b> 装上神经系统：点击时 <code class="inl">fetch(url)</code>，然后 <code class="inl">.then(r =&gt; r.json())</code>。在画任何东西之前，先检查 <code class="inl">r.ok</code>——就这一行，决定了它是个工具还是个陷阱。</p>
+<p class="zh"><b>3.</b> 把数据映射成 HTML 字符串来生成表格，就像上面沙盒的第四个预设那样。</p>
+<p class="zh"><b>4.</b> 到这一步才穿衣服。颜色、间距、圆角卡片。注意：你完全没有改变它的工作方式。</p>
+<p class="zh"><b>5.</b> 打开开发者工具 → Network，看着你自己的请求发出去。这一刻，你的页面和互联网上其他每一个页面的行为一模一样。</p>
+</div>
+</details>
+<p class="stakes"><span class="en">Roughly one weekend. When it works, you will have built the exact debugging instrument described in the real-world example above.</span><span class="zh">大约一个周末。做完之后，你手上就有了上面那个真实场景里描述的那件排查工具。</span></p>
+</div>
+</div>
+<div class="quiz">
+<div class="qh"><span class="en">Check yourself · Milestone 1</span><span class="zh">自我检验 · 阶段一</span></div>
+<p class="q"><span class="en">A colleague says "the endpoint is returning a 500." Whose problem is it, most likely?</span><span class="zh">同事说"那个接口返回 500 了"。这最可能是谁的问题？</span></p>
+<button class="opt" data-c="0"><span class="en">Yours — you sent a malformed request</span><span class="zh">你的 —— 你发的请求格式不对</span></button>
+<button class="opt" data-c="1"><span class="en">Theirs — something crashed on the server side</span><span class="zh">对方的 —— 服务端出错了</span></button>
+<button class="opt" data-c="0"><span class="en">Nobody's — 500 means success</span><span class="zh">谁都不是 —— 500 表示成功</span></button>
+<div class="fb"><span class="en">Correct: <b>theirs</b>. Any 5xx means the server failed while handling an otherwise valid request. A malformed request gets a 4xx instead. Knowing this saves hours of debugging the wrong side.</span><span class="zh">正确答案：<b>对方的</b>。任何 5xx 都表示服务器在处理一个本身合法的请求时出错了。请求格式不对会返回 4xx。知道这一点能省下好几小时——不至于一直查错边。</span></div>
+</div>
+<div class="quiz">
+<p class="q"><span class="en">Why store the patient's name in a <code class="inl">patients</code> table instead of repeating it in every row of <code class="inl">tests</code>?</span><span class="zh">为什么把病人姓名放在 <code class="inl">patients</code> 表里，而不是在 <code class="inl">tests</code> 每一行都重复一遍？</span></p>
+<button class="opt" data-c="0"><span class="en">It makes queries run faster</span><span class="zh">这样查询更快</span></button>
+<button class="opt" data-c="1"><span class="en">So a fact is stored once and can't end up contradicting itself</span><span class="zh">这样一个事实只存一次，不会自相矛盾</span></button>
+<button class="opt" data-c="0"><span class="en">Because SQL forbids repeated text</span><span class="zh">因为 SQL 不允许重复的文本</span></button>
+<div class="fb"><span class="en">Right. It's about <b>consistency, not speed</b> — a JOIN actually costs a little time. But if the name lives in one place, correcting a spelling fixes it everywhere at once. Duplicated data always drifts apart eventually.</span><span class="zh">对。这关乎<b>一致性，而不是速度</b>——JOIN 其实还要花点时间。但名字只存一处，改一次拼写就全部改对了。重复的数据最后一定会互相分叉。</span></div>
+</div>
+<div class="checks">
+<h4><span class="en">🔬 Lab tasks — do these before moving on</span><span class="zh">🔬 实操任务 —— 做完再往下走</span></h4>
+<p class="hint"><span class="en">Nothing here needs anything installed beyond Python and a browser.</span><span class="zh">除了 Python 和浏览器，不需要装任何东西。</span></p>
+<label class="chk"><input type="checkbox"/><span class="en">Build a one-page HTML file with a heading, a button, and a counter that goes up when clicked. Open it in your browser.</span><span class="zh">写一个单页 HTML：一个标题、一个按钮、一个点一下就加一的计数器。用浏览器打开它。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Write a Python script that reads a CSV of 50 fake samples and prints how many passed QC.</span><span class="zh">写一个 Python 脚本，读入 50 条假样本的 CSV，打印出有多少条通过 QC。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Install SQLite (or use an online SQL playground). Create <code class="inl">patients</code> and <code class="inl">tests</code> tables, insert 5 rows each, and write a JOIN.</span><span class="zh">装一个 SQLite（或用在线 SQL 练习站）。建 <code class="inl">patients</code> 和 <code class="inl">tests</code> 两张表，各插 5 行，写一条 JOIN。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Write a GROUP BY query with a HAVING clause, and explain out loud why WHERE couldn't have done the same job.</span><span class="zh">写一条带 HAVING 的 GROUP BY 查询，然后出声解释一遍：为什么 WHERE 做不到同样的事。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Call a free public API (try <code class="inl">https://api.github.com/users/octocat</code>) with Python's <code class="inl">requests</code> and print three fields from the JSON.</span><span class="zh">用 Python 的 <code class="inl">requests</code> 调一个免费公开 API（试试 <code class="inl">https://api.github.com/users/octocat</code>），打印 JSON 里的三个字段。</span></label>
+<label class="chk"><input type="checkbox"/><span class="en">Open your browser's DevTools → Network tab on any website. Watch the real requests fly past. Find one that returned a 4xx.</span><span class="zh">在任意网站打开浏览器开发者工具 → Network 标签，看真实请求刷过去。找出一个返回 4xx 的。</span></label>
+</div>
+</div>
+<div class="disc" data-section="m1" id="disc-m1">
+<div class="disc-head">
+<h3><span class="en">Discussion</span><span class="zh">讨论</span></h3>
+<span class="disc-count" data-role="count" hidden=""></span>
+</div>
+<p class="disc-sub"><span class="en">Stuck, or got it working a different way? Leave it for the next learner.</span><span class="zh">卡住了，或者用别的方法搞定了？留给下一个学习者看看。</span></p>
+<div class="disc-list" data-role="list"></div>
+<form class="disc-form" data-parent="" data-role="form">
+<input autocomplete="name" class="disc-name" data-role="name" maxlength="40" placeholder="Your name / 你的名字" required="" type="text"/>
+<input aria-hidden="true" autocomplete="off" class="disc-hp" data-role="hp" tabindex="-1" type="text"/>
+<textarea data-role="text" maxlength="2000" placeholder="Add to the discussion / 说点什么…" required="" rows="3"></textarea>
+<div class="disc-foot">
+<span class="disc-msg" data-role="msg"></span>
+<button class="disc-post" type="submit"><span class="en">Post</span><span class="zh">发布</span></button>
+</div>
+</form>
+</div></div>
+</section>
+    <nav class="chapnav">
+    <a class="cn cn-prev" href="terminal.html"><span class="cn-k"><span class="en">Previous</span><span class="zh">上一章</span></span><span class="cn-t"><span class="en">The terminal</span><span class="zh">终端</span></span></a>
+    <a class="cn cn-next" href="m2.html"><span class="cn-k"><span class="en">Next</span><span class="zh">下一章</span></span><span class="cn-t"><span class="en">Developer Tools</span><span class="zh">开发工具</span></span></a>
+    </nav>
+<footer>
+<div class="wrap">
+<h3><span class="en">One last thing</span><span class="zh">最后一件事</span></h3>
+<p class="en" style="max-width:64ch">Feeling lost is not a sign that you chose wrong. It's the normal steady state of this field for everyone, including the people who look like they have it figured out. The difference is that they've learned it's survivable.</p>
+<p class="zh" style="max-width:64ch">感到迷茫不代表你选错了路。在这个行业里，这是所有人的常态，包括那些看起来什么都懂的人。区别只在于，他们已经学会了这是熬得过去的。</p>
+<p class="en" style="max-width:64ch">You already know how to be careful with a method you don't fully trust, how to check a result before you believe it, and how to write down what you did so someone else can repeat it. Those are the rare skills. The syntax is the easy part.</p>
+<p class="zh" style="max-width:64ch">你早就知道怎么谨慎对待一个还不完全信任的方法、怎么在相信一个结果之前先去核实、怎么把做过的事写下来让别人能复现。这些才是稀缺的能力。语法是最容易的那部分。</p>
+<p style="color:var(--muted); font-size:13px; margin-top:28px; margin-bottom:0"><span class="en">Progress and playground state are not saved between visits — work through a section in one sitting, or keep your own checklist alongside.</span><span class="zh">进度和练习状态不会跨次保存——建议一次做完一个章节，或者自己另外记一份清单。</span></p>
+</div>
+</footer>
+<button aria-label="Back to top" id="totop">↑</button>
+<div class="glow" id="glow"></div>
 <script src="assets/core.js"></script>
-<script src="assets/ios.js"></script>
+<script src="assets/vibe.js"></script>
 </body>
 </html>
