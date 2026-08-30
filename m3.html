@@ -4,9 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI Fundamentals · The Lab Notebook</title>
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="assets/icon/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 <meta name="description" content="A 12-month foundations roadmap for a new Data Engineer. Bilingual, interactive, one chapter at a time.">
 <link rel="stylesheet" href="assets/core.css">
 <link rel="stylesheet" href="assets/themes.css">
+<link rel="stylesheet" href="assets/a11y.css">
 <script>/* set theme + language before first paint, no flash */
 (function(){try{
  var t=localStorage.getItem('labnotebook-theme');
@@ -16,6 +21,7 @@
 }catch(e){}})();</script>
 </head>
 <body class="lang-en" data-vibe="ai" data-chapter="m3">
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="topbar">
 <div class="wrap">
 <a aria-label="The Lab Notebook — home" class="brand" href="index.html"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></a>
@@ -27,6 +33,7 @@
 </div>
 <div class="pbar"><i id="pbar"></i></div>
 </div>
+<main id="main" tabindex="-1">
 
 <section data-scene="neural" id="m3" style="--c:var(--m3)">
 <div class="wrap">
@@ -60,7 +67,7 @@
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">How software used to be built</span><span class="zh">以前软件是怎么造的</span></h5>
+<div class="evo-col then"><h4><span class="en">How software used to be built</span><span class="zh">以前软件是怎么造的</span></h4>
 <ul class="en"><li>Every behaviour had to be written as an explicit rule by a human. "If purity &lt; 0.95 then fail."</li><li>Anything fuzzy — reading a messy address, summarising a document — was effectively impossible.</li><li>Adding a language, a format or an edge case meant a new project.</li><li>Search meant matching keywords. If you used a different word, you found nothing.</li></ul>
 <ul class="zh"><li>每一种行为都得由人写成明确的规则。"如果纯度 &lt; 0.95 就判不合格。"</li><li>任何模糊的事——读一个乱写的地址、给文档做摘要——基本不可能。</li><li>多支持一种语言、一种格式、一个边缘情况，就是一个新项目。</li><li>搜索靠关键词匹配。换个说法就什么都搜不到。</li></ul></div>
 <div class="evo-arrow">→</div>
@@ -147,7 +154,7 @@
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">Early prompting (2022–23)</span><span class="zh">早期的提示词（2022–23）</span></h5>
+<div class="evo-col then"><h4><span class="en">Early prompting (2022–23)</span><span class="zh">早期的提示词（2022–23）</span></h4>
 <ul class="en"><li>Magic phrases and superstition — "you are a world-class expert," "I will tip you $200."</li><li>Tiny context windows, so you had to compress everything and hope.</li><li>Chained tricks to get JSON out reliably; often it came back malformed.</li><li>Prompts were personal folklore, passed around as screenshots.</li></ul>
 <ul class="zh"><li>咒语和迷信——"你是世界顶级专家""我会给你 200 美元小费"。</li><li>上下文窗口很小，什么都得压缩，然后祈祷。</li><li>要靠一连串技巧才能稳定拿到 JSON，而且常常格式还是坏的。</li><li>提示词是个人经验，靠截图在群里流传。</li></ul></div>
 <div class="evo-arrow">→</div>
@@ -264,7 +271,7 @@ list any assumption you had to make."""</span>
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">How coding used to go</span><span class="zh">以前写代码是怎样</span></h5>
+<div class="evo-col then"><h4><span class="en">How coding used to go</span><span class="zh">以前写代码是怎样</span></h4>
 <ul class="en"><li>Hit an unfamiliar error → search → open nine tabs → find a 2016 answer for an older version.</li><li>Boilerplate typed by hand, every time, with typos.</li><li>Tests written last, badly, or not at all.</li><li>Understanding a stranger's 800-line file took a full day.</li></ul>
 <ul class="zh"><li>遇到陌生报错 → 搜索 → 开九个标签页 → 找到一个 2016 年针对旧版本的答案。</li><li>样板代码每次都手敲，每次都有拼写错误。</li><li>测试最后写、写得差，或者干脆不写。</li><li>看懂别人写的 800 行文件要花一整天。</li></ul></div>
 <div class="evo-arrow">→</div>
@@ -334,7 +341,7 @@ list any assumption you had to make."""</span>
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">How integration used to work</span><span class="zh">以前的集成是怎么做的</span></h5>
+<div class="evo-col then"><h4><span class="en">How integration used to work</span><span class="zh">以前的集成是怎么做的</span></h4>
 <ul class="en"><li>Every AI tool needed a bespoke integration with every data source. N tools × M systems = N×M pieces of glue code.</li><li>Permissions were whatever each integration's author happened to implement.</li><li>You copied data out by hand and pasted it into a chat window — including things you shouldn't have.</li><li>Nothing was auditable. No log of what the AI actually touched.</li></ul>
 <ul class="zh"><li>每个 AI 工具都要为每个数据源写专门的集成。N 个工具 × M 个系统 = N×M 段胶水代码。</li><li>权限完全取决于写那个集成的人当时实现了什么。</li><li>你手动把数据复制出来粘进聊天框——包括那些本不该复制的。</li><li>完全无法审计。AI 到底碰了什么，没有日志。</li></ul></div>
 <div class="evo-arrow">→</div>
@@ -470,6 +477,7 @@ list any assumption you had to make."""</span>
     <a class="cn cn-prev" href="m2.html"><span class="cn-k"><span class="en">Previous</span><span class="zh">上一章</span></span><span class="cn-t"><span class="en">Developer Tools</span><span class="zh">开发工具</span></span></a>
     <a class="cn cn-next" href="m4.html"><span class="cn-k"><span class="en">Next</span><span class="zh">下一章</span></span><span class="cn-t"><span class="en">Data Engineering</span><span class="zh">数据工程</span></span></a>
     </nav>
+</main>
 <footer>
 <div class="wrap">
 <h3><span class="en">One last thing</span><span class="zh">最后一件事</span></h3>

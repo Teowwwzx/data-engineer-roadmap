@@ -4,9 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The terminal · The Lab Notebook</title>
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="assets/icon/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 <meta name="description" content="A 12-month foundations roadmap for a new Data Engineer. Bilingual, interactive, one chapter at a time.">
 <link rel="stylesheet" href="assets/core.css">
 <link rel="stylesheet" href="assets/themes.css">
+<link rel="stylesheet" href="assets/a11y.css">
 <script>/* set theme + language before first paint, no flash */
 (function(){try{
  var t=localStorage.getItem('labnotebook-theme');
@@ -16,6 +21,7 @@
 }catch(e){}})();</script>
 </head>
 <body class="lang-en" data-vibe="pixel" data-chapter="terminal">
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="topbar">
 <div class="wrap">
 <a aria-label="The Lab Notebook — home" class="brand" href="index.html"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></a>
@@ -27,6 +33,7 @@
 </div>
 <div class="pbar"><i id="pbar"></i></div>
 </div>
+<main id="main" tabindex="-1">
 
 <section data-scene="crt" id="cli">
 <div class="wrap">
@@ -57,11 +64,11 @@
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">Before the GUI (1960s–80s)</span><span class="zh">图形界面之前（1960s–80s）</span></h5>
+<div class="evo-col then"><h3><span class="en">Before the GUI (1960s–80s)</span><span class="zh">图形界面之前（1960s–80s）</span></h3>
 <ul class="en"><li>Text was the <b>only</b> interface. You typed a command; the machine printed a reply. That was computing.</li><li>Powerful, but you had to remember every command name — nothing was discoverable.</li><li>Only trained operators could use a computer at all.</li></ul>
 <ul class="zh"><li>文字是<b>唯一</b>的界面。你敲一条命令，机器打印一段回复。计算机就是这样。</li><li>很强大，但每条命令名都得背下来——没有任何东西是"看得见"的。</li><li>只有受过训练的操作员才用得了电脑。</li></ul></div>
 <div class="evo-arrow">→</div>
-<div class="evo-col now"><h5><span class="en">After the GUI — and still now</span><span class="zh">图形界面之后 —— 直到今天</span></h5>
+<div class="evo-col now"><h4><span class="en">After the GUI — and still now</span><span class="zh">图形界面之后 —— 直到今天</span></h4>
 <ul class="en"><li>Icons made computers usable by everyone. Enormous win. The world changed.</li><li>But the text layer never left. It just moved out of sight, and every server kept it as the <b>primary</b> interface.</li><li>Today: GUI for exploring and deciding. CLI for repeating, automating and proving.</li><li>Nearly every server in the world has <b>no screen at all</b> — you reach it by typing.</li></ul>
 <ul class="zh"><li>图标让所有人都能用电脑。这是巨大的胜利，世界因此改变。</li><li>但文字层从未离开，它只是移到了看不见的地方，而每一台服务器都把它保留为<b>主要</b>界面。</li><li>今天：GUI 用来探索和决定，CLI 用来重复、自动化和留下证据。</li><li>世界上几乎每一台服务器<b>根本没有屏幕</b>——你只能靠打字够到它。</li></ul></div>
 </div>
@@ -202,6 +209,7 @@ sudo &lt;anything&gt;     <span class="cm"># do it as administrator / 以管理�
     <a class="cn cn-prev" href="words.html"><span class="cn-k"><span class="en">Previous</span><span class="zh">上一章</span></span><span class="cn-t"><span class="en">The words</span><span class="zh">那些词</span></span></a>
     <a class="cn cn-next" href="m1.html"><span class="cn-k"><span class="en">Next</span><span class="zh">下一章</span></span><span class="cn-t"><span class="en">IT Basics</span><span class="zh">IT 基础</span></span></a>
     </nav>
+</main>
 <footer>
 <div class="wrap">
 <h3><span class="en">One last thing</span><span class="zh">最后一件事</span></h3>

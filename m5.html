@@ -4,9 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CS & Cloud · The Lab Notebook</title>
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="assets/icon/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 <meta name="description" content="A 12-month foundations roadmap for a new Data Engineer. Bilingual, interactive, one chapter at a time.">
 <link rel="stylesheet" href="assets/core.css">
 <link rel="stylesheet" href="assets/themes.css">
+<link rel="stylesheet" href="assets/a11y.css">
 <script>/* set theme + language before first paint, no flash */
 (function(){try{
  var t=localStorage.getItem('labnotebook-theme');
@@ -16,6 +21,7 @@
 }catch(e){}})();</script>
 </head>
 <body class="lang-en" data-vibe="futuristic" data-chapter="m5">
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="topbar">
 <div class="wrap">
 <a aria-label="The Lab Notebook — home" class="brand" href="index.html"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></a>
@@ -27,6 +33,7 @@
 </div>
 <div class="pbar"><i id="pbar"></i></div>
 </div>
+<main id="main" tabindex="-1">
 
 <section data-scene="circuit" id="m5" style="--c:var(--m5)">
 <div class="wrap">
@@ -58,7 +65,7 @@
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎样</span></h5>
+<div class="evo-col then"><h4><span class="en">How it used to work</span><span class="zh">以前是怎样</span></h4>
 <ul class="en"><li>CPUs got faster every year, so slow code got faster for free. You could wait for hardware to fix you.</li><li>Spinning hard disks — a physical arm moving to a physical track. Random reads were catastrophically slow.</li><li>RAM was scarce and expensive; every byte was budgeted.</li><li>Scaling up meant one bigger, hotter, more expensive machine.</li></ul>
 <ul class="zh"><li>CPU 每年都变快，慢代码会自动变快。等硬件替你解决就行。</li><li>机械硬盘——一条物理磁臂移动到物理磁道。随机读慢得离谱。</li><li>内存又少又贵，每个字节都要精打细算。</li><li>扩容 = 换一台更大、更热、更贵的机器。</li></ul></div>
 <div class="evo-arrow">→</div>
@@ -159,7 +166,7 @@
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">The old trade-off</span><span class="zh">以前的权衡</span></h5>
+<div class="evo-col then"><h4><span class="en">The old trade-off</span><span class="zh">以前的权衡</span></h4>
 <ul class="en"><li>Choose one: fast to write (Python, R) <b>or</b> fast to run (C, Fortran).</li><li>Serious numerical work meant writing C and suffering.</li><li>Prototypes were rewritten from scratch in another language for production. Twice the work, two chances to introduce bugs.</li></ul>
 <ul class="zh"><li>二选一：写得快（Python、R）<b>或</b>跑得快（C、Fortran）。</li><li>正经的数值计算意味着写 C 并且忍受它。</li><li>原型上生产时要用另一种语言从头重写。双倍工作量，两次引入 bug 的机会。</li></ul></div>
 <div class="evo-arrow">→</div>
@@ -240,7 +247,7 @@
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎样</span></h5>
+<div class="evo-col then"><h4><span class="en">How it used to work</span><span class="zh">以前是怎样</span></h4>
 <ul class="en"><li>Buy a server. Wait six weeks. Rack it in a room in your building. Hope you sized it right.</li><li>Capacity was a guess made a year in advance, and you paid for the peak all year.</li><li>Disaster recovery meant a second room in a second city that you hoped never to use.</li><li>Security was mostly "it's inside our building, so it's safe."</li></ul>
 <ul class="zh"><li>买一台服务器，等六周，装进自家楼里的机房，祈祷容量估对了。</li><li>容量是提前一年拍脑袋定的，而且全年按峰值付钱。</li><li>灾备意味着在另一个城市再建一个机房，并祈祷永远用不上。</li><li>安全基本上是"它在我们楼里，所以是安全的"。</li></ul></div>
 <div class="evo-arrow">→</div>
@@ -446,6 +453,7 @@
     <a class="cn cn-prev" href="m4.html"><span class="cn-k"><span class="en">Previous</span><span class="zh">上一章</span></span><span class="cn-t"><span class="en">Data Engineering</span><span class="zh">数据工程</span></span></a>
     <a class="cn cn-next" href="systems.html"><span class="cn-k"><span class="en">Next</span><span class="zh">下一章</span></span><span class="cn-t"><span class="en">How the big ones work</span><span class="zh">大家伙怎么运转</span></span></a>
     </nav>
+</main>
 <footer>
 <div class="wrap">
 <h3><span class="en">One last thing</span><span class="zh">最后一件事</span></h3>
