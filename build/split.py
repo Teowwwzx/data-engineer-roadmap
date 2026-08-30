@@ -302,6 +302,33 @@ def build_topbar(current):
 footer_html = str(footer) if footer else ''
 totop_html  = (str(totop) if totop else '') + '\n' + (str(glow) if glow else '')
 
+
+def fix_heading_levels(html):
+    """Clamp each heading to at most one level deeper than the one before it.
+
+    The shell owns h1/h2; imported content brings its own h4/h5, so the outline
+    skipped levels. Screen-reader users navigating by heading read a skip as a
+    missing section.
+    """
+    import re as _re
+    heads = list(_re.finditer(r'<(/?)h([1-6])\b', html))
+    if not heads:
+        return html
+    out, last_end, prev, stack = [], 0, 0, []
+    for m in heads:
+        closing, lvl = m.group(1) == '/', int(m.group(2))
+        if closing:
+            new = stack.pop() if stack else lvl
+        else:
+            new = max(1, min(lvl, prev + 1) if prev else lvl)
+            stack.append(new)
+            prev = new
+        out.append(html[last_end:m.start()])
+        out.append('<%sh%d' % ('/' if closing else '', new))
+        last_end = m.end()
+    out.append(html[last_end:])
+    return ''.join(out)
+
 # ------------------------------------------------------------- emit pages
 SHELL = '''<!DOCTYPE html>
 <html lang="{lang}">
@@ -309,9 +336,14 @@ SHELL = '''<!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="assets/icon/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 <meta name="description" content="A 12-month foundations roadmap for a new Data Engineer. Bilingual, interactive, one chapter at a time.">
 <link rel="stylesheet" href="assets/core.css">
 <link rel="stylesheet" href="assets/themes.css">
+<link rel="stylesheet" href="assets/a11y.css">
 <script>/* set theme + language before first paint, no flash */
 (function(){{try{{
  var t=localStorage.getItem('labnotebook-theme');
@@ -321,10 +353,13 @@ SHELL = '''<!DOCTYPE html>
 }}catch(e){{}}}})();</script>
 </head>
 <body class="lang-{lang}" data-vibe="{vibe}" data-chapter="{slug}">
+<a class="skip-link" href="#main">Skip to content</a>
 {topbar}
+<main id="main" tabindex="-1">
 {hero}
 {sections}
     {chapnav}
+</main>
 {footer}
 {totop}
 <script src="assets/core.js"></script>
@@ -357,6 +392,7 @@ for i, c in enumerate(CH):
         footer=footer_html,
         totop=totop_html,
     )
+    page = fix_heading_levels(page)
     open(OUT + c['file'], 'w', encoding='utf-8').write(page)
     written.append((c['file'], len(page), c['vibe']))
 

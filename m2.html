@@ -4,9 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Developer Tools · The Lab Notebook</title>
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="assets/icon/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 <meta name="description" content="A 12-month foundations roadmap for a new Data Engineer. Bilingual, interactive, one chapter at a time.">
 <link rel="stylesheet" href="assets/core.css">
 <link rel="stylesheet" href="assets/themes.css">
+<link rel="stylesheet" href="assets/a11y.css">
 <script>/* set theme + language before first paint, no flash */
 (function(){try{
  var t=localStorage.getItem('labnotebook-theme');
@@ -16,6 +21,7 @@
 }catch(e){}})();</script>
 </head>
 <body class="lang-en" data-vibe="gamify" data-chapter="m2">
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="topbar">
 <div class="wrap">
 <a aria-label="The Lab Notebook — home" class="brand" href="index.html"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></a>
@@ -27,6 +33,7 @@
 </div>
 <div class="pbar"><i id="pbar"></i></div>
 </div>
+<main id="main" tabindex="-1">
 
 <section data-scene="hatch" id="m2" style="--c:var(--m2)">
 <div class="wrap">
@@ -58,7 +65,7 @@
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h5>
+<div class="evo-col then"><h4><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h4>
 <ul class="en"><li>Every team wrote its own routing, own session handling, own database layer. Every company had a slightly different, slightly broken version.</li><li>Security was whatever the most senior person happened to remember.</li><li>A new hire needed three months to learn one company's homemade stack — knowledge that was worthless anywhere else.</li></ul>
 <ul class="zh"><li>每个团队自己写路由、自己写会话管理、自己写数据库层。每家公司都有一套略有不同、略有毛病的版本。</li><li>安全取决于组里最资深那个人当时恰好记得什么。</li><li>新人要三个月才能学会一家公司自制的那套东西——而这份知识换一家公司就一文不值。</li></ul></div>
 <div class="evo-arrow">→</div>
@@ -166,7 +173,7 @@ samples.<span class="fn">map</span>(s =&gt; &lt;<span class="fn">SampleCard</spa
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h5>
+<div class="evo-col then"><h4><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h4>
 <ul class="en"><li><code class="inl">report_v2_final_FINAL_usethis.py</code>. Seven copies of a folder, and nobody sure which one is live.</li><li>Two people editing the same file meant one person's work silently vanished.</li><li>History lived in email threads, or in one person's memory.</li><li>"Who changed this and why?" was usually unanswerable.</li></ul>
 <ul class="zh"><li><code class="inl">report_v2_final_FINAL_usethis.py</code>。同一个文件夹七个副本，没人确定哪个在跑。</li><li>两个人改同一个文件，其中一个人的工作就无声消失了。</li><li>历史记录存在邮件线程里，或者某个人的记忆里。</li><li>"这是谁改的、为什么改？"通常答不上来。</li></ul></div>
 <div class="evo-arrow">→</div>
@@ -291,7 +298,7 @@ threshold = 0.95        <span class="cm"># your version / 你的</span>
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h5>
+<div class="evo-col then"><h4><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h4>
 <ul class="en"><li>You bought a licence, got a compiled binary, and could never see inside.</li><li>A bug meant filing a ticket and waiting for the next quarterly release.</li><li>Vendor lock-in was the business model, and price rises were unarguable.</li><li>AI models, similarly, were entirely behind an API — rent only.</li></ul>
 <ul class="zh"><li>你买一份授权，拿到一个编译好的程序，永远看不到里面。</li><li>发现 bug 就提工单，然后等下一个季度版本。</li><li>供应商锁定就是商业模式，涨价你也没得谈。</li><li>AI 模型同理，完全藏在 API 后面——只能租。</li></ul></div>
 <div class="evo-arrow">→</div>
@@ -416,6 +423,7 @@ threshold = 0.95        <span class="cm"># your version / 你的</span>
     <a class="cn cn-prev" href="m1.html"><span class="cn-k"><span class="en">Previous</span><span class="zh">上一章</span></span><span class="cn-t"><span class="en">IT Basics</span><span class="zh">IT 基础</span></span></a>
     <a class="cn cn-next" href="m3.html"><span class="cn-k"><span class="en">Next</span><span class="zh">下一章</span></span><span class="cn-t"><span class="en">AI Fundamentals</span><span class="zh">AI 基础</span></span></a>
     </nav>
+</main>
 <footer>
 <div class="wrap">
 <h3><span class="en">One last thing</span><span class="zh">最后一件事</span></h3>

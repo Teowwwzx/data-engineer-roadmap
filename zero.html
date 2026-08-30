@@ -4,9 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>It all starts from 0 and 1 · The Lab Notebook</title>
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="assets/icon/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 <meta name="description" content="A 12-month foundations roadmap for a new Data Engineer. Bilingual, interactive, one chapter at a time.">
 <link rel="stylesheet" href="assets/core.css">
 <link rel="stylesheet" href="assets/themes.css">
+<link rel="stylesheet" href="assets/a11y.css">
 <script>/* set theme + language before first paint, no flash */
 (function(){try{
  var t=localStorage.getItem('labnotebook-theme');
@@ -16,6 +21,7 @@
 }catch(e){}})();</script>
 </head>
 <body class="lang-en" data-vibe="pixel" data-chapter="zero">
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="topbar">
 <div class="wrap">
 <a aria-label="The Lab Notebook — home" class="brand" href="index.html"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></a>
@@ -27,6 +33,7 @@
 </div>
 <div class="pbar"><i id="pbar"></i></div>
 </div>
+<main id="main" tabindex="-1">
 
 <section data-scene="bits" id="zero">
 <div class="wrap">
@@ -38,7 +45,7 @@
 <div class="play" data-play="bits" style="--c:var(--m2-deep)">
 <div class="play-head">
 <span class="play-badge"><span class="en">▶ Playground</span><span class="zh">▶ 动手玩</span></span>
-<h4><span class="en">Eight switches. That's a letter.</span><span class="zh">八个开关，就是一个字母。</span></h4>
+<h3><span class="en">Eight switches. That's a letter.</span><span class="zh">八个开关，就是一个字母。</span></h3>
 <p class="sub2"><span class="en">Flip the switches below. Each one is a single transistor being off or on. Eight of them together are called a <b>byte</b>, and a byte can be read as a number — or, by agreement, as a letter. Try to spell your own initial.</span><span class="zh">把下面的开关拨一拨。每一个都是一个晶体管的关或开。八个凑在一起叫一个<b>字节</b>，而一个字节可以被读成一个数字——或者，按照约定，被读成一个字母。试着拼出你名字的首字母。</span></p>
 </div>
 <div class="play-body">
@@ -80,7 +87,7 @@
 <p class="en">Here is the part that surprised me, and that I think will stay with you longer than any syntax: <b>the tower is not a computer thing. It's a civilisation thing.</b> Humans have been doing exactly this trick for thousands of years, and computing is simply the newest and most visible example.</p>
 <p class="zh">下面这部分是让我意外的，也是我认为会比任何语法都留在你脑子里更久的：<b>这座塔不是计算机独有的东西，它是文明的运作方式。</b>人类干这件事已经干了几千年，而计算只是其中最新、也最显眼的一个例子。</p>
 <div class="parallel">
-<div class="par"><h5><span class="en">Money</span><span class="zh">货币</span></h5><p class="en">A number in a database, standing for a promise, standing for goods, standing for labour. Four layers of agreement. Nobody checks the bottom one, and the whole economy works because nobody has to.</p><p class="zh">数据库里的一个数字，代表一个承诺，代表一批货物，代表一份劳动。四层约定。没人去核最底下那一层，而整个经济能运转，恰恰因为没人需要去核。</p></div>
+<div class="par"><h4><span class="en">Money</span><span class="zh">货币</span></h4><p class="en">A number in a database, standing for a promise, standing for goods, standing for labour. Four layers of agreement. Nobody checks the bottom one, and the whole economy works because nobody has to.</p><p class="zh">数据库里的一个数字，代表一个承诺，代表一批货物，代表一份劳动。四层约定。没人去核最底下那一层，而整个经济能运转，恰恰因为没人需要去核。</p></div>
 <div class="par"><h5><span class="en">Language</span><span class="zh">语言</span></h5><p class="en">Sounds → letters → words → sentences → meaning. You are running the top of that stack right now and have not thought about your vocal cords once.</p><p class="zh">声音 → 字母 → 词 → 句子 → 意义。你此刻正在运行这个栈的最顶层，而且一次都没想过你的声带。</p></div>
 <div class="par"><h5><span class="en">An address</span><span class="zh">地址</span></h5><p class="en">Country → state → city → street → number. A globally agreed hierarchy that lets a stranger find your door. That is DNS, invented centuries earlier.</p><p class="zh">国家 → 州省 → 城市 → 街道 → 门牌。一套全球通行的层级约定，让陌生人能找到你家门口。这就是 DNS，只是早发明了几百年。</p></div>
 <div class="par"><h5><span class="en">A hospital</span><span class="zh">医院</span></h5><p class="en">Reception, triage, lab, records, pharmacy. Standard forms between departments so nobody has to understand another department's internals. That is an API.</p><p class="zh">挂号、分诊、化验、病案、药房。科室之间用标准表单沟通，谁都不需要理解别的科室内部怎么运作。这就是 API。</p></div>
@@ -99,6 +106,7 @@
     <a class="cn cn-prev" href="systems.html"><span class="cn-k"><span class="en">Previous</span><span class="zh">上一章</span></span><span class="cn-t"><span class="en">How the big ones work</span><span class="zh">大家伙怎么运转</span></span></a>
     <a class="cn cn-next" href="finish.html"><span class="cn-k"><span class="en">Next</span><span class="zh">下一章</span></span><span class="cn-t"><span class="en">Month 12 and after</span><span class="zh">第 12 个月之后</span></span></a>
     </nav>
+</main>
 <footer>
 <div class="wrap">
 <h3><span class="en">One last thing</span><span class="zh">最后一件事</span></h3>

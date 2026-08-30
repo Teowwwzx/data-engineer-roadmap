@@ -4,9 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>IT Basics · The Lab Notebook</title>
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="assets/icon/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 <meta name="description" content="A 12-month foundations roadmap for a new Data Engineer. Bilingual, interactive, one chapter at a time.">
 <link rel="stylesheet" href="assets/core.css">
 <link rel="stylesheet" href="assets/themes.css">
+<link rel="stylesheet" href="assets/a11y.css">
 <script>/* set theme + language before first paint, no flash */
 (function(){try{
  var t=localStorage.getItem('labnotebook-theme');
@@ -16,6 +21,7 @@
 }catch(e){}})();</script>
 </head>
 <body class="lang-en" data-vibe="modern" data-chapter="m1">
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="topbar">
 <div class="wrap">
 <a aria-label="The Lab Notebook — home" class="brand" href="index.html"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></a>
@@ -27,6 +33,7 @@
 </div>
 <div class="pbar"><i id="pbar"></i></div>
 </div>
+<main id="main" tabindex="-1">
 
 <section data-scene="grid" id="m1" style="--c:var(--m1)">
 <div class="wrap">
@@ -87,7 +94,7 @@
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h5>
+<div class="evo-col then"><h4><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h4>
 <ul class="en"><li>Every click sent a request to the server, which sent back a <b>whole new page</b>. The screen went white and reloaded.</li><li>HTML, styling and behaviour were tangled in one file — <code class="inl">&lt;font color="red"&gt;</code> sat right in the content.</li><li>A different page had to be hand-written for every combination of data.</li></ul>
 <ul class="zh"><li>每点一次，浏览器就向服务器要一整个<b>新页面</b>，屏幕闪白、整页刷新。</li><li>结构、样式、行为全混在一个文件里——<code class="inl">&lt;font color="red"&gt;</code> 直接写在内容中间。</li><li>数据有多少种组合，就得手写多少个页面。</li></ul></div>
 <div class="evo-arrow">→</div>
@@ -185,7 +192,7 @@ document.<span class="fn">getElementById</span>(<span class="st">"btn"</span>).<
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h5>
+<div class="evo-col then"><h4><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h4>
 <ul class="en"><li>One giant program did everything — UI, logic and data access welded together. Change one line, retest the world.</li><li>It ran on <b>one specific server in one specific room</b>. If that machine died, so did the product.</li><li>Deploying meant a person copying files over FTP at 2am and hoping.</li><li>Scaling meant buying a bigger machine (and waiting six weeks for it to arrive).</li></ul>
 <ul class="zh"><li>一个巨大的程序包办一切——界面、逻辑、数据访问焊死在一起。改一行，就得把整个系统重测一遍。</li><li>它跑在<b>某个机房里的某一台特定服务器</b>上。那台机器一挂，产品就没了。</li><li>发布 = 有个人凌晨两点用 FTP 把文件拷上去，然后祈祷。</li><li>扩容 = 买一台更大的机器（然后等六周才到货）。</li></ul></div>
 <div class="evo-arrow">→</div>
@@ -279,7 +286,7 @@ S-003 → FAIL   <span class="cm"># volume too low / 体积不够</span>
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h5>
+<div class="evo-col then"><h4><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h4>
 <ul class="en"><li>Data lived in <b>flat files</b>, one giant file per topic, with everything repeated on every line.</li><li>To answer a question you wrote a whole program that read the file top to bottom.</li><li>Two people writing at once corrupted the file. There was no such thing as a safe concurrent update.</li><li>Changing the format meant rewriting every program that read it.</li></ul>
 <ul class="zh"><li>数据存在<b>平面文件</b>里，一个主题一个大文件，每一行都把所有信息重复一遍。</li><li>想回答一个问题，就得写一整个程序把文件从头读到尾。</li><li>两个人同时写就会把文件写坏。当时根本没有"安全并发更新"这回事。</li><li>格式一改，所有读它的程序都得重写。</li></ul></div>
 <div class="evo-arrow">→</div>
@@ -417,7 +424,7 @@ S-003 → FAIL   <span class="cm"># volume too low / 体积不够</span>
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h5>
+<div class="evo-col then"><h4><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h4>
 <ul class="en"><li>Systems integrated by <b>dropping a CSV on a shared drive</b> at midnight and hoping the other side picked it up.</li><li>Or by connecting straight to each other's database with a shared password.</li><li>Formats were agreed in a Word document that went out of date immediately.</li><li>If the file didn't arrive, nobody found out until someone complained the next morning.</li></ul>
 <ul class="zh"><li>系统之间靠<b>半夜往共享盘上丢一个 CSV</b>来集成，然后祈祷对方会去取。</li><li>或者干脆用一个共享密码直连对方的数据库。</li><li>格式约定写在一份 Word 文档里，而那份文档立刻就过期了。</li><li>文件没送到的话，要等第二天早上有人抱怨才会发现。</li></ul></div>
 <div class="evo-arrow">→</div>
@@ -602,6 +609,7 @@ resp = requests.<span class="fn">get</span>(
     <a class="cn cn-prev" href="terminal.html"><span class="cn-k"><span class="en">Previous</span><span class="zh">上一章</span></span><span class="cn-t"><span class="en">The terminal</span><span class="zh">终端</span></span></a>
     <a class="cn cn-next" href="m2.html"><span class="cn-k"><span class="en">Next</span><span class="zh">下一章</span></span><span class="cn-t"><span class="en">Developer Tools</span><span class="zh">开发工具</span></span></a>
     </nav>
+</main>
 <footer>
 <div class="wrap">
 <h3><span class="en">One last thing</span><span class="zh">最后一件事</span></h3>

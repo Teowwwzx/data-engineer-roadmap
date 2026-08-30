@@ -4,9 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The whole map · The Lab Notebook</title>
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="assets/icon/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 <meta name="description" content="A 12-month foundations roadmap for a new Data Engineer. Bilingual, interactive, one chapter at a time.">
 <link rel="stylesheet" href="assets/core.css">
 <link rel="stylesheet" href="assets/themes.css">
+<link rel="stylesheet" href="assets/a11y.css">
 <script>/* set theme + language before first paint, no flash */
 (function(){try{
  var t=localStorage.getItem('labnotebook-theme');
@@ -16,6 +21,7 @@
 }catch(e){}})();</script>
 </head>
 <body class="lang-en" data-vibe="futuristic" data-chapter="map">
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="topbar">
 <div class="wrap">
 <a aria-label="The Lab Notebook — home" class="brand" href="index.html"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></a>
@@ -27,6 +33,7 @@
 </div>
 <div class="pbar"><i id="pbar"></i></div>
 </div>
+<main id="main" tabindex="-1">
 
 <section data-scene="grid" id="map">
 <div class="wrap">
@@ -122,7 +129,7 @@
 <div class="play" data-play="flow" style="--c:var(--m1)">
 <div class="play-head">
 <span class="play-badge"><span class="en">▶ Playground</span><span class="zh">▶ 动手玩</span></span>
-<h4><span class="en">The full journey, one step at a time</span><span class="zh">完整旅程，一步一步走</span></h4>
+<h3><span class="en">The full journey, one step at a time</span><span class="zh">完整旅程，一步一步走</span></h3>
 <p class="sub2"><span class="en">Left panel: what a human sees. Right panel: the real code or data at that exact moment. Click any step to jump back to it.</span><span class="zh">左边：人看到的。右边：那一刻真实的代码或数据。点任意步骤都能跳回去。</span></p>
 </div>
 <div class="play-body">
@@ -152,6 +159,7 @@
     <a class="cn cn-prev" href="index.html"><span class="cn-k"><span class="en">Previous</span><span class="zh">上一章</span></span><span class="cn-t"><span class="en">Start here</span><span class="zh">从这里开始</span></span></a>
     <a class="cn cn-next" href="words.html"><span class="cn-k"><span class="en">Next</span><span class="zh">下一章</span></span><span class="cn-t"><span class="en">The words</span><span class="zh">那些词</span></span></a>
     </nav>
+</main>
 <footer>
 <div class="wrap">
 <h3><span class="en">One last thing</span><span class="zh">最后一件事</span></h3>

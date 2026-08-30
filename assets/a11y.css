@@ -1,0 +1,229 @@
+/* ============================================================================
+   ACCESSIBILITY + CONTRAST CORRECTIONS
+   Design-independent fixes measured against WCAG 2 and APCA. Nothing here
+   changes layout, spacing or the visual language — only values that failed a
+   threshold, plus the platform affordances the markup was missing.
+   Loaded after themes.css so it wins on equal specificity.
+   ========================================================================= */
+
+/* ---------------------------------------------------------- focus ring ----
+   The ring drew at 45% alpha, measuring ~2.0:1 against the surfaces it
+   crosses where WCAG 1.4.11 requires 3:1 for a non-text indicator. Solid. */
+:root{ --ring:var(--m1) }
+:focus-visible{
+  outline:2.5px solid var(--m1);
+  outline-offset:2px;
+  border-radius:6px;
+}
+/* .node:focus killed the outline outright; give it a real indicator back */
+.node:focus-visible{ outline:2.5px solid var(--m1); outline-offset:2px }
+
+/* -------------------------------------------------------------- footer ----
+   The footer plate is #15202b in both appearances, but its text drew from
+   --muted-2, which measured Lc 42.6 for body copy against a Lc 75 floor —
+   the worst pair on the site, and it repeats on every page. */
+footer{ color:#d2dbe4 }                        /* Lc 82.0 · WCAG 11.77 */
+footer .muted, footer small, footer .foot-sub{ color:#c3cfdb }  /* Lc 74.5 */
+footer a{ color:#e8eef4 }
+
+/* --------------------------------------------------- vibe swatch labels ---
+   Each label renders in its own vibe hue at 10.5px, landing between 2.71:1
+   and 4.47:1 on white. Pull more ink through the mix; the hue stays
+   identifiable, which is the point of the swatch. */
+.chx .chx-v{ color:color-mix(in srgb, var(--k) 52%, var(--ink)) }
+
+/* Emphasis inside running prose is the weight's job — accent-coloured bold
+   has to clear the body floor and generally does not. */
+.warn b, .warn strong, .chal-body .brief b, .tldr li b{ color:inherit }
+
+/* ------------------------------------------------------- touch targets ----
+   WCAG 2.5.8 floor is 24x24; these rendered at 17x17. */
+input[type="checkbox"], input[type="radio"]{
+  width:24px; height:24px; flex:none; accent-color:var(--m1);
+}
+label:has(> input[type="checkbox"]), label:has(> input[type="radio"]){
+  min-height:32px; display:flex; align-items:center; gap:10px;
+}
+
+/* iOS Safari zooms the page when a text field renders under 16px. */
+input[type="text"], input[type="email"], input[type="search"], textarea{
+  font-size:16px;
+}
+
+/* ----------------------------------------------------------- type detail --*/
+h1,h2,h3,h4{ text-wrap:balance }
+.lede, .sub, .disc-msg, figcaption{ text-wrap:pretty }
+.pct, .score, .stat b, .prog-n, .herostats div b{ font-variant-numeric:tabular-nums }
+
+/* --------------------------------------------------------- skip link ------
+   Off-screen until focused. There was no way to bypass the top bar. */
+.skip-link{
+  position:fixed; top:8px; left:8px; z-index:400;
+  transform:translateY(-160%); transition:transform .18s ease;
+  background:#12305e; color:#ffffff; font:600 15px/1 inherit;
+  text-decoration:none; padding:12px 16px; border-radius:10px;
+  box-shadow:0 8px 24px rgba(0,0,0,.28);
+}
+.skip-link:focus{ transform:none }
+main:focus{ outline:none }
+
+/* ------------------------------------------------------- secondary text ---
+   --muted carries the lede and most secondary copy. Measured against the
+   page background it actually renders on (#f6f5f1 light, #0b0f14 dark) it
+   scored Lc 71.3 and Lc 53.9 against a Lc 75 body-text floor. Dark was the
+   bad one: WCAG rated it fine while APCA put it 21 points short, which is
+   the usual WCAG blind spot for light text on a dark ground. */
+:root{ --muted:#546270 }                       /* Lc 75.2 · WCAG 5.75 */
+:root[data-theme="dark"]{ --muted:#c5cdd6 }    /* Lc 75.1 · WCAG 11.93 */
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){ --muted:#c5cdd6 }
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){ --muted:#546270 }
+}
+
+/* footer secondary copy sits on the dark plate regardless of appearance */
+footer p, footer li, footer .muted{ color:#c3cfdb }
+
+/* ------------------------------------------------- accent text in dark ----
+   core.css darkens this family for light mode (`color-mix(--c 76%, #000)`)
+   but hands dark mode the RAW hue: `color:var(--c, var(--m1))`. A dark indigo
+   on a dark ground measured Lc 21 — the worst pair on the site. Dark needs
+   the accent mixed toward white, the mirror of what light does toward black.
+   Specificity matches core.css's `:root[data-theme=...]` prefix so it wins. */
+:root[data-theme="dark"] .lens-tabs button.on,
+:root[data-theme="dark"] .lens-pane .kicker,
+:root[data-theme="dark"] .analogy .lab,
+:root[data-theme="dark"] .rw .rwh,
+:root[data-theme="dark"] .quiz .qh,
+:root[data-theme="dark"] .mshead .sub,
+:root[data-theme="dark"] .checks h4,
+:root[data-theme="dark"] .stage .cap span,
+:root[data-theme="dark"] .evo-lbl.l-now,
+:root[data-theme="dark"] .evo-col.now h5,
+:root[data-theme="dark"] .tldr b,
+:root[data-theme="dark"] .tldr .tl2,
+:root[data-theme="dark"] .idea .il,
+:root[data-theme="dark"] .stat b,
+:root[data-theme="dark"] .showhead .tag2,
+:root[data-theme="dark"] .diff{
+  color:color-mix(in srgb, var(--c, var(--m1)) 34%, #ffffff);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .lens-tabs button.on,
+  :root:not([data-theme="light"]) .lens-pane .kicker,
+  :root:not([data-theme="light"]) .analogy .lab,
+  :root:not([data-theme="light"]) .rw .rwh,
+  :root:not([data-theme="light"]) .quiz .qh,
+  :root:not([data-theme="light"]) .mshead .sub,
+  :root:not([data-theme="light"]) .checks h4,
+  :root:not([data-theme="light"]) .stage .cap span,
+  :root:not([data-theme="light"]) .evo-lbl.l-now,
+  :root:not([data-theme="light"]) .evo-col.now h5,
+  :root:not([data-theme="light"]) .tldr b,
+  :root:not([data-theme="light"]) .tldr .tl2,
+  :root:not([data-theme="light"]) .idea .il,
+  :root:not([data-theme="light"]) .stat b,
+  :root:not([data-theme="light"]) .showhead .tag2,
+  :root:not([data-theme="light"]) .diff{
+    color:color-mix(in srgb, var(--c, var(--m1)) 34%, #ffffff);
+  }
+}
+/* prose emphasis stays prose — outrank core.css's themed rules */
+:root[data-theme="dark"] .warn b,
+:root[data-theme="dark"] .chal-body .brief b,
+:root:not([data-theme="light"]) .warn b,
+:root:not([data-theme="light"]) .chal-body .brief b,
+:root .warn b, :root .chal-body .brief b{ color:inherit }
+
+/* ------------------------------------------- dark-mode brand ramp ----
+   themes.css sets --m1..--m5 on <body> per vibe, with no dark variant.
+   core.css sets its dark ramp on :root. <body> is the closer element, so
+   the vibe won by inheritance no matter the specificity — dark mode never
+   reached the brand colours on any page. These are each vibe's own hues
+   lightened until they clear ~Lc 72 on the dark background, so the vibe
+   keeps its character instead of collapsing to one palette.
+   Generated, not hand-picked. */
+:root[data-theme="dark"] [data-vibe="minimalist"]{ --m1:#c6c7c9; --m2:#c5c7ca; --m3:#c5c7c9; --m4:#c5c8ca; --m5:#c7c8c9 }   /* Lc 72.3 72.2 72.2 72.7 72.9 */
+:root[data-theme="dark"] [data-vibe="futuristic"]{ --m1:#3ad8f0; --m2:#76d1fa; --m3:#cebefc; --m4:#f1b0fc; --m5:#4fdbc9 }   /* Lc 72.1 71.9 72.3 72.2 72.2 */
+:root[data-theme="dark"] [data-vibe="ai"]{ --m1:#dbb9fc; --m2:#f7b4d5; --m3:#d1befb; --m4:#f9b1d7; --m5:#c2c3fa }   /* Lc 72.1 72.6 72.6 71.9 72.6 */
+:root[data-theme="dark"] [data-vibe="pixel"]{ --m1:#76db9b; --m2:#eec137; --m3:#fcb888; --m4:#71d5e6; --m5:#f9b6b6 }   /* Lc 72.4 72.1 72.2 72.3 72.3 */
+:root[data-theme="dark"] [data-vibe="gamify"]{ --m1:#f8bc57; --m2:#79d8b8; --m3:#d1befb; --m4:#f9b6b6; --m5:#a9c8fb }   /* Lc 72.1 72.1 72.6 72.3 72.0 */
+:root[data-theme="dark"] [data-vibe="chill"]{ --m1:#f3baa4; --m2:#adcec4; --m3:#cec0e8; --m4:#e9c187; --m5:#edbcb0 }   /* Lc 72.2 72.3 71.9 72.5 72.4 */
+:root[data-theme="dark"] [data-vibe="natural"]{ --m1:#baccb4; --m2:#d0c5b3; --m3:#bbcbbe; --m4:#ddc58a; --m5:#d2c5bb }   /* Lc 72.2 71.9 72.2 72.4 72.5 */
+:root[data-theme="dark"] [data-vibe="modern"]{ --m1:#c5c2f6; --m2:#99d2cd; --m3:#dabaf8; --m4:#edbf8a; --m5:#f5b7c4 }   /* Lc 72.4 72.6 72.1 72.4 72.6 */
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) [data-vibe="minimalist"]{ --m1:#c6c7c9; --m2:#c5c7ca; --m3:#c5c7c9; --m4:#c5c8ca; --m5:#c7c8c9 }
+  :root:not([data-theme="light"]) [data-vibe="futuristic"]{ --m1:#3ad8f0; --m2:#76d1fa; --m3:#cebefc; --m4:#f1b0fc; --m5:#4fdbc9 }
+  :root:not([data-theme="light"]) [data-vibe="ai"]{ --m1:#dbb9fc; --m2:#f7b4d5; --m3:#d1befb; --m4:#f9b1d7; --m5:#c2c3fa }
+  :root:not([data-theme="light"]) [data-vibe="pixel"]{ --m1:#76db9b; --m2:#eec137; --m3:#fcb888; --m4:#71d5e6; --m5:#f9b6b6 }
+  :root:not([data-theme="light"]) [data-vibe="gamify"]{ --m1:#f8bc57; --m2:#79d8b8; --m3:#d1befb; --m4:#f9b6b6; --m5:#a9c8fb }
+  :root:not([data-theme="light"]) [data-vibe="chill"]{ --m1:#f3baa4; --m2:#adcec4; --m3:#cec0e8; --m4:#e9c187; --m5:#edbcb0 }
+  :root:not([data-theme="light"]) [data-vibe="natural"]{ --m1:#baccb4; --m2:#d0c5b3; --m3:#bbcbbe; --m4:#ddc58a; --m5:#d2c5bb }
+  :root:not([data-theme="light"]) [data-vibe="modern"]{ --m1:#c5c2f6; --m2:#99d2cd; --m3:#dabaf8; --m4:#edbf8a; --m5:#f5b7c4 }
+}
+
+/* footer copy is wrapped in language spans, which inherit past `footer p` */
+footer p, footer p *, footer li, footer li *, footer .muted{ color:#c3cfdb }
+footer h1,footer h2,footer h3,footer h4,footer strong,footer b{ color:#e8eef4 }
+
+/* vibe swatch labels: the light-mode mix leaves them at Lc 49.5 on the dark
+   card, so dark needs more ink pulled through than light does */
+:root[data-theme="dark"] .chx .chx-v,
+:root:not([data-theme="light"]) .chx .chx-v{
+  color:color-mix(in srgb, var(--k) 30%, var(--ink));
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]) .chx .chx-v{
+    color:color-mix(in srgb, var(--k) 52%, var(--ink));
+  }
+}
+
+/* .philo is a pinned-dark plate in both appearances; its bold ran accent */
+.philo b, .philo strong{ color:#e8eef4 }
+
+/* Bold inside running prose, drawn in the section accent. Several vibes use
+   pale hues that cannot clear the body-text floor on a light ground, and the
+   accent also reads as a link. Emphasis here is the weight's job. */
+:root .analogy b, :root .analogy strong,
+:root[data-theme="dark"] .analogy b,
+:root:not([data-theme="light"]) .analogy b{ color:inherit }
+
+/* ------------------------------------------ light-mode brand ramp ----
+   The mirror of the dark fix above. Each vibe ships bright or pale hues
+   that read fine as fills but fail as text on the light ground — a teal
+   at 1.71:1, a yellow at 1.92:1. Darkened until each clears BOTH WCAG 4.5
+   and APCA Lc 75, hue preserved. Generated, not hand-picked. */
+:root[data-theme="light"] [data-vibe="minimalist"]{ --m1:#3b3f46; --m2:#5a6068; --m3:#4a4f57; --m4:#5c6167; --m5:#2f3338 }
+:root[data-theme="light"] [data-vibe="futuristic"]{ --m1:#116775; --m2:#1e6686; --m3:#665598; --m4:#76547b; --m5:#166a60 }
+:root[data-theme="light"] [data-vibe="ai"]{ --m1:#7c3fb7; --m2:#a3326a; --m3:#6b47bd; --m4:#92446d; --m5:#4f52c1 }
+:root[data-theme="light"] [data-vibe="pixel"]{ --m1:#136c34; --m2:#775b04; --m3:#9a470e; --m4:#036879; --m5:#ac3131 }
+:root[data-theme="light"] [data-vibe="gamify"]{ --m1:#845506; --m2:#096d4c; --m3:#6b47bd; --m4:#ac3131; --m5:#2a5eb1 }
+:root[data-theme="light"] [data-vibe="chill"]{ --m1:#7d5648; --m2:#48665d; --m3:#66597d; --m4:#735c3c; --m5:#845447 }
+:root[data-theme="light"] [data-vibe="natural"]{ --m1:#416936; --m2:#735c37; --m3:#4c6650; --m4:#7b5a07; --m5:#7c593b }
+:root[data-theme="light"] [data-vibe="modern"]{ --m1:#4d45e0; --m2:#096b62; --m3:#812dce; --m4:#8f4f04; --m5:#b4173a }
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]) [data-vibe="minimalist"]{ --m1:#3b3f46; --m2:#5a6068; --m3:#4a4f57; --m4:#5c6167; --m5:#2f3338 }
+  :root:not([data-theme="dark"]) [data-vibe="futuristic"]{ --m1:#116775; --m2:#1e6686; --m3:#665598; --m4:#76547b; --m5:#166a60 }
+  :root:not([data-theme="dark"]) [data-vibe="ai"]{ --m1:#7c3fb7; --m2:#a3326a; --m3:#6b47bd; --m4:#92446d; --m5:#4f52c1 }
+  :root:not([data-theme="dark"]) [data-vibe="pixel"]{ --m1:#136c34; --m2:#775b04; --m3:#9a470e; --m4:#036879; --m5:#ac3131 }
+  :root:not([data-theme="dark"]) [data-vibe="gamify"]{ --m1:#845506; --m2:#096d4c; --m3:#6b47bd; --m4:#ac3131; --m5:#2a5eb1 }
+  :root:not([data-theme="dark"]) [data-vibe="chill"]{ --m1:#7d5648; --m2:#48665d; --m3:#66597d; --m4:#735c3c; --m5:#845447 }
+  :root:not([data-theme="dark"]) [data-vibe="natural"]{ --m1:#416936; --m2:#735c37; --m3:#4c6650; --m4:#7b5a07; --m5:#7c593b }
+  :root:not([data-theme="dark"]) [data-vibe="modern"]{ --m1:#4d45e0; --m2:#096b62; --m3:#812dce; --m4:#8f4f04; --m5:#b4173a }
+}
+
+/* Category and zone chips colour their text from a per-item hue (--ck / --zc)
+   that sits outside the vibe ramp above. Those hues are chosen to look good as
+   fills; as small text on a tint of themselves they land near 2:1. Mix them
+   toward the label colour so the hue still reads but the text clears. */
+.cathead .where{ color:color-mix(in srgb, var(--ck) 42%, var(--ink)) }
+.zchip{ color:color-mix(in srgb, var(--zc) 45%, var(--ink)) }
+:root[data-theme="dark"] .cathead .where,
+:root:not([data-theme="light"]) .cathead .where{ color:color-mix(in srgb, var(--ck) 30%, var(--ink)) }
+:root[data-theme="dark"] .zchip,
+:root:not([data-theme="light"]) .zchip{ color:color-mix(in srgb, var(--zc) 32%, var(--ink)) }
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]) .cathead .where{ color:color-mix(in srgb, var(--ck) 42%, var(--ink)) }
+  :root:not([data-theme="dark"]) .zchip{ color:color-mix(in srgb, var(--zc) 45%, var(--ink)) }
+}

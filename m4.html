@@ -4,9 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Data Engineering · The Lab Notebook</title>
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="assets/icon/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 <meta name="description" content="A 12-month foundations roadmap for a new Data Engineer. Bilingual, interactive, one chapter at a time.">
 <link rel="stylesheet" href="assets/core.css">
 <link rel="stylesheet" href="assets/themes.css">
+<link rel="stylesheet" href="assets/a11y.css">
 <script>/* set theme + language before first paint, no flash */
 (function(){try{
  var t=localStorage.getItem('labnotebook-theme');
@@ -16,6 +21,7 @@
 }catch(e){}})();</script>
 </head>
 <body class="lang-en" data-vibe="natural" data-chapter="m4">
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="topbar">
 <div class="wrap">
 <a aria-label="The Lab Notebook — home" class="brand" href="index.html"><span class="dot"></span><span class="en">The Lab Notebook</span><span class="zh">实验记录本</span></a>
@@ -27,6 +33,7 @@
 </div>
 <div class="pbar"><i id="pbar"></i></div>
 </div>
+<main id="main" tabindex="-1">
 
 <section data-scene="flow" id="m4" style="--c:var(--m4)">
 <div class="wrap">
@@ -63,7 +70,7 @@
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h5>
+<div class="evo-col then"><h4><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h4>
 <ul class="en"><li>Download a CSV, open it, sort, filter, delete some rows, save as <code class="inl">_clean_v3.xlsx</code>.</li><li>Charts made by hand, pasted into slides that go stale the moment they're sent.</li><li>Everything capped by what fits in memory on one laptop.</li><li>The knowledge of "how we calculate this" lived in one person's head.</li></ul>
 <ul class="zh"><li>下载一个 CSV，打开、排序、筛选、删几行，另存为 <code class="inl">_clean_v3.xlsx</code>。</li><li>图表手工做好粘进幻灯片，发出去那一刻就已经过期。</li><li>一切受限于一台笔记本内存装得下多少。</li><li>"这个指标我们是怎么算的"，只存在某个人脑子里。</li></ul></div>
 <div class="evo-arrow">→</div>
@@ -202,7 +209,7 @@ summary &lt;- samples |&gt;
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">Classic ETL (1990s–2010s)</span><span class="zh">经典 ETL（1990s–2010s）</span></h5>
+<div class="evo-col then"><h4><span class="en">Classic ETL (1990s–2010s)</span><span class="zh">经典 ETL（1990s–2010s）</span></h4>
 <ul class="en"><li><b>Extract → Transform → Load.</b> Transform <i>before</i> loading, because warehouse storage was expensive.</li><li>Raw data was thrown away after transformation. Got the logic wrong? The original is gone.</li><li>Built by dragging boxes in a proprietary GUI tool. Not reviewable, not in version control.</li><li>Ran overnight; you found out about failures the next morning, from a user.</li></ul>
 <ul class="zh"><li><b>抽取 → 转换 → 加载。</b>先转换<i>再</i>入库，因为数仓存储很贵。</li><li>转换完原始数据就丢了。逻辑写错了？原件已经没了。</li><li>用商业 GUI 工具拖框搭出来，不可评审，不进版本控制。</li><li>半夜跑，出问题第二天早上从用户那里才知道。</li></ul></div>
 <div class="evo-arrow">→</div>
@@ -320,7 +327,7 @@ summary &lt;- samples |&gt;
 </div>
 <div class="lens-pane">
 <div class="evo">
-<div class="evo-col then"><h5><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h5>
+<div class="evo-col then"><h4><span class="en">How it used to work</span><span class="zh">以前是怎么做的</span></h4>
 <ul class="en"><li>One enormous "reporting table" with 180 columns, most of them empty for most rows.</li><li>New question → add three more columns. Nobody dared remove any.</li><li>Historical values overwritten, so last year's report changed every time someone updated a record.</li><li>Every analyst wrote their own definition of "active customer." There were nine.</li></ul>
 <ul class="zh"><li>一张巨大的"报表宽表"，180 列，其中大部分对大部分行都是空的。</li><li>来一个新问题就再加三列，而且没人敢删任何一列。</li><li>历史值被覆盖，所以每次有人更新一条记录，去年的报表就跟着变。</li><li>每个分析师都自己定义"活跃客户"。总共有九种定义。</li></ul></div>
 <div class="evo-arrow">→</div>
@@ -465,6 +472,7 @@ summary &lt;- samples |&gt;
     <a class="cn cn-prev" href="m3.html"><span class="cn-k"><span class="en">Previous</span><span class="zh">上一章</span></span><span class="cn-t"><span class="en">AI Fundamentals</span><span class="zh">AI 基础</span></span></a>
     <a class="cn cn-next" href="m5.html"><span class="cn-k"><span class="en">Next</span><span class="zh">下一章</span></span><span class="cn-t"><span class="en">CS & Cloud</span><span class="zh">计算机原理与云</span></span></a>
     </nav>
+</main>
 <footer>
 <div class="wrap">
 <h3><span class="en">One last thing</span><span class="zh">最后一件事</span></h3>
